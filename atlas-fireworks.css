@@ -1,0 +1,19 @@
+/* A night wash behind the sparks, fading away before the foreground river. */
+#atlasStage::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(16,28,42,.86),rgba(25,39,49,.67) 32%,rgba(35,46,49,.32) 57%,rgba(40,48,49,.06) 80%,transparent);opacity:0;transition:opacity 2.5s ease}
+#atlas.fireworks-evening #atlasStage::after{opacity:1}
+#atlas.fireworks-evening #atlasFestivalSky{z-index:2;opacity:.94}
+#atlasFireworks{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+#atlas.fireworks-evening .atlas-heading{color:#efdfb9;text-shadow:0 1px 12px #17232b55}
+#atlas.fireworks-evening .atlas-heading>span,#atlas.fireworks-evening .atlas-heading p{color:inherit}
+#atlasFireworksToggle,#atlasFireworksSound{position:absolute;right:max(24px,env(safe-area-inset-right));top:80px;z-index:4;width:auto;height:auto;min-height:36px;padding:6px 10px;border:1px solid #ead4aa55;border-radius:2px;background:#27363d36;color:#efdfb9;font:12px 'Songti SC',serif;letter-spacing:.15em;cursor:pointer}
+#atlasFireworksToggle[hidden],#atlasFireworksSound[hidden]{display:none}
+#atlasFireworksToggle[aria-pressed=false]{color:#695c47;background:#eadcbd80;border-color:#88735155}
+#atlasFireworksToggle:focus-visible,#atlasFireworksSound:focus-visible{outline:2px solid #ead4aa;outline-offset:4px}
+@media(max-width:600px){#atlasFireworksToggle{right:16px;top:76px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){#atlasStage::after{transition:none}}
+
+#atlasFireworksSound{top:122px}
+#atlasFireworksToggle[hidden]~#atlasFireworksSound{top:80px}
+#atlas:not(.fireworks-evening) #atlasFireworksSound{color:#695c47;background:#eadcbd80;border-color:#88735155}
+@media(max-width:600px){#atlasFireworksSound{right:16px;top:118px;font-size:11px}}
+@media(max-width:600px){#atlasFireworksToggle[hidden]~#atlasFireworksSound{top:76px}}
