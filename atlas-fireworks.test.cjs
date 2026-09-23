@@ -114,6 +114,23 @@ test('background gaps do not create a catch-up storm; resized mobile show still 
   assert.ok(show.stars.length>0);
 });
 
+test('warm trails reuse their points and each spark keeps the original brightness band',()=>{
+  const show=new FireworkShow();show.resize(1440,900,520);show.launch();
+  const rocket=show.rockets[0];
+  for(let i=0;i<15;i++)show.update(.01);
+  const allocated=new Set(rocket.trail);
+  for(let i=0;i<30;i++){
+    show.update(.01);
+    assert.equal(rocket.trail.length,15);
+    assert.ok(rocket.trail.every(p=>allocated.has(p)),'No point allocations after the trail is warm');
+    assert.equal(rocket.trail[0].x,rocket.x);assert.equal(rocket.trail[0].y,rocket.y);
+    for(const p of show.sparks){
+      const expected=Math.min(2,Math.floor((1-p.age/p.life)*(.65+.35*Math.sin(p.age*32+p.seed)**2)*3));
+      assert.equal(p.band,expected);
+    }
+  }
+});
+
 test('five messages and three rabbit/fairy pairs repeat, with changing rabbits and rainbow text',()=>{
   const show=new FireworkShow();show.resize(1440,900,520);
   show.letterPoints={zh:[{x:-30,y:-20},{x:0,y:0},{x:30,y:20}],en:[{x:-50,y:-10},{x:50,y:10}]};

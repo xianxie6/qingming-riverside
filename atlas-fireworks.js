@@ -2,6 +2,10 @@
   'use strict';
   const TAU=Math.PI*2;
   const random=(min,max)=>min+Math.random()*(max-min);
+  function remember(trail,x,y,limit){
+    const point=trail.length===limit?trail.pop():{};
+    point.x=x;point.y=y;trail.unshift(point);
+  }
   const SHOW_START=Date.parse('2026-09-25T20:00:00+08:00');
   const SHOW_END=Date.parse('2026-09-26T00:00:00+08:00');
   const SPONSOR_START=Date.parse('2026-09-25T22:00:00+08:00');
@@ -140,7 +144,7 @@
       }
       for(let i=this.rockets.length-1;i>=0;i--){
         const r=this.rockets[i];r.age+=dt;r.vy+=r.gravity*dt;r.x+=r.vx*dt;r.y+=r.vy*dt;
-        r.trail.unshift({x:r.x,y:r.y});if(r.trail.length>15)r.trail.pop();
+        remember(r.trail,r.x,r.y,15);
         this.spark(r.x,r.y,random(-12,12)*this.scale,random(12,42)*this.scale,'255,191,99',random(.3,.7));
         if(r.age>=r.life){this.burst(r);this.rockets.splice(i,1);}
       }
@@ -149,7 +153,7 @@
         if(p.age>=p.life){this.stars.splice(i,1);continue;}
         p.px=p.x;p.py=p.y;const drag=Math.exp(-p.drag*dt);
         p.vx*=drag;p.vy=p.vy*drag+p.gravity*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
-        p.trail.unshift({x:p.x,y:p.y});if(p.trail.length>(p.willow?20:12))p.trail.pop();
+        remember(p.trail,p.x,p.y,p.willow?20:12);
         p.sparkClock-=dt;
         if(p.glitter&&p.sparkClock<=0){
           this.spark(p.x,p.y,p.vx*.16+random(-5,5),p.vy*.14,'255,203,123',random(.35,p.willow?1.1:.6));
@@ -160,6 +164,7 @@
         const p=this.sparks[i];p.age+=dt;
         if(p.age>=p.life){this.sparks.splice(i,1);continue;}
         p.px=p.x;p.py=p.y;p.vx*=Math.exp(-dt*1.5);p.vy+=22*this.scale*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+        p.band=Math.min(2,Math.floor((1-p.age/p.life)*(.65+.35*Math.sin(p.age*32+p.seed)**2)*3));
       }
       for(let i=this.flashes.length-1;i>=0;i--){this.flashes[i].age+=dt;if(this.flashes[i].age>=this.flashes[i].life)this.flashes.splice(i,1);}
       if(this.greeting){
@@ -232,8 +237,7 @@
         for(let band=0;band<3;band++){
           ctx.strokeStyle=`rgba(${color},${[.14,.36,.66][band]})`;ctx.beginPath();
           for(const p of this.sparks){
-            const alpha=(1-p.age/p.life)*(.65+.35*Math.sin(p.age*32+p.seed)**2);
-            if(p.color!==color||Math.min(2,Math.floor(alpha*3))!==band)continue;
+            if(p.color!==color||p.band!==band)continue;
             ctx.moveTo(p.px,p.py);ctx.lineTo(p.x+.45*this.scale,p.y+.7*this.scale);
           }
           ctx.stroke();
@@ -272,7 +276,9 @@
   const button=document.createElement('button');button.id='atlasFireworksToggle';button.hidden=true;atlas.append(button);
   const audioButton=document.createElement('button');audioButton.id='atlasFireworksSound';audioButton.hidden=true;atlas.append(audioButton);
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  const preview=['localhost','127.0.0.1','[::1]'].includes(location.hostname)&&new URLSearchParams(location.search).get('fireworks')==='preview';
+  const query=new URLSearchParams(location.search);
+  const preview=['localhost','127.0.0.1','[::1]'].includes(location.hostname)&&query.get('fireworks')==='preview';
+  const sponsorPreview=preview&&query.get('act')==='sponsor';
   const show=new FireworkShow();let paused=reduced.matches,running=false,raf=0,last=0;
   const sound=new window.FireworkAudio('assets/firework-bloom.mp3',{musicUrl:'assets/firework-background.mp3',onChange:updateAudioButton});
   function updateAudioButton(){
@@ -375,10 +381,16 @@
     stamp('ChatGPT',centerX,top+skyHeight*.49,Math.min(show.width*.14,skyHeight*.4),show.width*.88,'Georgia,serif');
     show.sponsorPoints.chatgpt=sample(2,show.mobile?2600:5200,(x,y)=>y>top+skyHeight*.28&&y<top+skyHeight*.68?2:[0,1,2][Math.floor(x/cell)%3]);
   }
+  let geometryKey='';
   function resize(){
+    // Text masks and shape templates are only needed while fireworks are visible.
+    if(!running)return;
     const rect=stage.getBoundingClientRect();
     if(!rect.width||!rect.height)return;
     const ratio=Math.min(devicePixelRatio||1,1.5);
+    const key=`${rect.width}:${rect.height}:${ratio}`;
+    if(key===geometryKey)return;
+    geometryKey=key;
     canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);
     // Match atlas.js's final overview layout, not a halfway CSS transform during load.
     const paintingHeight=724*rect.width/2172;
@@ -396,7 +408,7 @@
     if(!running)return;
     // Check the real clock every frame, including the midnight boundary.
     if(!(preview||isFireworksTime())){sync();return;}
-    if(isSponsorTime()||(preview&&new URLSearchParams(location.search).get('act')==='sponsor'))show.beginSponsor();
+    if(!show.sponsorStarted&&(isSponsorTime()||sponsorPreview))show.beginSponsor();
     show.update(last?(time-last)/1000:1/60);last=time;show.draw(ctx);raf=requestAnimationFrame(tick);
   }
   function sync(){

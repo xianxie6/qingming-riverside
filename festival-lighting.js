@@ -13,7 +13,7 @@
   }
   async function prepare(art){
     if(preparedArt===art)return;
-    if(!sky.getAttribute('src'))sky.src='assets/midautumn/festival-day-sky-v1.png';
+    if(!sky.getAttribute('src'))sky.src='assets/midautumn/festival-day-sky-v1-lossless.webp';
     await sky.decode();
     // Use only the edited sky, preserving every building and original painted detail.
     patch=surface(164,164);const p=patch.getContext('2d');
