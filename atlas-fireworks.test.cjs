@@ -9,12 +9,7 @@ test('22:00 sponsor slot follows Beijing time and cannot trigger early or on ano
   ])assert.equal(isSponsorTime(Date.parse(date)),expected,date);
 });
 
-test('September 27 immediate replay runs until Beijing midnight with its own 22:00 slot',()=>{
-  for(const [date,expected] of [
-    ['2026-09-27T08:23:59.999+08:00',false],['2026-09-27T08:24:00+08:00',true],
-    ['2026-09-27T00:24:00Z',true],['2026-09-27T20:00:00+08:00',true],
-    ['2026-09-27T23:59:59.999+08:00',true],['2026-09-28T00:00:00+08:00',false]
-  ])assert.equal(isFireworksTime(Date.parse(date)),expected,date);
+test('September 27 sponsor insertion retains its original 22:00 slot',()=>{
   assert.equal(isSponsorTime(Date.parse('2026-09-27T21:59:59.999+08:00')),false);
   assert.equal(isSponsorTime(Date.parse('2026-09-27T22:00:00+08:00')),true);
   assert.equal(isSponsorTime(Date.parse('2026-09-27T22:01:00+08:00')),false);
@@ -80,22 +75,14 @@ test('resize or pause restarts only the interrupted sponsor act, without skippin
   assert.equal(show.sponsorCompleted,6);assert.equal(show.sponsorStep,-1);
 });
 
-test('one Beijing festival evening, including every second of 23:59',()=>{
-  const cases=[
-    ['2026-09-24T20:00:00+08:00',false],
-    ['2026-09-25T19:59:59.999+08:00',false],
-    ['2026-09-25T20:00:00+08:00',true],
-    ['2026-09-25T23:59:00+08:00',true],
-    ['2026-09-25T23:59:59.999+08:00',true],
-    ['2026-09-26T00:00:00+08:00',false],
-    ['2026-09-26T20:00:00+08:00',false],
-    ['2027-09-25T20:00:00+08:00',false],
-  ];
-  for(const [date,expected] of cases)assert.equal(isFireworksTime(Date.parse(date)),expected,date);
-  // These are the same start instant, expressed in visitors' different zones.
-  for(const date of ['2026-09-25T12:00:00Z','2026-09-25T05:00:00-07:00','2026-09-25T21:00:00+09:00']){
-    assert.equal(isFireworksTime(new Date(date)),true,date);
-  }
+test('continuous show stays enabled across midnight, later days and visitor time zones',()=>{
+  assert.equal(isFireworksTime(),true);
+  for(const date of [
+    '2026-09-25T19:59:59+08:00','2026-09-27T08:00:00+08:00',
+    '2026-09-27T23:59:59.999+08:00','2026-09-28T00:00:00+08:00',
+    '2026-09-28T12:00:00+08:00','2026-10-01T00:00:00Z',
+    '2027-09-25T05:00:00-07:00'
+  ])assert.equal(isFireworksTime(Date.parse(date)),true,date);
 });
 
 test('continuous show launches varied shells and keeps particles bounded',()=>{

@@ -6,17 +6,11 @@
     const point=trail.length===limit?trail.pop():{};
     point.x=x;point.y=y;trail.unshift(point);
   }
-  const SHOW_START=Date.parse('2026-09-25T20:00:00+08:00');
-  const SHOW_END=Date.parse('2026-09-26T00:00:00+08:00');
+  // Keep the show enabled until the owner explicitly requests a stop.
+  const FIREWORKS_ENABLED=true;
   const SPONSOR_START=Date.parse('2026-09-25T22:00:00+08:00');
-  const REPLAY_START=Date.parse('2026-09-27T08:24:00+08:00');
-  const REPLAY_END=Date.parse('2026-09-28T00:00:00+08:00');
   const REPLAY_SPONSOR_START=Date.parse('2026-09-27T22:00:00+08:00');
-  // Absolute instants keep this one festival evening on Beijing time worldwide.
-  function isFireworksTime(now=Date.now()){
-    const time=Number(now);
-    return (time>=SHOW_START&&time<SHOW_END)||(time>=REPLAY_START&&time<REPLAY_END);
-  }
+  function isFireworksTime(){return FIREWORKS_ENABLED;}
   function isSponsorTime(now=Date.now()){
     const time=Number(now);
     return [SPONSOR_START,REPLAY_SPONSOR_START].some(start=>time>=start&&time<start+60000);
@@ -411,7 +405,7 @@
   }
   function tick(time){
     if(!running)return;
-    // Check the real clock every frame, including the midnight boundary.
+    // Respect the show switch; there is no automatic date or midnight cutoff.
     if(!(preview||isFireworksTime())){sync();return;}
     if(!show.sponsorStarted&&(isSponsorTime()||sponsorPreview))show.beginSponsor();
     show.update(last?(time-last)/1000:1/60);last=time;show.draw(ctx);raf=requestAnimationFrame(tick);
