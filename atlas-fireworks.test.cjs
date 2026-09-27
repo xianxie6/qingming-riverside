@@ -9,6 +9,17 @@ test('22:00 sponsor slot follows Beijing time and cannot trigger early or on ano
   ])assert.equal(isSponsorTime(Date.parse(date)),expected,date);
 });
 
+test('September 27 immediate replay runs until Beijing midnight with its own 22:00 slot',()=>{
+  for(const [date,expected] of [
+    ['2026-09-27T08:23:59.999+08:00',false],['2026-09-27T08:24:00+08:00',true],
+    ['2026-09-27T00:24:00Z',true],['2026-09-27T20:00:00+08:00',true],
+    ['2026-09-27T23:59:59.999+08:00',true],['2026-09-28T00:00:00+08:00',false]
+  ])assert.equal(isFireworksTime(Date.parse(date)),expected,date);
+  assert.equal(isSponsorTime(Date.parse('2026-09-27T21:59:59.999+08:00')),false);
+  assert.equal(isSponsorTime(Date.parse('2026-09-27T22:00:00+08:00')),true);
+  assert.equal(isSponsorTime(Date.parse('2026-09-27T22:01:00+08:00')),false);
+});
+
 test('sponsor plays thank-you then ChatGPT exactly three times and resumes normal progress',()=>{
   const show=new FireworkShow();show.resize(1440,900,520);
   show.textDisplays=5;show.shapeDisplays=2;show.shot=12;show.burstCount=12;

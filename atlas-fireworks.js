@@ -9,12 +9,17 @@
   const SHOW_START=Date.parse('2026-09-25T20:00:00+08:00');
   const SHOW_END=Date.parse('2026-09-26T00:00:00+08:00');
   const SPONSOR_START=Date.parse('2026-09-25T22:00:00+08:00');
+  const REPLAY_START=Date.parse('2026-09-27T08:24:00+08:00');
+  const REPLAY_END=Date.parse('2026-09-28T00:00:00+08:00');
+  const REPLAY_SPONSOR_START=Date.parse('2026-09-27T22:00:00+08:00');
   // Absolute instants keep this one festival evening on Beijing time worldwide.
   function isFireworksTime(now=Date.now()){
-    return Number(now)>=SHOW_START&&Number(now)<SHOW_END;
+    const time=Number(now);
+    return (time>=SHOW_START&&time<SHOW_END)||(time>=REPLAY_START&&time<REPLAY_END);
   }
   function isSponsorTime(now=Date.now()){
-    return Number(now)>=SPONSOR_START&&Number(now)<SPONSOR_START+60000;
+    const time=Number(now);
+    return [SPONSOR_START,REPLAY_SPONSOR_START].some(start=>time>=start&&time<start+60000);
   }
 
   class FireworkShow {
