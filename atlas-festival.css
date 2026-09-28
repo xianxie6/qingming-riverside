@@ -55,3 +55,6 @@
  #atlas:not(.inspecting) #atlasPlaces{bottom:max(40px,env(safe-area-inset-bottom));gap:6px 14px}
  #atlas:not(.inspecting) #atlasMessage{bottom:max(16px,env(safe-area-inset-bottom))}
 }
+
+/* Sky masks and petals must not inherit the global UI-icon outline. */
+#atlasFestivalSky,#atlasFestivalSky svg{stroke:none}
