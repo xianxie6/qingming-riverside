@@ -1,14 +1,10 @@
+# Cloudflare publishes dist/ only; source exclusions are enforced by scripts/build-static.mjs.
 .git/
-.github/
-.playwright-cli/
-.wrangler/
+.env*
+.dev.vars*
 node_modules/
-output/
-migrations/
-*.test.cjs
-*.md
-package.json
-package-lock.json
-vercel.json
-worker.js
-wrangler.jsonc
+art-source/
+docs/
+tests/
+scripts/
+.github/

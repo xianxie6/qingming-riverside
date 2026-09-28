@@ -1,0 +1,16 @@
+清明上河 · 代码与素材使用说明
+
+本仓库公开提供项目源码、制作记录与素材，用于展示和查阅。
+本项目目前未授予额外的复制、修改、再分发或商业复用许可；公开可见不表示这些权限已获授予。
+如需复用、再发布或商业合作，请联系项目维护者确认具体范围。
+GitHub 服务条款赋予的平台内查看与 fork 权利不受本说明影响。
+
+第三方软件、字体和其他第三方内容仍适用各自的许可证或权利人的授权，
+本说明不改变其条款，也不主张项目维护者拥有第三方内容的权利。
+
+Three.js: vendor/THREE-LICENSE.txt
+Ma Shan Zheng 字体: assets/fonts/MaShanZheng-OFL.txt
+素材来源、待确认事项及逐文件清单: docs/ASSET-INVENTORY.md
+
+联系: https://x.com/Xian0063
+项目: https://github.com/xianxie6/qingming-riverside

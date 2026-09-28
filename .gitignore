@@ -16,3 +16,9 @@ design-qa.md
 PROGRESS.md
 启动画卷.command
 清明上河图-推特长文-banner.png
+
+# Publication drafts belong outside the repository.
+X长文-*.md
+*banner*.png
+*banner*.jpg
+*banner*.webp

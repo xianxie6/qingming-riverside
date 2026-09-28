@@ -2,13 +2,16 @@
   "name": "qingming-riverside",
   "private": true,
   "scripts": {
-    "test": "node --test *.test.cjs",
-    "build": "node build-static.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build-static.mjs && node scripts/check-public-assets.mjs",
     "dev": "npm run build && wrangler dev",
     "check": "npm run build && wrangler deploy --dry-run",
     "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.134.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

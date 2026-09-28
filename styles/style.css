@@ -1,0 +1,200 @@
+:root{color-scheme:light;--paper:#e2d4b6;--ink:#504d3d;--line:rgba(80,77,61,.23)}
+#visitCounter{position:fixed;top:max(22px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right));z-index:30;display:flex;align-items:baseline;gap:9px;padding:7px 10px;color:#6a5b43;background:rgba(231,217,187,.78);border:1px solid rgba(117,106,79,.22);backdrop-filter:blur(6px);font-family:"Songti SC","Noto Serif SC",serif;letter-spacing:.12em;pointer-events:none}
+#visitCounter span{font-size:10px;opacity:.72}#visitCounter strong{font-size:16px;font-weight:400;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+#visitCounter[data-state="error"]{display:none}
+body:not(.in-atlas) #visitCounter{right:auto;left:max(96px,calc(env(safe-area-inset-left) + 80px))}
+#atlas{position:fixed;inset:0;z-index:20;background:#e2d4b6;display:flex;flex-direction:column;justify-content:center;overflow:hidden;color:#504d3d}
+.atlas-heading{text-align:center;margin:0 0 clamp(20px,4vh,48px);transition:opacity .35s}
+.atlas-heading>span{font:11px "Songti SC",serif;letter-spacing:.5em;color:#827152}
+.atlas-heading h1{font:400 clamp(28px,4vw,52px) "Songti SC",serif;letter-spacing:.38em;margin:14px 0 12px;padding-left:.38em}
+.atlas-heading p{font-size:12px;letter-spacing:.3em;opacity:.7}
+#atlasFrame{position:relative;width:100%;flex:none;cursor:crosshair;will-change:transform}
+#atlasImage{display:block;width:100%;height:auto;user-select:none;mix-blend-mode:multiply}
+#atlasPlaces{position:absolute;inset:0}
+#atlasPlaces button{position:absolute;left:var(--u);top:66%;transform:translate(-50%,-50%);width:auto;height:auto;padding:12px 8px;border:0;border-radius:0;background:#e6d8bcca;color:#454d3d;font:13px "Songti SC",serif;letter-spacing:.15em;white-space:nowrap;opacity:0;transition:opacity .3s}
+#atlasFrame:hover #atlasPlaces button,#atlasPlaces button:focus-visible{opacity:1}
+#atlasPlaces button:hover{background:#f2e5c9;box-shadow:0 0 25px #72a69d55}
+#atlasMessage{margin:32px 0 0;text-align:center;font:12px "Songti SC",serif;letter-spacing:.2em;opacity:.65;transition:opacity .3s}
+#atlasInk{position:absolute;inset:0;width:100%;height:100%;opacity:1;pointer-events:none}
+#atlas.entering .atlas-heading,#atlas.entering #atlasMessage,#atlas.entering #atlasPlaces{opacity:0;pointer-events:none}
+#atlasReturn{position:fixed;top:22px;left:24px;z-index:6;width:58px;height:38px;padding:5px;white-space:nowrap;border:1px solid #756a4f55;border-radius:20px;background:#e7d9bbcf;color:#504d3d;font:13px "Songti SC",serif;letter-spacing:.1em}
+body.in-atlas>.controls,body.in-atlas>.corner-controls,body.in-atlas>.district-stops,body.in-atlas>#position,body.in-atlas>#follow{visibility:hidden}
+@media(max-width:600px){.atlas-heading{margin-bottom:60px}#atlasMessage{font-size:11px;letter-spacing:.08em;margin-top:55px}#atlasPlaces button{top:105%;font-size:10px;padding:8px 3px;letter-spacing:0;opacity:1}#atlasPlaces button:first-child{left:12%}#atlasPlaces button:last-child{left:88%}}
+@media(prefers-reduced-motion:reduce){#atlasFrame{will-change:auto}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper)}
+body{font-family:"Songti SC","Noto Serif SC",serif;color:var(--ink);overscroll-behavior:none}
+button,input{-webkit-tap-highlight-color:transparent}
+#painting{position:fixed;inset:0;cursor:grab;touch-action:none;outline:none}
+#painting.dragging{cursor:grabbing}
+.scene-action{position:absolute;border:0;border-radius:0;transform:translate(-50%,-50%);opacity:0;visibility:hidden;z-index:1;padding:0;cursor:pointer;touch-action:none}
+body.ready .scene-action{visibility:visible;opacity:1}
+.scene-action:hover{background:transparent;border-color:transparent}
+.scene-action span{position:absolute;bottom:3px;left:50%;width:6px;height:6px;border:1px solid #675e4480;border-radius:50%;background:#e9dec777;opacity:.42;transform:translateX(-50%);transition:opacity .2s,transform .2s}
+.scene-action:hover span,.scene-action:focus-visible span{opacity:1;transform:translateX(-50%) scale(1.5)}
+.scene-action:focus-visible{outline:1px solid #675e4470;outline-offset:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#follow{position:fixed;left:max(24px,env(safe-area-inset-left));bottom:max(29px,env(safe-area-inset-bottom));opacity:0;pointer-events:none;transition:opacity .3s}
+body.ready.browsing #follow{opacity:.85;pointer-events:auto}
+canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.2s}
+body.ready canvas{opacity:1}
+button{display:grid;place-items:center;width:42px;height:42px;padding:10px;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s;touch-action:none}
+button:hover{background:#f1e7d366;border-color:var(--line)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+button[aria-pressed="true"]{background:#f1e7d380;border-color:var(--line)}
+svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.controls{position:fixed;bottom:max(25px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:3px 10px;background:#e4d7ba75;border:1px solid #736b4e20;border-radius:30px;backdrop-filter:blur(6px);opacity:0;transition:opacity .7s}
+.corner-controls{position:fixed;right:max(24px,env(safe-area-inset-right));bottom:max(29px,env(safe-area-inset-bottom));display:flex;gap:6px;opacity:0;transition:opacity .7s}
+body.ready .controls,body.ready .corner-controls{opacity:.85}
+#position{position:fixed;bottom:0;left:0;width:100%;height:15px;margin:0;appearance:none;-webkit-appearance:none;background:transparent;cursor:ew-resize;--progress:0%}
+#position::-webkit-slider-runnable-track{height:2px;background:linear-gradient(to right,#71634e 0 var(--progress),#62583f25 var(--progress) 100%)}
+#position::-moz-range-track{height:2px;background:#62583f25}
+#position::-moz-range-progress{height:2px;background:#71634e}
+#position::-webkit-slider-thumb{appearance:none;width:28px;height:14px;border:0;margin-top:-6px;background:transparent}
+#position::-moz-range-thumb{width:28px;height:14px;border:0;background:transparent}
+#loading{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none}
+#loading span{width:25px;height:25px;border:1px solid #504d3d30;border-top-color:#504d3d;border-radius:50%;animation:loading 1.2s linear infinite}
+body.ready #loading{display:none}
+#error{position:fixed;inset:0;text-align:center;align-content:center;font-size:16px}
+#error button{width:auto;margin:12px auto}
+@keyframes loading{to{transform:rotate(360deg)}}
+@media(max-width:600px){.controls{bottom:30px;gap:6px}.corner-controls{right:10px;bottom:34px}.corner-controls button,#follow{width:34px;height:34px;padding:8px}#follow{left:10px;bottom:34px}#fullscreen{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+button:disabled{opacity:.25;cursor:default;pointer-events:none}
+.scene-action.active span{opacity:.9;box-shadow:0 0 0 4px #e9dec733}
+.boarding-control{position:absolute;transform:translate(-50%,-50%);z-index:2;width:34px;height:34px;padding:7px;background:#e7d9bbcf;border-color:#756a4f55;box-shadow:0 2px 8px #62543b18}
+#sound[aria-pressed="true"] .mute-mark{display:none}
+@media(max-width:1000px){.corner-controls{top:max(18px,env(safe-area-inset-top));bottom:auto;right:max(15px,env(safe-area-inset-right));flex-direction:column;gap:3px;background:#e4d7ba55;border-radius:24px}}
+
+.district-stops{position:fixed;left:0;bottom:8px;width:100%;height:18px;pointer-events:none;opacity:0;transition:opacity .7s}
+body.ready .district-stops{opacity:.6}
+.district-stop{position:absolute;bottom:0;width:22px;height:18px;padding:0;pointer-events:auto;transform:translateX(-50%);border-radius:0}
+.district-stop::after{content:"";height:4px;width:4px;border:1px solid #776a4e;border-radius:50%;background:#dfd0b1}
+.district-stop:nth-child(1){left:10%}.district-stop:nth-child(2){left:44%}.district-stop:nth-child(3){left:58%}.district-stop:nth-child(4){left:86%}
+.district-stop:hover{background:transparent;border-color:transparent}.district-stop:hover::after{background:#776a4e}
+
+/* Rope and folio are objects in this street, with full-size touch targets. */
+#bridgeStart,#weatherStart{width:74px;grid-template-columns:24px auto;gap:3px;padding:7px 8px;border-left:1px solid var(--line);border-radius:0;font-size:13px;font-family:inherit}
+#hailFerry{width:62px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:0;padding:7px 8px;font:13px "Songti SC",serif;letter-spacing:.08em}
+#hailFerry[data-active="true"]{color:#914d39;background:#e6d1ad85}
+#hailFerry span{white-space:nowrap}
+#bridgeStart svg,#weatherStart svg{width:24px}#bridgeStart[data-active="true"]{color:#8a4934}
+#weatherStart[data-active="true"]{color:#435f62;background:#c7d2c75c}
+#bridgeStart span,#weatherStart span{white-space:nowrap}
+.rope-control{position:absolute;z-index:3;transform:translate(-50%,-50%);width:88px;height:46px;grid-template-columns:26px auto;gap:4px;padding:7px 10px;border:1px solid #796b4c66;border-radius:23px;background:#e7d9bbeb;font:14px "Songti SC",serif;box-shadow:0 2px 7px #62543b18;user-select:none;-webkit-user-select:none}
+#towGrip{width:116px;cursor:grab;touch-action:none}#towGrip.pulling{cursor:grabbing;border-color:#8d573b;background:#dfcba4}
+#towGrip[data-strain="true"]{border-color:#a14e38;color:#8a4934}
+#towMemo{position:fixed;left:max(72px,env(safe-area-inset-left));bottom:29px;background:#e4d7ba99;border-color:var(--line)}
+#bridgeSketch{width:min(1180px,calc(100vw - 36px));max-height:94vh;padding:clamp(18px,2.5vw,34px);border:1px solid #98836280;background:#eadfc7;color:#4c493b;box-shadow:0 24px 90px #30281e55;overflow:auto}
+#bridgeSketch::backdrop{background:#322b205c;backdrop-filter:blur(5px)}
+.sketch-heading{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.sketch-heading-copy{min-width:0}.sketch-heading-copy>p{margin:0}.sketch-heading h1{font:400 clamp(25px,3vw,38px)/1.15 "Kaiti SC","STKaiti","KaiTi",serif;letter-spacing:.16em;margin:4px 0 6px}.sketch-heading #sketchEyebrow{font:10px/1.4 "Songti SC",serif;letter-spacing:.32em;color:#927a57}.sketch-heading #sketchSubtitle{font:13px/1.6 "Songti SC",serif;letter-spacing:.08em;color:#75684f;transition:opacity .18s}.sketch-actions{display:flex;gap:8px;flex:none}.sketch-actions button{width:48px;height:48px}
+.sketch-stage{position:relative;overflow:hidden;isolation:isolate;aspect-ratio:16/8.05;border:1px solid #81705138;background:#cbb991}.sketch-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 0 55px #77623f3d;border:5px solid #f2e8d333}.sketch-stage[data-scene="bridge"]::before{content:"亲历此景";position:absolute;left:18px;top:18px;z-index:4;padding:6px 9px;background:#332b20a8;color:#f5e9cf;font:10px/1 "Songti SC",serif;letter-spacing:.2em}
+#sketchImage{width:100%;height:100%;display:block;object-fit:cover;object-position:var(--scene-position,50%) center;transform:scale(var(--scene-scale,1));transition:opacity .22s,transform .65s cubic-bezier(.22,.65,.2,1),object-position .65s cubic-bezier(.22,.65,.2,1);filter:saturate(.82) sepia(.08);mix-blend-mode:multiply}.sketch-vignette{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#eadfc788 0,transparent 8%,transparent 92%,#eadfc788 100%);pointer-events:none}#sketchSeal{position:absolute;right:18px;bottom:18px;z-index:4;width:34px;padding:6px 4px;border:1px solid #9b513b;color:#9b513b;background:#eadfc7d9;writing-mode:vertical-rl;font:15px "Songti SC",serif;letter-spacing:.15em}
+#sketchScenes{position:relative;display:grid;grid-template-columns:repeat(6,1fr);margin-top:14px;padding:0 7px}#sketchScenes::before{content:"";position:absolute;left:6%;right:6%;top:20px;border-top:1px solid #9d81614d}.sketch-scene{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:auto;height:auto;padding:0 4px;border:0;border-radius:0;background:transparent;color:#706248;font:11px/1.3 "Songti SC",serif;letter-spacing:.08em}.sketch-scene:hover{background:transparent;border-color:transparent;color:#392f21}.sketch-scene i{display:grid;place-items:center;width:40px;height:40px;margin-bottom:7px;border:1px solid #9f8060;background:#eadfc7;font:400 17px/1 "Kaiti SC","STKaiti","KaiTi",serif;font-style:normal;transition:background .2s,color .2s,transform .2s}.sketch-scene span{white-space:nowrap}.sketch-scene[aria-current="true"]{color:#9b4c38}.sketch-scene[aria-current="true"] i{background:#9b4c38;color:#f2e5c9;border-color:#9b4c38;transform:translateY(-2px)}.sketch-scene:focus-visible{outline:1px solid #7b684c;outline-offset:3px}
+@media(max-width:600px){.controls{gap:2px;padding-inline:5px}#bridgeStart,#weatherStart{width:60px;padding:5px;font-size:12px}#towMemo{left:52px;bottom:34px;width:34px;height:34px;padding:7px}#bridgeSketch{width:calc(100vw - 16px);padding:14px;max-height:96vh}.sketch-heading{margin-bottom:10px}.sketch-heading h1{font-size:25px}.sketch-heading #sketchSubtitle{font-size:11px;letter-spacing:0}.sketch-heading #sketchEyebrow{font-size:8px}.sketch-actions{gap:0}.sketch-actions button{width:38px;height:38px;padding:8px}.sketch-stage{aspect-ratio:4/3}.sketch-stage[data-scene="bridge"]::before{left:9px;top:9px}.sketch-vignette{display:none}#sketchSeal{right:9px;bottom:9px}.sketch-scene{font-size:9px;padding:0}.sketch-scene i{width:31px;height:31px;margin-bottom:5px;font-size:14px}#sketchScenes::before{top:15px}}
+
+@media(max-width:600px){#hailFerry{width:48px;padding:5px;font-size:12px}.controls{max-width:calc(100vw - 14px)}}
+
+/* Night remains a reversible scene control, including while motion is paused. */
+#nightToggle{width:74px;grid-template-columns:24px auto;gap:3px;padding:7px 8px;border-left:1px solid var(--line);border-radius:0;font-size:13px;font-family:inherit}
+#nightToggle span{white-space:nowrap;font:13px "Songti SC",serif}
+body{transition:color 8s,background 8s}
+body.night{--ink:#e8d5ae;--line:rgba(225,198,151,.25);--paper:#273447}
+body.night .controls,body.night .corner-controls{background:#172638b8;border-color:#dfbe7c30}
+body.night #nightToggle{color:#ffda91;background:#e7b35920}
+body.night #weatherStart[data-active="true"]{color:#d8f1ee;background:rgba(68,123,133,.48);border-color:rgba(181,224,218,.55);text-shadow:0 1px 4px rgba(8,22,31,.8)}
+body.night .rope-control{background:rgba(24,42,57,.88);border-color:rgba(218,235,224,.54);color:#f3e5bf;box-shadow:0 3px 12px rgba(4,15,24,.45);text-shadow:0 1px 4px rgba(4,15,24,.9)}
+body.night .rope-control:hover{background:rgba(38,63,79,.96)}
+body.night #towGrip.pulling{background:rgba(99,81,48,.9);border-color:#f2d28c;color:#fff0c9}
+body.night button:hover{background:#e8c48320}
+body.night .district-stop::after{background:#d2b078;border-color:#ecd29a}
+@media(max-width:600px){#nightToggle{width:58px;padding:5px} .controls{gap:0;padding-inline:3px}.controls>button{flex-shrink:0}.controls>button:is(#left,#play,#right){width:34px;padding:6px}#bridgeStart,#weatherStart{width:54px}#hailFerry{width:44px}}
+
+.controls,.corner-controls{transition:opacity .7s,background 8s,border-color 8s}
+@media(max-width:360px){.controls>button:is(#left,#play,#right){width:30px}#nightToggle{width:54px}#bridgeStart,#weatherStart{width:52px}}
+
+/* Registered panorama tour. Stage, draft and hotspots share image coordinates. */
+#atlas{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:16px;padding:32px 24px 22px;background:#e2d4b6}
+#atlas[hidden]{display:none}
+.atlas-heading{margin:0}.atlas-heading h1{font-size:36px;margin:10px 0}.atlas-heading p{margin:0}
+#atlasStage{position:relative;min-height:0;overflow:hidden;width:100%;align-self:stretch}
+#atlasFrame{position:absolute;left:0;top:0;width:2172px;height:724px;transform-origin:0 0;transition:transform 1050ms cubic-bezier(.22,.65,.2,1);cursor:default}
+#atlasImage{width:2172px;height:724px;mix-blend-mode:normal}
+#atlasDraft{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.draft-region{opacity:0;transition:opacity 420ms ease-in-out}.draft-region.revealed{opacity:1;transition-duration:580ms}
+#atlasFrame .atlas-hotspot{position:absolute;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:18px;background:transparent;box-shadow:none;cursor:pointer;color:#67573e}
+#atlasFrame .atlas-hotspot:focus-visible{outline:2px dashed #67573e;outline-offset:8px}
+#atlasFrame .atlas-scene-marker{position:absolute;z-index:7;display:inline-flex;align-items:center;gap:7px;min-width:max-content;padding:7px 9px;border:1px solid rgba(255,255,255,.78);border-radius:2px;background:rgba(48,39,28,.46);color:#fff;font:400 13px/1.1 'Kaiti SC','STKaiti','KaiTi',cursive;letter-spacing:.08em;text-shadow:0 1px 4px rgba(20,15,10,.95);opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.94);transition:opacity .28s ease,transform .28s ease,background .2s ease}
+#atlasFrame .atlas-scene-marker.visible{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+#atlasFrame .atlas-scene-marker i{display:grid;place-items:center;width:18px;height:18px;border:1px solid rgba(255,255,255,.9);border-radius:50%;font:400 11px/1 sans-serif;font-style:normal;letter-spacing:0;text-shadow:none}
+#atlasFrame .atlas-scene-marker:hover,#atlasFrame .atlas-scene-marker:focus-visible{background:rgba(48,39,28,.7);outline:2px solid rgba(255,255,255,.75);outline-offset:3px}
+#atlasPlaces{position:relative;inset:auto;display:flex;justify-content:center;gap:clamp(12px,4vw,70px);z-index:2}
+#atlasPlaces .atlas-label{position:relative;left:auto;top:auto;transform:none;opacity:1;display:grid;grid-template-columns:auto auto;gap:4px 9px;padding:10px 12px;background:transparent;color:#695c47;border-radius:0;box-shadow:none;font:15px 'Songti SC',serif;letter-spacing:.12em;min-height:60px}
+#atlasPlaces small{font-size:10px;align-self:center;opacity:.6}#atlasPlaces em{grid-column:2;font-size:10px;font-style:normal;opacity:0;transition:opacity .4s}
+#atlasPlaces .preview,#atlasPlaces [aria-current=true]{color:#392d20;background:#f0e3c666}
+#atlasPlaces .preview em{opacity:.8}#atlasPlaces button:focus-visible{outline:1px solid #746449;outline-offset:3px}
+#atlasMessage{margin:0;font-size:11px;min-height:16px;letter-spacing:.12em}
+#atlas.route-loading>:not(#atlasMessage){visibility:hidden}
+#atlas.route-loading #atlasMessage{position:fixed;inset:50% 0 auto;text-align:center}
+#atlasOverview{position:absolute;right:28px;top:35px;width:auto;height:auto;padding:10px 16px;border:1px solid #88735155;border-radius:2px;background:#eee0c4;color:#574a36;font:13px 'Songti SC',serif}
+#atlas.inspecting{grid-template-rows:auto minmax(0,1fr) 125px auto auto}
+#atlasCard{grid-row:3;justify-self:center;width:min(620px,100%);padding:10px 20px;border-top:1px solid #87734b55;text-align:center;box-sizing:border-box}
+#atlasCard[hidden]{display:none}#atlas.inspecting #atlasPlaces{grid-row:4}#atlas.inspecting #atlasMessage{grid-row:5}
+.atlas-kicker{font-size:9px;letter-spacing:.3em;color:#857151}#atlasCard h2{font:400 23px 'Songti SC',serif;margin:5px 0}#atlasCard p{font:12px/1.8 'Songti SC',serif;margin:0;color:#726149}
+#atlasLive{position:absolute;z-index:6;display:inline-flex;align-items:center;gap:6px;width:auto;height:auto;margin:0;padding:6px 8px;border:0;border-radius:0;background:linear-gradient(90deg,rgba(42,35,25,.42),rgba(42,35,25,0));box-shadow:none;color:#fff;font:400 12px/1.1 'Kaiti SC','STKaiti','KaiTi',cursive;letter-spacing:.08em;text-shadow:0 1px 4px rgba(31,25,18,.95);white-space:nowrap;transform:translateY(-50%);transition:opacity .25s ease,filter .25s ease}
+#atlasLive[hidden],#atlasLive i[hidden]{display:none}#atlasLive i{display:grid;place-items:center;width:17px;height:17px;border:1px solid rgba(255,255,255,.9);border-radius:50%;font:400 10px/1 sans-serif;font-style:normal;letter-spacing:0;text-shadow:none}#atlasLive:hover{background:linear-gradient(90deg,rgba(42,35,25,.58),rgba(42,35,25,.08));filter:brightness(1.08)}#atlasLive:focus-visible{outline:2px solid #fff;outline-offset:3px}#atlasLive:disabled{opacity:.7;cursor:wait}
+@media(max-width:600px){#atlas{padding:24px 12px 18px;gap:12px}.atlas-heading h1{font-size:28px}.atlas-heading>span{font-size:9px}.atlas-heading p{font-size:10px}#atlasPlaces{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}#atlasPlaces .atlas-label{font-size:13px;min-height:44px;padding:8px;justify-content:center}#atlasPlaces em{display:none}#atlasMessage{font-size:10px;letter-spacing:0}#atlasOverview{position:relative;grid-row:2;justify-self:center;right:auto;top:auto;padding:6px 14px}#atlas.inspecting{grid-template-rows:auto auto minmax(0,1fr) 140px auto auto}#atlas.inspecting #atlasCard{grid-row:4}#atlas.inspecting #atlasPlaces{grid-row:5}#atlas.inspecting #atlasMessage{grid-row:6}#atlasCard{padding:8px 4px}#atlasCard p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){#atlasFrame,.draft-region,#atlasPlaces em{transition:none}}
+#atlas:not(.inspecting) #atlasPlaces{grid-row:3}#atlas:not(.inspecting) #atlasMessage{grid-row:4}
+@media(max-width:600px){#atlasPlaces .atlas-label:first-child,#atlasPlaces .atlas-label:last-child{left:auto}.atlas-heading{margin-bottom:0}}
+@media(max-width:600px){#visitCounter{top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));padding:5px 7px;gap:6px}#visitCounter span{font-size:9px}#visitCounter strong{font-size:13px}}
+#atlas{grid-template-columns:minmax(0,1fr);justify-content:stretch}
+
+/* Shop sign anchored to the tea-market building in panorama coordinates. */
+#atlasFrame .atlas-shop{position:absolute;left:625px;top:315px;z-index:8;display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:58px;padding:12px 17px;box-sizing:border-box;background:rgba(48,39,28,.46);border:1px solid rgba(255,255,255,.85);border-radius:3px;color:#fff;text-decoration:none;white-space:nowrap;text-shadow:0 1px 4px rgba(20,15,10,.8);transform:translate(-50%,-100%) scale(var(--atlas-label-scale,1));transform-origin:50% 100%;transition:background .2s,box-shadow .2s}
+#atlasFrame .atlas-shop>span{font:400 23px/1.2 'Kaiti SC','STKaiti','KaiTi',cursive;letter-spacing:.1em}
+#atlasFrame .atlas-shop>i{display:grid;place-items:center;width:30px;height:30px;border:1px solid #fff;border-radius:50%;font:400 24px/1 'Songti SC',serif;font-style:normal;text-shadow:none}
+#atlasFrame .atlas-shop .atlas-shop-hint{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);font:11px/1.4 'Songti SC',serif;letter-spacing:.14em;color:#584832;text-shadow:0 1px 3px #eee0be,0 0 8px #eee0be}
+#atlasFrame .atlas-shop::after{content:'';position:absolute;left:50%;top:100%;height:22px;border-left:1px solid #fffdf0cc;pointer-events:none}
+#atlasFrame .atlas-shop::before{content:'';position:absolute;left:calc(50% - 3px);top:calc(100% + 20px);width:5px;height:5px;background:#fff5d9;border:1px solid #70583f;border-radius:50%;box-shadow:0 0 0 3px #fff5d933;pointer-events:none}
+#atlasFrame .atlas-shop:hover{background:rgba(48,39,28,.68);box-shadow:0 3px 16px #44301b25}
+#atlasFrame .atlas-shop:focus-visible{outline:2px solid #fff5da;outline-offset:4px}
+@media(max-width:600px){#atlasFrame .atlas-shop{min-height:44px;padding:8px 10px;gap:8px}#atlasFrame .atlas-shop>span{font-size:17px}#atlasFrame .atlas-shop>i{width:23px;height:23px;font-size:19px}#atlasFrame .atlas-shop .atlas-shop-hint{font-size:9px;bottom:calc(100% + 7px)}#atlasFrame .atlas-shop::after{height:10px}#atlasFrame .atlas-shop::before{top:calc(100% + 8px)}#atlasMessage{line-height:1.7;white-space:normal}}
+
+/* The shop invitation belongs to destination 02, leaving the painting clear. */
+#atlasPlaces .atlas-tea-entry{position:relative;display:flex;align-items:center;justify-content:center}
+#atlasPlaces .atlas-shop{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;padding:10px 14px;white-space:nowrap;border:1px solid #78684b77;border-radius:3px;background:#f0e3c6b3;color:#51452f;text-decoration:none;box-shadow:0 3px 12px #62513a0d;font:20px "Kaiti SC","STKaiti","KaiTi",serif;letter-spacing:.1em}
+#atlasPlaces .atlas-shop i{display:grid;place-items:center;width:23px;height:23px;border:1px solid #8c7a59;border-radius:50%;font:18px "Songti SC",serif;letter-spacing:0}
+#atlasPlaces .atlas-shop-hint{display:none}
+#atlasPlaces .atlas-shop:hover{background:#f4e7cb}#atlasPlaces .atlas-shop:focus-visible{outline:2px solid #78684b;outline-offset:3px}
+@media(max-width:600px){#atlasPlaces{row-gap:12px}#atlasPlaces .atlas-shop{font-size:15px;padding:8px 10px;gap:6px;bottom:calc(100% + 6px)}#atlasPlaces .atlas-shop i{width:19px;height:19px;font-size:15px}}
+
+/* The restaurant entrance belongs to the street, anchored in world coordinates. */
+.street-shop-host{position:absolute;left:0;top:0;z-index:5;display:block;will-change:transform;transform:translate(-50%,-100%);text-decoration:none;color:#fff2d1;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.street-shop-host[hidden]{display:none}
+.street-shop-host canvas{display:block;width:100%;height:auto;filter:drop-shadow(0 2px 1px #372d2526)}
+.street-shop-host>span{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;font:600 var(--host-label-size,14px) 'Songti SC',serif;line-height:1.6;letter-spacing:.12em;padding:8px 12px;background:#fff;color:#171717;border:1px solid #d4d0c9;border-radius:12px;text-shadow:none;box-shadow:0 3px 10px #37201626;}
+.street-shop-host>span::after{content:"";position:absolute;bottom:-6px;left:50%;width:10px;height:10px;transform:translateX(-50%) rotate(45deg);background:inherit;border-right:1px solid;border-bottom:1px solid;border-color:inherit;pointer-events:none}
+.street-shop-host:hover>span,.street-shop-host:focus-visible>span{background:#fff;color:#000;border-color:#aaa39a;box-shadow:0 4px 12px #37201638}
+.street-shop-host:focus-visible{outline:1px solid #b3985f;outline-offset:5px}
+
+/* The invitation opens once on approach and closes when the visitor leaves. */
+.street-shop-host>span{opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(5px) scale(.85);transform-origin:50% calc(100% + 6px);transition:opacity .16s ease,transform .16s ease,visibility .16s}
+.street-shop-host.is-nearby>span{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1);animation:host-invite-pop .38s ease-out both}
+@keyframes host-invite-pop{
+  0%{opacity:0;transform:translateX(-50%) translateY(8px) scale(.65)}
+  65%{opacity:1;transform:translateX(-50%) translateY(-2px) scale(1.06)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+}
+@media(prefers-reduced-motion:reduce){.street-shop-host>span{transition:none}.street-shop-host.is-nearby>span{animation:none}}
+
+/* Quiet author links beside the entrance, with full-size touch targets. */
+.creator-links{display:inline-flex;gap:2px;margin:15px 0 0 8px;vertical-align:bottom;pointer-events:auto}
+.creator-links a{display:grid;place-items:center;width:44px;height:44px;border:1px solid transparent;border-radius:2px;color:inherit;text-decoration:none;opacity:.75;transition:opacity .2s,background .2s}
+.creator-links a:hover{opacity:1;background:#88735118}
+.creator-links a:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:2px}
+.creator-links svg{display:block;width:20px;height:20px;fill:currentColor;stroke:none}
+@media(max-width:600px){.creator-links{margin-top:12px;margin-left:4px;gap:0}}
+@media(prefers-reduced-motion:reduce){.creator-links a{transition:none}}

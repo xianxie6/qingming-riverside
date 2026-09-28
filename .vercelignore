@@ -12,3 +12,6 @@ output/
 *.command
 清明上河图-推特长文-banner.png
 .env*
+art-source/
+docs/
+tests/
