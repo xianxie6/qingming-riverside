@@ -1,4 +1,4 @@
-import {drawFestivalGate,drawFestivalLights,festivalGate} from './midautumn.js?v=9-cached-lanterns';
+import {drawFestivalGate,drawFestivalLights,festivalGate,festivalEnabled} from './midautumn.js?v=10-season-toggle';
 import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
 
 (() => {
@@ -37,7 +37,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   const festivalWelcome=document.querySelector('#midautumnWelcome');
   let festivalWasRunning=false;
   festivalEntry.addEventListener('click',()=>{
-    if(festivalWelcome.open)return;
+    if(!festivalEnabled||festivalWelcome.open)return;
     festivalWasRunning=state.running;state.running=false;walkInput.clear();updateMotion();
     festivalWelcome.dataset.entryNight=String(Boolean(nightfall.target));
     sound.setFestival(true);sound.setRunning(!document.hidden);
@@ -708,6 +708,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     }
   }
   function updateFestivalEntryPosition(){
+    if(!festivalEnabled){festivalEntry.hidden=true;return;}
     const gateX=(festivalGate.x-state.camera)*state.scale;
     const gateY=(festivalGate.y-state.viewY)*state.scale;
     festivalEntry.style.transform=`translate3d(${gateX}px,${gateY}px,0) translate(-50%,-50%)`;

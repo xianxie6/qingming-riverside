@@ -125,7 +125,11 @@
   new ResizeObserver(layout).observe(stage);reduced.addEventListener('change',layout);isolate(true);
   function restoreRoute(){
     if(fileMode)return;
-    const id=location.hash.slice(1),festival=id==='midautumn';
+    let id=location.hash.slice(1);
+    if(id==='midautumn'&&document.body.dataset.midautumnEnabled!=='true'){
+      id='gate';history.replaceState(null,'',location.pathname+location.search+'#gate');
+    }
+    const festival=id==='midautumn';
     const dialog=document.querySelector('#midautumnWelcome');
     if(dialog.open&&!festival)dialog.close();
     // Keep the existing shop return URL landing outside the tea-market building.

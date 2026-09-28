@@ -1,11 +1,12 @@
 // Festival decorations use the east district's original image coordinates.
+export const festivalEnabled=document.body.dataset.midautumnEnabled==='true';
 export const festivalGate = { x: 2072 + 1230 * 2272 / 2172, y: 350 };
 const ink = '#795235', gold = '#d8b775';
 function line(c, points, color=ink, width=.8) {
   c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=color;c.lineWidth=width;c.stroke();
 }
 const lanternArt=new Image();
-lanternArt.src='assets/midautumn/lantern-design-v1.png';
+if(festivalEnabled)lanternArt.src='assets/midautumn/lantern-design-v1.png';
 // Preserve the generated alpha channel, flower painting and fine silk tassels.
 const lanternSprites={red:{x:274,y:48,w:380,h:968},green:{x:803,y:86,w:518,h:932}};
 const lanternLayout=[
@@ -70,7 +71,7 @@ function lantern(c,placement,time,night=0,lightPass=false){
 }
 function drawLanterns(c,time,night=0,lightPass=false){for(const placement of lanternLayout)lantern(c,placement,time,night,lightPass);}
 export function drawFestivalGate(c,time,range,night=0) {
-  if(range[1]<3100||range[0]>3630)return;
+  if(!festivalEnabled||range[1]<3100||range[0]>3630)return;
   c.save();c.translate(2072,0);c.scale(2272/2172,1);
   c.strokeStyle=ink;c.lineWidth=1;
   c.beginPath();c.moveTo(1082,156);c.quadraticCurveTo(1230,201,1377,156);c.stroke();
@@ -86,7 +87,7 @@ export function drawFestivalGate(c,time,range,night=0) {
 }
 // Reuse exactly the same artwork after the blue atmospheric tint.
 export function drawFestivalLights(c,time,range,night){
-  if(night<=0||range[1]<3100||range[0]>3630)return;
+  if(!festivalEnabled||night<=0||range[1]<3100||range[0]>3630)return;
   c.save();c.translate(2072,0);c.scale(2272/2172,1);c.globalAlpha=night*.72;
   drawLanterns(c,time,night,true);
   c.globalAlpha=night*.20;c.fillStyle='#b06d3e';c.fillRect(1195,264,70,9);

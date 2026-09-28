@@ -7,12 +7,13 @@
   <title>清明上河</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css?v=27-refresh-route">
-  <link rel="stylesheet" href="midautumn.css?v=11-day-footer">
+  <link rel="stylesheet" href="midautumn.css?v=12-entry-frame">
   <link rel="stylesheet" href="buttons.css?v=4">
   <link rel="stylesheet" href="atlas-festival.css?v=8-load-retry">
   <link rel="stylesheet" href="atlas-fireworks.css?v=3-music">
 </head>
-<body class="in-atlas scroll-page">
+<!-- 中秋赏灯街道保留待复用；恢复时将 data-midautumn-enabled 改为 true。 -->
+<body class="in-atlas scroll-page" data-midautumn-enabled="false">
   <aside id="visitCounter" aria-live="polite" aria-label="网站总访问次数">
     <span>入画人次</span><strong id="visitCount">—</strong>
   </aside>
@@ -94,13 +95,13 @@
     </div>
   </dialog>
   <script src="festival-lighting.js?v=10-lossless" defer></script>
-  <script src="festival-street.js?v=18-performance" defer></script>
+  <script src="festival-street.js?v=20-season-toggle" defer></script>
   <script src="visits.js?v=3-local-preview" defer></script>
-  <script src="dynamic-loader.js?v=30-refresh-route"></script>
-  <script src="atlas.js?v=14-refresh-route"></script>
+  <script src="dynamic-loader.js?v=32-tree-seat"></script>
+  <script src="atlas.js?v=15-season-toggle"></script>
   <script src="atlas-festival.js?v=9-anchored-lanterns"></script>
-  <script src="atlas-firework-shapes.js?v=1"></script>
+  <script src="atlas-firework-shapes.js?v=2-national-day"></script>
   <script src="firework-audio.js?v=3-music"></script>
-  <script src="atlas-fireworks.js?v=14-continuous"></script>
+  <script src="atlas-fireworks.js?v=15-national-day"></script>
 </body>
 </html>

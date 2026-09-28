@@ -15,14 +15,20 @@
     for(let i=0;i<samples.length;i++)samples[i]=(Math.random()*2-1)*Math.exp(-i/context.sampleRate*135);
     return context;
   }
-  function resume(){const c=ready();if(c?.state==='suspended')void c.resume();return c;}
-  function tap({bright=false}={}){
-    const c=resume();if(!c)return;
+  async function tap({bright=false}={}){
+    const c=ready();if(!c)return;
+    // Resume can be asynchronous after first use or an audio interruption.
+    // Schedule the short sound only once the audio clock is running again.
+    if(c.state!=='running'){
+      try{await c.resume();}catch{return;}
+      if(c.state!=='running')return;
+    }
     const t=c.currentTime,source=c.createBufferSource(),filter=c.createBiquadFilter(),gain=c.createGain();
     source.buffer=noise;filter.type='bandpass';filter.frequency.value=bright?2600:1450;filter.Q.value=bright?1.25:.8;
-    gain.gain.setValueAtTime(bright?.075:.055,t);gain.gain.exponentialRampToValueAtTime(.001,t+.037);
+    gain.gain.setValueAtTime(bright?.18:.14,t);gain.gain.exponentialRampToValueAtTime(.001,t+.037);
     source.connect(filter).connect(gain).connect(clickBus);source.start(t);source.stop(t+.039);
-    if(bright)pluck(880,t+.012,.12,.026,clickBus);
+    // A brief pitched tail stays audible over the shop's background music.
+    pluck(bright?880:640,t+.006,bright?.15:.10,bright?.10:.075,clickBus);
   }
   function pluck(hz,t,duration,volume,bus=clickBus){
     const c=context,osc=c.createOscillator(),gain=c.createGain(),filter=c.createBiquadFilter();

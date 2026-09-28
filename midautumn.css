@@ -23,6 +23,8 @@
 #festivalPosition{display:block;position:static;width:min(640px,90%);height:18px;margin:8px auto 0;accent-color:#937746;cursor:ew-resize}
 @media(max-width:600px){#midautumnEntry{font-size:14px;padding:12px 16px;gap:7px}.festival-header{padding:15px 12px;gap:8px}.festival-header h1{font-size:16px;letter-spacing:.07em}.festival-header p{letter-spacing:.15em}#midautumnBack,#festivalTour{padding:12px 10px;font-size:11px}.festival-footer{padding:12px 8px max(12px,env(safe-area-inset-bottom))}.festival-footer nav{gap:7px}.festival-footer button{font-size:12px;padding:8px 5px;letter-spacing:.05em}}
 #festivalWorld{position:relative;height:100%;width:max-content;}
+/* Keep layout measurable, but reveal the artwork only with its first lit frame. */
+#festivalViewport[aria-busy="true"] #festivalWorld{visibility:hidden}
 #festivalActors{position:absolute;left:0;top:0;pointer-events:none}
 #festivalBubble{position:absolute;transform:translate(-50%,-100%);max-width:260px;min-width:160px;padding:12px 16px;background:#f1e3c5f2;border:1px solid #92774c;color:#654b30;border-radius:5px;font:13px/1.6 "Songti SC",serif;pointer-events:none;text-align:center;box-shadow:0 3px 12px #4d3d2520}
 .festival-actions{display:flex;justify-content:center;gap:12px;margin-bottom:8px}

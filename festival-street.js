@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  if(document.body.dataset.midautumnEnabled!=='true')return;
   const $=s=>document.querySelector(s),dialog=$('#midautumnWelcome'),viewport=$('#festivalViewport'),artwork=$('#festivalArtwork'),canvas=$('#festivalActors'),displayContext=canvas.getContext('2d'),loading=$('#festivalLoad'),slider=$('#festivalPosition'),bubble=$('#festivalBubble');
   const foreground=document.createElement('canvas'),foregroundContext=foreground.getContext('2d');
   const riverBackdrop=document.createElement('canvas'),riverContext=riverBackdrop.getContext('2d');
@@ -305,7 +306,11 @@
       const riverModule=await import('./water-three.js?v=1.9-scissor');
       riverRenderer??=new riverModule.ThreeWaterRenderer({bankY:626});
       await Promise.all([renderer.assetsReady,characters.assetsReady,loadAssets(),lighting.prepare(artwork)]);
-      if(!dialog.open)return;measure();loading.hidden=true;viewport.setAttribute('aria-busy','false');active=true;follow=true;last=performance.now();frame=requestAnimationFrame(tick);
+      if(!dialog.open)return;
+      measure();follow=true;
+      // Paint the inherited time of day before exposing the daytime base image.
+      render(0);
+      loading.hidden=true;viewport.setAttribute('aria-busy','false');active=true;last=performance.now();frame=requestAnimationFrame(tick);
     }catch(error){loading.hidden=false;loading.textContent='街市加载失败，请返回城门重试。';viewport.setAttribute('aria-busy','false');console.error(error);}
   }
   new MutationObserver(()=>{if(dialog.open)open();else{active=false;cancelAnimationFrame(frame);keys.clear();drag=null;hero.target=hero.x;queued=null;}}).observe(dialog,{attributes:true,attributeFilter:['open']});

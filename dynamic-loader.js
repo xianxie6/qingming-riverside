@@ -2,7 +2,7 @@
   'use strict';
   const scripts=[
     'world.js?v=8.3','bridge-railing.js?v=2','night.js?v=1.4-shared-lights','weather.js?v=10.5',
-    'sound.js?v=10.6-festival','water.js?v=1.3','movement.js?v=8.2','population.js?v=6.4',
+    'sound.js?v=10.6-festival','water.js?v=1.3','movement.js?v=8.2','population.js?v=6.5-tree-seat',
     'street-life.js?v=9.1','street-details.js?v=8.1','bridge-event.js?v=9.2',
     'bridge-art.js?v=9.2','people-frames.js','people-masks.js','wardrobe.js?v=5.2.1',
     'inhabitants.js?v=13.2-mesh','featured-characters.js?v=7.6','districts.js?v=6.0'
@@ -16,7 +16,7 @@
       'assets/people-ink.webp','assets/featured-characters-v7.webp','assets/boat.webp']){
       const link=document.createElement('link');link.rel='preload';link.as='image';link.href=src;document.head.append(link);
     }
-    for(const src of ['scene.js?v=16.19-refresh-route','water-three.js?v=1.9-scissor','vendor/three.module.js','vendor/three.core.js']){
+    for(const src of ['scene.js?v=16.20-season-toggle','water-three.js?v=1.9-scissor','vendor/three.module.js','vendor/three.core.js']){
       const link=document.createElement('link');link.rel='modulepreload';link.href=src;document.head.append(link);
     }
   }
@@ -49,7 +49,7 @@
       // ES modules execute once per page. A failed scene needs a page reload,
       // not a second module tag that can wait forever for another ready event.
       sceneStarted=true;
-      try{await Promise.all([add('scene.js?v=16.19-refresh-route',true),ready]);}
+      try{await Promise.all([add('scene.js?v=16.20-season-toggle',true),ready]);}
       finally{cleanup();}
     })().catch(error=>{if(!sceneStarted)loading=null;throw error;});
     return loading;

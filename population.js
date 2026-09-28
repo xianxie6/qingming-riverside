@@ -59,6 +59,10 @@
    [3480,475,65,11],[3570,477,65,4],[3660,476,65,11],[3780,476,64,11],
    [3850,476,63,9],[3980,477,64,4],[4050,477,63,11],[4180,477,66,11],[4260,477,65,4]
   ].forEach(([x,y,h,s],i)=>add(x,y,h,s,s===11?'work':s===4?'trade':'talk',i%2?-1:1));
+  // Remove the seated cloth-market resident overlapping the tree trunk.
+  // Filter after assigning IDs so other residents keep their outfits and timing.
+  const treeSeat=residents.findIndex(p=>p.x===2370&&p.sprite===8);
+  if(treeSeat!==-1)residents.splice(treeSeat,1);
   const walkers=[];
   const routes=[[-2120,-1625],[-1440,-1020],[-1030,-420],[-550,210],[90,1200],[1110,2060],[1820,2600],[2300,3160],[3160,3760],[3610,4270]];
   routes.forEach(([from,to],r)=>{

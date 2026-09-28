@@ -8,57 +8,35 @@
   }
   // Keep the show enabled until the owner explicitly requests a stop.
   const FIREWORKS_ENABLED=true;
-  const SPONSOR_START=Date.parse('2026-09-25T22:00:00+08:00');
-  const REPLAY_SPONSOR_START=Date.parse('2026-09-27T22:00:00+08:00');
   function isFireworksTime(){return FIREWORKS_ENABLED;}
-  function isSponsorTime(now=Date.now()){
-    const time=Number(now);
-    return [SPONSOR_START,REPLAY_SPONSOR_START].some(start=>time>=start&&time<start+60000);
-  }
 
   class FireworkShow {
-    constructor(){this.rockets=[];this.stars=[];this.sparks=[];this.flashes=[];this.elapsed=0;this.nextLaunch=.3;this.shot=0;this.burstCount=0;this.greeting=null;this.letterPoints={zh:[],en:[]};this.shapePoints={rabbit:[],fairies:[]};this.textDisplays=0;this.shapeDisplays=0;this.sponsorPoints={thanks:[],chatgpt:[]};this.sponsorStep=-1;this.sponsorStarted=false;this.sponsorCompleted=0;}
+    constructor(){this.rockets=[];this.stars=[];this.sparks=[];this.flashes=[];this.elapsed=0;this.nextLaunch=.3;this.shot=0;this.burstCount=0;this.greeting=null;this.letterPoints={title:[],wishes:[]};this.shapePoints={lantern:[]};this.textDisplays=0;this.shapeDisplays=0;}
     resize(width,height,horizon){
       this.width=width;this.height=height;this.horizon=horizon;
       this.scale=Math.max(.45,Math.min(1.45,width/1440,horizon/450));
       this.mobile=width<600;
     }
-    clear(){this.rockets.length=this.stars.length=this.sparks.length=this.flashes.length=0;this.nextLaunch=.3;this.sponsorLaunch=.2;this.sponsorShot=0;this.shot=0;this.burstCount=0;this.greeting=null;}
+    clear(){this.rockets.length=this.stars.length=this.sparks.length=this.flashes.length=0;this.nextLaunch=.3;this.shot=0;this.burstCount=0;this.greeting=null;}
     get showingFigures(){return this.textDisplays>=(Math.floor(this.shapeDisplays/6)+1)*5;}
-    beginSponsor(){
-      if(this.sponsorStarted||!this.sponsorPoints.thanks.length||!this.sponsorPoints.chatgpt.length)return false;
-      this.sponsorStarted=true;
-      // Discard in-flight shells, but keep the ordinary programme's completed progress.
-      this.sponsorResume={shot:this.burstCount,burstCount:this.burstCount};
-      this.clear();this.sponsorStep=0;this.nextLaunch=0;return true;
-    }
-    playSponsorAct(){
-      const thanks=this.sponsorStep%2===0;
-      const rocket={x:this.width*.5,y:this.horizon*.5,size:1.9};
-      this.form(rocket,this.sponsorPoints[thanks?'thanks':'chatgpt'],thanks?'sponsor-thanks':'sponsor-chatgpt',thanks?'zh':'en');
-      this.flashes.push({...rocket,age:0,life:.65,color:'173,244,211',radius:130*this.scale});
-      this.onBloom?.(rocket);
-    }
     greet(rocket){
       if(this.showingFigures)return;
-      const language=this.textDisplays%2===0?'zh':'en',points=this.letterPoints[language];
+      const language=this.textDisplays%2===0?'title':'wishes',points=this.letterPoints[language];
       if(!points.length)return;
       this.form(rocket,points,'text',language);this.textDisplays++;
     }
     form(rocket,points,kind,language=null){
-      const figure=kind==='rabbit'||kind==='fairy',sponsor=kind.startsWith('sponsor-');
+      const figure=kind==='lantern';
       const pointScale=figure&&rocket.size<=1.5?.82:1;
-      const rabbitIndex=Math.floor(this.shapeDisplays/2),rabbitTone=[0,2,3,4,5,1][rabbitIndex%6];
-      const rabbitAction=['ears','leap','look'][rabbitIndex%3],mirror=kind==='rabbit'&&Math.floor(rabbitIndex/3)%2?-1:1;
       const colorful=kind==='text'&&this.textDisplays>=5;
       const minX=Math.min(...points.map(p=>p.x)),spanX=Math.max(...points.map(p=>p.x))-minX+1;
       const palette=[3,5,4,2,0],rotation=Math.floor(this.textDisplays/5)%palette.length;
-      const centerX=this.width*(sponsor?.5:this.mobile?.5:.43),centerY=this.horizon*(kind==='sponsor-thanks'&&!this.mobile?.42:sponsor?.5:figure?.55:.46);
-      const life=sponsor?(kind==='sponsor-thanks'?6.8:7.8):figure?6.8:5.2;
-      this.greeting={kind,language,colorful,rabbitAction,rabbitTone,centerX,centerY,age:0,life,holdUntil:life-2.05,particles:points.map(point=>({
-        targetX:centerX+point.x*pointScale*mirror,targetY:centerY+point.y*pointScale,
-        localX:point.x*pointScale*mirror,localY:point.y*pointScale,
-        tone:kind==='rabbit'?rabbitTone:colorful?palette[(Math.floor((point.x-minX)/spanX*palette.length)+rotation)%palette.length]:point.tone||0,edge:point.edge??1,
+      const centerX=this.width*(this.mobile?.5:.43),centerY=this.horizon*(figure?.5:.46);
+      const life=figure?6.8:5.2;
+      this.greeting={kind,language,colorful,centerX,centerY,age:0,life,holdUntil:life-2.05,particles:points.map(point=>({
+        targetX:centerX+point.x*pointScale,targetY:centerY+point.y*pointScale,
+        localX:point.x*pointScale,localY:point.y*pointScale,
+        tone:colorful?palette[(Math.floor((point.x-minX)/spanX*palette.length)+rotation)%palette.length]:point.tone||0,edge:point.edge??1,
         startX:rocket.x+random(-12,12)*this.scale,startY:rocket.y+random(-12,12)*this.scale,
         x:rocket.x,y:rocket.y,px:rocket.x,py:rocket.y,
         delay:random(0,.2),seed:random(0,TAU),size:random(.65,1.15),
@@ -67,15 +45,15 @@
       // Let each particle figure settle, shimmer and fall before the next launch.
       this.nextLaunch=this.greeting.life+.3;
     }
-    launch(accompaniment=false){
+    launch(){
       const s=this.scale;
-      const shot=accompaniment?this.sponsorShot:this.shot;
+      const shot=this.shot;
       const size=shot%2===0?1.35:1.9;
       // The left and middle sky leave breathing room around the moon and branch.
-      const positions=accompaniment?[.18,.82,.3,.7]:[.28,.53,.39,.61,.22,.47,.79];
+      const positions=[.28,.53,.39,.61,.22,.47,.79];
       const margin=Math.min(this.width*.3,115*s*size);
       const x=Math.max(margin,Math.min(this.width-margin,this.width*(positions[shot%positions.length]+random(-.035,.035))));
-      const y=this.horizon*(accompaniment?random(.38,.65):random(.44,.58));
+      const y=this.horizon*(random(.44,.58));
       const duration=random(1.25,1.7),startY=this.horizon+35*s;
       const startX=x+random(-70,70)*s,gravity=115*s;
       const kind=['willow','peony','chrysanthemum','willow','double'][shot%5];
@@ -83,10 +61,10 @@
       const palettes=[['255,202,116','255,129,160','151,218,255'],['255,166,214','187,161,255','255,225,159'],['132,224,196','144,186,255','255,216,137']];
       const palette=shot%3===0?[colors[Math.floor(shot/3)%colors.length]]:palettes[shot%palettes.length];
       const color=palette[0];
-      const formation=!accompaniment&&this.showingFigures?(this.shapeDisplays%2===0?'rabbit':'fairy'):null;
+      const formation=this.showingFigures?'lantern':null;
       this.rockets.push({x:startX,y:startY,vx:(x-startX)/duration,vy:(y-startY)/duration-gravity*duration/2,
-        gravity,age:0,life:duration,kind,color,palette,size,formation,accompaniment,trail:[]});
-      if(accompaniment)this.sponsorShot++;else this.shot++;
+        gravity,age:0,life:duration,kind,color,palette,size,formation,trail:[]});
+      this.shot++;
     }
     burst(rocket){
       this.onBloom?.(rocket);
@@ -113,12 +91,9 @@
         }
       }
       this.flashes.push({x,y,age:0,life:.65,color,radius:145*s*size});
-      // Accompany the sponsor text without replacing it or advancing the main programme.
-      if(rocket.accompaniment)return;
       this.burstCount++;
       if(rocket.formation){
-        const poses=this.shapePoints.fairies;
-        const points=rocket.formation==='rabbit'?this.shapePoints.rabbit:poses[Math.floor(this.shapeDisplays/2)%Math.max(1,poses.length)];
+        const points=this.shapePoints.lantern;
         if(points?.length){this.form(rocket,points,rocket.formation);this.shapeDisplays++;}
       }else if(this.burstCount%2===0)this.greet(rocket);
     }
@@ -129,14 +104,7 @@
     update(dt){
       // Never catch up a background tab by simulating its entire absence.
       dt=Math.min(.04,Math.max(0,dt));this.elapsed+=dt;this.nextLaunch-=dt;
-      if(this.sponsorStep>=0&&!this.greeting&&this.nextLaunch<=0)this.playSponsorAct();
-      if(this.sponsorStep>=0){
-        this.sponsorLaunch-=dt;
-        if(this.sponsorLaunch<=0&&this.stars.length<(this.mobile?500:1000)&&this.rockets.length<3){
-          this.launch(true);this.sponsorLaunch=this.mobile?random(1.2,1.6):random(.85,1.25);
-        }
-      }
-      if(this.sponsorStep<0&&this.nextLaunch<=0&&!this.greeting&&!((this.showingFigures||this.shot%2===0)&&this.rockets.length)){
+      if(this.nextLaunch<=0&&!this.greeting&&!((this.showingFigures||this.shot%2===0)&&this.rockets.length)){
         if(this.stars.length<850&&this.rockets.length<4)this.launch();
         // Alternating solo shells and close pairs, with room for the falling gold.
         this.nextLaunch=this.shot%7===3?.6:random(1.7,2.9);
@@ -169,38 +137,16 @@
       if(this.greeting){
         const greeting=this.greeting;greeting.age+=dt;
         if(greeting.age>=greeting.life){
-          if(greeting.kind.startsWith('sponsor-')){
-            this.sponsorStep++;this.sponsorCompleted++;
-            if(this.sponsorStep===6){this.sponsorStep=-1;Object.assign(this,this.sponsorResume);}
-            this.nextLaunch=.35;
-          }
           this.greeting=null;return;
         }
         for(const p of greeting.particles){
           p.px=p.x;p.py=p.y;
           const t=Math.max(0,greeting.age-p.delay),gather=Math.min(1,t/1.15),ease=1-(1-gather)**3;
           const fall=Math.max(0,t-greeting.holdUntil);
-          // Match the stage dancer's floating sleeves, ribbons and gentle sway.
-          const sleeve=greeting.kind==='fairy'?Math.min(1,Math.abs(p.localX)/90)*Math.max(0,1-(p.localY+160)/320):0;
-          let danceX=Math.sin(t*1.7+p.localY*.012)*sleeve*8*this.scale;
-          let danceY=Math.cos(t*1.4+p.localX*.015)*sleeve*5*this.scale;
-          if(greeting.kind==='rabbit'){
-            const phase=Math.max(0,greeting.age-1.15),s=this.scale;
-            const ear=Math.max(0,Math.min(1,(-p.localY/Math.max(s,.6)-15)/75));
-            if(greeting.rabbitAction==='ears'){
-              danceX=Math.sin(phase*2.5+p.localX*.006)*ear*18*s;
-              danceY=Math.sin(phase*1.8)*p.localY*.014;
-            }else if(greeting.rabbitAction==='leap'){
-              const jump=Math.sin(phase*1.5)**2,angle=-.14+.1*Math.sin(phase*1.5);
-              danceX=p.localX*(Math.cos(angle)-1)-p.localY*Math.sin(angle)+Math.sin(phase*1.5)*22*s;
-              danceY=p.localX*Math.sin(angle)+p.localY*(Math.cos(angle)-1)-jump*34*s;
-            }else{
-              const upper=Math.max(0,Math.min(1,(25*s-p.localY)/(70*s))),angle=.18+.06*Math.sin(phase*1.7);
-              const x=p.localX+22*s,y=p.localY-15*s;
-              danceX=(x*(Math.cos(angle)-1)-y*Math.sin(angle))*upper+ear*Math.sin(phase*2)*5*s;
-              danceY=(x*Math.sin(angle)+y*(Math.cos(angle)-1))*upper;
-            }
-          }
+          // A suspended lantern sways as one shape; the tassel trails gently.
+          const angle=greeting.kind==='lantern'?Math.sin(t*1.5)*.045:0;
+          const danceX=p.localX*(Math.cos(angle)-1)-p.localY*Math.sin(angle);
+          const danceY=p.localX*Math.sin(angle)+p.localY*(Math.cos(angle)-1);
           p.x=p.startX+(p.targetX+danceX-p.startX)*ease+Math.sin(t*2.6+p.seed)*.55*ease+p.vx*fall;
           p.y=p.startY+(p.targetY+danceY-p.startY)*ease+Math.sin(t*3+p.seed)*.45*ease+p.vy*fall+13*this.scale*fall*fall;
         }
@@ -208,8 +154,7 @@
     }
     draw(ctx){
       ctx.clearRect(0,0,this.width,this.height);ctx.globalCompositeOperation='lighter';ctx.lineCap='round';
-      // Keep the continuous shells behind the lettering visually quieter.
-      ctx.globalAlpha=this.sponsorStep>=0?.62:1;
+      ctx.globalAlpha=1;
       for(const f of this.flashes){
         const alpha=Math.pow(1-f.age/f.life,3),r=f.radius;
         const glow=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,r);
@@ -248,14 +193,14 @@
       }
       ctx.globalAlpha=1;
       if(this.greeting){
-        const g=this.greeting,thanks=g.kind==='sponsor-thanks',dot=(this.mobile?.85:1.1)*(thanks?.82:1);
+        const g=this.greeting,dot=this.mobile?.85:1.1;
         for(const p of g.particles){
           const t=Math.max(0,g.age-p.delay),fade=Math.min(1,t/.55)*Math.max(0,1-Math.max(0,t-g.holdUntil)/1.85);
           const alpha=fade*(.65+.35*Math.sin(t*14+p.seed)**2)*(p.edge?1:.65);
           ctx.globalAlpha=alpha;
           const texture=this.emberTextures?.[p.tone]||this.emberTexture;
-          if(texture){const r=dot*p.size*(thanks?2.8:g.language==='en'?3.7:5);ctx.drawImage(texture,p.x-r,p.y-r,r*2,r*2);}
-          ctx.fillStyle=['#ffe9b2','#fff5df','#bdfff0','#ffc7db','#c7e5ff','#ead0ff'][p.tone];ctx.fillRect(p.x,p.y,dot*p.size,dot*p.size);
+          if(texture){const r=dot*p.size*(g.kind==='lantern'?3.8:5);ctx.drawImage(texture,p.x-r,p.y-r,r*2,r*2);}
+          ctx.fillStyle=['#ffe9b2','#fff5df','#bdfff0','#ffc7db','#c7e5ff','#ead0ff','#ff784f'][p.tone];ctx.fillRect(p.x,p.y,dot*p.size,dot*p.size);
           if(t<1.15||t>g.holdUntil){
             ctx.strokeStyle='rgba(255,190,89,.5)';ctx.lineWidth=dot*.65;
             ctx.beginPath();ctx.moveTo(p.px,p.py);ctx.lineTo(p.x,p.y);ctx.stroke();
@@ -266,7 +211,7 @@
       ctx.globalCompositeOperation='source-over';
     }
   }
-  if(typeof module!=='undefined'&&module.exports)module.exports={isFireworksTime,isSponsorTime,FireworkShow};
+  if(typeof module!=='undefined'&&module.exports)module.exports={isFireworksTime,FireworkShow};
   if(typeof document==='undefined')return;
   const atlas=document.querySelector('#atlas'),stage=document.querySelector('#atlasStage');
   if(!atlas||!stage)return;
@@ -277,7 +222,6 @@
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const query=new URLSearchParams(location.search);
   const preview=['localhost','127.0.0.1','[::1]'].includes(location.hostname)&&query.get('fireworks')==='preview';
-  const sponsorPreview=preview&&query.get('act')==='sponsor';
   const show=new FireworkShow();let paused=reduced.matches,running=false,raf=0,last=0;
   const sound=new window.FireworkAudio('assets/firework-bloom.mp3',{musicUrl:'assets/firework-background.mp3',onChange:updateAudioButton});
   function updateAudioButton(){
@@ -300,10 +244,10 @@
   // Local review links can jump to an act without waiting through the opening.
   if(preview){
     const act=new URLSearchParams(location.search).get('act');
-    const offset={'rabbit-1':0,'rabbit-2':2,'rabbit-3':4,'colorful-text':6}[act];
+    const offset={'lantern':0,'colorful-text':6}[act];
     if(offset!==undefined){show.textDisplays=5;show.shapeDisplays=offset;}
   }
-  show.emberTextures=['255,195,101','255,236,199','128,241,208','255,151,186','126,190,255','201,147,255'].map(color=>{
+  show.emberTextures=['255,195,101','255,236,199','128,241,208','255,151,186','126,190,255','201,147,255','255,65,32'].map(color=>{
     const ember=document.createElement('canvas');ember.width=ember.height=32;
     const ec=ember.getContext('2d'),glow=ec.createRadialGradient(16,16,0,16,16,16);
     glow.addColorStop(0,'#fff8db');glow.addColorStop(.12,`rgba(${color},.86)`);glow.addColorStop(.3,`rgba(${color},.4)`);glow.addColorStop(1,`rgba(${color},0)`);
@@ -319,17 +263,12 @@
       const selected=points.length<=limit?points:Array.from({length:limit},(_,i)=>points[Math.floor(i*points.length/limit)]);
       return selected.map(([x,y,tone,edge])=>({x:x*height/1000,y:y*height/1000,tone,edge}));
     };
-    show.shapePoints={rabbit:fit(art.rabbit),fairies:art.fairies.map(fit)};
+    show.shapePoints={lantern:fit(art.lantern)};
   }
   function buildLetters(){
     // Rasterize glyphs once on resize; the visible message consists only of embers.
-    const size=Math.max(28,Math.min(68,show.width*.078,show.horizon*.14)),gap=size*.17;
-    const mask=document.createElement('canvas');mask.width=Math.ceil(size*5);mask.height=Math.ceil(size*2.65);
+    const mask=document.createElement('canvas');
     const ink=mask.getContext('2d',{willReadFrequently:true});
-    ink.font=`600 ${size}px "Songti SC","STSong","Noto Serif CJK SC",serif`;ink.textBaseline='middle';ink.textAlign='center';ink.fillStyle='#fff';
-    ['中秋快乐','爱你们'].forEach((line,row)=>{
-      [...line].forEach((letter,i)=>ink.fillText(letter,mask.width/2+(i-(line.length-1)/2)*(size+gap),size*(.65+row*1.2)));
-    });
     function sample(step){
       const pixels=ink.getImageData(0,0,mask.width,mask.height).data,points=[];
       for(let y=0;y<mask.height;y+=step)for(let x=0;x<mask.width;x+=step){
@@ -339,46 +278,18 @@
       const limit=show.mobile?1000:1800;
       return points.length<=limit?points:Array.from({length:limit},(_,i)=>points[Math.floor(i*points.length/limit)]);
     }
-    show.letterPoints.zh=sample(show.mobile?2:3);
-    const lines=show.mobile?['Happy Mid-Autumn','Festival','Love you all']:['Happy Mid-Autumn Festival','Love you all'];
-    const fontSize=Math.min(show.mobile?28:46,size*.85),font=`600 ${fontSize}px Georgia,"Times New Roman",serif`;
-    ink.font=font;
-    const widest=Math.max(...lines.map(line=>ink.measureText(line).width));
-    const fit=Math.min(1,show.width*(show.mobile?.86:.65)/widest);
-    const englishSize=fontSize*fit,lineHeight=englishSize*1.4;
-    mask.width=Math.ceil(widest*fit+16);mask.height=Math.ceil(lineHeight*lines.length+16);
-    ink.font=`600 ${englishSize}px Georgia,"Times New Roman",serif`;
-    ink.textBaseline='middle';ink.textAlign='center';ink.fillStyle='#fff';
-    lines.forEach((line,row)=>ink.fillText(line,mask.width/2,mask.height/2+(row-(lines.length-1)/2)*lineHeight));
-    show.letterPoints.en=sample(2);
-  }
-  function buildSponsor(){
-    const mask=document.createElement('canvas');mask.width=Math.ceil(show.width);mask.height=Math.ceil(show.horizon);
-    const ink=mask.getContext('2d',{willReadFrequently:true}),centerX=show.width*.5,centerY=show.horizon*.5;
-    const sample=(step,limit,tone)=>{
-      const rgba=ink.getImageData(0,0,mask.width,mask.height).data,points=[];
-      for(let y=0;y<mask.height;y+=step)for(let x=0;x<mask.width;x+=step){
-        if(rgba[(y*mask.width+x)*4+3]>85)points.push({x:x-centerX,y:y-centerY,tone:typeof tone==='function'?tone(x,y):tone});
-      }
-      return points.length<=limit?points:Array.from({length:limit},(_,i)=>points[Math.floor(i*points.length/limit)]);
-    };
-    const stamp=(text,x,y,size,maxWidth,font='"Songti SC","STSong",serif',weight=600)=>{
-      ink.font=`${weight} ${size}px ${font}`;
-      const fit=Math.min(1,maxWidth/ink.measureText(text).width);
-      ink.font=`${weight} ${size*fit}px ${font}`;ink.textAlign='center';ink.textBaseline='middle';ink.fillStyle='#fff';ink.fillText(text,x,y);
-    };
-    const lines=show.mobile?['感谢 OpenAI','对本次烟花的','大力赞助～']:['感谢 OpenAI','对本次烟花的大力赞助～'];
-    const size=Math.min(show.mobile?31:52,show.horizon*.105),lineHeight=size*1.65;
-    lines.forEach((text,i)=>stamp(text,centerX,centerY+(i-(lines.length-1)/2)*lineHeight,size,show.width*.86,undefined,400));
-    show.sponsorPoints.thanks=sample(show.mobile?1:2,show.mobile?1900:3400,0);
-    ink.clearRect(0,0,mask.width,mask.height);
-    const top=Math.min(140,show.horizon*.3),bottom=show.horizon-38,skyHeight=bottom-top;
-    const columns=show.mobile?2:4,cell=show.width/columns;
-    for(const row of [0,1])for(let col=0;col<columns;col++){
-      stamp('ChatGPT',cell*(col+.5),top+skyHeight*(row?.88:.1),Math.min(48,cell*.19,skyHeight*.15),cell*.88,'Georgia,serif');
+    for(const [key,lines] of [['title',['欢度国庆']],['wishes',show.mobile?['大家国庆','快乐～']:['大家国庆快乐～']]]){
+      const count=Math.max(...lines.map(line=>[...line].length));
+      const size=Math.min(68,show.horizon*.14,show.width*(show.mobile?.86:.7)/(count*1.12));
+      const lineHeight=size*1.3;
+      mask.width=Math.ceil(size*count*1.12+12);mask.height=Math.ceil(lineHeight*lines.length+12);
+      ink.font=`600 ${size}px "Songti SC","STSong","Noto Serif CJK SC",serif`;
+      ink.textBaseline='middle';ink.textAlign='center';ink.fillStyle='#fff';
+      lines.forEach((line,row)=>{
+        [...line].forEach((letter,i)=>ink.fillText(letter,mask.width/2+(i-([...line].length-1)/2)*size*1.12,mask.height/2+(row-(lines.length-1)/2)*lineHeight));
+      });
+      show.letterPoints[key]=sample(show.mobile?2:3);
     }
-    stamp('ChatGPT',centerX,top+skyHeight*.49,Math.min(show.width*.14,skyHeight*.4),show.width*.88,'Georgia,serif');
-    show.sponsorPoints.chatgpt=sample(2,show.mobile?2600:5200,(x,y)=>y>top+skyHeight*.28&&y<top+skyHeight*.68?2:[0,1,2][Math.floor(x/cell)%3]);
   }
   let geometryKey='';
   function resize(){
@@ -398,7 +309,6 @@
     show.resize(rect.width,rect.height,horizon);
     buildLetters();
     buildFigures();
-    buildSponsor();
     canvas.style.maskImage=`linear-gradient(to bottom,#000 ${Math.max(0,horizon-30)}px,transparent ${horizon+65}px)`;
     canvas.style.webkitMaskImage=canvas.style.maskImage;
     show.clear();
@@ -407,7 +317,6 @@
     if(!running)return;
     // Respect the show switch; there is no automatic date or midnight cutoff.
     if(!(preview||isFireworksTime())){sync();return;}
-    if(!show.sponsorStarted&&(isSponsorTime()||sponsorPreview))show.beginSponsor();
     show.update(last?(time-last)/1000:1/60);last=time;show.draw(ctx);raf=requestAnimationFrame(tick);
   }
   function sync(){
@@ -436,5 +345,5 @@
   // Wake at the exact next second; checking wall time also handles clock changes.
   function schedule(){sync();setTimeout(schedule,1000-Date.now()%1000);}
   schedule();
-  window.AtlasFireworks={isFireworksTime,get state(){return {scheduled:preview||isFireworksTime(),preview,running,paused,rockets:show.rockets.length,stars:show.stars.length,sparks:show.sparks.length,bursts:show.burstCount,greetingAge:show.greeting?.age??null,greetingLanguage:show.greeting?.language??null,greetingKind:show.greeting?.kind??null,colorfulText:show.greeting?.colorful??false,rabbitAction:show.greeting?.kind==='rabbit'?show.greeting.rabbitAction:null,rabbitTone:show.greeting?.kind==='rabbit'?show.greeting.rabbitTone:null,textDisplays:show.textDisplays,shapeDisplays:show.shapeDisplays,letterParticles:show.greeting?.particles.length??0,sponsorActive:show.sponsorStep>=0,sponsorCompleted:show.sponsorCompleted,soundEnabled:sound.enabled,soundUnlocked:sound.unlocked,soundPlays:sound.plays,soundVoices:sound.voices.size,musicPlaying:sound.musicPlaying,musicTime:sound.music?.currentTime??0,musicLoop:sound.music?.loop??false,soundError:sound.error||sound.musicError,soundContext:sound.context?.state??null};}};
+  window.AtlasFireworks={isFireworksTime,get state(){return {scheduled:preview||isFireworksTime(),preview,running,paused,rockets:show.rockets.length,stars:show.stars.length,sparks:show.sparks.length,bursts:show.burstCount,greetingAge:show.greeting?.age??null,greetingLanguage:show.greeting?.language??null,greetingKind:show.greeting?.kind??null,colorfulText:show.greeting?.colorful??false,textDisplays:show.textDisplays,shapeDisplays:show.shapeDisplays,letterParticles:show.greeting?.particles.length??0,soundEnabled:sound.enabled,soundUnlocked:sound.unlocked,soundPlays:sound.plays,soundVoices:sound.voices.size,musicPlaying:sound.musicPlaying,musicTime:sound.music?.currentTime??0,musicLoop:sound.music?.loop??false,soundError:sound.error||sound.musicError,soundContext:sound.context?.state??null};}};
 })();
