@@ -123,3 +123,22 @@ test('affine mesh cells skip clips while a deformed fourth corner retains both t
   vertices[3].target[0]+=.01;calls.length=0;
   crowd.cell({}, {}, ...vertices);assert.deepEqual(calls.map(c=>c[0]),['triangle','triangle']);
 });
+
+test('rigid walking cells use the affine path without changing the animated mesh',()=>{
+  const crowd=load(),ctx=context();crowd.motionContext=context();crowd.motionSurface={width:512,height:384};
+  const art={frame:{w:200,h:400},texture:{width:200,height:400},direction:1,
+    contacts:[{x:40,y:395},{x:160,y:400}],grips:[[.7,.4]]};
+  let quads=0,triangles=0;
+  crowd.quad=(_ctx,_texture,p,q,r)=>{
+    assert.ok([p,q,r].every(v=>v.target.every(Number.isFinite)));quads++;
+  };
+  crowd.triangle=()=>triangles++;
+  for(let step=0;step<32;step++){
+    crowd.sprite(ctx,{p:{art,h:63},x:0,y:0,direction:1,walking:true,
+      pose:{phase:step/32*63*.64*.15,lean:.02,nod:.03,handX:1,handY:.5}},step/60);
+  }
+  assert.ok(quads>0,'affine walking cells no longer pay for two clipped draws');
+  assert.ok(triangles>0,'bent joints and cloth still use their original triangles');
+  // Walking panels contain 48 cells per frame: 24 leg and 24 torso cells.
+  assert.equal(quads*2+triangles,32*48*2,'every original mesh cell is retained');
+});

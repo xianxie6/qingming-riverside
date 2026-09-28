@@ -35,9 +35,9 @@
       }
       this.contacts=this.frames.map(c=>movement.footContacts(c.getContext('2d').getImageData(0,0,c.width,c.height).data,c.width,c.height));
       this.motionSurface=document.createElement('canvas');this.motionSurface.width=512;this.motionSurface.height=384;
-      // These small surfaces are copied into another canvas repeatedly;
-      // keeping their raster in CPU memory avoids GPU readback stalls.
-      this.motionContext=this.motionSurface.getContext('2d',{willReadFrequently:true});
+      // Animation surfaces are draw-only: let the browser accelerate their
+      // mesh clips and composites. Pixel extraction above stays CPU-backed.
+      this.motionContext=this.motionSurface.getContext('2d');
       for(const p of [...population.residents,...population.walkers]){
         this.textureFor(p);await yieldToBrowser();
       }
@@ -237,7 +237,7 @@
       let cached=cacheable?this.residentFrames.get(p.id):null;
       if(cacheable&&!cached){
         const image=document.createElement('canvas');image.width=pw;image.height=ph;
-        cached={image,context:image.getContext('2d',{willReadFrequently:true}),tick:-1};this.residentFrames.set(p.id,cached);
+        cached={image,context:image.getContext('2d'),tick:-1};this.residentFrames.set(p.id,cached);
       }
       if(cached&&(cached.image.width!==pw||cached.image.height!==ph||cached.density!==density)){
         cached.image.width=pw;cached.image.height=ph;cached.density=density;cached.tick=-1;
@@ -263,9 +263,11 @@
         const points=rows.map(v=>columns.map(u=>({source:[u*f.w,v*f.h],target:movement.deform(u,v,panelRig)})));
         for(let row=0;row<rows.length-1;row++)for(let col=0;col<columns.length-1;col++){
           const p=points[row][col],q=points[row][col+1],r=points[row+1][col],s=points[row+1][col+1];
+          // Rigid walking leg sections are affine too. Keep every vertex,
+          // but sample those cells once without a triangular clip.
           // A quad is safe only when its fourth corner is exactly affine.
           // The old .12 tolerance left disconnected edges when zoomed in.
-          if(!animatedGait&&Math.hypot(q.target[0]+r.target[0]-p.target[0]-s.target[0],q.target[1]+r.target[1]-p.target[1]-s.target[1])<1e-8){
+          if(Math.hypot(q.target[0]+r.target[0]-p.target[0]-s.target[0],q.target[1]+r.target[1]-p.target[1]-s.target[1])<1e-8){
             this.quad(surface,panelTexture,p,q,r);
           }else{
             this.triangle(surface,panelTexture,[p,q,r]);this.triangle(surface,panelTexture,[q,s,r]);
