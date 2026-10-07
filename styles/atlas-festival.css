@@ -58,3 +58,23 @@
 
 /* Sky masks and petals must not inherit the global UI-icon outline. */
 #atlasFestivalSky,#atlasFestivalSky svg{stroke:none}
+
+/* Live atmosphere changes light only; the original panorama and geometry stay intact. */
+#atlas{transition:background-color 2s,color 2s}
+#atlas[data-atmosphere="sunny"]{background:#e8dcc0}
+#atlas[data-atmosphere="cloudy"],#atlas[data-atmosphere="unknown"]{background:#c9ccca}
+#atlas[data-atmosphere="night"]{background:#24333e;color:#efdfbd}
+#atlasImage{transition:filter 2s}
+#atlas[data-atmosphere="cloudy"] #atlasImage{filter:saturate(.65) brightness(.88)}
+#atlas[data-atmosphere="night"] #atlasImage{filter:brightness(.65) saturate(.72)}
+.atlas-night-sky,.atlas-day-sun,.atlas-day-clouds{opacity:0;transition:opacity 2s}
+#atlas[data-atmosphere="night"] .atlas-night-sky{opacity:.8}
+#atlas[data-atmosphere="sunny"] .atlas-day-sun{opacity:1}
+#atlas[data-atmosphere="cloudy"] .atlas-day-clouds{opacity:.28}
+#atlas[data-atmosphere="night"] .atlas-heading,#atlas[data-atmosphere="night"] .atlas-heading p,#atlas[data-atmosphere="night"] .atlas-heading>span,#atlas[data-atmosphere="night"] #atlasPlaces .atlas-label,#atlas[data-atmosphere="night"] #atlasMessage{color:#efdfbd}
+#atlasWeatherStatus{position:absolute;right:max(24px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:3;color:inherit;font:10px/1.5 'Songti SC',serif;text-decoration:none;opacity:.7}
+#atlasWeatherStatus:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+@media(max-width:600px){#atlasWeatherStatus{top:max(18px,env(safe-area-inset-top));bottom:auto;right:12px;max-width:140px;text-align:right;font-size:9px}}
+@media(prefers-reduced-motion:reduce){#atlas,#atlasImage,.atlas-night-sky,.atlas-day-sun,.atlas-day-clouds{transition:none}}
+.atlas-day-clouds{filter:blur(14px)}
+@media(max-width:600px){#atlasWeatherStatus{top:max(64px,calc(env(safe-area-inset-top) + 46px))}}

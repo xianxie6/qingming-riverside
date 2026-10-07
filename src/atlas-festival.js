@@ -2,6 +2,9 @@
   'use strict';
   // A registered, non-interactive layer. The panorama itself is never replaced.
   const frame=document.querySelector('#atlasFrame');
+  if(!frame)return;
+  let night=false;
+  document.addEventListener('atlas-atmosphere',event=>{night=event.detail.night;paint();});
   const NS='http://www.w3.org/2000/svg';
   const sky=document.createElementNS(NS,'svg');sky.id='atlasFestivalSky';
   sky.setAttribute('viewBox','0 0 2048 683');sky.setAttribute('aria-hidden','true');
@@ -10,37 +13,21 @@
   const defs=svgNode('defs',{});
   const mask=svgNode('mask',{id:'festival-sky-still',maskUnits:'userSpaceOnUse',x:0,y:0,width:2048,height:683},defs);
   svgNode('rect',{width:2048,height:683,fill:'white'},mask);
-  // Separate each original lantern without regenerating the moon or clouds.
+  // Mask out the original sky lanterns while preserving the moon and clouds.
   const floating=[[55,155,82,99],[207,347,111,148],[837,184,82,98],[1236,443,88,104],[1827,380,104,123]];
   for(const [x,y,w,h] of floating)svgNode('rect',{x,y,width:w,height:h,fill:'black'},mask);
   svgNode('path',{d:'M1600 0H2048V335H1840L1800 271H1670L1660 180H1600Z',fill:'black'},mask);
-  // Art-directed waxing phases for this festival, not an astronomical calendar.
-  // Use Beijing dates even when a visitor is abroad or leaves the page open.
-  const moonShade=svgNode('path',{fill:'black'},mask);
-  const moonEdge=svgNode('filter',{id:'festival-moon-edge',x:'-10%',y:'-10%',width:'120%',height:'120%'},defs);
-  svgNode('feGaussianBlur',{stdDeviation:1.2},moonEdge);
-  moonShade.setAttribute('filter','url(#festival-moon-edge)');
-  // These foreground cloud silhouettes must survive the lunar shadow mask.
-  svgNode('path',{d:'M1200 281L1243 287L1275 300L1311 307L1354 305L1382 314L1345 323L1300 325L1274 339L1237 349L1200 351Z M1380 372L1420 359L1450 358L1484 341L1518 338L1548 344L1580 354L1580 407L1380 407Z',fill:'white'},mask);
-  function updateMoonPhase(now=new Date()){
-    const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
-    const illumination=date<'2026-09-23'?.82:date<'2026-09-24'?.91:date<'2026-09-25'?.97:1;
-    const cx=1425,cy=262,r=153,terminator=r*(2*illumination-1);
-    moonShade.setAttribute('d',illumination===1?'':`M ${cx} ${cy-r} A ${r} ${r} 0 0 0 ${cx} ${cy+r} A ${terminator} ${r} 0 0 1 ${cx} ${cy-r} Z`);
-    sky.dataset.moonDate=date;
-    sky.dataset.moonIllumination=String(illumination);
+  svgNode('image',{class:'atlas-night-sky',href:source,width:2048,height:683,mask:'url(#festival-sky-still)',transform:'translate(0,-42)'});
+  const sunGlow=svgNode('radialGradient',{id:'atlas-sun-glow'},defs);
+  svgNode('stop',{offset:'0%', 'stop-color':'#ffe6a0','stop-opacity':'.65'},sunGlow);
+  svgNode('stop',{offset:'100%', 'stop-color':'#ffe6a0','stop-opacity':'0'},sunGlow);
+  const sun=svgNode('g',{class:'atlas-day-sun'});
+  svgNode('circle',{cx:1425,cy:220,r:145,fill:'url(#atlas-sun-glow)'},sun);
+  svgNode('circle',{cx:1425,cy:220,r:52,fill:'#ffe6a3',opacity:'.9'},sun);
+  const clouds=svgNode('g',{class:'atlas-day-clouds',fill:'#8d989a',opacity:'.28'});
+  for(const [x,y,size] of [[280,235,1],[950,150,1.2],[1460,275,.85]]){
+    svgNode('path',{d:'M-200 25 Q-170 -10 -110 0 Q-90 -70 -20 -45 Q30 -95 85 -30 Q140 -45 170 5 Q235 0 260 35 Q40 70 -200 25Z',transform:`translate(${x} ${y}) scale(${size})`},clouds);
   }
-  updateMoonPhase();
-  setInterval(updateMoonPhase,30000);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateMoonPhase();});
-  svgNode('image',{href:source,width:2048,height:683,mask:'url(#festival-sky-still)',transform:'translate(0,-42)'});
-  const lanterns=[...floating.map(rect=>({rect})),{rect:floating[0],position:[445,244],scale:1.12},{rect:floating[2],position:[1025,93],scale:.92}];
-  lanterns.forEach(({rect:[x,y,w,h],position=[x,y],scale=1},i)=>{
-    const placement=svgNode('g',{transform:`translate(${position[0]} ${position[1]}) scale(${scale}) translate(${-x} ${-y})`});
-    const moving=svgNode('g',{class:'festival-floating-lantern',style:`--float-time:${7+i*1.3}s;--float-delay:${-i*2.1}s`},placement);
-    const crop=svgNode('svg',{x,y,width:w,height:h,viewBox:`${x} ${y} ${w} ${h}`,overflow:'hidden'},moving);
-    svgNode('image',{href:source,width:2048,height:683},crop);
-  });
   // The complete branch has transparent margins, so no leaves meet a crop edge.
   // Root the stems beyond the right edge, including the image's transparent margin
   // and the full sway range, so the branch enters from outside the viewport.
@@ -115,6 +102,7 @@
   }
   function paint(){
     c.setTransform(2172/2048,0,0,724/683,0,0);c.clearRect(0,0,2048,683);
+    if(!night)return;
     // A gentle dusk wash keeps all ink detail visible, while separating warm lights.
     const dusk=c.createLinearGradient(0,0,0,683);
     dusk.addColorStop(0,'rgba(86,66,40,.10)');
@@ -149,5 +137,5 @@
       }
     }
   }
-  art.onload=paint;art.onerror=()=>{layer.remove();};if(art.complete&&art.naturalWidth)paint();
+  art.onload=paint;art.onerror=paint;if(art.complete&&art.naturalWidth)paint();
 })();
