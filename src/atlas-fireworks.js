@@ -323,11 +323,11 @@
     const scheduled=preview||isFireworksTime();
     button.hidden=!scheduled;
     audioButton.hidden=false;
-    sound.setSceneActive(!atlas.hidden&&!atlas.classList.contains('inspecting')&&!atlas.classList.contains('crossing-active')&&!atlas.classList.contains('time-lens-active')&&!atlas.classList.contains('paper-theatre-active')&&!document.hidden);
+    sound.setSceneActive(!atlas.hidden&&!atlas.classList.contains('inspecting')&&!document.hidden);
     updateAudioButton();
     button.textContent=paused?'烟花 · 播放':'烟花 · 暂停';
     button.setAttribute('aria-label',paused?'播放烟花':'暂停烟花');button.setAttribute('aria-pressed',String(!paused));
-    const active=scheduled&&!paused&&!atlas.hidden&&!atlas.classList.contains('inspecting')&&!atlas.classList.contains('crossing-active')&&!atlas.classList.contains('time-lens-active')&&!atlas.classList.contains('paper-theatre-active');
+    const active=scheduled&&!paused&&!atlas.hidden&&!atlas.classList.contains('inspecting');
     if(atlas.classList.contains('fireworks-evening')!==active)atlas.classList.toggle('fireworks-evening',active);
     const next=active&&!document.hidden;
     if(next===running)return;

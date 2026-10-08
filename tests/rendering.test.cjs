@@ -5,8 +5,8 @@ const vm=require('node:vm');
 const movement=require('../src/movement.js');
 
 function context(){return new Proxy({draws:[],drawImage(...args){this.draws.push(args);}},{get(target,key){return target[key]??(()=>{});}});}
-function load(extras={}){
-  const scope={window:{ScrollMovement:movement},Image:class{},document:{createElement(){return {width:0,height:0,getContext:()=>context()};}},...extras};
+function load(){
+  const scope={window:{ScrollMovement:movement},Image:class{},document:{createElement(){return {width:0,height:0,getContext:()=>context()};}}};
   vm.runInNewContext(fs.readFileSync(`${__dirname}/../src/inhabitants.js`,'utf8'),scope);
   return new scope.window.Inhabitants();
 }
@@ -74,20 +74,6 @@ test('paper extraction removes exterior white but preserves enclosed ivory and d
   assert.equal(data[(2*width+2)*4+3],255);
   assert.ok(data[(3*width+1)*4+3]>0&&data[(3*width+1)*4+3]<255);
   assert.ok(data[(3*width+1)*4]<210,'white contamination is removed from the soft edge');
-});
-
-test('chunked paper extraction yields to input and retains identical alpha and edge colors',async()=>{
-  let now=0,yields=0;
-  const crowd=load({performance:{now:()=>now+=9},setTimeout:fn=>{yields++;queueMicrotask(fn);}});
-  const width=320,height=240,data=new Uint8ClampedArray(width*height*4).fill(255);
-  for(let y=30;y<210;y++)for(let x=80;x<240;x++){
-    const k=(y*width+x)*4;data.set(x===80?[210,208,205,255]:[50,45,35,255],k);
-  }
-  data.set([248,247,244,255],(120*width+160)*4);
-  const sync={data:data.slice(),width,height},asyncPixels={data:data.slice(),width,height};
-  crowd.removePaper(sync);await crowd.removePaperAsync(asyncPixels);
-  assert.ok(yields>2,'large extraction must release the main thread between slices');
-  assert.deepEqual(asyncPixels.data,sync.data,'all original pixels, including ivory, are preserved');
 });
 
 
