@@ -64,6 +64,13 @@
 #atlas[data-atmosphere="sunny"]{background:#e8dcc0}
 #atlas[data-atmosphere="cloudy"],#atlas[data-atmosphere="unknown"]{background:#c9ccca}
 #atlas[data-atmosphere="night"]{background:#24333e;color:#efdfbd}
+/* Broad, overlapping haze lifts the sky before the paper becomes visible.
+   A cool veil over the upper painting keeps its warm paper from forming a band. */
+#atlasStage::before{content:'';position:absolute;pointer-events:none;left:-20%;width:140%;top:calc(var(--atlas-horizon-y,60vh) - var(--atlas-haze-height,360px) * 1.25);height:calc(var(--atlas-haze-height,360px) * 2.2);background:radial-gradient(ellipse at 32% 55%,#81847838 0%,#6e797638 20%,#50636a1c 48%,#24333e00 74%),radial-gradient(ellipse at 78% 62%,#8a847138 0%,#67757226 30%,#24333e00 70%);mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 65%,transparent);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 65%,transparent);opacity:0;transition:opacity 2s}
+#atlas[data-atmosphere="night"] #atlasStage::before{opacity:1}
+#atlas[data-atmosphere="night"] #atlasImage,#atlas[data-atmosphere="night"] #atlasFestival,#atlas[data-atmosphere="night"] #atlasFrame::after{mask-image:linear-gradient(to bottom,transparent 0%,#00000005 4%,#00000012 8%,#0000002b 13%,#00000052 19%,#00000087 26%,#000000bc 33%,#000000e6 40%,#000 48%,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#00000005 4%,#00000012 8%,#0000002b 13%,#00000052 19%,#00000087 26%,#000000bc 33%,#000000e6 40%,#000 48%,#000 80%,transparent 100%)}
+#atlasFrame::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,#2c3c44b3 0%,#30404999 8%,#34464d66 18%,#3c4d5233 30%,#3c4d5212 42%,#3c4d5200 56%);opacity:0;transition:opacity 2s}
+#atlas[data-atmosphere="night"] #atlasFrame::after{opacity:1}
 #atlasImage{transition:filter 2s}
 #atlas[data-atmosphere="cloudy"] #atlasImage{filter:saturate(.65) brightness(.88)}
 #atlas[data-atmosphere="night"] #atlasImage{filter:brightness(.65) saturate(.72)}
@@ -75,6 +82,6 @@
 #atlasWeatherStatus{position:absolute;right:max(24px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:3;color:inherit;font:10px/1.5 'Songti SC',serif;text-decoration:none;opacity:.7}
 #atlasWeatherStatus:focus-visible{outline:1px solid currentColor;outline-offset:4px}
 @media(max-width:600px){#atlasWeatherStatus{top:max(18px,env(safe-area-inset-top));bottom:auto;right:12px;max-width:140px;text-align:right;font-size:9px}}
-@media(prefers-reduced-motion:reduce){#atlas,#atlasImage,.atlas-night-sky,.atlas-day-sun,.atlas-day-clouds{transition:none}}
+@media(prefers-reduced-motion:reduce){#atlas,#atlasImage,#atlasStage::before,#atlasFrame::after,.atlas-night-sky,.atlas-day-sun,.atlas-day-clouds{transition:none}}
 .atlas-day-clouds{filter:blur(14px)}
 @media(max-width:600px){#atlasWeatherStatus{top:max(64px,calc(env(safe-area-inset-top) + 46px))}}

@@ -1,0 +1,303 @@
+{
+  "coordinateSize": [
+    2004,
+    785
+  ],
+  "note": "Reviewed against the HD painting. Bounds exclude roofs, awnings and foreground props for both residents and visitors; terrace anchors are on the cultivated contour benches.",
+  "keepouts": [
+    {
+      "id": "river-pavilion-roof",
+      "bounds": [
+        873,
+        130,
+        932,
+        188
+      ]
+    },
+    {
+      "id": "tea-square-awning",
+      "bounds": [
+        741,
+        453,
+        790,
+        496
+      ]
+    },
+    {
+      "id": "west-road-tent",
+      "bounds": [
+        553,
+        351,
+        601,
+        395
+      ]
+    },
+    {
+      "id": "tea-north-awning",
+      "bounds": [
+        610,
+        402,
+        664,
+        434
+      ]
+    },
+    {
+      "id": "tea-east-small-awning",
+      "bounds": [
+        795,
+        469,
+        822,
+        504
+      ]
+    },
+    {
+      "id": "tea-east-wide-awning",
+      "bounds": [
+        813,
+        423,
+        862,
+        453
+      ]
+    },
+    {
+      "id": "tea-east-river-awning",
+      "bounds": [
+        859,
+        401,
+        892,
+        431
+      ]
+    },
+    {
+      "id": "tea-south-awning",
+      "bounds": [
+        627,
+        508,
+        681,
+        539
+      ]
+    },
+    {
+      "id": "tea-south-small-awning",
+      "bounds": [
+        702,
+        492,
+        743,
+        521
+      ]
+    },
+    {
+      "id": "tea-middle-awning",
+      "bounds": [
+        707,
+        405,
+        739,
+        427
+      ]
+    },
+    {
+      "id": "gate-southeast-awning",
+      "bounds": [
+        1915,
+        569,
+        1968,
+        602
+      ]
+    },
+    {
+      "id": "gate-west-square-awning",
+      "bounds": [
+        1603,
+        421,
+        1639,
+        449
+      ]
+    },
+    {
+      "id": "gate-west-shop-awning",
+      "bounds": [
+        1646,
+        432,
+        1684,
+        450
+      ]
+    },
+    {
+      "id": "gate-center-wide-awning",
+      "bounds": [
+        1646,
+        521,
+        1708,
+        558
+      ]
+    },
+    {
+      "id": "gate-center-small-awning",
+      "bounds": [
+        1620,
+        544,
+        1650,
+        570
+      ]
+    },
+    {
+      "id": "gate-center-east-awning",
+      "bounds": [
+        1723,
+        532,
+        1753,
+        558
+      ]
+    },
+    {
+      "id": "gate-center-east-long-awning",
+      "bounds": [
+        1721,
+        504,
+        1750,
+        534
+      ]
+    },
+    {
+      "id": "gate-center-north-awning",
+      "bounds": [
+        1697,
+        478,
+        1733,
+        494
+      ]
+    },
+    {
+      "id": "gate-center-northeast-awning",
+      "bounds": [
+        1730,
+        484,
+        1761,
+        509
+      ]
+    },
+    {
+      "id": "gate-western-double-awning",
+      "bounds": [
+        1337,
+        513,
+        1407,
+        547
+      ]
+    },
+    {
+      "id": "gate-waterway-awning",
+      "bounds": [
+        1442,
+        511,
+        1514,
+        544
+      ]
+    },
+    {
+      "id": "gate-western-narrow-awning",
+      "bounds": [
+        1307,
+        478,
+        1340,
+        514
+      ]
+    },
+    {
+      "id": "gate-northwest-awning",
+      "bounds": [
+        1184,
+        446,
+        1234,
+        470
+      ]
+    },
+    {
+      "id": "gate-north-road-awning",
+      "bounds": [
+        1194,
+        338,
+        1217,
+        351
+      ]
+    },
+    {
+      "id": "gate-inner-yard-awning",
+      "bounds": [
+        1293,
+        381,
+        1342,
+        409
+      ]
+    },
+    {
+      "id": "gate-inner-east-awning",
+      "bounds": [
+        1556,
+        372,
+        1604,
+        394
+      ]
+    },
+    {
+      "id": "terrace-path-hut",
+      "bounds": [
+        360,
+        80,
+        408,
+        121
+      ]
+    },
+    {
+      "id": "tea-square-east-awning",
+      "bounds": [
+        796,
+        446,
+        820,
+        473
+      ]
+    }
+  ],
+  "terraceAnchors": {
+    "fields-09": [
+      142,
+      50
+    ],
+    "fields-10": [
+      206,
+      93
+    ],
+    "fields-11": [
+      220,
+      104
+    ],
+    "fields-12": [
+      288,
+      121
+    ],
+    "fields-13": [
+      316,
+      63
+    ],
+    "fields-14": [
+      433,
+      55
+    ],
+    "fields-15": [
+      448,
+      180
+    ],
+    "fields-16": [
+      464,
+      182
+    ],
+    "fields-17": [
+      542,
+      80
+    ],
+    "fields-18": [
+      523,
+      38
+    ]
+  }
+}

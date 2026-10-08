@@ -8,16 +8,18 @@
   const NS='http://www.w3.org/2000/svg';
   const sky=document.createElementNS(NS,'svg');sky.id='atlasFestivalSky';
   sky.setAttribute('viewBox','0 0 2048 683');sky.setAttribute('aria-hidden','true');
-  const source='assets/midautumn/sky-moon-osmanthus-v1.png';
   function svgNode(tag,attrs,parent=sky){const node=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))node.setAttribute(k,v);parent.append(node);return node;}
   const defs=svgNode('defs',{});
-  const mask=svgNode('mask',{id:'festival-sky-still',maskUnits:'userSpaceOnUse',x:0,y:0,width:2048,height:683},defs);
-  svgNode('rect',{width:2048,height:683,fill:'white'},mask);
-  // Mask out the original sky lanterns while preserving the moon and clouds.
-  const floating=[[55,155,82,99],[207,347,111,148],[837,184,82,98],[1236,443,88,104],[1827,380,104,123]];
-  for(const [x,y,w,h] of floating)svgNode('rect',{x,y,width:w,height:h,fill:'black'},mask);
-  svgNode('path',{d:'M1600 0H2048V335H1840L1800 271H1670L1660 180H1600Z',fill:'black'},mask);
-  svgNode('image',{class:'atlas-night-sky',href:source,width:2048,height:683,mask:'url(#festival-sky-still)',transform:'translate(0,-42)'});
+  const moonGlow=svgNode('radialGradient',{id:'atlas-moon-glow'},defs);
+  svgNode('stop',{offset:'0%','stop-color':'#e6e7df','stop-opacity':'.5'},moonGlow);
+  svgNode('stop',{offset:'38%','stop-color':'#e6e7df','stop-opacity':'.16'},moonGlow);
+  svgNode('stop',{offset:'100%','stop-color':'#e6e7df','stop-opacity':'0'},moonGlow);
+  const moonLight=svgNode('radialGradient',{id:'atlas-moon-light',cx:'36%',cy:'30%',r:'75%'},defs);
+  svgNode('stop',{offset:'0%','stop-color':'#efefe5'},moonLight);
+  svgNode('stop',{offset:'100%','stop-color':'#c9cfc9'},moonLight);
+  const moon=svgNode('g',{id:'atlasMoon',class:'atlas-night-sky',transform:'translate(1500 200) rotate(-12)'});
+  svgNode('circle',{r:90,fill:'url(#atlas-moon-glow)',style:'opacity:var(--moon-glow,.15)'},moon);
+  svgNode('path',{fill:'url(#atlas-moon-light)'},moon);
   const sunGlow=svgNode('radialGradient',{id:'atlas-sun-glow'},defs);
   svgNode('stop',{offset:'0%', 'stop-color':'#ffe6a0','stop-opacity':'.65'},sunGlow);
   svgNode('stop',{offset:'100%', 'stop-color':'#ffe6a0','stop-opacity':'0'},sunGlow);

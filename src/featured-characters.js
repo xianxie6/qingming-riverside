@@ -19,28 +19,34 @@
     return {top:at(upper.y-10),tip:at(waterY)};
   }
   class Characters{
-    constructor(){
+    constructor(source='assets/featured-characters-v7.webp'){
       this.ready=false;this.sprites={};this.image=new Image();
       this.assetsReady=new Promise((resolve,reject)=>{
-        this.image.onload=()=>{try{this.prepare();this.ready=true;resolve();}catch(error){reject(error);}};
+        this.image.onload=async()=>{try{await this.prepare();this.ready=true;resolve();}catch(error){reject(error);}};
         this.image.onerror=()=>reject(new Error('画师素材加载失败'));
       });
       this.assetsReady.catch(()=>{});
-      this.image.src='assets/featured-characters-v7.webp';
+      this.image.src=source;
     }
-    prepare(){
+    async prepare(){
       const image=this.image,w=image.naturalWidth,h=image.naturalHeight;
       const matte=document.createElement('canvas');matte.width=w;matte.height=h;
       const ctx=matte.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);
       const pixels=ctx.getImageData(0,0,w,h),data=pixels.data;
       // Use the same exterior matte and edge decontamination as the crowd.
-      window.Inhabitants.prototype.removePaper(pixels);
+      await window.Inhabitants.prototype.removePaperAsync(pixels);
       ctx.putImageData(pixels,0,0);
       for(const [name,definition] of Object.entries(definitions)){
         let left=w,top=h,right=0,bottom=0;
         const start=definition.side*w/2,end=start+w/2;
-        for(let y=0;y<h;y++)for(let x=start;x<end;x++)if(data[(y*w+x)*4+3]>96){
-          left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);
+        let sliceStart=performance.now();
+        for(let y=0;y<h;y++){
+          for(let x=start;x<end;x++)if(data[(y*w+x)*4+3]>96){
+            left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);
+          }
+          if((y&31)===0&&performance.now()-sliceStart>=8){
+            await new Promise(resolve=>setTimeout(resolve,0));sliceStart=performance.now();
+          }
         }
         const texture=document.createElement('canvas');texture.width=right-left+1;texture.height=bottom-top+1;
         const c=texture.getContext('2d');c.drawImage(matte,left,top,texture.width,texture.height,0,0,texture.width,texture.height);

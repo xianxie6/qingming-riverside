@@ -58,6 +58,8 @@
     let scale=r.width/W,tx=0,ty=Math.max(0,r.height-H*scale);
     if(r.width<=600)ty=(r.height-H*scale)*.6;
     const skyline=ty+H*scale*.2,skyHeight=Math.min(r.width/3,Math.max(100,skyline/.62));
+    stage.style.setProperty('--atlas-horizon-y',`${skyline}px`);
+    stage.style.setProperty('--atlas-haze-height',`${Math.max(180,Math.min(520,H*scale*.8))}px`);
     stage.style.setProperty('--atlas-sky-height',`${skyHeight}px`);
     stage.style.setProperty('--atlas-sky-top',`${Math.max(0,skyline-skyHeight*.62)}px`);
     if(selected){const [x,y,w,h]=selected.box,pad=Math.min(40,r.width*.06);scale=Math.min((r.width-pad*2)/w,(r.height-pad*2)/h);tx=r.width/2-(x+w/2)*scale;ty=r.height/2-(y+h/2)*scale;}
@@ -101,11 +103,13 @@
       atlas.hidden=true;document.body.classList.remove('in-atlas');isolate(false);document.querySelector('#painting').focus();
       if(festival)document.querySelector('#midautumnEntry').click();
       window.warmQingmingDistricts();
+      return true;
     }catch(error){
       if(token!==revision)return;
       console.error(error);message.textContent='动态街市加载失败，请检查网络后重试。';
       const retry=document.createElement('button');retry.id='atlasRetry';retry.textContent='重新载入';
       retry.addEventListener('click',()=>location.reload());message.append(retry);
+      return false;
     }finally{
       if(pendingButtons.get(button)?.token===token){button.disabled=false;button.innerHTML=original;pendingButtons.delete(button);}
       if(token===revision)atlas.classList.remove('route-loading');
@@ -139,7 +143,7 @@
     void launchScene(place,nav.querySelector(`[data-place="${place.id}"]`),{restore:true,festival});
   }
   window.addEventListener('hashchange',restoreRoute);
-  window.AtlasTour={places,layout,setRoute,get selected(){return selected?.id||null;}};
+  window.AtlasTour={places,layout,setRoute,enterBridge:()=>launchScene(places.find(p=>p.id==='bridge'),nav.querySelector('[data-place="bridge"]')),get selected(){return selected?.id||null;}};
   restoreRoute();
   // Optional replacement must have exactly the same canvas, crop and registration.
   if(!fileMode)fetch('assets/atlas-draft.json').then(r=>r.json()).then(async manifest=>{

@@ -5,7 +5,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 export async function buildStatic(root=projectRoot,output=resolve(root,'dist')){
   const manifest=JSON.parse(await readFile(resolve(root,'scripts/public-assets.json'),'utf8'));
-  const files=['index.html','sunyang.html','.nojekyll'];
+  const files=['index.html','sunyang.html','explore.html','.nojekyll'];
   for(const [directory,extension] of [['src','.js'],['styles','.css']]){
     for(const entry of await readdir(resolve(root,directory),{withFileTypes:true})){
       if(entry.isFile()&&entry.name.endsWith(extension))files.push(`${directory}/${entry.name}`);

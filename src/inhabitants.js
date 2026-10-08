@@ -4,6 +4,7 @@
   const movement=window.ScrollMovement;
   class Inhabitants {
     constructor(){
+      this.season='spring';this.raining=false;
       this.art=new Image();this.ready=false;this.attention=new Map();this.visible=0;this.phaseSample=0;this.outfits=new Map();this.walkLayers=new WeakMap();this.residentFrames=new Map();this.hits=[];this.storyHands=new Map();
       this.assetsReady=new Promise((resolve,reject)=>{
         this.art.onload=async()=>{try{await this.prepare();this.ready=true;resolve();}catch(error){reject(error);}};
@@ -27,7 +28,7 @@
         // Extract the actual ink contour. Coarse polygons left white wedges
         // around hair and bowls and shaved off ribbons and fingertips.
         const pixels=c.getImageData(0,0,f.w,f.h);
-        this.removePaper(pixels);
+        await this.removePaperAsync(pixels);
         c.putImageData(pixels,0,0);
         c.globalCompositeOperation='source-atop';c.fillStyle='rgba(125,101,55,.13)';c.fillRect(0,0,f.w,f.h);
         this.frames.push(canvas);
@@ -42,7 +43,15 @@
         this.textureFor(p);await yieldToBrowser();
       }
     }
-    removePaper({data,width,height}){
+    removePaper(pixels){for(const _ of this.paperSteps(pixels)){/* synchronous callers */}}
+    async removePaperAsync(pixels){
+      let start=performance.now();
+      for(const _ of this.paperSteps(pixels)){
+        if(performance.now()-start<8)continue;
+        await new Promise(resolve=>setTimeout(resolve,0));start=performance.now();
+      }
+    }
+    *paperSteps({data,width,height}){
       const count=width*height,background=new Uint8Array(count),queue=new Int32Array(count);
       let head=0,tail=0;
       const paper=i=>{const k=i*4,r=data[k],g=data[k+1],b=data[k+2];return data[k+3]<24||(Math.min(r,g,b)>220&&Math.max(r,g,b)-Math.min(r,g,b)<25);};
@@ -51,10 +60,12 @@
       for(let y=0;y<height;y++){visit(y*width);visit(y*width+width-1);}
       while(head<tail){const i=queue[head++],x=i%width;
         if(x)visit(i-1);if(x<width-1)visit(i+1);if(i>=width)visit(i-width);if(i<count-width)visit(i+width);
+        if((head&16383)===0)yield;
       }
       // Remove white matte contamination only on the exterior contour;
       // light garments and porcelain inside the figure remain opaque.
       for(let i=0;i<count;i++){
+        if((i&16383)===0)yield;
         const k=i*4;if(background[i]){data[k+3]=0;continue;}
         const x=i%width,edge=(x&&background[i-1])||(x<width-1&&background[i+1])||(i>=width&&background[i-width])||(i<count-width&&background[i+width]);
         if(!edge)continue;
@@ -79,7 +90,8 @@
       ctx.restore();
     }
     textureFor(p){
-      const key=`${p.sprite}:${p.outfit}`;
+      const mode=window.QingmingSeasons?.outfit(this.season,p,this.raining)??'spring';
+      const key=`${p.sprite}:${p.outfit}:${mode}`;
       if(this.outfits.has(key))return this.outfits.get(key);
       const base=this.frames[p.sprite],f=window.PEOPLE_FRAMES[p.sprite];
       const wardrobe=window.ScrollWardrobe,garment=wardrobe.garments[p.sprite],palette=wardrobe.palettes[p.outfit];
@@ -90,6 +102,7 @@
         c.globalCompositeOperation='color';c.fillStyle=palette[part];c.globalAlpha=1;c.fill();
         c.globalCompositeOperation='multiply';c.globalAlpha=.12;c.fill();
       }
+      window.QingmingSeasons?.dress(c,f,garment,wardrobe.protectedParts[p.sprite][0],mode);
       c.save();c.beginPath();
       for(const [x,y,rx,ry] of wardrobe.protectedParts[p.sprite]){c.moveTo(x+rx,y);c.ellipse(x,y,rx,ry,0,0,Math.PI*2);}
       c.clip();c.globalCompositeOperation='source-over';c.globalAlpha=1;c.drawImage(base,f.x,f.y);c.restore();
@@ -242,6 +255,7 @@
       if(cached&&(cached.image.width!==pw||cached.image.height!==ph||cached.density!==density)){
         cached.image.width=pw;cached.image.height=ph;cached.density=density;cached.tick=-1;
       }
+      if(cached&&cached.texture!==texture){cached.texture=texture;cached.tick=-1;}
       if(!cached||cached.tick!==tick){
         const surface=cached?.context??this.motionContext;
         surface.setTransform(1,0,0,1,0,0);surface.clearRect(0,0,pw,ph);

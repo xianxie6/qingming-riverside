@@ -10,6 +10,7 @@ async function fixture(t){
   const write=async(name,content)=>{await fs.mkdir(path.dirname(path.join(root,name)),{recursive:true});await fs.writeFile(path.join(root,name),content);};
   await write('index.html','<link href="styles/site.css"><script src="src/main.js"></script>');
   await write('sunyang.html','<a href="index.html">返回</a>');
+  await write('explore.html','<a href="index.html">返回</a>');
   await write('.nojekyll','');
   await write('src/main.js',"import './scene.js'; const image='assets/picture.webp';");
   await write('src/scene.js','');

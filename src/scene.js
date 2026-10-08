@@ -1,4 +1,5 @@
 import {drawFestivalGate,drawFestivalLights,festivalGate,festivalEnabled} from './midautumn.js?v=10-season-toggle';
+import './seasons.js?v=1';
 import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
 
 (() => {
@@ -28,10 +29,10 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   const shopHost=document.querySelector('#sunyang'),shopPortrait=shopHost.querySelector('canvas');
   const shopArt=new Image();let shopReady=false;
   shopArt.onload=()=>{
-    const c=shopPortrait.getContext('2d');shopPortrait.width=shopArt.naturalWidth;shopPortrait.height=shopArt.naturalHeight;c.drawImage(shopArt,0,0);
-    const pixels=c.getImageData(0,0,shopPortrait.width,shopPortrait.height).data;let l=shopPortrait.width,r=0,t=shopPortrait.height,b=0;
-    for(let y=0;y<shopPortrait.height;y++)for(let x=0;x<shopPortrait.width;x++)if(pixels[(y*shopPortrait.width+x)*4+3]>96){l=Math.min(l,x);r=Math.max(r,x);t=Math.min(t,y);b=Math.max(b,y);}
-    shopPortrait.width=r-l+1;shopPortrait.height=b-t+1;c.drawImage(shopArt,l,t,r-l+1,b-t+1,0,0,r-l+1,b-t+1);shopReady=true;
+    // Alpha > 96 bounds of sunyang-host-v2.webp (1024 × 1536), measured once.
+    // Keep this crop with the asset, avoiding a full GPU readback on every visit.
+    const [x,y,w,h]=[188,13,774,1516],c=shopPortrait.getContext('2d');
+    shopPortrait.width=w;shopPortrait.height=h;c.drawImage(shopArt,x,y,w,h,0,0,w,h);shopReady=true;
   };shopArt.src='assets/sunyang-host-v2.webp';
   const festivalEntry=document.querySelector('#midautumnEntry');
   const festivalWelcome=document.querySelector('#midautumnWelcome');
@@ -50,7 +51,8 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   const slider = document.querySelector('#position');
   const play = document.querySelector('#play');
   const motion = document.querySelector('#motion');
-  const artwork = new Image();
+  let artwork = new Image();
+  const springArtwork=artwork,springDistricts={west:districts.west,east:districts.east};
   const boatArtwork=new Image(),boatSprite=document.createElement('canvas');boatSprite.width=0;
   const boatReady=new Promise((resolve,reject)=>{
   boatArtwork.onload=()=>{
@@ -71,6 +73,43 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   let nightLevel=0;
   const rainEvent=new window.QingmingWeather.RainEvent();
   let weatherSample=rainEvent.sample();
+  const seasons=window.QingmingSeasons,seasonControls=document.querySelector('.season-controls');
+  const seasonStatus=document.querySelector('#seasonStatus');
+  let snowing=true,springSprites=null;
+  const seasonalCharacters=new Map();
+  const seasonController=new seasons.Controller(async id=>{
+    // Finish any original district requests before replacing their image refs.
+    await districts.load();springSprites??=characters.sprites;
+    if(id==='spring')return {...springDistricts,center:springArtwork,sprites:springSprites};
+    const art=await seasons.loadArt(id);
+    if(!seasonalCharacters.has(id))seasonalCharacters.set(id,new featured.Characters(`assets/seasons/featured-${id}.png`));
+    const cast=seasonalCharacters.get(id);
+    try{await cast.assetsReady;}catch(error){seasonalCharacters.delete(id);throw error;}
+    art.sprites=cast.sprites;
+    return art;
+  },(id,art)=>{
+    artwork=art.center;districts.west=art.west;districts.east=art.east;districts.prepare(artwork);districts.revision++;
+    characters.springSprites=springSprites;characters.sprites=art.sprites;inhabitants.residentFrames.clear();rainEvent.reset();snowing=true;
+    weatherSample=seasons.weather(id,rainEvent.sample(),snowing,state.time);
+    backdropKey=null;painting.dataset.season=id;painting.dataset.clothing=seasons.profiles[id].cloth;
+    announce(seasons.profiles[id].description);
+    try{localStorage.setItem('qingming-season',id);}catch{}
+  },(selection,error)=>{
+    seasonControls.setAttribute('aria-busy',String(Boolean(selection.pending)));
+    for(const button of seasonControls.querySelectorAll('[data-season]')){
+      button.setAttribute('aria-pressed',String(button.dataset.season===selection.id));
+      button.dataset.loading=String(button.dataset.season===selection.pending);
+    }
+    seasonStatus.textContent=error?'画面未载入，点击季节重试':selection.pending?`正在展开${seasons.profiles[selection.pending].name}景…`:seasons.profiles[selection.id].label;
+  });
+  for(const button of seasonControls.querySelectorAll('[data-season]'))button.addEventListener('click',()=>void seasonController.select(button.dataset.season));
+  seasonControls.addEventListener('keydown',e=>{
+    e.stopPropagation();if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+    e.preventDefault();const buttons=[...seasonControls.querySelectorAll('button')],i=buttons.indexOf(document.activeElement);
+    const next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowLeft'?3:1))%4;
+    buttons[next].focus();buttons[next].click();
+  });
+  seasonControls.addEventListener('keyup',e=>e.stopPropagation());
   const towRope=document.querySelector('#towRope'),towGrip=document.querySelector('#towGrip');
   let towPointer=null,towHand=null,storyShot=null,savedSketch=null,sketchWasRunning=false,towLatch=false;
   try{const saved=JSON.parse(localStorage.getItem('qingming-bridge-sketch-v1'));if(saved&&/^data:image\/jpeg;base64,/.test(saved.image))savedSketch=saved;}catch{}
@@ -749,9 +788,10 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     painting.dataset.storyPhase=life.frame.stories.map(s=>`${s.id}:${s.t.toFixed(2)}`).join(',');
     painting.dataset.storyMoving=String(Object.values(life.frame.actors).filter(a=>a.walking).length);
     painting.dataset.cargo=String(life.frame.cargoActive);
-    const weatherButton=document.querySelector('#weatherStart'),weatherActive=rainEvent.active;
+    const winter=seasonController.id==='winter',weatherName=seasons.profiles[seasonController.id].weather;
+    const weatherButton=document.querySelector('#weatherStart'),weatherActive=winter?snowing:rainEvent.active;
     weatherButton.dataset.active=String(weatherActive);weatherButton.setAttribute('aria-pressed',String(weatherActive));
-    weatherButton.setAttribute('aria-label',weatherActive?`清明时雨：${weatherSample.label}`:'体验清明时雨');weatherButton.title=weatherButton.getAttribute('aria-label');
+    weatherButton.setAttribute('aria-label',winter?(snowing?'停止落雪':'开始落雪'):weatherActive?`${weatherName}：${weatherSample.label}`:`体验${weatherName}`);weatherButton.title=weatherButton.getAttribute('aria-label');weatherButton.querySelector('span').textContent=winter?(snowing?'停雪':'落雪'):'时雨';
     painting.dataset.weather=weatherSample.stage;painting.dataset.rain=weatherSample.rain.toFixed(3);painting.dataset.wet=weatherSample.wet.toFixed(3);
     updateHailUI();
   }
@@ -805,6 +845,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   function render(){
     const {width,height,scale,camera,time:t}=state;
     if(!state.loaded)return;
+    inhabitants.season=seasonController.id;inhabitants.raining=weatherSample.rain>.1;
     inhabitants.motionDensity=Math.min(4,Math.max(1,(devicePixelRatio||1)*scale));
     // Keep the last complete frame while a fast jump reaches an unloaded district.
     // Never draw actors over missing architecture.
@@ -883,6 +924,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     window.StreetDetails.breeze(ctx,life.frame,[camera,camera+width/scale]);
     steam(298,439,t);steam(404,446,t+2);steam(876,444,t+1);
     window.QingmingWeather.drawRain(ctx,weatherSample,visibleRange,H,reduced.matches);
+    seasons.drawAir(ctx,seasonController.id,t,visibleRange,reduced.matches,snowing);
     if(nightLevel>0){
       // Source-atop tints existing foreground pixels without filling its
       // transparent gaps, so the lit windows remain behind each silhouette.
@@ -969,7 +1011,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   }
   function frame(now){
     const elapsed=last?(now-last)/1000:0,dt=Math.min(elapsed,.05);last=now;
-    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!state.loadingRange){
+    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!document.body.classList.contains('time-lens-open')&&!document.body.classList.contains('paper-theatre-open')&&!state.loadingRange){
       if(elapsed>0){
         frameSample.elapsed+=elapsed;frameSample.count++;if(elapsed>.025)frameSample.slow++;
         if(frameSample.elapsed>=1){
@@ -983,7 +1025,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
       state.uiTime+=dt;if(state.running)state.time+=dt;
       updatePlayer(dt,walkInput.direction);
       crossing.step(state.running?dt:0,{arriving:player.pending==='tow'});
-      weatherSample=rainEvent.step(state.running?dt:0);
+      weatherSample=seasons.weather(seasonController.id,rainEvent.step(state.running?dt:0),snowing,state.time);
       const weatherMessages={gather:'河面起风，云气渐低',shower:'疏雨落入画卷',downpour:'雨势渐盛',easing:'雨声渐歇，檐水仍在滴落',afterglow:'云开雨过，湿地微光',complete:'雨过天青，街市如常'};
       for(const stage of rainEvent.events)announce(weatherMessages[stage]);
       if(crossing.active&&player.pending==='tow'&&player.x>1190&&!state.storyView)frameCrossing();
@@ -1090,7 +1132,8 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     announce(active?'暮色渐浓，沿街人家与商铺次第亮灯':'灯火渐隐，画卷缓缓回到白天');
   });
   document.querySelector('#weatherStart').addEventListener('click',()=>{
-    if(rainEvent.active){announce(`清明时雨：${weatherSample.label}`);return;}
+    if(seasonController.id==='winter'){snowing=!snowing;announce(snowing?'疏雪落入画卷':'雪停了，屋瓦仍覆着积雪');return;}
+    if(rainEvent.active){announce(`${seasons.profiles[seasonController.id].weather}：${weatherSample.label}`);return;}
     rainEvent.start();weatherSample=rainEvent.sample();resume();announce('河面起风，云气渐低');
   });
   const soundButtons=[document.querySelector('#sound'),document.querySelector('#festivalSoundToggle')];
@@ -1184,8 +1227,12 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   };
   const loadError=()=>{document.querySelector('#loading').hidden=true;document.querySelector('#loading').style.display='none';document.querySelector('#error').hidden=false;window.dispatchEvent(new Event('atlas-error'));};
   artwork.onload=async()=>{
-    try{await Promise.all([inhabitants.assetsReady,characters.assetsReady,boatReady]);districts.prepare(artwork);state.loaded=true;document.body.classList.add('ready');window.dispatchEvent(new Event('atlas-ready'));}
-    catch{loadError();}
+    try{await Promise.all([inhabitants.assetsReady,characters.assetsReady,boatReady]);districts.prepare(artwork);state.loaded=true;document.body.classList.add('ready');window.dispatchEvent(new Event('atlas-ready'));
+      painting.dataset.season='spring';painting.dataset.clothing=seasons.profiles.spring.cloth;
+      for(const button of seasonControls.querySelectorAll('button'))button.disabled=false;
+      let initialSeason=new URLSearchParams(location.search).get('season');try{initialSeason??=localStorage.getItem('qingming-season');}catch{}
+      if(initialSeason&&initialSeason!=='spring'&&seasons.profiles[initialSeason])void seasonController.select(initialSeason);}
+    catch(error){console.error("街市素材初始化失败",error);loadError();}
   };
   artwork.onerror=loadError;
   artwork.src='assets/street-empty-fast.webp';
