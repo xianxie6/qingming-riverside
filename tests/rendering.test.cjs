@@ -5,8 +5,8 @@ const vm=require('node:vm');
 const movement=require('../src/movement.js');
 
 function context(){return new Proxy({draws:[],drawImage(...args){this.draws.push(args);}},{get(target,key){return target[key]??(()=>{});}});}
-function load(){
-  const scope={window:{ScrollMovement:movement},Image:class{},document:{createElement(){return {width:0,height:0,getContext:()=>context()};}}};
+function load(extras={}){
+  const scope={window:{ScrollMovement:movement},Image:class{},document:{createElement(){return {width:0,height:0,getContext:()=>context()};}},...extras};
   vm.runInNewContext(fs.readFileSync(`${__dirname}/../src/inhabitants.js`,'utf8'),scope);
   return new scope.window.Inhabitants();
 }
@@ -141,4 +141,44 @@ test('rigid walking cells use the affine path without changing the animated mesh
   assert.ok(triangles>0,'bent joints and cloth still use their original triangles');
   // Walking panels contain 48 cells per frame: 24 leg and 24 torso cells.
   assert.equal(quads*2+triangles,32*48*2,'every original mesh cell is retained');
+});
+
+
+test('GPU walking atlas keeps separate tiles, full-density vertices and uploads static ink once',()=>{
+  const calls=[],events={};let target;
+  const gl=new Proxy({}, {get:(_,key)=>{
+    if(key==='getShaderParameter'||key==='getProgramParameter')return ()=>true;
+    if(key==='getParameter')return ()=>4096;
+    if(key.startsWith('create'))return ()=>({});
+    if(key==='getAttribLocation')return (_p,name)=>name==='position'?0:1;
+    if(key.toUpperCase()===key)return key;
+    return (...args)=>calls.push([key,...args.map(x=>ArrayBuffer.isView(x)?Array.from(x):x)]);
+  }});
+  const crowd=load({document:{createElement:()=>target={width:0,height:0,getContext:()=>gl,addEventListener:(name,fn)=>events[name]=fn}}});
+  const mesh=new crowd.constructor.MeshRenderer();assert.equal(mesh.active,true);
+  const texture={width:20,height:40},p={h:40,art:{frame:{w:20,h:40}}};
+  mesh.beginBatch([{p},{p}],2);
+  const points=[[{source:[0,0],target:[-10,-40]},{source:[20,0],target:[10,-40]}],
+    [{source:[0,40],target:[-10,0]},{source:[20,40],target:[10,0]}]];
+  const regions=[];
+  for(let i=0;i<2;i++){mesh.begin(88,112,2,20,40);regions.push({...mesh.region});mesh.draw(texture,points);}
+  assert.ok(regions[1].x>=regions[0].x+88,'adjacent figures cannot overwrite each other');
+  assert.equal(calls.filter(c=>c[0]==='clear').length,1,'the atlas is cleared once for the whole crowd');
+  assert.equal(calls.filter(c=>c[0]==='texImage2D').length,1,'unchanged painting is uploaded once');
+  assert.deepEqual(calls.filter(c=>c[0]==='drawArrays').map(c=>c[3]),[6,6]);
+  const buffers=calls.filter(c=>c[0]==='bufferData');
+  for(let i=0;i<2;i++){
+    const vertices=buffers[i][2];assert.equal(vertices.length,24);
+    assert.ok(Math.abs((vertices[0]+1)*target.width/2-(regions[i].x+24))<.0001);
+    assert.ok(Math.abs((1-vertices[1])*target.height/2-(regions[i].y+16))<.0001);
+    assert.deepEqual(vertices.slice(2,4),[0,0]);
+  }
+  let prevented=false;events.webglcontextlost({preventDefault:()=>prevented=true});
+  assert.equal(prevented,true);assert.equal(mesh.active,false,'context loss selects the existing Canvas renderer');
+});
+
+test('GPU drawing gracefully falls back when WebGL is unavailable',()=>{
+  const crowd=load({document:{createElement:()=>({width:0,height:0,getContext:()=>null})}});
+  const mesh=new crowd.constructor.MeshRenderer();assert.equal(mesh.active,false);
+  mesh.beginBatch([],2);assert.equal(mesh.batching,undefined);
 });

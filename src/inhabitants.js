@@ -2,6 +2,71 @@
   'use strict';
   const population=window.ScrollPopulation;
   const movement=window.ScrollMovement;
+  // One shared GPU mesh surface; immutable painted textures upload only once.
+  class PeopleMesh {
+    constructor(){
+      this.active=false;this.textures=new Map();this.canvas=document.createElement('canvas');
+      this.canvas.width=512;this.canvas.height=384;
+      try{
+        const gl=this.gl=this.canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:true,depth:false,stencil:false});
+        if(!gl)return;
+        const shader=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error('Mesh shader');return s;};
+        const vertex=shader(gl.VERTEX_SHADER,'attribute vec2 position;attribute vec2 uv;varying vec2 texcoord;void main(){texcoord=uv;gl_Position=vec4(position,0.,1.);}');
+        const fragment=shader(gl.FRAGMENT_SHADER,'precision mediump float;varying vec2 texcoord;uniform sampler2D image;void main(){gl_FragColor=texture2D(image,texcoord);}');
+        const program=this.program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);
+        gl.deleteShader(vertex);gl.deleteShader(fragment);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error('Mesh program');
+        this.maxSize=gl.getParameter(gl.MAX_TEXTURE_SIZE);
+        this.position=gl.getAttribLocation(program,'position');this.uv=gl.getAttribLocation(program,'uv');this.buffer=gl.createBuffer();
+        this.canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();this.active=false;});
+        this.active=true;
+      }catch{this.active=false;}
+    }
+    beginBatch(items,density){
+      if(!this.active||!items.length)return;
+      const sizes=items.map(({p})=>{const f=p.art?.frame??window.PEOPLE_FRAMES[p.sprite];return [(p.h*f.w/f.h*([6,7,8].includes(p.sprite)?.80:1)+24)*density,(p.h+16)*density];});
+      this.tileWidth=Math.ceil(Math.max(...sizes.map(s=>s[0])));this.tileHeight=Math.ceil(Math.max(...sizes.map(s=>s[1])));
+      this.columns=Math.ceil(Math.sqrt(items.length));this.index=0;
+      const width=this.tileWidth*this.columns,height=this.tileHeight*Math.ceil(items.length/this.columns);
+      if(width>this.maxSize||height>this.maxSize)return;
+      if(width>this.canvas.width)this.canvas.width=width;
+      if(height>this.canvas.height)this.canvas.height=height;
+      this.batching=true;this.gl.clearColor(0,0,0,0);this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+    }
+    begin(width,height,density,w,h){
+      const gl=this.gl;
+      if(width>this.canvas.width)this.canvas.width=width;
+      if(height>this.canvas.height)this.canvas.height=height;
+      this.region=this.batching?{x:this.index%this.columns*this.tileWidth,y:Math.floor(this.index++/this.columns)*this.tileHeight}:{x:0,y:0};
+      this.density=density;this.x=w/2+12+this.region.x/density;this.y=h+8+this.region.y/density;
+      gl.viewport(0,0,this.canvas.width,this.canvas.height);if(!this.batching){gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);}
+      gl.useProgram(this.program);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+      gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);
+      gl.enableVertexAttribArray(this.position);gl.vertexAttribPointer(this.position,2,gl.FLOAT,false,16,0);
+      gl.enableVertexAttribArray(this.uv);gl.vertexAttribPointer(this.uv,2,gl.FLOAT,false,16,8);
+    }
+    upload(texture){
+      const gl=this.gl;let stored=this.textures.get(texture);
+      if(!stored){
+        if(this.textures.size>=128){const first=this.textures.keys().next().value;gl.deleteTexture(this.textures.get(first));this.textures.delete(first);}
+        stored=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,stored);
+        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,texture);this.textures.set(texture,stored);
+      }else gl.bindTexture(gl.TEXTURE_2D,stored);
+    }
+    draw(texture,points){
+      const gl=this.gl;this.upload(texture);
+      const count=(points.length-1)*(points[0].length-1)*6;
+      this.vertices??=new Float32Array(4096);
+      let i=0;const add=p=>{this.vertices[i++]=(p.target[0]+this.x)*this.density/this.canvas.width*2-1;this.vertices[i++]=1-(p.target[1]+this.y)*this.density/this.canvas.height*2;this.vertices[i++]=p.source[0]/texture.width;this.vertices[i++]=p.source[1]/texture.height;};
+      for(let r=0;r<points.length-1;r++)for(let c=0;c<points[r].length-1;c++){
+        const p=points[r][c],q=points[r][c+1],a=points[r+1][c],b=points[r+1][c+1];add(p);add(q);add(a);add(q);add(b);add(a);
+      }
+      gl.bufferData(gl.ARRAY_BUFFER,this.vertices.subarray(0,i),gl.STREAM_DRAW);gl.drawArrays(gl.TRIANGLES,0,count);
+    }
+  }
+
   class Inhabitants {
     constructor(){
       this.art=new Image();this.ready=false;this.attention=new Map();this.visible=0;this.phaseSample=0;this.outfits=new Map();this.walkLayers=new WeakMap();this.residentFrames=new Map();this.hits=[];this.storyHands=new Map();
@@ -37,9 +102,14 @@
       this.motionSurface=document.createElement('canvas');this.motionSurface.width=512;this.motionSurface.height=384;
       // Animation surfaces are draw-only: let the browser accelerate their
       // mesh clips and composites. Pixel extraction above stays CPU-backed.
-      this.motionContext=this.motionSurface.getContext('2d');
+      this.motionContext=this.motionSurface.getContext('2d');this.mesh=new PeopleMesh();
       for(const p of [...population.residents,...population.walkers]){
-        this.textureFor(p);await yieldToBrowser();
+        const texture=this.textureFor(p);
+        if(this.mesh.active&&p.id.startsWith('walker-')){
+          const layers=[0,1,2,4,5,9,10,11].includes(p.sprite)?this.robeLayers(texture,p.sprite,window.PEOPLE_FRAMES[p.sprite]):[texture];
+          for(const layer of layers)this.mesh.upload(layer);
+        }
+        await yieldToBrowser();
       }
     }
     removePaper({data,width,height}){
@@ -177,25 +247,29 @@
         const alpha=presence?.(p,'walker')??1;
         if(alpha>.01)walkers.push({p,x:pose.x,y:streetY(pose.x),pose,walking:pose.moving,direction:pose.direction,ground:streetY,alpha});
       }
-      const drawGroup=items=>{
+      const drawGroup=(items,batch=false)=>{
+        if(batch)this.mesh?.beginBatch(items,this.motionDensity??3);
+        const composites=[];
         items.sort((a,b)=>a.y-b.y);
         for(const item of items){
           if(item.alpha>.18)this.visible++;
           const fading=item.alpha<.999;
           if(fading){ctx.save();ctx.globalAlpha*=item.alpha;}
-          if(this.ready&&window.PEOPLE_FRAMES){const result=this.sprite(ctx,item,time);if(result){this.storyHands.set(item.p.originX??item.p.x,result.hand);afterPerson?.(item,result);}}
+          if(this.ready&&window.PEOPLE_FRAMES){const result=this.sprite(ctx,item,time);if(result){this.storyHands.set(item.p.originX??item.p.x,result.hand);if(result.composite){const alpha=ctx.globalAlpha;composites.push(()=>{ctx.save();ctx.globalAlpha=alpha;result.composite();afterPerson?.(item,result);ctx.restore();});}else afterPerson?.(item,result);}}
           else{
             fallback(item.x,item.y,item.p.h/33,item.pose.phase,item.direction,window.ScrollWardrobe?.palettes[item.p.outfit]?.upper||'#8b917c',item.walking);
             afterPerson?.(item,{hand:{x:item.x+item.direction*item.p.h*.1,y:item.y-item.p.h*.48}});
           }
           if(fading)ctx.restore();
         }
+        for(const composite of composites)composite();
+        if(this.mesh)this.mesh.batching=false;
       };
       // Dining and shop activity is behind the furniture. The public walking
       // lane is in front, even when a passerby shares a diner's foot height.
       drawGroup(residents);
       drawFurniture();
-      drawGroup(walkers);
+      drawGroup(walkers,true);
       this.phaseSample=Math.sin(time*.81+population.residents[0].phase);
     }
     sprite(ctx,{p,x,y,pose,walking,direction,ground},time){
@@ -242,10 +316,12 @@
       if(cached&&(cached.image.width!==pw||cached.image.height!==ph||cached.density!==density)){
         cached.image.width=pw;cached.image.height=ph;cached.density=density;cached.tick=-1;
       }
+      const gpu=!cached&&this.mesh?.active;
       if(!cached||cached.tick!==tick){
         const surface=cached?.context??this.motionContext;
         surface.setTransform(1,0,0,1,0,0);surface.clearRect(0,0,pw,ph);
         surface.setTransform(density,0,0,density,(w/2+12)*density,(h+8)*density);
+        if(gpu)this.mesh.begin(pw,ph,density,w,h);
         const split=(contacts[0].x+contacts[1].x)/(2*f.w);
         const layers=longRobe&&animatedGait?this.robeLayers(texture,p.sprite,f):null;
         const panels=animatedGait?[
@@ -261,6 +337,7 @@
         const panelTexture=layers?layers[cloth?0:1]:texture;
         surface.save();
         const points=rows.map(v=>columns.map(u=>({source:[u*f.w,v*f.h],target:movement.deform(u,v,panelRig)})));
+        if(gpu){this.mesh.draw(panelTexture,points);surface.restore();continue;}
         for(let row=0;row<rows.length-1;row++)for(let col=0;col<columns.length-1;col++){
           const p=points[row][col],q=points[row][col+1],r=points[row+1][col],s=points[row+1][col+1];
           // Rigid walking leg sections are affine too. Keep every vertex,
@@ -277,17 +354,22 @@
         }
         if(cached){cached.tick=tick;cached.hand=movement.deform(...hand,rig);}
       }
+      const region=gpu?this.mesh.region:{x:0,y:0};
+      const composite=()=>{
       ctx.save();ctx.translate(x,y);ctx.scale(flip,1);
       if(!seated)for(const foot of feet){
         ctx.beginPath();ctx.ellipse(foot.x,foot.y+foot.lift+.25,w*.085,.65,0,0,Math.PI*2);
         ctx.fillStyle=foot.stance?'#50463144':'#5046311b';ctx.fill();
       }
-      ctx.drawImage(cached?.image??this.motionSurface,0,0,pw,ph,-w/2-12,-h-8,pw/density,ph/density);
+      ctx.drawImage(gpu?this.mesh.canvas:cached?.image??this.motionSurface,region.x,region.y,pw,ph,-w/2-12,-h-8,pw/density,ph/density);
       const handPoint=cached?.hand??movement.deform(...hand,rig);
       this.workObject(ctx,p,handPoint,h);
       ctx.restore();
+      };
+      if(!this.mesh?.batching)composite();
+      const handPoint=cached?.hand??movement.deform(...hand,rig);
       const project=point=>({x:x+point[0]*flip,y:y+point[1]});
-      return {hand:project(handPoint),hands:(art?.grips??[hand]).map(uv=>project(movement.deform(...uv,rig)))};
+      return {composite:this.mesh?.batching?composite:null,hand:project(handPoint),hands:(art?.grips??[hand]).map(uv=>project(movement.deform(...uv,rig)))};
     }
     workObject(ctx,p,[hx,hy],height){
       if(p.storyProp){window.StreetDetails?.object(ctx,p.storyProp,hx,hy,height/66);return;}
@@ -345,5 +427,6 @@
       ctx.drawImage(texture,left,top,width,height,left,top,width,height);ctx.restore();
     }
   }
+  Inhabitants.MeshRenderer=PeopleMesh;
   window.Inhabitants=Inhabitants;
 })();
