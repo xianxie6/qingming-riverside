@@ -69,6 +69,7 @@
 
   class Inhabitants {
     constructor(){
+      this.season='spring';this.raining=false;
       this.art=new Image();this.ready=false;this.attention=new Map();this.visible=0;this.phaseSample=0;this.outfits=new Map();this.walkLayers=new WeakMap();this.residentFrames=new Map();this.hits=[];this.storyHands=new Map();
       this.assetsReady=new Promise((resolve,reject)=>{
         this.art.onload=async()=>{try{await this.prepare();this.ready=true;resolve();}catch(error){reject(error);}};
@@ -149,7 +150,8 @@
       ctx.restore();
     }
     textureFor(p){
-      const key=`${p.sprite}:${p.outfit}`;
+      const mode=window.QingmingSeasons?.outfit(this.season,p,this.raining)??'spring';
+      const key=`${p.sprite}:${p.outfit}:${mode}`;
       if(this.outfits.has(key))return this.outfits.get(key);
       const base=this.frames[p.sprite],f=window.PEOPLE_FRAMES[p.sprite];
       const wardrobe=window.ScrollWardrobe,garment=wardrobe.garments[p.sprite],palette=wardrobe.palettes[p.outfit];
@@ -160,6 +162,7 @@
         c.globalCompositeOperation='color';c.fillStyle=palette[part];c.globalAlpha=1;c.fill();
         c.globalCompositeOperation='multiply';c.globalAlpha=.12;c.fill();
       }
+      window.QingmingSeasons?.dress(c,f,garment,wardrobe.protectedParts[p.sprite][0],mode);
       c.save();c.beginPath();
       for(const [x,y,rx,ry] of wardrobe.protectedParts[p.sprite]){c.moveTo(x+rx,y);c.ellipse(x,y,rx,ry,0,0,Math.PI*2);}
       c.clip();c.globalCompositeOperation='source-over';c.globalAlpha=1;c.drawImage(base,f.x,f.y);c.restore();
@@ -317,6 +320,7 @@
         cached.image.width=pw;cached.image.height=ph;cached.density=density;cached.tick=-1;
       }
       const gpu=!cached&&this.mesh?.active;
+      if(cached&&cached.texture!==texture){cached.texture=texture;cached.tick=-1;}
       if(!cached||cached.tick!==tick){
         const surface=cached?.context??this.motionContext;
         surface.setTransform(1,0,0,1,0,0);surface.clearRect(0,0,pw,ph);

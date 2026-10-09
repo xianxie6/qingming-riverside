@@ -22,9 +22,12 @@ export function createRowingRig(art,time,movement){
   const rig={w,h,f:art.frame,contacts,feet:contacts.map(p=>({
     x:(p.x/art.frame.w-.5)*w,y:(p.y-bottom)/art.frame.h*h
   })),pose,hand:art.grips[0],walking:false,movement};
+  // Narrow the forward stance so both soles remain on the bow deck with
+  // the upright pole outside the gunwale. The contacts never move with time.
+  rig.feet[1].x-=.16;
   const grips=[...art.grips].sort((a,b)=>a[1]-b[1]);
   const points=grips.map(uv=>movement.deform(...uv,rig));
-  const tilt=.515+.025*Math.sin(beat),spacing=.265;
+  const tilt=.10+.025*Math.sin(beat),spacing=.265;
   const lower=[points[1][0]+.018*Math.sin(beat),points[1][1]+.018*Math.cos(beat)];
   const targets=[[lower[0]-Math.sin(tilt)*spacing,lower[1]-Math.cos(tilt)*spacing],lower];
   rig.grips=grips;
@@ -39,27 +42,32 @@ export function createRowingRig(art,time,movement){
 
 export function rowingPoint(u,v,rig){
   const point=rig.movement.deform(u,v,rig);
-  let result=point,ownership=0;
-  for(const arm of rig.arms){
+  const skins=rig.arms.map(arm=>{
     const projections=[0,1].map(j=>{
       const a=arm.source[j],b=arm.source[j+1],dx=b[0]-a[0],dy=b[1]-a[1];
       const t=Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dy)/(dx*dx+dy*dy)));
       return {t,distance:Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dy)};
     });
-    const segment=projections[0].distance<projections[1].distance?0:1,nearest=projections[segment];
     const wristDistance=Math.hypot(point[0]-arm.source[2][0],point[1]-arm.source[2][1]);
     const fist=1-smooth(.075,.115,wristDistance);
-    let weight=(1-smooth(.055,.095,nearest.distance))*(segment?1:smooth(0,.55,nearest.t));
-    weight=Math.max(weight,fist);
-    if(weight<=ownership)continue;
+    const boneWeights=projections.map(p=>1/(.0009+p.distance*p.distance)**2);
+    // Both segments meet at the same half blend at the elbow. Blend nearby
+    // bones continuously instead of switching ownership at a nearest-bone edge.
+    const bends=[.5*smooth(.55,1,projections[0].t),.5+.5*smooth(0,.4,projections[1].t)];
+    const elbowBlend=(bends[0]*boneWeights[0]+bends[1]*boneWeights[1])/(boneWeights[0]+boneWeights[1]);
+    const distance=Math.min(...projections.map(p=>p.distance));
+    const shoulder=smooth(0,.55,projections[0].t);
+    const influence=(shoulder*boneWeights[0]+boneWeights[1])/(boneWeights[0]+boneWeights[1]);
+    const weight=Math.max((1-smooth(.055,.13,distance))*influence,fist);
     const forearm=rotate(point,arm.source[1],arm.target[1],arm.rotations[1]);
     const upper=rotate(point,arm.source[0],arm.target[0],arm.rotations[0]);
-    const elbowBlend=segment?smooth(0,.22,nearest.t):smooth(.78,1,nearest.t);
     const skin=upper.map((value,j)=>value+(forearm[j]-value)*elbowBlend);
     const hand=rotate(point,arm.source[2],arm.target[2],arm.rotations[1]);
-    const deformed=skin.map((value,j)=>value+(hand[j]-value)*fist);
-    result=point.map((value,j)=>value+(deformed[j]-value)*weight);ownership=weight;
-  }
+    return {fist,weight,deformed:skin.map((value,j)=>value+(hand[j]-value)*fist)};
+  });
+  for(let i=0;i<skins.length;i++)skins[i].weight*=1-skins[1-i].fist;
+  const ownership=Math.max(...skins.map(s=>s.weight)),total=skins.reduce((sum,s)=>sum+s.weight**4,0);
+  const result=total?point.map((value,j)=>value+ownership*skins.reduce((sum,s)=>sum+(s.deformed[j]-value)*s.weight**4,0)/total):point;
   return result;
 }
 

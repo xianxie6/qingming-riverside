@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/midautumn.css?v=12-entry-frame">
   <link rel="stylesheet" href="styles/buttons.css?v=4">
   <link rel="stylesheet" href="styles/atlas-festival.css?v=12-soft-haze">
+  <link rel="stylesheet" href="styles/seasons.css?v=1">
   <link rel="stylesheet" href="styles/crossing.css?v=21-loop-music">
 </head>
 <!-- 中秋赏灯街道保留待复用；恢复时将 data-midautumn-enabled 改为 true。 -->
@@ -29,6 +30,7 @@
     <canvas id="atlasInk" aria-hidden="true"></canvas>
   </section>
   <button id="atlasReturn" aria-label="返回全景选景" title="全景选景" hidden>全景</button>
+  <nav class="season-controls" aria-label="四季景色"><span class="season-heading">四时</span><button data-season="spring" aria-label="春季" aria-pressed="true" disabled>春</button><button data-season="summer" aria-label="夏季" aria-pressed="false" disabled>夏</button><button data-season="autumn" aria-label="秋季" aria-pressed="false" disabled>秋</button><button data-season="winter" aria-label="冬季" aria-pressed="false" disabled>冬</button><span id="seasonStatus" role="status" aria-live="polite">春和 · 轻衫</span></nav>
   <main id="painting" tabindex="0" aria-label="清明上河街市，左右方向键控制行人，点击街道前往，拖动浏览，空格暂停，双击放大，E键在茶铺、桥头或码头互动">
     <a id="sunyang" class="street-shop-host" href="sunyang.html" aria-label="客官，进来歇歇脚！尝尝本店特色小吃，点击伙计进入孙羊正店" hidden><span>客官，进来歇歇脚！<br>尝尝本店特色小吃</span><canvas aria-hidden="true"></canvas></a>
     <canvas id="scene" role="img" aria-label="宋代沿河街市立面，茶楼、食铺、木桥，食客、摊贩、行人与船只在画中移动"></canvas>
@@ -100,12 +102,12 @@
   <script src="src/festival-lighting.js?v=10-lossless" defer></script>
   <script src="src/festival-street.js?v=20-season-toggle" defer></script>
   <script src="src/visits.js?v=3-local-preview" defer></script>
-  <script src="src/dynamic-loader.js?v=36-batched-walking"></script>
+  <script src="src/dynamic-loader.js?v=38-seasons-release"></script>
   <script src="src/atlas.js?v=19-crossing-entry"></script>
   <script src="src/atlas-festival.js?v=12-soft-moon"></script>
   <script src="src/atlas-atmosphere.js?v=2-lunar-phase"></script>
   <script src="src/crossing-audio.js?v=1-loop-music" defer></script>
-  <script src="src/crossing.js?v=21-loop-music" defer></script>
+  <script src="src/crossing.js?v=22-smooth-arms" defer></script>
   <!-- 国庆烟花表演及配套音频已停用，模块保留供以后复用。 -->
 </body>
 </html>

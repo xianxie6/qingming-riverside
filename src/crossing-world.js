@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
 import {assemblyProgress,ease} from './crossing-motion.js';
-import {timberBreath,createRowingRig,rowingPoint,paddleThroughHands,rowingStroke} from './crossing-details.js?v=17-river';
+import {timberBreath,createRowingRig,rowingPoint,paddleThroughHands,rowingStroke} from './crossing-details.js?v=18-smooth-arms';
 
 // Original procedural meshes. No external model or photographed bridge is used.
 export async function createCrossingWorld(keep){
@@ -133,7 +133,7 @@ export async function createCrossingWorld(keep){
   for(let i=0;i<20;i++){let n=i*2;coverIdx.push(n,n+1,n+2,n+1,n+3,n+2);}
   const cg=keep(new THREE.BufferGeometry());cg.setAttribute('position',new THREE.Float32BufferAttribute(coverPos,3));cg.setAttribute('uv',new THREE.Float32BufferAttribute(coverUv,2));cg.setIndex(coverIdx);cg.computeVertexNormals();const coverMat=keep(cloth.clone());coverMat.side=THREE.DoubleSide;boat.add(new THREE.Mesh(cg,coverMat));
   for(let z=-1.2;z<=.61;z+=.3){const points=[];for(let i=0;i<=16;i++){const a=i/16*Math.PI;points.push(new THREE.Vector3(Math.cos(a)*.77,.64+Math.sin(a)*.87,z));}boat.add(new THREE.Mesh(keep(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points),20,.018,4,false)),darkWood));}
-  const man=new THREE.Group();man.position.set(.3,.44,1.45);boat.add(man);
+  const man=new THREE.Group();man.position.set(.57,.44,.95);boat.add(man);
   const robe=keep(new THREE.CylinderGeometry(.18,.28,.72,9));mesh(robe,black,[0,.56,0],[1,1,1],man);
   mesh(sphere,lightWood,[0,1.06,0],[.135,.16,.13],man);
   mesh(keep(new THREE.ConeGeometry(.39,.17,16)),cloth,[0,1.23,0],[1,1,1],man);

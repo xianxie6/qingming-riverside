@@ -73,6 +73,23 @@
 | [assets/crossing-river-forward-v1.png](../assets/crossing-river-forward-v1.png) | 2728.1 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/seasons/summer-east.png](../assets/seasons/summer-east.png) | 2948.5 | 项目视觉素材 / 见制作记录及 LICENSE |
 
+
+## 四季新增资源
+
+| 文件 | 大小 KiB | 来源 / 权限状态 |
+|---|---:|---|
+| [assets/seasons/autumn-center.png](../assets/seasons/autumn-center.png) | 2591.8 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/autumn-east.png](../assets/seasons/autumn-east.png) | 2748.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/autumn-west.png](../assets/seasons/autumn-west.png) | 2746.0 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/featured-autumn.png](../assets/seasons/featured-autumn.png) | 2011.9 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/featured-summer.png](../assets/seasons/featured-summer.png) | 1983.5 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/featured-winter.png](../assets/seasons/featured-winter.png) | 2036.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/summer-center.png](../assets/seasons/summer-center.png) | 2775.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/summer-west.png](../assets/seasons/summer-west.png) | 2859.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/winter-center.png](../assets/seasons/winter-center.png) | 2753.5 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/winter-east.png](../assets/seasons/winter-east.png) | 2913.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/winter-west.png](../assets/seasons/winter-west.png) | 2817.0 | 项目视觉素材 / 见制作记录及 LICENSE |
+
 ## 创作原稿与历史候选
 
 以下文件不进入网站发布包。迁移不清除 Git 历史。

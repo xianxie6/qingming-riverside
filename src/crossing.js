@@ -85,7 +85,7 @@
     skip.addEventListener('click',()=>{if(failed)location.reload();else void enter();});
     try{
       if(matchMedia('(prefers-reduced-motion: reduce)').matches){await enter();return;}
-      const {createCrossing}=await import('./crossing-three.js?v=20-project-water');
+      const {createCrossing}=await import('./crossing-three.js?v=22-smooth-arms');
       if(signal.aborted||leaving)return;
       visual=await createCrossing(dialog,signal);
       if(signal.aborted||leaving){dispose();return;}

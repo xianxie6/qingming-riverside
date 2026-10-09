@@ -19,14 +19,14 @@
     return {top:at(upper.y-10),tip:at(waterY)};
   }
   class Characters{
-    constructor(){
+    constructor(source='assets/featured-characters-v7.webp'){
       this.ready=false;this.sprites={};this.image=new Image();
       this.assetsReady=new Promise((resolve,reject)=>{
         this.image.onload=()=>{try{this.prepare();this.ready=true;resolve();}catch(error){reject(error);}};
         this.image.onerror=()=>reject(new Error('画师素材加载失败'));
       });
       this.assetsReady.catch(()=>{});
-      this.image.src='assets/featured-characters-v7.webp';
+      this.image.src=source;
     }
     prepare(){
       const image=this.image,w=image.naturalWidth,h=image.naturalHeight;
