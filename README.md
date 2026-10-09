@@ -11,6 +11,10 @@
 | ![夜景](docs/showcase/night-riverside.webp) | ![城门](docs/showcase/night-city-gate.webp) |
 | ![水磨](docs/showcase/watermill-day.webp) | ![时雨](docs/showcase/rain-market.webp) |
 
+## 穿越
+
+首页点击「穿越」，滚动或拖动推进木桥搭建、划船与宋人相逢。可暂停、拖动进度或返回长卷；点击「随他游街」或「直接入画」进入虹桥街市。河水复用项目现有纹理与波动着色，减少动态效果设置下直接进入街市。
+
 ## 本地运行
 
 需要 Python 3；开发、测试和构建使用 Node.js 22 或更新版本。

@@ -60,6 +60,18 @@
 | [vendor/three.core.js](../vendor/three.core.js) | 1423.9 | Three.js / 随附 MIT |
 | [vendor/three.module.js](../vendor/three.module.js) | 647.2 | Three.js / 随附 MIT |
 
+
+## 穿越模块新增资源
+
+以下为本地项目现有素材，随穿越模块发布；`summer-east.png` 仅作为河水纹理使用。
+
+| 文件 | 大小 KiB | 来源 / 权限状态 |
+|---|---:|---|
+| [assets/crossing-courtyard-painted-v2.png](../assets/crossing-courtyard-painted-v2.png) | 2909.9 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/crossing-painter-v2.png](../assets/crossing-painter-v2.png) | 2058.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/crossing-river-forward-v1.png](../assets/crossing-river-forward-v1.png) | 2728.1 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/seasons/summer-east.png](../assets/seasons/summer-east.png) | 2948.5 | 项目视觉素材 / 见制作记录及 LICENSE |
+
 ## 创作原稿与历史候选
 
 以下文件不进入网站发布包。迁移不清除 Git 历史。

@@ -4,17 +4,7 @@ const vertexShader=`
 varying vec2 vUv;
 void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}
 `;
-const fragmentShader=`
-precision highp float;
-uniform float uTime,uPass,uBankY,uBackdropHeight;
-uniform vec4 uView;
-uniform sampler2D uBackdrop;
-varying vec2 vUv;
-float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float noise(vec2 p){
- vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
- return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+1.),f.x),f.y);
-}
+const riverSurfaceShader=`
 float heightAt(vec2 p){
  p=vec2(p.x-uTime*8.,(p.y-uBankY+2.)*3.3);
  float h=0.;
@@ -26,6 +16,25 @@ float heightAt(vec2 p){
  }
  return h;
 }
+vec3 shadeRiver(vec3 base,float spec,float h){
+  vec3 col=mix(base,vec3(.30,.37,.35),.16);
+  col+=vec3(.88,.87,.75)*(spec*.19);
+  col-=vec3(.04)*smoothstep(-.1,.65,h);
+  return col;
+}
+`;
+const fragmentShader=`
+precision highp float;
+uniform float uTime,uPass,uBankY,uBackdropHeight;
+uniform vec4 uView;
+uniform sampler2D uBackdrop;
+varying vec2 vUv;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){
+ vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+ return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+1.),f.x),f.y);
+}
+${riverSurfaceShader}
 void main(){
  vec2 p=vec2(uView.x+vUv.x*uView.z,uView.y+(1.-vUv.y)*uView.w);
  if(uPass<.5){
@@ -37,9 +46,7 @@ void main(){
   vec2 uv=vUv+vec2(offset.x/uView.z,-offset.y/uView.w);
   uv=clamp(uv,vec2(.001),vec2(.999));uv.y/=uBackdropHeight;
   vec3 base=texture2D(uBackdrop,uv).rgb;
-  vec3 col=mix(base,vec3(.30,.37,.35),.16);
-  col+=vec3(.88,.87,.75)*(spec*.19);
-  col-=vec3(.04)*smoothstep(-.1,.65,h);
+  vec3 col=shadeRiver(base,spec,h);
   gl_FragColor=vec4(col,bank*.9);
  }else{
   // Advect texture by free-fall travel time, so streaks accelerate downward.
@@ -66,6 +73,7 @@ void main(){
 `;
 
 export class ThreeWaterRenderer{
+ static get riverSurfaceShader(){return riverSurfaceShader;}
  constructor({bankY=542}={}){
   this.active=false;this.bankY=bankY;
   try{

@@ -86,8 +86,8 @@
     if(location.hash!==hash)history.pushState(null,'',location.pathname+location.search+hash);
   }
   async function launchScene(place,button,{restore=false,festival=false}={}){
-    if(!place)return;
-    if(fileMode){message.textContent=localPreviewHint;return;}
+    if(!place)return false;
+    if(fileMode){message.textContent=localPreviewHint;return false;}
     const token=++revision,original=pendingButtons.get(button)?.original??button.innerHTML;
     pendingButtons.set(button,{token,original});
     if(!restore)setRoute(`#${place.id}`);
@@ -95,19 +95,21 @@
     button.disabled=true;button.querySelector('span').textContent='正在进入…';const icon=button.querySelector('i');if(icon)icon.hidden=true;message.textContent='正在展开动态街市，请稍候';
     try{
       await window.loadQingmingScene();
-      if(token!==revision)return;
+      if(token!==revision)return false;
       await window.prepareQingmingEntry(place.world);
-      if(token!==revision)return;
+      if(token!==revision)return false;
       window.dispatchEvent(new CustomEvent('atlas-enter',{detail:{x:place.world}}));
       entryStatus=false;
       atlas.hidden=true;document.body.classList.remove('in-atlas');isolate(false);document.querySelector('#painting').focus();
       if(festival)document.querySelector('#midautumnEntry').click();
       window.warmQingmingDistricts();
+      return true;
     }catch(error){
-      if(token!==revision)return;
+      if(token!==revision)return false;
       console.error(error);message.textContent='动态街市加载失败，请检查网络后重试。';
       const retry=document.createElement('button');retry.id='atlasRetry';retry.textContent='重新载入';
       retry.addEventListener('click',()=>location.reload());message.append(retry);
+      return false;
     }finally{
       if(pendingButtons.get(button)?.token===token){button.disabled=false;button.innerHTML=original;pendingButtons.delete(button);}
       if(token===revision)atlas.classList.remove('route-loading');
@@ -141,7 +143,7 @@
     void launchScene(place,nav.querySelector(`[data-place="${place.id}"]`),{restore:true,festival});
   }
   window.addEventListener('hashchange',restoreRoute);
-  window.AtlasTour={places,layout,setRoute,get selected(){return selected?.id||null;}};
+  window.AtlasTour={places,layout,setRoute,enterBridge:()=>launchScene(places.find(p=>p.id==='bridge'),nav.querySelector('[data-place="bridge"]')),get selected(){return selected?.id||null;}};
   restoreRoute();
   // Optional replacement must have exactly the same canvas, crop and registration.
   if(!fileMode)fetch('assets/atlas-draft.json').then(r=>r.json()).then(async manifest=>{
