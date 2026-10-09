@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const entry=document.querySelector('#crossingEntry');
-  let active=null;
+  let active=null,musicEnabled=true;
   entry.addEventListener('click',async event=>{
     event.stopPropagation();
     if(active)return;
@@ -12,8 +12,18 @@
     active=controller;entry.disabled=true;
     const dialog=document.createElement('dialog');dialog.id='crossingDialog';
     dialog.setAttribute('aria-labelledby','crossingTitle');
-    dialog.innerHTML='<div class="crossing-caption"><h2 id="crossingTitle">虹桥初成</h2></div><div class="crossing-top-actions"><button id="crossingCancel" autofocus>← 返回长卷</button><button id="crossingSkip">直接入画 ↗</button></div><div class="crossing-navigation"><p id="crossingStatus" role="status" aria-live="polite">正在搭建虹桥…</p><button id="crossingAuto" aria-pressed="false" disabled>启程</button><button id="crossingBurst" type="button">打散 · 重聚</button><div class="crossing-track"><span>木梁合拢</span><input id="crossingSeek" type="range" min="0" max="1000" value="0" aria-label="穿越进度" disabled><span>宋人相逢</span></div></div><section class="crossing-welcome" hidden aria-label="与宋人相逢"><div class="crossing-welcome-name"><span>汴京画客</span><small>相逢 · 虹桥畔</small></div><p id="crossingDialogue" role="status" aria-live="polite">客官初来汴京？随我去虹桥看看。</p><div class="crossing-welcome-actions"><button id="crossingGuide">随他游街 ↗</button><button id="crossingAsk" aria-expanded="false">问问汴京</button><button id="crossingAlone">自行入画</button></div><div id="crossingQuestions" hidden><button data-question="bridge">虹桥有何奇处？</button><button data-question="tea">何处歇脚饮茶？</button><button data-question="painter">你在画些什么？</button></div></section><div id="crossingProgress" aria-hidden="true"></div>';
+    dialog.innerHTML='<div class="crossing-caption"><h2 id="crossingTitle">虹桥初成</h2></div><div class="crossing-top-actions"><button id="crossingCancel" autofocus>← 返回长卷</button><button id="crossingSound" type="button" aria-label="穿越背景音乐" aria-pressed="true">关闭声音</button><button id="crossingSkip">直接入画 ↗</button></div><div class="crossing-navigation"><p id="crossingStatus" role="status" aria-live="polite">正在搭建虹桥…</p><button id="crossingAuto" aria-pressed="false" disabled>启程</button><button id="crossingBurst" type="button">打散 · 重聚</button><div class="crossing-track"><span>木梁合拢</span><input id="crossingSeek" type="range" min="0" max="1000" value="0" aria-label="穿越进度" disabled><span>宋人相逢</span></div></div><section class="crossing-welcome" hidden aria-label="与宋人相逢"><div class="crossing-welcome-name"><span>汴京画客</span><small>相逢 · 虹桥畔</small></div><p id="crossingDialogue" role="status" aria-live="polite">客官初来汴京？随我去虹桥看看。</p><div class="crossing-welcome-actions"><button id="crossingGuide">随他游街 ↗</button><button id="crossingAsk" aria-expanded="false">问问汴京</button><button id="crossingAlone">自行入画</button></div><div id="crossingQuestions" hidden><button data-question="bridge">虹桥有何奇处？</button><button data-question="tea">何处歇脚饮茶？</button><button data-question="painter">你在画些什么？</button></div></section><div id="crossingProgress" aria-hidden="true"></div>';
     document.body.append(dialog);dialog.showModal();
+    const soundButton=dialog.querySelector('#crossingSound');
+    const music=new window.CrossingAudio({enabled:musicEnabled,onChange:()=>{
+      const audible=music.enabled&&!music.blocked;
+      soundButton.textContent=audible?'关闭声音':'开启声音';
+      soundButton.setAttribute('aria-pressed',String(audible));
+    }});
+    soundButton.addEventListener('click',()=>{music.toggle();musicEnabled=music.enabled;});
+    document.addEventListener('visibilitychange',()=>music.setActive(!document.hidden),{signal});
+    // Start in the entry gesture so mobile browsers can authorize playback.
+    music.setActive(!document.hidden);
     const atlas=document.querySelector('#atlas');atlas.classList.add('crossing-active');
     const status=dialog.querySelector('#crossingStatus'),skip=dialog.querySelector('#crossingSkip');
     let visual=null,leaving=false,committing=false,done=false,failed=false,welcoming=false;
@@ -39,7 +49,7 @@
     for(const button of dialog.querySelectorAll('[data-question]'))button.addEventListener('click',()=>{dialogue.textContent=answers[button.dataset.question];});
     const dispose=()=>{visual?.dispose();visual=null;};
     const close=()=>{
-      if(done)return;done=true;controller.abort();dispose();dialog.close();dialog.remove();
+      if(done)return;done=true;controller.abort();music.dispose();dispose();dialog.close();dialog.remove();
       entry.disabled=false;active=null;atlas.classList.remove('crossing-active');
       (document.body.classList.contains('in-atlas')?entry:document.querySelector('#painting')).focus({preventScroll:true});
     };
@@ -49,6 +59,7 @@
     dialog.addEventListener('cancel',event=>{event.preventDefault();if(!committing)close();});
     dialog.querySelector('#crossingCancel').addEventListener('click',()=>{if(!committing)close();});
     addEventListener('hashchange',close,{signal});
+    addEventListener('pagehide',close,{signal});
     const ready=window.loadQingmingScene().then(()=>window.prepareQingmingEntry(1560));
     let loadError=null;const prepared=ready.catch(error=>{loadError=error;});
     async function enter(){

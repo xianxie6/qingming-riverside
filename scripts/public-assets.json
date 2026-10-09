@@ -2,6 +2,7 @@
   "description": "网站发布资源白名单；保留暂时关闭的中秋场景素材，原稿不发布。",
   "files": [
     "assets/atlas-draft.json",
+    "assets/audio/crossing-background.mp3",
     "assets/audio/day-ambience.mp3",
     "assets/audio/firework-background.mp3",
     "assets/audio/firework-bloom.mp3",

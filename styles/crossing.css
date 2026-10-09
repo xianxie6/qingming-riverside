@@ -75,3 +75,8 @@
 .crossing-welcoming .crossing-caption p{visibility:hidden}
 .crossing-guiding .crossing-welcome-actions,.crossing-guiding #crossingQuestions{display:none}
 @media(max-width:800px){.crossing-welcome{top:auto;bottom:max(22px,env(safe-area-inset-bottom));right:20px;left:20px;width:auto;padding:16px 20px}#crossingDialogue{font-size:17px;min-height:0;margin:12px 0}.crossing-welcome-name{padding-bottom:9px}.crossing-welcome-name span{font-size:20px}.crossing-welcoming .crossing-caption{top:72px}}
+
+/* Keep the music switch available throughout rowing and the meeting. */
+#crossingDialog #crossingSound{color:#35453c;background:#e9e5d94d;min-width:84px}
+#crossingSound[aria-pressed="false"]{opacity:.75}
+@media(max-width:600px){#crossingDialog .crossing-top-actions button{padding:8px 9px;font-size:11px;letter-spacing:.08em}#crossingDialog #crossingSound{min-width:76px}}

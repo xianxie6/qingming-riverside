@@ -16,6 +16,7 @@
 | 文件 | 大小 KiB | 来源 / 权限状态 |
 |---|---:|---|
 | [assets/atlas-draft.json](../assets/atlas-draft.json) | 0.1 | 项目配置 / 见 LICENSE |
+| [assets/audio/crossing-background.mp3](../assets/audio/crossing-background.mp3) | 5606.4 | 用户提供的穿越背景音乐 / 见 LICENSE |
 | [assets/audio/day-ambience.mp3](../assets/audio/day-ambience.mp3) | 613.5 | 输入音频 / 来源与授权待确认 |
 | [assets/audio/firework-background.mp3](../assets/audio/firework-background.mp3) | 636.8 | 输入音频 / 来源与授权待确认 |
 | [assets/audio/firework-bloom.mp3](../assets/audio/firework-bloom.mp3) | 55.2 | 输入音频 / 来源与授权待确认 |

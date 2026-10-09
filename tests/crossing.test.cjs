@@ -16,12 +16,14 @@ function harness({reduced=false,webgl=true}={}){
   }
   const entry=new Element(),painting=new Element(),loading=deferred(),animation=deferred();
   let update,guideCalls=0,dialog,entered=0,disposed=0,visuals=0,inAtlas=true;
-  const document={querySelector:s=>s==='#crossingEntry'?entry:painting,
-    createElement:()=>{dialog=new Element();dialog.children=Object.fromEntries(['#crossingStatus','#crossingTitle','#crossingSkip','#crossingCancel','#crossingProgress','#crossingAuto','#crossingSeek','.crossing-welcome','#crossingDialogue','#crossingGuide','#crossingAlone','#crossingAsk','#crossingQuestions'].map(s=>[s,new Element()]));dialog.questions=['bridge','tea','painter'].map(question=>{const el=new Element();el.dataset={question};return el;});return dialog;},
+  const document={addEventListener(){},querySelector:s=>s==='#crossingEntry'?entry:painting,
+    createElement:()=>{dialog=new Element();dialog.children=Object.fromEntries(['#crossingSound','#crossingStatus','#crossingTitle','#crossingSkip','#crossingCancel','#crossingProgress','#crossingAuto','#crossingSeek','.crossing-welcome','#crossingDialogue','#crossingGuide','#crossingAlone','#crossingAsk','#crossingQuestions'].map(s=>[s,new Element()]));dialog.questions=['bridge','tea','painter'].map(question=>{const el=new Element();el.dataset={question};return el;});return dialog;},
     body:{append(){},classList:{contains:()=>inAtlas}}};
+  class Audio{constructor(){this.paused=true;}addEventListener(){}removeEventListener(){}removeAttribute(){}load(){}play(){this.paused=false;return Promise.resolve();}pause(){this.paused=true;}}
+  const window={};vm.runInNewContext(fs.readFileSync(__dirname+'/../src/crossing-audio.js','utf8'),{window,Audio});
   vm.runInNewContext(source,{document,location:{protocol:'http:',reload(){}},AbortController,addEventListener(){},
     matchMedia:()=>({matches:reduced}),setTimeout:fn=>{fn();},
-    window:{loadQingmingScene:()=>loading.promise,prepareQingmingEntry:async x=>assert.equal(x,1560),AtlasTour:{enterBridge:async()=>{entered++;inAtlas=false;return true;}}},
+    window:{CrossingAudio:window.CrossingAudio,loadQingmingScene:()=>loading.promise,prepareQingmingEntry:async x=>assert.equal(x,1560),AtlasTour:{enterBridge:async()=>{entered++;inAtlas=false;return true;}}},
     loadVisualModule:async()=>({createCrossing:async()=>{visuals++;if(!webgl)throw Error('No WebGL');return {guide:()=>{guideCalls++;},play:fn=>{update=fn;return animation.promise;},dispose:()=>{disposed++;animation.resolve();}};}})});
   return {entry,painting,loading,animation,update:info=>update(info),get guideCalls(){return guideCalls;},get dialog(){return dialog;},get entered(){return entered;},get disposed(){return disposed;},get visuals(){return visuals;}};
 }
