@@ -51,7 +51,7 @@
   function outfit(id,p,raining=false){
     if(!profiles[id])id='spring';
     const sheltered=p.indoor||['balcony','pavilion','interior'].includes(p.layer);
-    return id+(raining&&!sheltered&&id!=='winter'?'-rain':'');
+    return id+(raining&&!sheltered&&!['summer','winter'].includes(id)?'-rain':'');
   }
   const paletteMix={summer:['#c9c5a0','#aaa98e',.20],autumn:['#8d654b','#766149',.17],winter:['#605968','#575963',.25]};
   function dress(ctx,frame,garment,head,mode){

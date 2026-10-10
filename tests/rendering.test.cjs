@@ -182,3 +182,26 @@ test('GPU drawing gracefully falls back when WebGL is unavailable',()=>{
   const mesh=new crowd.constructor.MeshRenderer();assert.equal(mesh.active,false);
   mesh.beginBatch([],2);assert.equal(mesh.batching,undefined);
 });
+
+test('winter uses the complete painted wardrobe and returning to spring restores the original outfit',()=>{
+  const S=require('../src/seasons.js');
+  const crowd=load({window:{ScrollMovement:movement,QingmingSeasons:S}});
+  const p={sprite:0,outfit:1,layer:'street'},spring={name:'spring'},winter={name:'winter'};
+  crowd.outfits.set('0:1:spring',spring);
+  assert.equal(crowd.textureFor(p),spring);
+  crowd.activeWardrobe={frames:[winter]};crowd.season='winter';
+  assert.equal(crowd.textureFor(p),winter,'no spring skin or flat clothing mask is painted over the winter sleeves');
+  crowd.raining=true;assert.equal(crowd.textureFor(p),winter);
+  crowd.activeWardrobe=null;crowd.season='spring';crowd.raining=false;
+  assert.equal(crowd.textureFor(p),spring,'cached spring clothing survives a winter round trip');
+});
+
+test('summer rain reuses the exact dry-weather clothing texture',()=>{
+  const S=require('../src/seasons.js');
+  const crowd=load({window:{ScrollMovement:movement,QingmingSeasons:S}}),texture={name:'summer-linen'};
+  crowd.season='summer';crowd.outfits.set('3:2:summer',texture);
+  const p={sprite:3,outfit:2,layer:'street'};
+  assert.equal(crowd.textureFor(p),texture);
+  crowd.raining=true;assert.equal(crowd.textureFor(p),texture);
+  crowd.raining=false;assert.equal(crowd.textureFor(p),texture);
+});

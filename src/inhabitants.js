@@ -85,20 +85,7 @@
         if(performance.now()-sliceStart<8)return;
         await new Promise(resolve=>setTimeout(resolve,0));sliceStart=performance.now();
       };
-      this.frames=[];
-      for(const f of window.PEOPLE_FRAMES){
-        const canvas=document.createElement('canvas');canvas.width=f.w;canvas.height=f.h;
-        const c=canvas.getContext('2d',{willReadFrequently:true});
-        c.drawImage(this.art,f.x,f.y,f.w,f.h,0,0,f.w,f.h);
-        // Extract the actual ink contour. Coarse polygons left white wedges
-        // around hair and bowls and shaved off ribbons and fingertips.
-        const pixels=c.getImageData(0,0,f.w,f.h);
-        this.removePaper(pixels);
-        c.putImageData(pixels,0,0);
-        c.globalCompositeOperation='source-atop';c.fillStyle='rgba(125,101,55,.13)';c.fillRect(0,0,f.w,f.h);
-        this.frames.push(canvas);
-        await yieldToBrowser();
-      }
+      this.frames=await this.prepareFrames(this.art);
       this.contacts=this.frames.map(c=>movement.footContacts(c.getContext('2d').getImageData(0,0,c.width,c.height).data,c.width,c.height));
       this.motionSurface=document.createElement('canvas');this.motionSurface.width=512;this.motionSurface.height=384;
       // Animation surfaces are draw-only: let the browser accelerate their
@@ -112,6 +99,41 @@
         }
         await yieldToBrowser();
       }
+    }
+    async prepareFrames(image){
+      let sliceStart=performance.now();
+      const yieldToBrowser=async()=>{
+        if(performance.now()-sliceStart<8)return;
+        await new Promise(resolve=>setTimeout(resolve,0));sliceStart=performance.now();
+      };
+      const frames=[];
+      for(const f of window.PEOPLE_FRAMES){
+        const canvas=document.createElement('canvas');canvas.width=f.w;canvas.height=f.h;
+        const c=canvas.getContext('2d',{willReadFrequently:true});
+        c.drawImage(image,f.x,f.y,f.w,f.h,0,0,f.w,f.h);
+        // Extract the actual ink contour. Coarse polygons left white wedges
+        // around hair and bowls and shaved off ribbons and fingertips.
+        const pixels=c.getImageData(0,0,f.w,f.h);
+        this.removePaper(pixels);
+        c.putImageData(pixels,0,0);
+        c.globalCompositeOperation='source-atop';c.fillStyle='rgba(125,101,55,.13)';c.fillRect(0,0,f.w,f.h);
+        frames.push(canvas);
+        await yieldToBrowser();
+      }
+      return frames;
+    }
+    async loadWardrobe(source){
+      const image=await new Promise((resolve,reject)=>{
+        const image=new Image(),timer=setTimeout(()=>reject(new Error('冬装素材载入超时')),25000);
+        image.onload=()=>{clearTimeout(timer);resolve(image);};
+        image.onerror=()=>{clearTimeout(timer);reject(new Error('冬装素材载入失败'));};
+        image.src=source;
+      });
+      await image.decode();
+      if(image.naturalWidth!==1536||image.naturalHeight!==1024)throw new Error('冬装人物图集尺寸不正确');
+      const frames=await this.prepareFrames(image);
+      const contacts=frames.map(c=>movement.footContacts(c.getContext('2d').getImageData(0,0,c.width,c.height).data,c.width,c.height));
+      return {frames,contacts};
     }
     removePaper({data,width,height}){
       const count=width*height,background=new Uint8Array(count),queue=new Int32Array(count);
@@ -150,6 +172,9 @@
       ctx.restore();
     }
     textureFor(p){
+      // The complete winter paintings include covered sleeves, legs and shoes.
+      // Do not reapply spring clothing masks or restore exposed spring skin.
+      if(this.activeWardrobe)return this.activeWardrobe.frames[p.sprite];
       const mode=window.QingmingSeasons?.outfit(this.season,p,this.raining)??'spring';
       const key=`${p.sprite}:${p.outfit}:${mode}`;
       if(this.outfits.has(key))return this.outfits.get(key);
@@ -189,7 +214,7 @@
       // robe. Reconstruct the hidden stocking behind that ink BEFORE
       // skinning, so a moving shoe always has a leg reaching into the robe.
       const legs=layers[1],lc=legs.getContext('2d');
-      const contacts=this.contacts[sprite],pixels=texture.getContext('2d').getImageData(0,0,f.w,f.h).data;
+      const contacts=(this.activeWardrobe?.contacts??this.contacts)[sprite],pixels=texture.getContext('2d').getImageData(0,0,f.w,f.h).data;
       lc.globalCompositeOperation='destination-over';lc.lineJoin='round';
       for(const contact of contacts){
         const center=(contacts[0].x+contacts[1].x)/2;
@@ -279,7 +304,7 @@
       if(!walking&&!p.story)this.seat(ctx,p,x,y);
       const art=p.art,f=art?.frame??window.PEOPLE_FRAMES[p.sprite],texture=art?.texture??this.textureFor(p),h=p.h,w=h*f.w/f.h*([6,7,8].includes(p.sprite)?.80:1);
       const natural=art?.direction??[1,1,1,1,1,-1,1,-1,1,-1,1,1][p.sprite];
-      const seated=[6,7,8].includes(p.sprite),flip=direction*natural,contacts=art?.contacts??this.contacts[p.sprite];
+      const seated=[6,7,8].includes(p.sprite),flip=direction*natural,contacts=art?.contacts??(this.activeWardrobe?.contacts??this.contacts)[p.sprite];
       // The controlled figure keeps the last foot placement on release.
       // Only the lifted sole settles; the legs do not snap to the source pose.
       const animatedGait=!seated&&(walking||pose.gaitWeight!==undefined);

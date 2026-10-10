@@ -1,5 +1,5 @@
 import {drawFestivalGate,drawFestivalLights,festivalGate,festivalEnabled} from './midautumn.js?v=10-season-toggle';
-import './seasons.js?v=1';
+import './seasons.js?v=2-winter-wardrobe';
 import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
 
 (() => {
@@ -81,7 +81,8 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     // Finish any original district requests before replacing their image refs.
     await districts.load();springSprites??=characters.sprites;
     if(id==='spring')return {...springDistricts,center:springArtwork,sprites:springSprites};
-    const art=await seasons.loadArt(id);
+    const [art,wardrobe]=await Promise.all([seasons.loadArt(id),id==='winter'?inhabitants.loadWardrobe('assets/seasons/people-winter-v1.png'):null]);
+    art.wardrobe=wardrobe;
     if(!seasonalCharacters.has(id))seasonalCharacters.set(id,new featured.Characters(`assets/seasons/featured-${id}.png`));
     const cast=seasonalCharacters.get(id);
     try{await cast.assetsReady;}catch(error){seasonalCharacters.delete(id);throw error;}
@@ -89,7 +90,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     return art;
   },(id,art)=>{
     artwork=art.center;districts.west=art.west;districts.east=art.east;districts.prepare(artwork);districts.revision++;
-    characters.springSprites=springSprites;characters.sprites=art.sprites;inhabitants.residentFrames.clear();rainEvent.reset();snowing=true;
+    characters.springSprites=springSprites;characters.sprites=art.sprites;inhabitants.activeWardrobe=art.wardrobe??null;inhabitants.residentFrames.clear();rainEvent.reset();snowing=true;
     weatherSample=seasons.weather(id,rainEvent.sample(),snowing,state.time);
     backdropKey=null;painting.dataset.season=id;painting.dataset.clothing=seasons.profiles[id].cloth;
     announce(seasons.profiles[id].description);

@@ -23,12 +23,15 @@ test('a return to spring cancels an outstanding seasonal request',async()=>{
   const pending=c.select('winter');await c.select('spring');slow.resolve('winter');await pending;
   assert.equal(c.id,'spring');assert.deepEqual(applied,['spring']);
 });
-test('winter uses snow rather than rain; other seasons retain rain and outdoor rainwear',()=>{
+test('winter uses snow and summer rain keeps the same light clothes',()=>{
   const rain={rain:1,wet:1,gloom:.6,time:25};
   for(const id of ['spring','summer','autumn'])assert.equal(S.weather(id,rain),rain);
   const winter=S.weather('winter',rain,true,7);assert.equal(winter.rain,0);assert.equal(winter.stage,'snow');assert.equal(winter.time,7);
   assert.equal(S.weather('winter',rain,false).snow,0);
-  assert.equal(S.outfit('summer',{layer:'street'},true),'summer-rain');
+  for(const p of [{layer:'street'},{layer:'balcony'},{indoor:true}])assert.equal(S.outfit('summer',p,true),S.outfit('summer',p,false));
+  const W=require('../src/weather.js');
+  assert.equal(W.umbrellaProgress(W.weatherAt(30),{id:'summer-walker',layer:'street'}),1);
+  assert.equal(S.outfit('autumn',{layer:'street'},true),'autumn-rain');
   assert.equal(S.outfit('autumn',{indoor:true},true),'autumn');
   assert.equal(S.outfit('winter',{layer:'street'},true),'winter');
 });
