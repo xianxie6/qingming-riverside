@@ -1,3 +1,6 @@
+// Keep the entire cylindrical shaft behind the painted fist, not just its axis.
+export const rowingShaft={topRadius:.014,bottomRadius:.018,gripDepth:-.026};
+
 export function timberBreath(index,arrival,time){
   const strength=.035+.965*(1-arrival),phase=index*2.39996;
   return {x:Math.sin(time*.43+phase)*.045*strength,

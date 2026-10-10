@@ -70,3 +70,22 @@ test('neighboring sleeve pixels stay connected throughout every rowing stroke',a
     }
   }
 });
+
+test('the shaft front surface stays behind the painted fingers throughout a stroke',async()=>{
+  const {rowingShaft,createRowingRig,rowingPoint}=await detail;
+  const THREE=await import('../vendor/three.module.js');
+  const geometry=new THREE.CylinderGeometry(rowingShaft.topRadius,rowingShaft.bottomRadius,1,8);
+  const art={frame:{w:549,h:887},grips:[[.964692,.281596],[.919927,.428212]],contacts:[{x:75.712,y:881},{x:429.469,y:887}]};
+  for(let t=0;t<3.6;t+=.06){
+    const rig=createRowingRig(art,t,movement),points=rig.grips.map(uv=>rowingPoint(...uv,rig));
+    const upper=new THREE.Vector3(points[0][0],-points[0][1],rowingShaft.gripDepth);
+    const lower=new THREE.Vector3(points[1][0],-points[1][1],rowingShaft.gripDepth);
+    const direction=lower.clone().sub(upper).normalize();
+    const rotation=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),direction);
+    for(let i=0;i<geometry.attributes.position.count;i++){
+      const surface=new THREE.Vector3().fromBufferAttribute(geometry.attributes.position,i).applyQuaternion(rotation).add(upper);
+      assert.ok(surface.z<-.005,'the wood surface, not only its centerline, must clear the finger plane');
+    }
+  }
+  geometry.dispose();
+});

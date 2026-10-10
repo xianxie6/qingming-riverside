@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
-import {createCrossingWorld} from './crossing-world.js?v=18-smooth-arms';
+import {createCrossingWorld} from './crossing-world.js?v=19-grip-depth';
 import {createRiverWater,waterLevel} from './crossing-water.js?v=20-project-water';
 import {createTraces} from './crossing-traces.js';
 import {createCourtyard} from './crossing-courtyard.js?v=15-welcome';

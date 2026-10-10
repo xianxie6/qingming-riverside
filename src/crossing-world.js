@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
 import {assemblyProgress,ease} from './crossing-motion.js';
-import {timberBreath,createRowingRig,rowingPoint,paddleThroughHands,rowingStroke} from './crossing-details.js?v=18-smooth-arms';
+import {timberBreath,createRowingRig,rowingPoint,paddleThroughHands,rowingStroke,rowingShaft} from './crossing-details.js?v=19-grip-depth';
 
 // Original procedural meshes. No external model or photographed bridge is used.
 export async function createCrossingWorld(keep){
@@ -140,7 +140,7 @@ export async function createCrossingWorld(keep){
   for(const s of [-1,1]){block([s*.10,.13,0],[.11,.30,.13],darkWood,man);beam([s*.14,.84,0],[s*.35,.62,.17],.12,.10,black,man);}
   // Shaft and blade are positioned in boat space, independent of billboard rotation.
   const oarMat=keep(new THREE.MeshBasicMaterial({color:'#705335',map:woodMap}));
-  const shaft=mesh(keep(new THREE.CylinderGeometry(.014,.018,1,8)),oarMat,[0,0,0],[1,1,1],boat);
+  const shaft=mesh(keep(new THREE.CylinderGeometry(rowingShaft.topRadius,rowingShaft.bottomRadius,1,8)),oarMat,[0,0,0],[1,1,1],boat);
   const blade=block([0,0,0],[.11,.34,.024],oarMat,boat);
   const grip=new THREE.Vector3(),lowerGrip=new THREE.Vector3(),tip=new THREE.Vector3(),axis=new THREE.Vector3(0,1,0);
   const manWorld=new THREE.Vector3(),boatRotation=new THREE.Quaternion(),facing=new THREE.Quaternion();
@@ -211,9 +211,10 @@ export async function createCrossingWorld(keep){
       const rig=createRowingRig(rowerArt,strokeTime,window.ScrollMovement),positions=rowerMesh.geometry.attributes.position;
       rowerUvs.forEach(([u,v],i)=>{const [x,y]=rowingPoint(u,v,rig);positions.setXYZ(i,x,-y,0);});positions.needsUpdate=true;
       const [upper,lower]=rig.grips.map(uv=>rowingPoint(...uv,rig));
-      // The wood sits just behind the painted fingers so they wrap over it.
-      grip.set(upper[0],-upper[1],-.008).applyQuaternion(man.quaternion).add(man.position);
-      lowerGrip.set(lower[0],-lower[1],-.008).applyQuaternion(man.quaternion).add(man.position);
+      // Recess the full shaft radius behind the fingers; its front surface
+      // must never win the depth test against the painted closed fist.
+      grip.set(upper[0],-upper[1],rowingShaft.gripDepth).applyQuaternion(man.quaternion).add(man.position);
+      lowerGrip.set(lower[0],-lower[1],rowingShaft.gripDepth).applyQuaternion(man.quaternion).add(man.position);
     }else{
       grip.set(.35,1.03,.10).applyQuaternion(man.quaternion).add(man.position);
       lowerGrip.set(.62,.81,.10).applyQuaternion(man.quaternion).add(man.position);
