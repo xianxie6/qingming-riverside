@@ -57,7 +57,7 @@ void main(){
 }`;
 
 export async function createRiverWater(keep,{reflection,textureMatrix,effects}){
-  const texture=keep(await new THREE.TextureLoader().loadAsync('assets/seasons/summer-east.png'));
+  const texture=keep(await new THREE.TextureLoader().loadAsync('assets/crossing-river-summer.webp'));
   texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=4;
   const ripples=Array.from({length:12},()=>new THREE.Vector4(0,0,-100,0));
   const uniforms={uTime:{value:0},uBankY:{value:542},inkMap:{value:texture},reflectionMap:{value:reflection.texture},reflectionMatrix:{value:textureMatrix},

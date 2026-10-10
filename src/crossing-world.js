@@ -152,7 +152,7 @@ export async function createCrossingWorld(keep){
 
   // Original hand-drawn districts sit at separate depths around the physical bridge.
   const loader=new THREE.TextureLoader();
-  const [west,east,panorama,boatArt,riverForward]=await Promise.all(['assets/district-west-fast.webp','assets/district-east-fast.webp','assets/qingming-panorama-v1.webp','assets/boat.webp','assets/crossing-river-forward-v1.png'].map(async url=>{const t=keep(await loader.loadAsync(url));t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;return t;}));
+  const [west,east,panorama,boatArt,riverForward]=await Promise.all(['assets/district-west-fast.webp','assets/district-east-fast.webp','assets/qingming-panorama-v1.webp','assets/boat.webp','assets/crossing-river-forward-v1.webp'].map(async url=>{const t=keep(await loader.loadAsync(url));t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;return t;}));
   const inkStone=keep(west.clone());inkStone.offset.set(.05,.25);inkStone.repeat.set(.8,.07);inkStone.needsUpdate=true;stoneInstances.material=keep(new THREE.MeshBasicMaterial({map:inkStone,color:'#f1e5ca'}));const quayTop=keep(new THREE.MeshBasicMaterial({map:stoneMap,color:'#d1c7a5'}));for(const bank of bankMasses)bank.material=[stoneInstances.material,stoneInstances.material,quayTop,stoneInstances.material,stoneInstances.material,stoneInstances.material];
   const inkWood=keep(boatArt.clone());inkWood.offset.set(.10,.41);inkWood.repeat.set(.16,.08);inkWood.needsUpdate=true;
   for(const m of [wood,darkWood,lightWood,hullMaterial]){m.map=inkWood;m.bumpMap=null;m.color.set('#fff7e6');m.needsUpdate=true;}

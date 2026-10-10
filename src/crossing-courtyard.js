@@ -1,8 +1,8 @@
 import * as THREE from '../vendor/three.module.js';
 import {ease} from './crossing-motion.js?v=13-soft';
-import {createParticleHero} from './crossing-hero.js?v=15-welcome';
+import {createParticleHero} from './crossing-hero.js?v=16-performance';
 
-export async function createCourtyard(keep,mobile){
+export async function createCourtyard(keep,mobile,particleCount){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#bbc5c4');scene.fog=new THREE.FogExp2('#bbc5c4',.012);
   const camera=new THREE.PerspectiveCamera(39,1,.1,120);
   const target=keep(new THREE.WebGLRenderTarget(1,1));target.texture.colorSpace=THREE.SRGBColorSpace;target.samples=mobile?0:2;
@@ -10,10 +10,10 @@ export async function createCourtyard(keep,mobile){
   const key=new THREE.DirectionalLight('#fff6e5',2.5);key.position.set(-5,9,6);scene.add(key);
   const rim=new THREE.DirectionalLight('#d4f2ff',2.8);rim.position.set(4,6,-4);scene.add(rim);
   const fill=new THREE.DirectionalLight('#a4b5c4',.5);fill.position.set(5,2,4);scene.add(fill);
-  const backdrop=keep(await new THREE.TextureLoader().loadAsync('assets/crossing-courtyard-painted-v2.png'));
+  const [backdrop,hero]=await Promise.all([new THREE.TextureLoader().loadAsync('assets/crossing-courtyard-painted-v2.webp').then(keep),createParticleHero(keep,mobile,particleCount)]);
   backdrop.colorSpace=THREE.SRGBColorSpace;scene.background=backdrop;
   let seed=821;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-  const hero=await createParticleHero(keep,mobile);scene.add(hero.object);
+  scene.add(hero.object);
   // Soft contact shade anchors the figure to its stone terrace.
   const shadeCanvas=document.createElement('canvas');shadeCanvas.width=shadeCanvas.height=128;const sc=shadeCanvas.getContext('2d'),gradient=sc.createRadialGradient(64,64,2,64,64,64);gradient.addColorStop(0,'#26333c88');gradient.addColorStop(1,'#26333c00');sc.fillStyle=gradient;sc.fillRect(0,0,128,128);
   const shadowMap=keep(new THREE.CanvasTexture(shadeCanvas));const shadow=new THREE.Mesh(keep(new THREE.PlaneGeometry(3.8,3.8)),keep(new THREE.MeshBasicMaterial({map:shadowMap,transparent:true,depthWrite:false})));shadow.rotation.x=-Math.PI/2;shadow.position.y=.003;scene.add(shadow);

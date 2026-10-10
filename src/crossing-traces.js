@@ -1,15 +1,16 @@
 import * as THREE from '../vendor/three.module.js';
-import {ease} from './crossing-motion.js';
+import {ease} from './crossing-motion.js?v=13-soft';
 
 // Values are each timber's actual assembly percentage, projected from its current 3D position.
 export function createTraces(host,markers){
   const canvas=document.createElement('canvas');canvas.className='crossing-traces';canvas.setAttribute('aria-hidden','true');host.append(canvas);
-  const ctx=canvas.getContext('2d'),point=new THREE.Vector3();let w=0,h=0;
+  const ctx=canvas.getContext('2d'),point=new THREE.Vector3();let w=0,h=0,painted=false;
   function draw(camera,progress,time){
+    const opacity=1-ease(.40,.64,progress);
+    if(opacity<.001){if(painted)ctx.clearRect(0,0,w,h);painted=false;return;}
     const width=host.clientWidth,height=host.clientHeight,dpr=Math.min(devicePixelRatio,1.5);
     if(w!==width||h!==height){w=width;h=height;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
-    ctx.clearRect(0,0,w,h);
-    const opacity=1-ease(.40,.64,progress);if(opacity<.001)return;
+    ctx.clearRect(0,0,w,h);painted=true;
     const nodes=markers.map(m=>{point.copy(m.current).project(camera);return {x:(point.x*.5+.5)*w,y:(.5-point.y*.5)*h,z:point.z,value:Math.round(m.arrive*100)};}).filter(p=>p.z>-1&&p.z<1&&p.x>25&&p.x<w-25&&p.y>220&&p.y<h-160);
     ctx.save();ctx.globalAlpha=opacity;ctx.lineJoin='round';
     // Soft light remains attached to the bridge, rather than washing out the original painting.

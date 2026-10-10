@@ -23,6 +23,10 @@
 | [assets/audio/midautumn-music.mp3](../assets/audio/midautumn-music.mp3) | 865.8 | 输入音频 / 来源与授权待确认 |
 | [assets/audio/night-music.mp3](../assets/audio/night-music.mp3) | 849.8 | 输入音频 / 来源与授权待确认 |
 | [assets/audio/sunyang-music.mp3](../assets/audio/sunyang-music.mp3) | 602.5 | 输入音频 / 来源与授权待确认 |
+| [assets/crossing-river-forward-v1.webp](../assets/crossing-river-forward-v1.webp) | 395.3 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
+| [assets/crossing-courtyard-painted-v2.webp](../assets/crossing-courtyard-painted-v2.webp) | 417.3 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
+| [assets/crossing-painter-v2.webp](../assets/crossing-painter-v2.webp) | 1295.0 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
+| [assets/crossing-river-summer.webp](../assets/crossing-river-summer.webp) | 547.1 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
 | [assets/boat.webp](../assets/boat.webp) | 943.4 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/district-east-fast.webp](../assets/district-east-fast.webp) | 445.5 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/district-west-fast.webp](../assets/district-west-fast.webp) | 432.5 | 项目视觉素材 / 见制作记录及 LICENSE |

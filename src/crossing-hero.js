@@ -1,13 +1,13 @@
 import * as THREE from '../vendor/three.module.js';
 
 // Painted color samples form a shallow 3D particle relief, not a full character mesh.
-export async function createParticleHero(keep,mobile){
+export async function createParticleHero(keep,mobile,count=mobile?24000:80000){
   let seed=90721;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-  const texture=await new THREE.TextureLoader().loadAsync('assets/crossing-painter-v2.png');
+  const texture=await new THREE.TextureLoader().loadAsync('assets/crossing-painter-v2.webp');
   const canvas=document.createElement('canvas'),width=texture.image.width,height=texture.image.height;
   canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d',{willReadFrequently:true});
   ctx.drawImage(texture.image,0,0);const pixels=ctx.getImageData(0,0,width,height).data;texture.dispose();
-  const count=mobile?60000:160000,geometry=keep(new THREE.SphereGeometry(1,6,4));
+  const geometry=keep(new THREE.SphereGeometry(1,6,4));
   const bow={value:0},gather={value:0},time={value:0},hover={value:0},burst={value:0},touch={value:new THREE.Vector3(99,99,99)};
   const material=keep(new THREE.MeshBasicMaterial({color:'#ffffff'}));
   material.onBeforeCompile=shader=>{
@@ -34,14 +34,16 @@ export async function createParticleHero(keep,mobile){
   };
   const grains=new THREE.InstancedMesh(geometry,material,count);grains.frustumCulled=false;
   const scatter=new Float32Array(count*3),phases=new Float32Array(count),radii=new Float32Array(count),dummy=new THREE.Object3D(),p=new THREE.Vector3();
+  let sliceStart=performance.now();
   for(let i=0;i<count;i++){
+    if(i%2048===0&&performance.now()-sliceStart>8){await new Promise(resolve=>setTimeout(resolve,0));sliceStart=performance.now();}
     let x,y,offset;
     do{x=Math.floor(random()*width);y=Math.floor(random()*height);offset=(y*width+x)*4;}while(pixels[offset+3]<245);
     const py=(1-y/height)*4.7,px=(x/width-.5)*4.7*width/height;
     // A shallow relief keeps the painted facial features intact during parallax.
     const depth=.10*Math.cos(px*2)+.035*Math.sin(py*2)+(random()-.5)*.013;
     p.set(px,py,depth);
-    const radius=(mobile?.0105:.0075)*(.85+random()*.25);
+    const radius=(mobile?.0105:.0075)*Math.sqrt((mobile?60000:160000)/count)*(.85+random()*.25);
     dummy.position.copy(p);dummy.scale.setScalar(radius);dummy.updateMatrix();grains.setMatrixAt(i,dummy.matrix);
     const color=new THREE.Color().setRGB(pixels[offset]/255,pixels[offset+1]/255,pixels[offset+2]/255,THREE.SRGBColorSpace);
     grains.setColorAt(i,color);
