@@ -1,0 +1,17 @@
+/* Shared panorama layout; retained even when optional atlas modules are omitted. */
+#atlas{padding:0;gap:0;display:block;overflow:hidden}
+#atlasStage{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;overflow:hidden}
+.atlas-heading{position:absolute;top:max(20px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left));z-index:3;text-align:left;pointer-events:none}
+.atlas-heading h1{font-size:clamp(24px,2.6vw,38px);margin:8px 0;padding:0}
+.atlas-heading>span{font-size:10px}
+.atlas-heading p{font-size:11px}
+#atlasImage{mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 80%,transparent 100%)}
+#atlas:not(.inspecting) #atlasPlaces{position:absolute;bottom:max(34px,env(safe-area-inset-bottom));left:0;width:100%;max-width:none;padding:0 16px;box-sizing:border-box;z-index:3;gap:clamp(8px,3vw,60px)}
+#atlas:not(.inspecting) #atlasMessage{position:absolute;bottom:10px;left:0;width:100%;z-index:3;text-align:center;pointer-events:none}
+#atlasRetry{display:inline-block;width:auto;height:auto;min-height:36px;margin-left:8px;padding:6px 10px;pointer-events:auto}
+@media(max-width:600px){
+ .atlas-heading{left:max(16px,env(safe-area-inset-left))}
+ .atlas-heading h1{font-size:28px}
+ #atlas:not(.inspecting) #atlasPlaces{bottom:max(40px,env(safe-area-inset-bottom));gap:6px 14px}
+ #atlas:not(.inspecting) #atlasMessage{bottom:max(16px,env(safe-area-inset-bottom))}
+}
