@@ -1,0 +1,14 @@
+/* Quiet seasonal tabs in the existing silk-mounted scroll controls. */
+.season-controls{position:fixed;z-index:7;top:max(22px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:3px;padding:3px 6px;background:#e7d9bbe8;border:1px solid #756a4f45;border-radius:24px;box-shadow:0 2px 12px #504b3510;backdrop-filter:blur(8px);color:#504d3d}
+.season-controls .season-heading{font-size:11px;letter-spacing:.12em;padding:0 8px;color:#827152}
+.season-controls button{width:38px;height:36px;min-height:36px;padding:5px;font:17px 'Kaiti SC','STKaiti','KaiTi',serif;touch-action:manipulation;transition:background .2s,color .2s}
+.season-controls button[aria-pressed=true]{background:#435c48;color:#f3ead0;border-color:#435c48}
+.season-controls button:disabled{opacity:.45;cursor:wait}
+.season-controls button[data-loading=true]{border-style:dashed;border-color:#756a4f}
+.season-controls #seasonStatus{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);width:max-content;max-width:260px;padding:3px 9px;background:#e7d9bbd9;border-radius:3px;font-size:10px;letter-spacing:.12em;text-align:center;pointer-events:none}
+body.in-atlas .season-controls,body.time-lens-open .season-controls{visibility:hidden}
+body.night .season-controls{background:#192b39e8;border-color:#c8b48255;color:#eadcbb}
+body.night .season-controls .season-heading{color:#bcae8b}
+body.night #seasonStatus{background:#192b39df;color:#eadcbb}
+@media(max-width:600px){.season-controls{left:14px;top:max(74px,calc(env(safe-area-inset-top) + 62px));transform:none;padding:2px 4px;gap:1px}.season-controls .season-heading{display:none}.season-controls button{width:36px;height:36px}.season-controls #seasonStatus{left:0;transform:none;max-width:240px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.season-controls button{transition:none}}

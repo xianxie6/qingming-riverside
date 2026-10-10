@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e2d4b6">
+  <title>清明上河</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles/style.css?v=28-social-links">
+  <link rel="stylesheet" href="styles/buttons.css?v=4">
+  <link rel="stylesheet" href="styles/crossing.css?v=21-loop-music">
+  <link rel="stylesheet" href="styles/seasons.css?v=1">
+</head>
+
+<body data-release="crossing" class="in-atlas scroll-page" data-midautumn-enabled="false">
+  <aside id="visitCounter" aria-live="polite" aria-label="网站总访问次数">
+    <span>入画人次</span><strong id="visitCount">—</strong>
+  </aside>
+  <section id="atlas" aria-label="全景入画" aria-describedby="atlasHint">
+    <header class="atlas-heading"><span>汴河 · 一日千年</span><h1>清明上河</h1><p id="atlasHint">移笔游目，点景入画</p><div class="atlas-module-links"><button id="crossingEntry" aria-haspopup="dialog" aria-label="穿越，穿过水墨长卷进入虹桥"><span>穿越</span><i aria-hidden="true">↗</i></button></div>
+      <nav class="creator-links" aria-label="关注作者与项目源码">
+        <a href="https://x.com/Xian0063" target="_blank" rel="noopener noreferrer" aria-label="在 X 关注作者 @Xian0063（新标签页打开）" title="X · @Xian0063"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.78 7.75L23.2 22h-6.25l-4.9-7.43L5.55 22H2.4l7.99-9.13L.8 2h6.4l4.43 6.76L18.9 2Zm-1.1 18h1.73L6.25 3.88H4.39L17.8 20Z"/></svg></a>
+        <a href="https://github.com/xianxie6/qingming-riverside" target="_blank" rel="noopener noreferrer" aria-label="查看 GitHub 项目（新标签页打开）" title="GitHub · 项目源码"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.94.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.01-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.09 1.15a10.8 10.8 0 0 1 5.62 0c2.14-1.45 3.09-1.15 3.09-1.15.61 1.55.23 2.69.11 2.98.72.78 1.16 1.78 1.16 3.01 0 4.33-2.64 5.28-5.15 5.56.4.35.77 1.04.77 2.09v3.09c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg></a>
+      </nav>
+    </header>
+    <div id="atlasFrame"><img id="atlasImage" src="assets/qingming-panorama-v1.webp" alt="从水磨作坊、沿河茶市，经虹桥到城门货市的全景长卷" draggable="false" fetchpriority="high"><div id="atlasPlaces">
+      <button data-u="0.1" style="--u:10%" aria-label="进入水磨作坊">水磨作坊</button><button data-u="0.33" style="--u:33%" aria-label="进入沿河茶市">沿河茶市</button><button data-u="0.52" style="--u:52%" aria-label="进入虹桥">虹桥烟火</button><button data-u="0.92" style="--u:92%" aria-label="进入城门货市">城门货市</button>
+    </div></div>
+    <p id="atlasMessage" role="status">正在展开画卷…</p>
+    <canvas id="atlasInk" aria-hidden="true"></canvas>
+  </section>
+  <button id="atlasReturn" aria-label="返回全景选景" title="全景选景" hidden>全景</button>
+  
+  <nav class="season-controls" aria-label="四季景色"><span class="season-heading">四时</span><button data-season="spring" aria-label="春季" aria-pressed="true" disabled>春</button><button data-season="summer" aria-label="夏季" aria-pressed="false" disabled>夏</button><button data-season="autumn" aria-label="秋季" aria-pressed="false" disabled>秋</button><button data-season="winter" aria-label="冬季" aria-pressed="false" disabled>冬</button><span id="seasonStatus" role="status" aria-live="polite">春和 · 轻衫</span></nav>
+  <main id="painting" tabindex="0" aria-label="清明上河街市，左右方向键控制行人，点击街道前往，拖动浏览，空格暂停，双击放大，E键在茶铺、桥头或码头互动">
+    
+    <canvas id="scene" role="img" aria-label="宋代沿河街市立面，茶楼、食铺、木桥，食客、摊贩、行人与船只在画中移动"></canvas>
+    
+    <button id="tea" class="scene-action" aria-label="到茶铺饮茶"><span aria-hidden="true"></span></button>
+    <button id="bridge" class="scene-action" aria-label="到桥头喂鸟"><span aria-hidden="true"></span></button>
+    <button id="dock" class="scene-action" aria-label="到码头唤船"><span aria-hidden="true"></span></button>
+    <button id="landing" class="scene-action" aria-label="到西岸码头乘船"><span aria-hidden="true"></span></button>
+    <button id="ferryRide" class="boarding-control" aria-label="上船" title="上船" hidden><svg viewBox="0 0 24 24"><path d="M5 16h14l-3 4H8Zm7-13v10m-4-4 4 4 4-4"/></svg></button>
+    <button id="towRope" class="rope-control" aria-label="到虹桥接绳" hidden><svg viewBox="0 0 24 24"><path d="M4 7c5-8 16 0 8 6S2 22 10 20s9-9 5-11M12 13l8 7"/></svg><span>接绳</span></button>
+    <button id="towGrip" class="rope-control" role="slider" aria-label="牵引绳索，按住向左拖；左箭头牵引，右箭头放缓，松开松绳；回车切换持续牵引，Escape离开" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><svg viewBox="0 0 32 24"><path d="M29 12H4m6-5-6 5 6 5M19 8c-7-5-10 8-3 8s10-9 3-8Z"/></svg><span>向左拉</span></button>
+    <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="loading" aria-label="正在加载画面"><span></span></div>
+    <div id="error" hidden>画面加载失败<button onclick="location.reload()">重试</button></div>
+  </main>
+  <nav class="controls" aria-label="画卷控制">
+    <button id="left" aria-label="向左走" title="向左走"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
+    <button id="play" aria-label="自动行走" title="自动行走"><svg viewBox="0 0 24 24"><path d="m9 6 9 6-9 6Z"/></svg></button>
+    <button id="right" aria-label="向右走" title="向右走"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button id="hailFerry" aria-label="招手乘船" title="招手乘船"><span>招船</span></button>
+    <button id="nightToggle" aria-label="切换夜景" title="夜景 · 万家灯火" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M19.5 15.4A8.2 8.2 0 0 1 8.6 4.5 8.4 8.4 0 1 0 19.5 15.4Z"/><path d="M17 3v4m-2-2h4"/></svg><span>夜景</span></button>
+    <button id="weatherStart" aria-label="体验清明时雨" title="清明时雨"><svg viewBox="0 0 28 24"><path d="M6 13q-3 0-3-3t3-3q1-4 5-4 4 0 5 3 4-1 6 2t-1 5H6Zm3 3-2 4m7-4-2 4m7-4-2 4"/></svg><span>时雨</span></button>
+    <button id="bridgeStart" aria-label="体验虹桥过船" title="虹桥过船"><svg viewBox="0 0 28 24"><path d="M3 16q11 10 22 0H3Zm11-12v12M5 11q9-13 18 0"/></svg><span>过船</span></button>
+  </nav>
+  <button id="towMemo" aria-label="打开虹桥画稿" title="虹桥画稿" hidden><svg viewBox="0 0 24 24"><path d="M4 5q4-2 8 1 4-3 8-1v15q-4-2-8 1-4-3-8-1Zm8 1v15"/></svg></button>
+  <dialog id="bridgeSketch" aria-labelledby="sketchTitle">
+    <div class="sketch-heading">
+      <div class="sketch-heading-copy"><p id="sketchEyebrow">画中故事 · 三</p><h1 id="sketchTitle">虹桥过船</h1><p id="sketchSubtitle">漕船顺流而下，桥上行人呼喊示警</p></div>
+      <div class="sketch-actions"><button id="saveSketch" aria-label="保存画稿" title="保存画稿"><svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg></button><button id="closeSketch" aria-label="收起画稿" title="收起画稿"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+    </div>
+    <div class="sketch-stage"><img id="sketchImage" alt="画师记录的虹桥过船画稿"><span class="sketch-vignette" aria-hidden="true"></span><span id="sketchSeal">亲历</span></div>
+    <nav id="sketchScenes" aria-label="清明上河图经典场景"></nav>
+  </dialog>
+  <button id="follow" aria-label="回到行人" title="回到行人"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3"/></svg></button>
+  <div class="corner-controls">
+    <button id="zoom" aria-label="放大细节" title="放大细节" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5M7 10h6m-3-3v6"/></svg></button>
+    <button id="sound" aria-label="开启背景音乐与环境声" title="开启背景音乐与环境声" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4Zm12-1q4 4 0 8m3-11q6 7 0 14"/><path class="mute-mark" d="m4 3 16 18"/></svg></button>
+    <button id="motion" aria-label="暂停动画" title="暂停动画"><svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg></button>
+    <button id="fullscreen" aria-label="全屏" title="全屏"><svg viewBox="0 0 24 24"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+  </div>
+  <nav class="district-stops" aria-label="街区位置"><button class="district-stop" data-x="-1550" aria-label="浏览水磨作坊" title="水磨作坊"></button><button class="district-stop" data-x="650" aria-label="浏览茶市" title="茶市"></button><button class="district-stop" data-x="1560" aria-label="浏览虹桥" title="虹桥"></button><button class="district-stop" data-x="3360" aria-label="浏览城门货市" title="城门货市"></button></nav>
+  <input id="position" aria-label="画卷位置" type="range" min="0" max="1000" value="0">
+  
+  <script src="src/visits.js?v=3-local-preview" defer></script>
+  <script src="src/dynamic-loader.js?v=40-song-autumn-wardrobe"></script>
+  <script src="src/atlas.js?v=18-crossing-release"></script>
+  <script src="src/crossing-audio.js?v=1-loop-music" defer></script>
+  <script src="src/crossing.js?v=24-performance" defer></script>
+  
+</body>
+</html>

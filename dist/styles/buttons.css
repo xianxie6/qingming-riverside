@@ -1,0 +1,41 @@
+/* Shared default for visible buttons. Spatial hit areas and map dots keep
+   their geometry; they are not visible action-button surfaces. */
+:root{--button-gold:#cfbb9299;--button-ink:#fff1d4;--button-surface:#807155}
+button:not(.scene-action):not(.district-stop):not(.scroll-page button),
+.scroll-page :is(#midautumnEntry,#midautumnBack,#festivalNightToggle),a.ink-button,a.quiet-link{
+ border:1px solid var(--button-gold)!important;
+ border-radius:7px 1px!important;
+ color:var(--button-ink)!important;
+ background:
+ linear-gradient(#dbbc7d,#dbbc7d) left 7px top 7px/12px 1px no-repeat,
+ linear-gradient(#dbbc7d,#dbbc7d) left 7px top 7px/1px 12px no-repeat,
+ linear-gradient(#dbbc7d,#dbbc7d) left 11px top 11px/6px 1px no-repeat,
+ linear-gradient(#dbbc7d,#dbbc7d) right 7px bottom 7px/12px 1px no-repeat,
+ linear-gradient(#dbbc7d,#dbbc7d) right 7px bottom 7px/1px 12px no-repeat,
+ linear-gradient(#dbbc7d,#dbbc7d) right 11px bottom 11px/6px 1px no-repeat,
+ linear-gradient(135deg,#938264d9,#71634dd9)!important;
+ box-shadow:inset 0 0 0 3px #88765766,inset 0 0 0 4px #dac69b55,0 2px 7px #49392220!important;
+ transition:box-shadow .25s,filter .25s;
+}
+button:not(.scene-action):not(.district-stop):not(.scroll-page button):hover:not(:disabled),
+.scroll-page :is(#midautumnEntry,#midautumnBack,#festivalNightToggle):hover:not(:disabled),a.quiet-link:hover{filter:brightness(1.16)}
+button:not(.scroll-page button):focus-visible,
+.scroll-page :is(#midautumnEntry,#midautumnBack,#festivalNightToggle):focus-visible,a.quiet-link:focus-visible{outline:2px solid #ffe4a9;outline-offset:3px}
+button:disabled{cursor:not-allowed}
+.menu-sheet #prepare:before,.menu-sheet #prepare:after{display:none}
+.spot{padding:12px 18px;gap:7px}
+.spot i{border:0;border-radius:0;width:auto;height:auto}
+.spot:after{display:none}
+.scene-actions{background:none;border:0;padding:0;gap:8px}
+.scene-actions button{padding:12px 18px;min-width:0}
+.page-header .quiet-link{padding:10px 16px}
+.menu-sheet .close-menu{width:38px;height:38px;font-size:24px}
+/* Icon-only controls use a plain outline, without ornamental fill. */
+button.icon-button,button.close-menu,button:has(>svg:only-child){
+ background:transparent!important;
+ border:1px solid var(--button-gold)!important;
+ border-radius:3px!important;
+ box-shadow:none!important;
+}
+button.icon-button:before,button.icon-button:after,
+button.close-menu:before,button.close-menu:after{display:none!important}
