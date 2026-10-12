@@ -63,7 +63,9 @@
       for(let r=0;r<points.length-1;r++)for(let c=0;c<points[r].length-1;c++){
         const p=points[r][c],q=points[r][c+1],a=points[r+1][c],b=points[r+1][c+1];add(p);add(q);add(a);add(q);add(b);add(a);
       }
-      gl.bufferData(gl.ARRAY_BUFFER,this.vertices.subarray(0,i),gl.STREAM_DRAW);gl.drawArrays(gl.TRIANGLES,0,count);
+      // Reuse GPU storage across all people and frames; only the vertices change.
+      if(this.bufferBytes!==this.vertices.byteLength){gl.bufferData(gl.ARRAY_BUFFER,this.vertices.byteLength,gl.STREAM_DRAW);this.bufferBytes=this.vertices.byteLength;}
+      gl.bufferSubData(gl.ARRAY_BUFFER,0,this.vertices.subarray(0,i));gl.drawArrays(gl.TRIANGLES,0,count);
     }
   }
 

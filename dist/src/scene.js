@@ -1,6 +1,6 @@
 const festivalEnabled=false,festivalGate={x:0,y:0};
 const drawFestivalGate=()=>{},drawFestivalLights=()=>{};
-import './seasons.js?v=3-song-autumn-wardrobe';
+import './seasons.js?v=4-lossless';
 import {ThreeWaterRenderer} from './water-three.js?v=3-world-cache';
 import {BackdropCache} from './scene-backdrop.js?v=1';
 
@@ -81,10 +81,10 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     // Finish any original district requests before replacing their image refs.
     await districts.load();springSprites??=characters.sprites;
     if(id==='spring')return {...springDistricts,center:springArtwork,sprites:springSprites};
-    const wardrobeSource={autumn:'assets/seasons/people-autumn-v1.png',winter:'assets/seasons/people-winter-v1.png'}[id];
+    const wardrobeSource={autumn:'assets/seasons/people-autumn-v1.webp',winter:'assets/seasons/people-winter-v1.webp'}[id];
     const [art,wardrobe]=await Promise.all([seasons.loadArt(id),wardrobeSource?inhabitants.loadWardrobe(wardrobeSource):null]);
     art.wardrobe=wardrobe;
-    const featuredSource=id==='autumn'?'assets/seasons/featured-autumn-v2.png':`assets/seasons/featured-${id}.png`;
+    const featuredSource=id==='autumn'?'assets/seasons/featured-autumn-v2.webp':`assets/seasons/featured-${id}.webp`;
     if(!seasonalCharacters.has(id))seasonalCharacters.set(id,new featured.Characters(featuredSource));
     const cast=seasonalCharacters.get(id);
     try{await cast.assetsReady;}catch(error){seasonalCharacters.delete(id);throw error;}
@@ -864,10 +864,9 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     }
     const visibleRange=[camera,camera+width/scale];
     const dpr=Math.min(devicePixelRatio||1,2),density=dpr*scale;
-    const backdrop=backdropCache.get({camera,viewWidth:width/scale,height:H,density,key:[districts.revision,weatherSample.wet].join(':')},(c,rect)=>{
+    const backdrop=backdropCache.get({camera,viewWidth:width/scale,height:H,density,key:districts.revision},(c,rect)=>{
       c.fillStyle='#e2d4b6';c.fillRect(rect.x,rect.y,rect.width,rect.height);
       districts.draw(c,artwork,rect.x,rect.x+rect.width);
-      window.QingmingWeather.drawWetGround(c,weatherSample,[rect.x,rect.x+rect.width],streetY);
     });
     ctx.save();ctx.setTransform(1,0,0,1,0,0);
     ctx.drawImage(backdrop.canvas,(camera-backdrop.rect.x)*density,state.viewY*density,width*dpr,height*dpr,0,0,canvas.width,canvas.height);
@@ -876,6 +875,8 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     // Dynamic layers already render above display resolution. Bilinear
     // compositing avoids filtering those changing canvases again every frame.
     ctx.imageSmoothingQuality='low';
+    // Wet ground is above the river sample region; keep architecture cached.
+    window.QingmingWeather.drawWetGround(ctx,weatherSample,[backdrop.rect.x,backdrop.rect.x+backdrop.rect.width],streetY);
 
     if(threeWater.active){
       const layer=threeWater.render({time:t,camera,viewY:state.viewY,width,height,scale,source:backdrop.canvas,sourceRect:backdrop.rect,backdropKey:backdrop.version});

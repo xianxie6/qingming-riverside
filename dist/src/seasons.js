@@ -41,7 +41,7 @@
     });
   }
   async function loadArt(id){
-    const images=await Promise.all(['west','center','east'].map(part=>loadImage(`assets/seasons/${id}-${part}.png`)));
+    const images=await Promise.all(['west','center','east'].map(part=>loadImage(`assets/seasons/${id}-${part}.webp`)));
     return {west:images[0],center:images[1],east:images[2]};
   }
   function weather(id,sample,snow=true,time=0){
