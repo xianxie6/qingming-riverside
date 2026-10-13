@@ -15,7 +15,7 @@ test('street scripts download together, execute in order, and share one startup'
   assert.equal(window.loadQingmingScene(),pending);
   assert.equal(scripts.length,18,'all dependencies start without waiting for a round trip');
   assert.ok(scripts.every(s=>s.async===false),'classic scripts retain dependency order');
-  assert.equal(links.filter(l=>l.as==='image').length,4,'shared images start alongside code; side districts wait for the selected view');
+  assert.equal(links.filter(l=>l.as==='image').length,5,'shared images start alongside code; side districts wait for the selected view');
   assert.ok(links.some(l=>l.href==='vendor/three.core.js'));
   scripts.slice(0,17).forEach(s=>s.onload());await Promise.resolve();
   assert.equal(scripts.length,18,'scene cannot execute before all dependencies');

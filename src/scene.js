@@ -53,18 +53,23 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   const motion = document.querySelector('#motion');
   let artwork = new Image();
   const springArtwork=artwork,springDistricts={west:districts.west,east:districts.east};
-  const boatArtwork=new Image(),boatSprite=document.createElement('canvas');boatSprite.width=0;
-  const boatReady=new Promise((resolve,reject)=>{
-  boatArtwork.onload=()=>{
-    boatSprite.width=featured.boat.width*3;boatSprite.height=featured.boat.height*3;
-    const context=boatSprite.getContext('2d');context.imageSmoothingQuality='high';
-    context.drawImage(boatArtwork,40,150,2100,425,0,0,boatSprite.width,boatSprite.height);
-    resolve();
-  };
-  boatArtwork.onerror=()=>reject(new Error('船只素材加载失败'));
-  });
+  const boatSprite=document.createElement('canvas'),ferrySprite=document.createElement('canvas');
+  boatSprite.width=ferrySprite.width=0;
+  function loadBoatSprite(src,sprite){
+    return new Promise((resolve,reject)=>{
+      const artwork=new Image();
+      artwork.onload=()=>{
+        sprite.width=featured.boat.width*3;sprite.height=featured.boat.height*3;
+        const context=sprite.getContext('2d');context.imageSmoothingQuality='high';
+        context.drawImage(artwork,40,150,2100,425,0,0,sprite.width,sprite.height);
+        resolve();
+      };
+      artwork.onerror=()=>reject(new Error('船只素材加载失败'));
+      artwork.src=src;
+    });
+  }
+  const boatReady=Promise.all([loadBoatSprite('assets/boat.webp',boatSprite),loadBoatSprite('assets/boat-passenger-clear.webp',ferrySprite)]);
   boatReady.catch(()=>{});
-  boatArtwork.src='assets/boat.webp';
   const world=window.ScrollWorld;
   const ferry=world.createFerry();
   let life;
@@ -238,11 +243,11 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     ctx.restore();
     return {hand:{x:x+direction*(7-step*.5)*scale,y:y-16*scale}};
   }
-  function boatRim(){
+  function boatRim(sprite=boatSprite){
     const vessel=featured.boat;
-    if(!boatSprite.width)return;
+    if(!sprite.width)return;
     ctx.save();ctx.globalAlpha=.92;ctx.beginPath();ctx.rect(vessel.left,vessel.deckY+.6,vessel.width,20);ctx.clip();
-    ctx.drawImage(boatSprite,vessel.left,vessel.top,vessel.width,vessel.height);ctx.restore();
+    ctx.drawImage(sprite,vessel.left,vessel.top,vessel.width,vessel.height);ctx.restore();
   }
   function boatWake(t,rowing){
     const wake=water.wakeStrength(rowing);
@@ -322,17 +327,18 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
   function boat(x,y,s,t,direction=1,rowing=true,id='ferry') {
     if(x+s*100<state.camera||x-s*100>state.camera+state.width/state.scale)return;
     ctx.save();ctx.translate(x,y+Math.sin(t*.7)*.6);ctx.scale(s*direction,s);
-    if(boatSprite.width){
+    const sprite=id==='ferry'?ferrySprite:boatSprite;
+    if(sprite.width){
       boatWake(t,rowing);
       // Reuse the alpha sprite as reflected, shifting scanlines on the water.
       for(let i=0;i<6;i++){
         ctx.globalAlpha=.065-i*.007;
-        const strip=boatSprite.height*70/425;
-        ctx.drawImage(boatSprite,0,i*strip,boatSprite.width,strip,-79+Math.sin(t*.8+i)*1.3,16-i*1.6,158,1.8);
+        const strip=sprite.height*70/425;
+        ctx.drawImage(sprite,0,i*strip,sprite.width,strip,-79+Math.sin(t*.8+i)*1.3,16-i*1.6,158,1.8);
       }
       ctx.globalAlpha=.92;
       const vessel=featured.boat;
-      ctx.drawImage(boatSprite,vessel.left,vessel.top,vessel.width,vessel.height);
+      ctx.drawImage(sprite,vessel.left,vessel.top,vessel.width,vessel.height);
       if(characters.ready&&inhabitants.ready){
         const strokePeriod=3.6,pose=movement.activityAt('row',rowing?t:0,0,strokePeriod);
         if(!rowing)Object.assign(pose,{handX:0,handY:0,lean:0,nod:0,sway:0});
@@ -351,7 +357,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
         }
         disturbBoat(id,x,y,s,t,direction,rowing,pole.tip);
         // The near gunwale covers the soles without concealing the legs.
-        boatRim();
+        boatRim(sprite);
       }else{
         person(vessel.crewX,vessel.deckY,1.4,rowing?t:0,1,'#828774',false);
       }
@@ -914,7 +920,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=1.9-scissor';
     }
     if(aboard()){
       protagonist();
-      ctx.save();ctx.translate(ferry.x,ferry.y+Math.sin((t+3)*.7)*.6);ctx.scale(world.ferryGeometry.scale*ferry.direction,world.ferryGeometry.scale);boatRim();ctx.restore();
+      ctx.save();ctx.translate(ferry.x,ferry.y+Math.sin((t+3)*.7)*.6);ctx.scale(world.ferryGeometry.scale*ferry.direction,world.ferryGeometry.scale);boatRim(ferrySprite);ctx.restore();
     }
     // The ferry and its passenger form one rear layer. Foreground traffic
     // follows in waterline order, including each boat's crew and wake.

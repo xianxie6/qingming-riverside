@@ -70,6 +70,37 @@ test('riding cannot be interrupted by a second summon or move while paused',()=>
   const before={...ferry};assert.equal(summonFerry(ferry,'west'),false);stepFerry(ferry,0);assert.deepEqual(ferry,before);
   assert.equal(boardFerry(ferry),false);
 });
+test('passenger stays on the clear deck through both headings and boarding transitions',()=>{
+  const {ferryGeometry}=require('../src/world.js');
+  const {boat}=require('../src/featured-characters.js');
+  for(const origin of ['east','west']){
+    const ferry={...createFerry(),...berths[origin],berth:origin,mode:'moored'};
+    boardFerry(ferry);
+    ferry.tripTime=3.4;
+    const boarded=passengerPose(ferry);
+    stepFerry(ferry,.001);
+    const sailing=passengerPose(ferry);
+    assert.ok(Math.hypot(boarded.x-sailing.x,boarded.y-sailing.y)<.01,'no jump when boarding finishes');
+    const localX=(sailing.x-ferry.x)/(ferry.direction*ferryGeometry.scale);
+    assert.ok(localX>30&&localX<65,'feet stay beyond the canopy and inside the open deck');
+    assert.ok(Math.abs(localX-boat.crewX)>90,'passenger clears the boatman');
+    Object.assign(ferry,berths[ferry.destination]);
+    ferry.tripTime=ferryTravelDuration;
+    const arrived=passengerPose(ferry);
+    stepFerry(ferry,.001);
+    const landing=passengerPose(ferry);
+    assert.ok(Math.hypot(arrived.x-landing.x,arrived.y-landing.y)<.01,'no jump when disembarking starts');
+    let previous=landing;
+    while(isPassenger(ferry)){
+      stepFerry(ferry,1/60);
+      if(isPassenger(ferry)){
+        const pose=passengerPose(ferry);
+        assert.ok(Math.hypot(pose.x-previous.x,pose.y-previous.y)<2,'continuous disembarking');
+        previous=pose;
+      }
+    }
+  }
+});
 test('passenger ferry uses a slow eased crossing rather than racing between banks',()=>{
   const ferry=createFerry();ferry.mode='docked';ferry.x=2085;ferry.y=556;boardFerry(ferry);
   while(ferry.mode==='boarding')stepFerry(ferry,1/60);
