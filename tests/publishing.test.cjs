@@ -10,6 +10,7 @@ async function fixture(t){
   const write=async(name,content)=>{await fs.mkdir(path.dirname(path.join(root,name)),{recursive:true});await fs.writeFile(path.join(root,name),content);};
   await write('index.html','<link href="styles/site.css"><script src="src/main.js"></script>');
   await write('sunyang.html','<a href="index.html">返回</a>');
+  await write('explore.html','<a href="index.html">返回</a>');
   await write('.nojekyll','');
   await write('src/main.js',"import './scene.js'; const image='assets/picture.webp';");
   await write('src/scene.js','');
@@ -43,4 +44,32 @@ test('invalid or missing manifest entries fail before replacing the previous bui
   await write('scripts/public-assets.json',JSON.stringify({files:['assets/missing.png']}));
   await assert.rejects(buildStatic(root),{code:'ENOENT'});
   assert.equal(await fs.readFile(path.join(root,'dist/previous.html'),'utf8'),'previous build');
+});
+
+test('crossing release includes the complete journey and street but omits independent modules and their assets',async t=>{
+  const {root,write}=await fixture(t);
+  const {crossingFiles}=await import('../scripts/crossing-release.mjs');
+  const {buildStatic}=await import('../scripts/build-static.mjs');
+  const {validatePublicDirectory}=await import('../scripts/check-public-assets.mjs');
+  const actualRoot=path.resolve(__dirname,'..');
+  for(const file of crossingFiles){
+    await write(file,/\.(?:js|html|css|json)$/.test(file)?await fs.readFile(path.join(actualRoot,file),'utf8'):'asset fixture');
+  }
+  await write('scripts/public-assets.json',JSON.stringify({files:crossingFiles.filter(file=>/^(assets|vendor)\//.test(file))}));
+  for(const file of ['src/time-lens.js','styles/time-lens.css','src/paper-theatre.js','assets/time-lens/modern.png','assets/explore/background.webp'])await write(file,'local only');
+  const files=await buildStatic(root,path.join(root,'dist'),{profile:'crossing'});
+  assert.equal(await validatePublicDirectory(path.join(root,'dist')),files.length);
+  const html=await fs.readFile(path.join(root,'dist/index.html'),'utf8');
+  assert.match(html,/id="crossingEntry"/);
+  assert.match(html,/data-release="crossing"/);
+  assert.match(html,/data-season="autumn"/);
+  assert.doesNotMatch(html,/timeLens|time-lens|paperTheatre|paper-theatre|explore\.html|midautumnWelcome|sunyang\.html/);
+  for(const file of ['sunyang.html','explore.html','src/time-lens.js','styles/time-lens.css','src/paper-theatre.js','src/midautumn.js','assets/time-lens/modern.png','assets/explore/background.webp']){
+    await assert.rejects(fs.access(path.join(root,'dist',file)),{code:'ENOENT'});
+  }
+  for(const file of ['src/crossing-three.js','src/crossing-courtyard.js','assets/crossing-painter-v2.webp','assets/audio/crossing-background.mp3','assets/seasons/people-autumn-v1.webp'])assert.ok(files.includes(file));
+  const local=await fs.readFile(path.join(root,'index.html'),'utf8');
+  assert.match(local,/id="timeLensStreetEntry"/,'the local playground retains the unpublished feature');
+  const scene=await fs.readFile(path.join(root,'dist/src/scene.js'),'utf8');
+  assert.doesNotMatch(scene,/from '\.\/midautumn|shopArt\.src=/);
 });

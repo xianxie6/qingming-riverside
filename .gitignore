@@ -22,3 +22,6 @@ X长文-*.md
 *banner*.png
 *banner*.jpg
 *banner*.webp
+
+# Local scratch output from tooling sessions.
+private/

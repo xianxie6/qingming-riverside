@@ -4,11 +4,14 @@
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "build": "node scripts/build-static.mjs && node scripts/check-public-assets.mjs",
+    "build:all": "node scripts/build-static.mjs --all && node scripts/check-public-assets.mjs",
     "dev": "npm run build && wrangler dev",
     "check": "npm run build && wrangler deploy --dry-run",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:pages": "npm run build && node scripts/deploy-pages.mjs"
   },
   "devDependencies": {
+    "esbuild": "0.28.1",
     "wrangler": "^4.134.0"
   },
   "engines": {
