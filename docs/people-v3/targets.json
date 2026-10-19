@@ -1,0 +1,2149 @@
+[
+  {
+    "targetId": "life-01",
+    "categoryId": "tea",
+    "title": "添茶的茶博士",
+    "sceneEntityIds": [
+      "tea-01"
+    ],
+    "members": [
+      {
+        "id": "tea-01",
+        "regionId": "tea",
+        "groupId": "tea-scene-1",
+        "role": "茶博士",
+        "action": "俯身添茶",
+        "costumeVariant": "tea-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.3003992,
+          0.710828
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 12.96,
+        "facing": "side",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.710828,
+        "occlusionMaskId": null,
+        "interaction": "茶博士正在俯身添茶。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，茶博士俯身添茶",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#0"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "茶市西侧，茶客身旁的人正提着茶壶。",
+    "hintText": "沿河茶市题签左上方，寻找背身提壶的人。",
+    "description": "壶在手中，茶客在身旁。一壶新茶，续着街市里的闲话。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 597.1399968,
+      "y": 546.0767800000001,
+      "w": 9.720000000000027,
+      "h": 12.960000000000036
+    },
+    "hintBounds": {
+      "x": 0.3003992,
+      "y": 0.7038939872611466,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-02",
+    "categoryId": "tea",
+    "title": "抱碗穿行的跑堂",
+    "sceneEntityIds": [
+      "tea-06"
+    ],
+    "members": [
+      {
+        "id": "tea-06",
+        "regionId": "tea",
+        "groupId": "tea-scene-1",
+        "role": "跑堂",
+        "action": "抱碗穿行",
+        "costumeVariant": "tea-7",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 7,
+        "position": [
+          0.3233533,
+          0.7184713
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.7184713,
+        "occlusionMaskId": null,
+        "interaction": "跑堂正在抱碗穿行。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，跑堂抱碗穿行",
+        "members": 1,
+        "groundCoverage": 0.972,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#7"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "茶市西侧，他把一摞碗抱在胸前。",
+    "hintText": "留意茶市题签左侧，添茶人下方的蓝衣跑堂。",
+    "description": "碗叠在怀里，脚步却没有停。桌席之间，总有人忙着照应。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 642.4200132,
+      "y": 550.3103705,
+      "w": 11.159999999999968,
+      "h": 14.879999999999995
+    },
+    "hintBounds": {
+      "x": 0.3233533,
+      "y": 0.7105100261146495,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-03",
+    "categoryId": "tea",
+    "title": "举杯的老茶客",
+    "sceneEntityIds": [
+      "tea-02"
+    ],
+    "members": [
+      {
+        "id": "tea-02",
+        "regionId": "tea",
+        "groupId": "tea-scene-1",
+        "role": "老茶客",
+        "action": "侧坐饮茶",
+        "costumeVariant": "tea-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.3083832,
+          0.7082803
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.7082803,
+        "occlusionMaskId": null,
+        "interaction": "老茶客正在侧坐饮茶。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，老茶客侧坐饮茶",
+        "members": 1,
+        "groundCoverage": 0.933,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#1"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "添茶人身旁，一位老者把杯子举到嘴边。",
+    "hintText": "到茶市题签左上方，找坐着举杯的灰发茶客。",
+    "description": "坐下来，喝口茶。来往脚步匆匆，他有自己的从容。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 612.4199328,
+      "y": 542.3104354999999,
+      "w": 11.159999999999968,
+      "h": 14.879999999999995
+    },
+    "hintBounds": {
+      "x": 0.30838319999999997,
+      "y": 0.7003190261146495,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-04",
+    "categoryId": "tea",
+    "title": "听故事的小圈子",
+    "sceneEntityIds": [
+      "tea-07",
+      "tea-08",
+      "tea-09"
+    ],
+    "members": [
+      {
+        "id": "tea-07",
+        "regionId": "tea",
+        "groupId": "tea-scene-2",
+        "role": "讲述者",
+        "action": "挥扇讲述",
+        "costumeVariant": "tea-3",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 3,
+        "position": [
+          0.3473054,
+          0.6904459
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "side",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.6904459,
+        "occlusionMaskId": null,
+        "interaction": "讲述者正在挥扇讲述。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，讲述者挥扇讲述",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#3"
+      },
+      {
+        "id": "tea-08",
+        "regionId": "tea",
+        "groupId": "tea-scene-2",
+        "role": "听书老者",
+        "action": "侧耳听书",
+        "costumeVariant": "tea-4",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 4,
+        "position": [
+          0.3562874,
+          0.6904459
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.6904459,
+        "occlusionMaskId": null,
+        "interaction": "听书老者正在侧耳听书。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，听书老者侧耳听书",
+        "members": 1,
+        "groundCoverage": 0.989,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#4"
+      },
+      {
+        "id": "tea-09",
+        "regionId": "tea",
+        "groupId": "tea-scene-2",
+        "role": "年轻茶客",
+        "action": "坐听交谈",
+        "costumeVariant": "tea-2",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 2,
+        "position": [
+          0.3652695,
+          0.6929936
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.6929936,
+        "occlusionMaskId": null,
+        "interaction": "年轻茶客正在坐听交谈。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，年轻茶客坐听交谈",
+        "members": 1,
+        "groundCoverage": 0.933,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#2"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "茶市中段，一人挥扇，两人侧耳。",
+    "hintText": "茶市题签正上方，留意拿扇的讲述者和身旁两位听众。",
+    "description": "一把扇子展开故事，几位听客围在身旁。片刻闲暇也有滋味。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 690.4200215999999,
+      "y": 528.3104314999999,
+      "w": 47.16005640000003,
+      "h": 16.879944499999965
+    },
+    "hintBounds": {
+      "x": 0.35628744999999995,
+      "y": 0.6837584761146496,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-05",
+    "categoryId": "tea",
+    "title": "摊前递碗",
+    "sceneEntityIds": [
+      "tea-13",
+      "tea-14"
+    ],
+    "members": [
+      {
+        "id": "tea-13",
+        "regionId": "tea",
+        "groupId": "tea-scene-3",
+        "role": "食摊主人",
+        "action": "双手递碗",
+        "costumeVariant": "tea-5",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.4141717,
+          0.6191083
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.6191083,
+        "occlusionMaskId": null,
+        "interaction": "食摊主人正在双手递碗。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，食摊主人双手递碗",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#5"
+      },
+      {
+        "id": "tea-14",
+        "regionId": "tea",
+        "groupId": "tea-scene-3",
+        "role": "女顾客",
+        "action": "递钱买食",
+        "costumeVariant": "tea-6",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/tea-low.webp",
+          "high": "assets/explore/people-v2/tea.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "tea",
+          "format": "png"
+        },
+        "sprite": 6,
+        "position": [
+          0.4201597,
+          0.6267516
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "side",
+        "surfaceId": "tea-verified-ground",
+        "depthOrder": 0.6267516,
+        "occlusionMaskId": null,
+        "interaction": "女顾客正在递钱买食。",
+        "animation": null,
+        "accessibilityDescription": "沿河茶市，女顾客递钱买食",
+        "members": 1,
+        "groundCoverage": 0.983,
+        "visualIdentity": "assets/explore/people-v2/tea.webp#6"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "茶市东头，一碗食物与一枚钱相对。",
+    "hintText": "茶市靠虹桥的一端，寻找端碗摊主与伸手的顾客。",
+    "description": "摊主递出一碗热食，客人伸手付钱。寻常买卖，都是日子的温度。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 824.4200867999999,
+      "y": 472.3104155,
+      "w": 23.15995200000009,
+      "h": 20.87999050000002
+    },
+    "hintBounds": {
+      "x": 0.41716570000000003,
+      "y": 0.6149686761146497,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-06",
+    "categoryId": "mill",
+    "title": "倾袋卸粮的工人",
+    "sceneEntityIds": [
+      "mill-01"
+    ],
+    "members": [
+      {
+        "id": "mill-01",
+        "regionId": "mill",
+        "groupId": "mill-scene-1",
+        "role": "磨坊工人",
+        "action": "倾袋卸粮",
+        "costumeVariant": "mill-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.2035928,
+          0.5923567
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "side",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.5923567,
+        "occlusionMaskId": null,
+        "interaction": "磨坊工人正在倾袋卸粮。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，磨坊工人倾袋卸粮",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#0"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "作坊上方，他正弯身倒出粮袋。",
+    "hintText": "水磨作坊北侧的小组中，留意倾斜的粮袋。",
+    "description": "粮袋倾下，今日的忙碌从这里开始。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 401.9549712,
+      "y": 450.1696095,
+      "w": 12.089999999999975,
+      "h": 16.120000000000005
+    },
+    "hintBounds": {
+      "x": 0.2035928,
+      "y": 0.5837319866242038,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-07",
+    "categoryId": "mill",
+    "title": "提笔登记的账房",
+    "sceneEntityIds": [
+      "mill-13"
+    ],
+    "members": [
+      {
+        "id": "mill-13",
+        "regionId": "mill",
+        "groupId": "mill-scene-4",
+        "role": "账房",
+        "action": "提笔登记",
+        "costumeVariant": "mill-2",
+        "assetVariants": {
+          "low": "assets/explore/people-v3/sprites-4-low.webp",
+          "high": "assets/explore/people-v3/sprites-4.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v3",
+          "name": "sprites-4",
+          "format": "png"
+        },
+        "sprite": 26,
+        "position": [
+          0.260479,
+          0.6305732
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.04,
+        "facing": "three-quarter",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.6305732,
+        "occlusionMaskId": null,
+        "interaction": "账房正在提笔登记。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，账房提笔登记",
+        "members": 1,
+        "assetRegion": "unique-4",
+        "atlasColumns": 8,
+        "atlasRows": 4,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v3/sprites-4.webp#26"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "作坊东侧，一位记账人低头提笔。",
+    "hintText": "水磨右上方，几位送粮人身旁有一位账房。",
+    "description": "来货一笔，交接一笔。院中的忙碌，被仔细记下。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 516.734916,
+      "y": 482.08316199999996,
+      "w": 10.529999999999973,
+      "h": 14.04000000000002
+    },
+    "hintBounds": {
+      "x": 0.260479,
+      "y": 0.623061352866242,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-08",
+    "categoryId": "mill",
+    "title": "坐饮的搬夫",
+    "sceneEntityIds": [
+      "mill-26"
+    ],
+    "members": [
+      {
+        "id": "mill-26",
+        "regionId": "mill",
+        "groupId": "mill-passing-2",
+        "role": "歇脚搬夫",
+        "action": "坐饮葫芦水",
+        "costumeVariant": "mill-6",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 6,
+        "position": [
+          0.2095808,
+          0.6611465
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "side",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.6611465,
+        "occlusionMaskId": null,
+        "interaction": "歇脚搬夫正在坐饮葫芦水。",
+        "animation": null,
+        "accessibilityDescription": "歇脚搬夫正在坐饮葫芦水。",
+        "members": 1,
+        "assetRegion": "mill",
+        "groundCoverage": 0.943,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#6"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "作坊中间的路边，有人坐着喝水。",
+    "hintText": "水磨院中南北通路上，寻找拿着葫芦歇脚的人。",
+    "description": "放下肩上的活计，先喝一口水。歇息也是劳作的一部分。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 415.1249232,
+      "y": 507.04000249999996,
+      "w": 9.75,
+      "h": 12.999999999999943
+    },
+    "hintBounds": {
+      "x": 0.2095808,
+      "y": 0.6541910859872611,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-09",
+    "categoryId": "mill",
+    "title": "作坊交接",
+    "sceneEntityIds": [
+      "mill-05",
+      "mill-06",
+      "mill-07"
+    ],
+    "members": [
+      {
+        "id": "mill-05",
+        "regionId": "mill",
+        "groupId": "mill-scene-2",
+        "role": "账房",
+        "action": "提笔登记",
+        "costumeVariant": "mill-2",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 2,
+        "position": [
+          0.2065868,
+          0.6866242
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "three-quarter",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.6866242,
+        "occlusionMaskId": null,
+        "interaction": "账房正在提笔登记。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，账房提笔登记",
+        "members": 1,
+        "groundCoverage": 0.964,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#2"
+      },
+      {
+        "id": "mill-06",
+        "regionId": "mill",
+        "groupId": "mill-scene-2",
+        "role": "送粮农户",
+        "action": "打开粮筐",
+        "costumeVariant": "mill-3",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 3,
+        "position": [
+          0.2125749,
+          0.6840764
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "side",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.6840764,
+        "occlusionMaskId": null,
+        "interaction": "送粮农户正在打开粮筐。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，送粮农户打开粮筐",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#3"
+      },
+      {
+        "id": "mill-07",
+        "regionId": "mill",
+        "groupId": "mill-scene-2",
+        "role": "磨坊帮工",
+        "action": "接取粮粉",
+        "costumeVariant": "mill-5",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.2295409,
+          0.6840764
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "three-quarter",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.6840764,
+        "occlusionMaskId": null,
+        "interaction": "磨坊帮工正在接取粮粉。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，磨坊帮工接取粮粉",
+        "members": 1,
+        "groundCoverage": 0.938,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#5"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "作坊西侧，记账、开筐与接粮连成一组。",
+    "hintText": "水磨题签上方，寻找账房、送粮农户与接粮帮工。",
+    "description": "一人登记，一人打开粮筐，一人接取。院里的活计彼此衔接。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 409.12494719999995,
+      "y": 523.126374,
+      "w": 55.75001640000005,
+      "h": 16.913622999999916
+    },
+    "hintBounds": {
+      "x": 0.21806384999999998,
+      "y": 0.6771760324840764,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-10",
+    "categoryId": "mill",
+    "title": "车旁搬运",
+    "sceneEntityIds": [
+      "mill-09",
+      "mill-11",
+      "mill-12"
+    ],
+    "members": [
+      {
+        "id": "mill-09",
+        "regionId": "mill",
+        "groupId": "mill-scene-3",
+        "role": "磨坊工人",
+        "action": "倾袋卸粮",
+        "costumeVariant": "mill-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v3/sprites-4-low.webp",
+          "high": "assets/explore/people-v3/sprites-4.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v3",
+          "name": "sprites-4",
+          "format": "png"
+        },
+        "sprite": 24,
+        "position": [
+          0.2754491,
+          0.7273885
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "side",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.7273885,
+        "occlusionMaskId": null,
+        "interaction": "磨坊工人正在倾袋卸粮。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，磨坊工人倾袋卸粮",
+        "members": 1,
+        "assetRegion": "unique-4",
+        "atlasColumns": 8,
+        "atlasRows": 4,
+        "groundCoverage": 0.948,
+        "visualIdentity": "assets/explore/people-v3/sprites-4.webp#24"
+      },
+      {
+        "id": "mill-11",
+        "regionId": "mill",
+        "groupId": "mill-scene-3",
+        "role": "抬运者",
+        "action": "扶杠搬运",
+        "costumeVariant": "mill-7",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 7,
+        "position": [
+          0.2844311,
+          0.7248408
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "three-quarter",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.7248408,
+        "occlusionMaskId": null,
+        "interaction": "抬运者正在扶杠搬运。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，抬运者扶杠搬运",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#7"
+      },
+      {
+        "id": "mill-12",
+        "regionId": "mill",
+        "groupId": "mill-scene-3",
+        "role": "车夫",
+        "action": "推车运粮",
+        "costumeVariant": "mill-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/mill-low.webp",
+          "high": "assets/explore/people-v2/mill.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "mill",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.2884232,
+          0.7044586
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "three-quarter",
+        "surfaceId": "mill-verified-ground",
+        "depthOrder": 0.7044586,
+        "occlusionMaskId": null,
+        "interaction": "车夫正在推车运粮。",
+        "animation": null,
+        "accessibilityDescription": "水磨作坊，车夫推车运粮",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/mill.webp#1"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "作坊东南，搬粮的人与推车者挨在一起。",
+    "hintText": "水磨题签右侧偏下，留意粮袋、搬运者和车夫。",
+    "description": "人力与小车接力，把粮食送向下一处。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 546.3449964,
+      "y": 538.169601,
+      "w": 37.70009640000001,
+      "h": 34.0367715000001
+    },
+    "hintBounds": {
+      "x": 0.2820334553892216,
+      "y": 0.7072458429936305,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-11",
+    "categoryId": "bridge",
+    "title": "凭栏看船的人",
+    "sceneEntityIds": [
+      "bridge-05"
+    ],
+    "members": [
+      {
+        "id": "bridge-05",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-2",
+        "role": "看船人",
+        "action": "凭栏观水",
+        "costumeVariant": "bridge-4",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 4,
+        "position": [
+          0.5758483,
+          0.6076433
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "three-quarter",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6076433,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "看船人正在凭栏观水。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，看船人凭栏观水",
+        "members": 1,
+        "groundCoverage": 0.932,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#4"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "虹桥东头，有人停下来看水。",
+    "hintText": "虹桥最右端的小组里，寻找弯身看船的大人。",
+    "description": "桥上脚步不停，他却停下来，把目光交给河上的船。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1149.1249932,
+      "y": 465.03999050000004,
+      "w": 9.75,
+      "h": 13
+    },
+    "hintBounds": {
+      "x": 0.5758483,
+      "y": 0.6006878859872612,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-12",
+    "categoryId": "bridge",
+    "title": "背囊过桥的行人",
+    "sceneEntityIds": [
+      "bridge-15"
+    ],
+    "members": [
+      {
+        "id": "bridge-15",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-4",
+        "role": "远行客",
+        "action": "背囊过桥",
+        "costumeVariant": "bridge-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.5139721,
+          0.6127389
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "side",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6127389,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "远行客正在背囊过桥。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，远行客背囊过桥",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#0"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "桥中央，一位行客把包袱背在身后。",
+    "hintText": "虹桥中段，看船人右侧有一位背囊行客。",
+    "description": "行囊随身，桥那头还有路要走。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1023.9550884000001,
+      "y": 466.16963649999997,
+      "w": 12.090000000000032,
+      "h": 16.120000000000005
+    },
+    "hintBounds": {
+      "x": 0.5139721,
+      "y": 0.6041141866242038,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-13",
+    "categoryId": "bridge",
+    "title": "用力推车的人",
+    "sceneEntityIds": [
+      "bridge-25"
+    ],
+    "members": [
+      {
+        "id": "bridge-25",
+        "regionId": "bridge",
+        "groupId": "bridge-passing-1",
+        "role": "推车人",
+        "action": "用力上桥",
+        "costumeVariant": "bridge-5",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.4510978,
+          0.6305732
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "three-quarter",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6305732,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "推车人正在用力上桥。",
+        "animation": null,
+        "accessibilityDescription": "推车人正在用力上桥。",
+        "members": 1,
+        "assetRegion": "bridge",
+        "groundCoverage": 0.99,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#5"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "桥面西半段，双手向前，身体用力。",
+    "hintText": "留意虹桥西半段靠前的通路，推车人的姿态与行客不同。",
+    "description": "双手扶稳，身体前倾。一步一步，把车推过桥面。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 897.9549912,
+      "y": 480.169562,
+      "w": 12.090000000000032,
+      "h": 16.120000000000005
+    },
+    "hintBounds": {
+      "x": 0.45109780000000005,
+      "y": 0.6219484866242038,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-14",
+    "categoryId": "bridge",
+    "title": "桥头相让",
+    "sceneEntityIds": [
+      "bridge-02",
+      "bridge-03"
+    ],
+    "members": [
+      {
+        "id": "bridge-02",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-1",
+        "role": "提篮人",
+        "action": "回身避让",
+        "costumeVariant": "bridge-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.4351297,
+          0.6101911
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "three-quarter",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6101911,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "提篮人正在回身避让。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，提篮人回身避让",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#1"
+      },
+      {
+        "id": "bridge-03",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-1",
+        "role": "携物人",
+        "action": "侧身让路",
+        "costumeVariant": "bridge-2",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 2,
+        "position": [
+          0.4411178,
+          0.6101911
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "three-quarter",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6101911,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "携物人正在侧身让路。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，携物人侧身让路",
+        "members": 1,
+        "groundCoverage": 0.932,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#2"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "虹桥西头，两位携物人侧身相让。",
+    "hintText": "到虹桥左端，找提篮者和紧邻的携物人。",
+    "description": "桥头来往密，一次侧身，给彼此让出一步。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 866.3449188000001,
+      "y": 465.12641349999996,
+      "w": 23.31015239999988,
+      "h": 15.079999999999984
+    },
+    "hintBounds": {
+      "x": 0.43812375000000003,
+      "y": 0.6021228197452229,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-15",
+    "categoryId": "bridge",
+    "title": "一起看船",
+    "sceneEntityIds": [
+      "bridge-21",
+      "bridge-22"
+    ],
+    "members": [
+      {
+        "id": "bridge-21",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-6",
+        "role": "看船人",
+        "action": "凭栏观水",
+        "costumeVariant": "bridge-4",
+        "assetVariants": {
+          "low": "assets/explore/people-v3/sprites-2-low.webp",
+          "high": "assets/explore/people-v3/sprites-2.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v3",
+          "name": "sprites-2",
+          "format": "png"
+        },
+        "sprite": 4,
+        "position": [
+          0.5678643,
+          0.6229299
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "three-quarter",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6229299,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "看船人正在凭栏观水。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，看船人凭栏观水",
+        "members": 1,
+        "assetRegion": "unique-2",
+        "atlasColumns": 8,
+        "atlasRows": 4,
+        "groundCoverage": 0.974,
+        "visualIdentity": "assets/explore/people-v3/sprites-2.webp#4"
+      },
+      {
+        "id": "bridge-22",
+        "regionId": "bridge",
+        "groupId": "bridge-scene-6",
+        "role": "孩童",
+        "action": "俯身看船",
+        "costumeVariant": "bridge-3",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/bridge-low.webp",
+          "high": "assets/explore/people-v2/bridge.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "bridge",
+          "format": "png"
+        },
+        "sprite": 3,
+        "position": [
+          0.5738523,
+          0.6305732
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "side",
+        "surfaceId": "bridge-verified-ground",
+        "depthOrder": 0.6305732,
+        "occlusionMaskId": "bridge-front-rail",
+        "interaction": "孩童正在俯身看船。",
+        "animation": null,
+        "accessibilityDescription": "虹桥往来，孩童俯身看船",
+        "members": 1,
+        "groundCoverage": 0.974,
+        "visualIdentity": "assets/explore/people-v2/bridge.webp#3"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "虹桥东半段，大人与孩子都朝向河面。",
+    "hintText": "虹桥右半段偏下，寻找相邻的看船人和俯身孩子。",
+    "description": "大人停步，孩子俯身。河面上的来往，把两道目光留住。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1132.3450572,
+      "y": 475.1263715,
+      "w": 23.309952000000067,
+      "h": 21.07999049999995
+    },
+    "hintBounds": {
+      "x": 0.5708582999999999,
+      "y": 0.6186832697452229,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-16",
+    "categoryId": "quay",
+    "title": "岸边盘绳的船夫",
+    "sceneEntityIds": [
+      "quay-24"
+    ],
+    "members": [
+      {
+        "id": "quay-24",
+        "regionId": "quay",
+        "groupId": "quay-scene-5",
+        "role": "船夫",
+        "action": "跪地盘绳",
+        "costumeVariant": "quay-3",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 3,
+        "position": [
+          0.8502994,
+          0.8280255
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "side",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8280255,
+        "occlusionMaskId": null,
+        "interaction": "船夫正在跪地盘绳。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，船夫跪地盘绳",
+        "members": 1,
+        "groundCoverage": 0.989,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#3"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "东岸货运处，有人低身收拢绳索。",
+    "hintText": "东岸码头中段，接货小组右侧有人盘绳。",
+    "description": "缆绳一圈圈收好，下一次靠岸才会妥帖。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1698.4199976000002,
+      "y": 636.3104175,
+      "w": 11.160000000000082,
+      "h": 14.879999999999995
+    },
+    "hintBounds": {
+      "x": 0.8502994000000001,
+      "y": 0.8200642261146496,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-17",
+    "categoryId": "quay",
+    "title": "船上摇橹的人",
+    "sceneEntityIds": [
+      "boats-12"
+    ],
+    "members": [
+      {
+        "id": "boats-12",
+        "regionId": "boats",
+        "groupId": "boats-scene-4",
+        "role": "摇桨人",
+        "action": "坐姿摇橹",
+        "costumeVariant": "boats-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/boats-low.webp",
+          "high": "assets/explore/people-v2/boats.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "boats",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.487525,
+          0.8254777
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 9.5,
+        "facing": "three-quarter",
+        "surfaceId": "boats-verified-ground",
+        "depthOrder": 0.8254777,
+        "occlusionMaskId": "boat-4-canopy",
+        "interaction": "摇桨人正在坐姿摇橹。",
+        "animation": null,
+        "accessibilityDescription": "河上行舟，摇桨人坐姿摇橹",
+        "members": 1,
+        "groundCoverage": 0.6,
+        "visualIdentity": "assets/explore/people-v2/boats.webp#1"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "河心大船的下方，一位船工坐着摇橹。",
+    "hintText": "虹桥下方的河心船上，顺着船身向南找。",
+    "description": "一橹一橹，船与流水缓缓相应。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 973.4376,
+      "y": 639.2599945,
+      "w": 7.125,
+      "h": 9.5
+    },
+    "hintBounds": {
+      "x": 0.487525,
+      "y": 0.8203948974522293,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-18",
+    "categoryId": "quay",
+    "title": "守着行囊的老者",
+    "sceneEntityIds": [
+      "quay-17"
+    ],
+    "members": [
+      {
+        "id": "quay-17",
+        "regionId": "quay",
+        "groupId": "quay-scene-4",
+        "role": "候船老者",
+        "action": "看守行囊",
+        "costumeVariant": "quay-5",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.756487,
+          0.8203822
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "three-quarter",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8203822,
+        "occlusionMaskId": null,
+        "interaction": "候船老者正在看守行囊。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，候船老者看守行囊",
+        "members": 1,
+        "groundCoverage": 0.967,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#5"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "东岸西端，老者坐在行李旁等候。",
+    "hintText": "到东岸码头的西端，寻找提箱旅人旁的候船老者。",
+    "description": "行李放在身边，等船也等一段新的路。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1510.4199480000002,
+      "y": 630.3104269999999,
+      "w": 11.160000000000082,
+      "h": 14.879999999999995
+    },
+    "hintBounds": {
+      "x": 0.756487,
+      "y": 0.8124209261146497,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-19",
+    "categoryId": "quay",
+    "title": "码头接货",
+    "sceneEntityIds": [
+      "quay-21",
+      "quay-22"
+    ],
+    "members": [
+      {
+        "id": "quay-21",
+        "regionId": "quay",
+        "groupId": "quay-scene-5",
+        "role": "装卸工",
+        "action": "侧身递包",
+        "costumeVariant": "quay-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.8243513,
+          0.8280255
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14.88,
+        "facing": "side",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8280255,
+        "occlusionMaskId": null,
+        "interaction": "装卸工正在侧身递包。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，装卸工侧身递包",
+        "members": 1,
+        "groundCoverage": 0.994,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#0"
+      },
+      {
+        "id": "quay-22",
+        "regionId": "quay",
+        "groupId": "quay-scene-5",
+        "role": "接货工",
+        "action": "俯身接货",
+        "costumeVariant": "quay-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.8443114,
+          0.8280255
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 12.96,
+        "facing": "three-quarter",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8280255,
+        "occlusionMaskId": null,
+        "interaction": "接货工正在俯身接货。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，接货工俯身接货",
+        "members": 1,
+        "groundCoverage": 0.939,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#1"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "东岸中段，一人递包，一人俯身接取。",
+    "hintText": "东岸码头中部，盘绳船夫左侧是两位接力的人。",
+    "description": "一人递出，一人接住。货物在两个人的忙碌之间交接。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1646.4200052,
+      "y": 636.3104175,
+      "w": 50.44004040000004,
+      "h": 14.879999999999995
+    },
+    "hintBounds": {
+      "x": 0.8341517092814371,
+      "y": 0.8200642261146496,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-20",
+    "categoryId": "quay",
+    "title": "旅人与递水人",
+    "sceneEntityIds": [
+      "quay-26",
+      "quay-29"
+    ],
+    "members": [
+      {
+        "id": "quay-26",
+        "regionId": "quay",
+        "groupId": "quay-scene-6",
+        "role": "旅人",
+        "action": "提箱登岸",
+        "costumeVariant": "quay-4",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 4,
+        "position": [
+          0.9321357,
+          0.8254777
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 12.96,
+        "facing": "three-quarter",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8254777,
+        "occlusionMaskId": null,
+        "interaction": "旅人正在提箱登岸。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，旅人提箱登岸",
+        "members": 1,
+        "groundCoverage": 0.95,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#4"
+      },
+      {
+        "id": "quay-29",
+        "regionId": "quay",
+        "groupId": "quay-scene-6",
+        "role": "递水人",
+        "action": "持碗送水",
+        "costumeVariant": "quay-6",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/quay-low.webp",
+          "high": "assets/explore/people-v2/quay.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "quay",
+          "format": "png"
+        },
+        "sprite": 6,
+        "position": [
+          0.9261477,
+          0.8280255
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 12.96,
+        "facing": "side",
+        "surfaceId": "quay-verified-ground",
+        "depthOrder": 0.8280255,
+        "occlusionMaskId": null,
+        "interaction": "递水人正在持碗送水。",
+        "animation": null,
+        "accessibilityDescription": "两岸码头，递水人持碗送水",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/quay.webp#6"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "东岸最东端，提箱旅人与持碗者相邻。",
+    "hintText": "沿东岸向右找，旅人身边有人端着一碗水。",
+    "description": "带着行李的人停下脚步，旁边有人端水而来。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1851.1399908,
+      "y": 636.0767945,
+      "w": 21.71995200000015,
+      "h": 14.960023000000092
+    },
+    "hintBounds": {
+      "x": 0.9291417000000001,
+      "y": 0.8198175872611465,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-21",
+    "categoryId": "city",
+    "title": "展布的摊主",
+    "sceneEntityIds": [
+      "gate-01"
+    ],
+    "members": [
+      {
+        "id": "gate-01",
+        "regionId": "gate",
+        "groupId": "gate-scene-1",
+        "role": "布商",
+        "action": "展布示客",
+        "costumeVariant": "gate-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/gate-low.webp",
+          "high": "assets/explore/people-v2/gate.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "gate",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.9041916,
+          0.5923567
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 15.08,
+        "facing": "side",
+        "surfaceId": "gate-verified-ground",
+        "depthOrder": 0.5923567,
+        "occlusionMaskId": null,
+        "interaction": "布商正在展布示客。",
+        "animation": null,
+        "accessibilityDescription": "城门货市，布商展布示客",
+        "members": 1,
+        "groundCoverage": 0.969,
+        "visualIdentity": "assets/explore/people-v2/gate.webp#0"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "城门货市北侧，一位摊主双手展布。",
+    "hintText": "城门下方偏左的第一组摊贩里，寻找展开的布料。",
+    "description": "布料在双手之间铺开，等来往的人细看。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1806.3449664,
+      "y": 451.12640949999997,
+      "w": 11.309999999999945,
+      "h": 15.079999999999984
+    },
+    "hintBounds": {
+      "x": 0.9041916,
+      "y": 0.5842884197452229,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-22",
+    "categoryId": "city",
+    "title": "门边值守者",
+    "sceneEntityIds": [
+      "gate-41"
+    ],
+    "members": [
+      {
+        "id": "gate-41",
+        "regionId": "gate",
+        "groupId": "gate-passing-1",
+        "role": "门吏",
+        "action": "持杖值守",
+        "costumeVariant": "gate-5",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/gate-low.webp",
+          "high": "assets/explore/people-v2/gate.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "gate",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.9131737,
+          0.543949
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "three-quarter",
+        "surfaceId": "gate-verified-ground",
+        "depthOrder": 0.543949,
+        "occlusionMaskId": null,
+        "interaction": "门吏正在持杖值守。",
+        "animation": null,
+        "accessibilityDescription": "门吏正在持杖值守。",
+        "members": 1,
+        "assetRegion": "gate",
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/gate.webp#5"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "城门下方，持杖的人守着往来通路。",
+    "hintText": "城门正下方的北端入口，一位门吏独自站立。",
+    "description": "城门迎来送往，持杖的人留在路旁。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1823.9550947999999,
+      "y": 412.16956500000003,
+      "w": 12.089999999999918,
+      "h": 16.120000000000005
+    },
+    "hintBounds": {
+      "x": 0.9131736999999999,
+      "y": 0.5353242866242038,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-23",
+    "categoryId": "city",
+    "title": "院内扫地的僧人",
+    "sceneEntityIds": [
+      "temple-04"
+    ],
+    "members": [
+      {
+        "id": "temple-04",
+        "regionId": "temple",
+        "groupId": "temple-scene-2",
+        "role": "僧人",
+        "action": "持帚扫地",
+        "costumeVariant": "temple-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/temple-low.webp",
+          "high": "assets/explore/people-v2/temple.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "temple",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.7005988,
+          0.2178344
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "side",
+        "surfaceId": "temple-verified-ground",
+        "depthOrder": 0.2178344,
+        "occlusionMaskId": null,
+        "interaction": "僧人正在持帚扫地。",
+        "animation": null,
+        "accessibilityDescription": "塔院山路，僧人持帚扫地",
+        "members": 1,
+        "groundCoverage": 0.938,
+        "visualIdentity": "assets/explore/people-v2/temple.webp#0"
+      }
+    ],
+    "targetType": "人物",
+    "clue": "塔院西侧，一把扫帚划过庭院。",
+    "hintText": "到高塔西侧的小院，寻找弯身持帚的僧人。",
+    "description": "一帚一帚，扫过院中的日常。山路的喧声留在门外。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1399.1249951999998,
+      "y": 159.040004,
+      "w": 9.75,
+      "h": 13
+    },
+    "hintBounds": {
+      "x": 0.7005988,
+      "y": 0.21087898598726115,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-24",
+    "categoryId": "city",
+    "title": "田间劳作",
+    "sceneEntityIds": [
+      "fields-01",
+      "fields-02"
+    ],
+    "members": [
+      {
+        "id": "fields-01",
+        "regionId": "fields",
+        "groupId": "fields-scene-1",
+        "role": "农人",
+        "action": "俯身收割",
+        "costumeVariant": "fields-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/fields-low.webp",
+          "high": "assets/explore/people-v2/fields.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "fields",
+          "format": "png"
+        },
+        "sprite": 0,
+        "position": [
+          0.0314371,
+          0.3133758
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14,
+        "facing": "side",
+        "surfaceId": "fields-verified-ground",
+        "depthOrder": 0.3133758,
+        "occlusionMaskId": null,
+        "interaction": "农人正在俯身收割。",
+        "animation": null,
+        "accessibilityDescription": "田畴村舍，农人俯身收割",
+        "members": 1,
+        "groundCoverage": 0.933,
+        "visualIdentity": "assets/explore/people-v2/fields.webp#0"
+      },
+      {
+        "id": "fields-02",
+        "regionId": "fields",
+        "groupId": "fields-scene-1",
+        "role": "女农人",
+        "action": "弯腰除草",
+        "costumeVariant": "fields-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/fields-low.webp",
+          "high": "assets/explore/people-v2/fields.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "fields",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.0414172,
+          0.3261146
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 14,
+        "facing": "three-quarter",
+        "surfaceId": "fields-verified-ground",
+        "depthOrder": 0.3261146,
+        "occlusionMaskId": null,
+        "interaction": "女农人正在弯腰除草。",
+        "animation": null,
+        "accessibilityDescription": "田畴村舍，女农人弯腰除草",
+        "members": 1,
+        "groundCoverage": 0.945,
+        "visualIdentity": "assets/explore/people-v2/fields.webp#1"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "西北田畴，一人收割，一人除草。",
+    "hintText": "画卷最左上方的田地里，两位俯身劳作的人并肩。",
+    "description": "低头收割，弯腰除草。田间的时辰，写在手上的活计里。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 57.74994840000001,
+      "y": 233.120003,
+      "w": 30.5001204,
+      "h": 23.999957999999992
+    },
+    "hintBounds": {
+      "x": 0.03642715,
+      "y": 0.3122547541401274,
+      "w": 0.1,
+      "h": 0.17
+    }
+  },
+  {
+    "targetId": "life-25",
+    "categoryId": "city",
+    "title": "布摊细看",
+    "sceneEntityIds": [
+      "gate-11",
+      "gate-12",
+      "gate-13"
+    ],
+    "members": [
+      {
+        "id": "gate-11",
+        "regionId": "gate",
+        "groupId": "gate-scene-3",
+        "role": "布商",
+        "action": "展布示客",
+        "costumeVariant": "gate-0",
+        "assetVariants": {
+          "low": "assets/explore/people-v3/sprites-3-low.webp",
+          "high": "assets/explore/people-v3/sprites-3.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v3",
+          "name": "sprites-3",
+          "format": "png"
+        },
+        "sprite": 5,
+        "position": [
+          0.8952096,
+          0.6611465
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "side",
+        "surfaceId": "gate-verified-ground",
+        "depthOrder": 0.6611465,
+        "occlusionMaskId": null,
+        "interaction": "布商正在展布示客。",
+        "animation": null,
+        "accessibilityDescription": "城门货市，布商展布示客",
+        "members": 1,
+        "assetRegion": "unique-3",
+        "atlasColumns": 8,
+        "atlasRows": 4,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v3/sprites-3.webp#5"
+      },
+      {
+        "id": "gate-12",
+        "regionId": "gate",
+        "groupId": "gate-scene-3",
+        "role": "买布人",
+        "action": "伸手看布",
+        "costumeVariant": "gate-1",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/gate-low.webp",
+          "high": "assets/explore/people-v2/gate.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "gate",
+          "format": "png"
+        },
+        "sprite": 1,
+        "position": [
+          0.9041916,
+          0.6636943
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 13,
+        "facing": "three-quarter",
+        "surfaceId": "gate-verified-ground",
+        "depthOrder": 0.6636943,
+        "occlusionMaskId": null,
+        "interaction": "买布人正在伸手看布。",
+        "animation": null,
+        "accessibilityDescription": "城门货市，买布人伸手看布",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/gate.webp#1"
+      },
+      {
+        "id": "gate-13",
+        "regionId": "gate",
+        "groupId": "gate-scene-3",
+        "role": "伙计",
+        "action": "蹲身叠布",
+        "costumeVariant": "gate-2",
+        "assetVariants": {
+          "low": "assets/explore/people-v2/gate-low.webp",
+          "high": "assets/explore/people-v2/gate.webp"
+        },
+        "sourceAsset": {
+          "directory": "art-source/people-v2",
+          "name": "gate",
+          "format": "png"
+        },
+        "sprite": 2,
+        "position": [
+          0.9131737,
+          0.6687898
+        ],
+        "anchor": [
+          0.5,
+          0.92
+        ],
+        "scale": 16.12,
+        "facing": "three-quarter",
+        "surfaceId": "gate-verified-ground",
+        "depthOrder": 0.6687898,
+        "occlusionMaskId": null,
+        "interaction": "伙计正在蹲身叠布。",
+        "animation": null,
+        "accessibilityDescription": "城门货市，伙计蹲身叠布",
+        "members": 1,
+        "groundCoverage": 1,
+        "visualIdentity": "assets/explore/people-v2/gate.webp#2"
+      }
+    ],
+    "targetType": "群像",
+    "clue": "城门货市中段，展布、看布与叠布连成一组。",
+    "hintText": "城门下方中段，寻找布商、伸手买家和蹲着的伙计。",
+    "description": "一人展开，一人细看，一人低头整理。摊前的买卖自有节奏。",
+    "contentVersion": 1,
+    "focusBounds": {
+      "x": 1789.1250384,
+      "y": 507.04000249999996,
+      "w": 46.920056399999794,
+      "h": 19.24959050000001
+    },
+    "hintBounds": {
+      "x": 0.9044835661676646,
+      "y": 0.6581717168789808,
+      "w": 0.1,
+      "h": 0.17
+    }
+  }
+]

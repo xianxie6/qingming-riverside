@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#263f35"><title>古城寻趣 · 十二处烟火</title><link rel="icon" href="data:,"><link rel="stylesheet" href="styles/explore.css"></head>
+<body>
+<main id="viewport" tabindex="0" aria-label="古城画卷。方向键移动，加减号缩放，Home查看全图。也可使用列表导览。"><div id="world"><img id="painting" alt="有起伏地形的古城俯视图：水磨、茶市、虹桥与城门" draggable="false"><svg id="effects" viewBox="0 0 2000 784" aria-hidden="true"></svg></div></main>
+<header class="masthead"><a href="index.html" aria-label="返回清明上河">←</a><div><small>一幅画卷 · 十二处烟火</small><h1>古城寻趣</h1></div><span id="progress">0 / 12</span></header>
+<nav class="top-tools" aria-label="探索设置"><button id="sound" aria-pressed="false">声音 关</button><button id="help">帮助</button><button id="more">更多</button></nav>
+<aside id="tasks" class="paper"><button id="toggleTasks" aria-expanded="true"><span>寻趣手帖</span><span id="drawerSummary">收起 −</span></button><div class="task-body"><div class="task-intro"><span>看一眼线索，再往画里走。</span><button id="guide">列表导览 ↗</button></div><div id="targetList"></div><footer>随心寻找，不限顺序。<br>每一处发现，都有一段故事。</footer></div></aside>
+<div id="onboarding" hidden><span>拖动移动 · 滚轮缩放 · 点击寻找</span><button aria-label="关闭操作提示">×</button></div>
+<div id="clue" class="paper" hidden></div>
+<nav class="zoom-tools paper" aria-label="画卷缩放"><button id="zoomIn" aria-label="放大">＋</button><span id="zoomLevel">1.0×</span><button id="zoomOut" aria-label="缩小">−</button><button id="fit">全图</button></nav>
+<p class="caption">山川有起伏，市井有回声。</p><div id="toast" role="status" aria-live="polite"></div>
+<dialog id="welcome" aria-labelledby="welcomeTitle"><img class="welcome-preview" src="assets/explore/preview.webp" alt="古城画卷预览"><div class="dialog-inner"><span class="seal">寻趣</span><p class="eyebrow">沿一河烟火，拾十二个故事</p><h2 id="welcomeTitle">古城寻趣</h2><p>十二处烟火，藏在一幅城中。</p><p class="muted">拖动画卷，放大细节，找到那些正在发生的故事。</p><p id="loadStatus" role="status">正在展开画卷…</p><div class="actions"><button id="start" class="primary" disabled>开始探索</button><button id="resume" hidden disabled>继续探索</button><button id="retry" hidden>重新加载</button></div></div></dialog>
+<dialog id="modal" aria-labelledby="modalTitle"><div class="dialog-inner"><button id="closeModal" class="close" aria-label="关闭">×</button><p id="modalEyebrow" class="eyebrow"></p><h2 id="modalTitle"></h2><div id="modalContent"></div><div id="modalActions" class="actions"></div></div></dialog>
+<script type="module" src="src/explore.js"></script></body></html>

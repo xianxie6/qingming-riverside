@@ -1,0 +1,241 @@
+{
+  "note": "Postures reviewed against all eight original role atlases, eight unique sprite atlases and the 64 duo cells. Standing adult visible height 23 world px; bent 20; seated/kneeling 16.5; child 15.5. Classifies actual drawings rather than role text.",
+  "visibleHeights": {
+    "standing": 23,
+    "bent": 20,
+    "seated": 16.5,
+    "child": 15.5
+  },
+  "atlases": {
+    "sprites-1": {
+      "seated": [
+        0,
+        2,
+        4,
+        5,
+        9,
+        11,
+        12,
+        13,
+        17,
+        19,
+        20,
+        21
+      ],
+      "bent": [
+        3,
+        7,
+        10,
+        15,
+        18,
+        26,
+        31
+      ],
+      "child": [
+        22,
+        30
+      ]
+    },
+    "sprites-2": {
+      "seated": [
+        26
+      ],
+      "bent": [
+        22,
+        23,
+        30
+      ],
+      "child": [
+        27,
+        31
+      ]
+    },
+    "sprites-3": {
+      "seated": [
+        1,
+        15,
+        25
+      ],
+      "bent": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        9,
+        11,
+        16,
+        17,
+        19,
+        21,
+        26,
+        27,
+        29,
+        31
+      ]
+    },
+    "sprites-4": {
+      "seated": [
+        26
+      ],
+      "bent": [
+        23,
+        24,
+        29,
+        30
+      ]
+    },
+    "sprites-5": {
+      "seated": [
+        22,
+        25,
+        31
+      ],
+      "bent": [
+        3,
+        5,
+        11,
+        19,
+        21,
+        29
+      ]
+    },
+    "sprites-6": {
+      "seated": [
+        7,
+        25,
+        28
+      ],
+      "bent": [
+        2,
+        8,
+        26,
+        29
+      ]
+    },
+    "sprites-7": {
+      "seated": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        9,
+        10,
+        11,
+        12,
+        18,
+        19,
+        20,
+        22,
+        23,
+        27,
+        28,
+        29,
+        30
+      ],
+      "bent": [
+        3,
+        13,
+        21,
+        31
+      ]
+    },
+    "sprites-8": {
+      "seated": [
+        23
+      ],
+      "bent": [
+        27
+      ]
+    },
+    "boats": {
+      "seated": [
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "bent": [
+        5,
+        6
+      ]
+    },
+    "bridge": {
+      "child": [
+        3
+      ],
+      "bent": [
+        5
+      ]
+    },
+    "fields": {
+      "seated": [
+        5
+      ],
+      "bent": [
+        0,
+        1
+      ],
+      "child": [
+        4
+      ]
+    },
+    "gate": {
+      "seated": [
+        2,
+        3,
+        4
+      ],
+      "bent": [
+        7
+      ]
+    },
+    "mill": {
+      "seated": [
+        2,
+        4,
+        6
+      ],
+      "bent": [
+        0,
+        3
+      ]
+    },
+    "quay": {
+      "seated": [
+        3,
+        5
+      ],
+      "bent": [
+        1,
+        7
+      ]
+    },
+    "tea": {
+      "seated": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "bent": [
+        0
+      ]
+    },
+    "temple": {
+      "seated": [
+        6,
+        7
+      ]
+    },
+    "duos": {
+      "child": [
+        29,
+        41,
+        53
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "performanceResult": {
+    "frames": 151,
+    "durationMs": 2517.7999999970198,
+    "fps": 60.00158944607808,
+    "p95Ms": 16.700000000000728,
+    "viewport": [
+      1440,
+      900
+    ],
+    "dpr": 1,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+  },
+  "touch": {
+    "before": "12.3×",
+    "after": "17.7×",
+    "storyHidden": true
+  },
+  "people": 318,
+  "oldTasks": 0
+}

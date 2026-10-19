@@ -1,0 +1,33 @@
+Use case: historical-scene. Game character sprite atlas on TRUE TRANSPARENT background. Canvas 3072x2048. EXACTLY 8 columns by 4 rows equal cells, each 384x512. Exactly ONE full-body figure per cell (mother plus baby only if specified). All figures fully contained within their own cell with generous transparent gaps, no touching cell boundaries. Fine Song-dynasty Chinese antique ink and muted watercolor illustration, elevated three-quarter bird's-eye view matching an old city map; readable hands, faces, cloth folds, tools. Each person UNIQUE: different face, age, body build, hairstyle, headwear, garment shapes, pose and prop handling. NO cloned figures, NO recolored same silhouette, NO repeated standing pose. Avoid modern objects. No background, no ground plane, no grid lines, no labels, no text, no border. Every cell individually centered with complete head and feet, similar visual height about 420 pixels. Warm muted indigo, sage, ochre, clay and linen clothing, thin dark ink contours. Required occupants in row-major order:
+Cell row 1 column 1: 买布人 伸手看布; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 65.
+Cell row 1 column 2: 伙计 蹲身叠布; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 66.
+Cell row 1 column 3: 陶器买家 俯身看瓮; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 67.
+Cell row 1 column 4: 菜摊伙计 整理菜筐; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 68.
+Cell row 1 column 5: 买布人 伸手看布; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 69.
+Cell row 1 column 6: 布商 展布示客; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 70.
+Cell row 1 column 7: 陶器买家 俯身看瓮; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 71.
+Cell row 1 column 8: 菜摊伙计 整理菜筐; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 72.
+Cell row 2 column 1: 商人 核对秤量; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 73.
+Cell row 2 column 2: 陶器买家 俯身看瓮; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 74.
+Cell row 2 column 3: 商旅 指路问询; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 75.
+Cell row 2 column 4: 菜摊伙计 整理菜筐; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 76.
+Cell row 2 column 5: 买布人 伸手看布; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 77.
+Cell row 2 column 6: 布商 展布示客; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 78.
+Cell row 2 column 7: 买布人 伸手看布; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 79.
+Cell row 2 column 8: 伙计 蹲身叠布; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 80.
+Cell row 3 column 1: 陶器买家 俯身看瓮; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 81.
+Cell row 3 column 2: 菜摊伙计 整理菜筐; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 82.
+Cell row 3 column 3: 商人 核对秤量; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 83.
+Cell row 3 column 4: 陶器买家 俯身看瓮; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 84.
+Cell row 3 column 5: 商旅 指路问询; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 85.
+Cell row 3 column 6: 菜摊伙计 整理菜筐; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 86.
+Cell row 3 column 7: 买布人 伸手看布; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 87.
+Cell row 3 column 8: 布商 展布示客; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 88.
+Cell row 4 column 1: 买布人 伸手看布; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 89.
+Cell row 4 column 2: 伙计 蹲身叠布; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 90.
+Cell row 4 column 3: 陶器买家 俯身看瓮; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 91.
+Cell row 4 column 4: 菜摊伙计 整理菜筐; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 92.
+Cell row 4 column 5: 商人 核对秤量; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 93.
+Cell row 4 column 6: 陶器买家 俯身看瓮; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 94.
+Cell row 4 column 7: 商旅 指路问询; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 95.
+Cell row 4 column 8: 菜摊伙计 整理菜筐; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 96.

@@ -1,0 +1,8468 @@
+{
+  "size": [
+    2004,
+    785
+  ],
+  "placements": {
+    "boats-12": {
+      "position": [
+        0.488024,
+        0.8254777
+      ],
+      "scale": 21.60614,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.09114583333333333,
+        "right": 0.8645833333333334,
+        "top": 0.185546875,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.2,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-01": {
+      "position": [
+        0.1876248,
+        0.922293
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.03125,
+        "right": 1,
+        "top": 0.01953125,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.656,
+      "bodyCoverage": 0.22,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-02": {
+      "position": [
+        0.1746507,
+        0.8535032
+      ],
+      "scale": 22.77089,
+      "anchor": [
+        0.5,
+        0.8671875
+      ],
+      "visualMetrics": {
+        "left": 0.17447916666666666,
+        "right": 0.9375,
+        "top": 0.142578125,
+        "bottom": 0.8671875
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.128,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-03": {
+      "position": [
+        0.1656687,
+        0.8585987
+      ],
+      "scale": 24.32304,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.9322916666666666,
+        "top": 0.119140625,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.625,
+      "bodyCoverage": 0.255,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-04": {
+      "position": [
+        0.2794411,
+        0.8356688
+      ],
+      "scale": 22.58824,
+      "anchor": [
+        0.5,
+        0.8828125
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 1,
+        "top": 0.15234375,
+        "bottom": 0.8828125
+      },
+      "footCoverage": 0.583,
+      "bodyCoverage": 0.365,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-05": {
+      "position": [
+        0.2764471,
+        0.8229299
+      ],
+      "scale": 19.28767,
+      "anchor": [
+        0.5,
+        0.931640625
+      ],
+      "visualMetrics": {
+        "left": 0.041666666666666664,
+        "right": 0.8411458333333334,
+        "top": 0.076171875,
+        "bottom": 0.931640625
+      },
+      "footCoverage": 0.792,
+      "bodyCoverage": 0.094,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-06": {
+      "position": [
+        0.259481,
+        0.8229299
+      ],
+      "scale": 22.83243,
+      "anchor": [
+        0.5,
+        0.890625
+      ],
+      "visualMetrics": {
+        "left": 0.1015625,
+        "right": 0.9661458333333334,
+        "top": 0.16796875,
+        "bottom": 0.890625
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.226,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-07": {
+      "position": [
+        0.3832335,
+        0.8611465
+      ],
+      "scale": 22.17323,
+      "anchor": [
+        0.5,
+        0.923828125
+      ],
+      "visualMetrics": {
+        "left": 0.1171875,
+        "right": 0.890625,
+        "top": 0.1796875,
+        "bottom": 0.923828125
+      },
+      "footCoverage": 0.583,
+      "bodyCoverage": 0.2,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-08": {
+      "position": [
+        0.4211577,
+        0.8484076
+      ],
+      "scale": 27.23404,
+      "anchor": [
+        0.5,
+        0.880859375
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.8776041666666666,
+        "top": 0.146484375,
+        "bottom": 0.880859375
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.088,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-09": {
+      "position": [
+        0.4600798,
+        0.9095541
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.9375,
+        "top": 0.0390625,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.563,
+      "bodyCoverage": 0.102,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-10": {
+      "position": [
+        0.5508982,
+        0.8407643
+      ],
+      "scale": 25.44578,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.8802083333333334,
+        "top": 0.24609375,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.09,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-11": {
+      "position": [
+        0.5598802,
+        0.8509554
+      ],
+      "scale": 27.23404,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 1,
+        "top": 0.140625,
+        "bottom": 0.875
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.197,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-13": {
+      "position": [
+        0.494012,
+        0.9528662
+      ],
+      "scale": 24.13714,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.890625,
+        "top": 0.25390625,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.667,
+      "bodyCoverage": 0.239,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-14": {
+      "position": [
+        0.5878244,
+        0.9019108
+      ],
+      "scale": 21.22613,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.9375,
+        "top": 0.16015625,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.077,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-15": {
+      "position": [
+        0.5928144,
+        0.9146497
+      ],
+      "scale": 25.93833,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 1,
+        "top": 0.06640625,
+        "bottom": 0.953125
+      },
+      "footCoverage": 0.531,
+      "bodyCoverage": 0.078,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-16": {
+      "position": [
+        0.5968064,
+        0.7923567
+      ],
+      "scale": 29.59538,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.9635416666666666,
+        "top": 0.24609375,
+        "bottom": 0.921875
+      },
+      "footCoverage": 0.667,
+      "bodyCoverage": 0.891,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-17": {
+      "position": [
+        0.6027944,
+        0.7796178
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.91796875
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.8958333333333334,
+        "top": 0,
+        "bottom": 0.91796875
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.249,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-18": {
+      "position": [
+        0.6526946,
+        0.8280255
+      ],
+      "scale": 24.41618,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.875,
+        "top": 0.1875,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.155,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-19": {
+      "position": [
+        0.6886228,
+        0.8535032
+      ],
+      "scale": 23.7037,
+      "anchor": [
+        0.5,
+        0.890625
+      ],
+      "visualMetrics": {
+        "left": 0.005208333333333333,
+        "right": 0.9739583333333334,
+        "top": 0.046875,
+        "bottom": 0.890625
+      },
+      "footCoverage": 0.708,
+      "bodyCoverage": 0.72,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-20": {
+      "position": [
+        0.6966068,
+        0.856051
+      ],
+      "scale": 23.46667,
+      "anchor": [
+        0.5,
+        0.85546875
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 1,
+        "top": 0.15234375,
+        "bottom": 0.85546875
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.14,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-21": {
+      "position": [
+        0.7934132,
+        0.8942675
+      ],
+      "scale": 22.95652,
+      "anchor": [
+        0.5,
+        0.84765625
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.9427083333333334,
+        "top": 0.12890625,
+        "bottom": 0.84765625
+      },
+      "footCoverage": 0.583,
+      "bodyCoverage": 0.111,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-22": {
+      "position": [
+        0.8423154,
+        0.9019108
+      ],
+      "scale": 20.01896,
+      "anchor": [
+        0.5,
+        0.87109375
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 1,
+        "top": 0.046875,
+        "bottom": 0.87109375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.842,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-23": {
+      "position": [
+        0.8502994,
+        0.9070064
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 1,
+        "top": 0,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.256,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-24": {
+      "position": [
+        0.9301397,
+        0.8840764
+      ],
+      "scale": 29.94152,
+      "anchor": [
+        0.5,
+        0.85546875
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.96875,
+        "top": 0.1875,
+        "bottom": 0.85546875
+      },
+      "footCoverage": 0.625,
+      "bodyCoverage": 0.169,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-25": {
+      "position": [
+        0.9610778,
+        0.9375796
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.9114583333333334,
+        "top": 0,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 0.5,
+      "bodyCoverage": 0.32,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-26": {
+      "position": [
+        0.4830339,
+        0.3796178
+      ],
+      "scale": 24.41618,
+      "anchor": [
+        0.5,
+        0.79296875
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.9270833333333334,
+        "top": 0.1171875,
+        "bottom": 0.79296875
+      },
+      "footCoverage": 0.833,
+      "bodyCoverage": 0.348,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-27": {
+      "position": [
+        0.4780439,
+        0.3694268
+      ],
+      "scale": 25.34653,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.036458333333333336,
+        "right": 0.953125,
+        "top": 0.0859375,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.384,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-28": {
+      "position": [
+        0.1207585,
+        0.8713376
+      ],
+      "scale": 21.7732,
+      "anchor": [
+        0.5,
+        0.85546875
+      ],
+      "visualMetrics": {
+        "left": 0.020833333333333332,
+        "right": 0.9375,
+        "top": 0.09765625,
+        "bottom": 0.85546875
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.26,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-29": {
+      "position": [
+        0.1526946,
+        0.8636943
+      ],
+      "scale": 21.01493,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 1,
+        "top": 0.078125,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.098,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "boats-30": {
+      "position": [
+        0.492016,
+        0.8280255
+      ],
+      "scale": 20.11429,
+      "anchor": [
+        0.5,
+        0.84375
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 1,
+        "top": 0.0234375,
+        "bottom": 0.84375
+      },
+      "footCoverage": 0.542,
+      "bodyCoverage": 0.175,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "boats-fusion-ground"
+    },
+    "bridge-02": {
+      "position": [
+        0.4351297,
+        0.611465
+      ],
+      "scale": 26.40359,
+      "anchor": [
+        0.5,
+        0.947265625
+      ],
+      "visualMetrics": {
+        "left": 0.2552083333333333,
+        "right": 0.7630208333333334,
+        "top": 0.076171875,
+        "bottom": 0.947265625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.937,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-03": {
+      "position": [
+        0.4291417,
+        0.611465
+      ],
+      "scale": 26.8246,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.12239583333333333,
+        "right": 0.96875,
+        "top": 0.083984375,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.708,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-05": {
+      "position": [
+        0.5748503,
+        0.611465
+      ],
+      "scale": 32.80223,
+      "anchor": [
+        0.5,
+        0.865234375
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.78125,
+        "top": 0.1640625,
+        "bottom": 0.865234375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.472,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-15": {
+      "position": [
+        0.5139721,
+        0.6063694
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.2890625,
+        "right": 0.84375,
+        "top": 0.0703125,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.594,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-21": {
+      "position": [
+        0.5618762,
+        0.6140127
+      ],
+      "scale": 29.00493,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.046875,
+        "right": 0.9739583333333334,
+        "top": 0.1796875,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.533,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-22": {
+      "position": [
+        0.5538922,
+        0.611465
+      ],
+      "scale": 39.68,
+      "anchor": [
+        0.5,
+        0.796875
+      ],
+      "visualMetrics": {
+        "left": 0.2942708333333333,
+        "right": 0.7057291666666666,
+        "top": 0.40625,
+        "bottom": 0.796875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.881,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-25": {
+      "position": [
+        0.4510978,
+        0.6165605
+      ],
+      "scale": 28.36565,
+      "anchor": [
+        0.5,
+        0.822265625
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 1,
+        "top": 0.1171875,
+        "bottom": 0.822265625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.752,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-01": {
+      "position": [
+        0.4391218,
+        0.6012739
+      ],
+      "scale": 26.8246,
+      "anchor": [
+        0.5,
+        0.908203125
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9427083333333334,
+        "top": 0.05078125,
+        "bottom": 0.908203125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.836,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-04": {
+      "position": [
+        0.4401198,
+        0.6267516
+      ],
+      "scale": 27.57845,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.20572916666666666,
+        "right": 0.8619791666666666,
+        "top": 0.060546875,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.825,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-06": {
+      "position": [
+        0.5838323,
+        0.611465
+      ],
+      "scale": 24.19512,
+      "anchor": [
+        0.5,
+        0.8203125
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9791666666666666,
+        "top": 0.1796875,
+        "bottom": 0.8203125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.667,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-07": {
+      "position": [
+        0.5908184,
+        0.6191083
+      ],
+      "scale": 28.72195,
+      "anchor": [
+        0.5,
+        0.8515625
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 0.8541666666666666,
+        "top": 0.05078125,
+        "bottom": 0.8515625
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.465,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-08": {
+      "position": [
+        0.5968064,
+        0.6191083
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.8828125
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8854166666666666,
+        "top": 0,
+        "bottom": 0.8828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.466,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-09": {
+      "position": [
+        0.4640719,
+        0.6140127
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.890625,
+        "top": 0,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.595,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-10": {
+      "position": [
+        0.4710579,
+        0.611465
+      ],
+      "scale": 22.55507,
+      "anchor": [
+        0.5,
+        0.88671875
+      ],
+      "visualMetrics": {
+        "left": 0.0625,
+        "right": 0.921875,
+        "top": 0,
+        "bottom": 0.88671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.751,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-11": {
+      "position": [
+        0.4760479,
+        0.6063694
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.875,
+        "top": 0,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.552,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-12": {
+      "position": [
+        0.4870259,
+        0.6089172
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.859375,
+        "top": 0,
+        "bottom": 0.90625
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.537,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-13": {
+      "position": [
+        0.5199601,
+        0.6063694
+      ],
+      "scale": 25.82456,
+      "anchor": [
+        0.5,
+        0.890625
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 1,
+        "top": 0,
+        "bottom": 0.890625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.63,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-14": {
+      "position": [
+        0.508982,
+        0.6063694
+      ],
+      "scale": 20.77487,
+      "anchor": [
+        0.5,
+        0.87109375
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.9375,
+        "top": 0.125,
+        "bottom": 0.87109375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.796,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-16": {
+      "position": [
+        0.503992,
+        0.6012739
+      ],
+      "scale": 23.81395,
+      "anchor": [
+        0.5,
+        0.83984375
+      ],
+      "visualMetrics": {
+        "left": 0.06770833333333333,
+        "right": 0.9166666666666666,
+        "top": 0,
+        "bottom": 0.83984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.505,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-17": {
+      "position": [
+        0.5309381,
+        0.6089172
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8958333333333334,
+        "top": 0.06640625,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.708,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-18": {
+      "position": [
+        0.5409182,
+        0.6089172
+      ],
+      "scale": 26.16889,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.20833333333333334,
+        "right": 0.9166666666666666,
+        "top": 0.078125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.578,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-19": {
+      "position": [
+        0.5469062,
+        0.6063694
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.8802083333333334,
+        "top": 0.0859375,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.517,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-20": {
+      "position": [
+        0.498004,
+        0.6063694
+      ],
+      "scale": 24.63598,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.8072916666666666,
+        "top": 0.06640625,
+        "bottom": 1
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.6,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-23": {
+      "position": [
+        0.6017964,
+        0.6191083
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.23958333333333334,
+        "right": 0.8333333333333334,
+        "top": 0.0625,
+        "bottom": 1
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.471,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-24": {
+      "position": [
+        0.6077844,
+        0.6216561
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.890625,
+        "top": 0.0703125,
+        "bottom": 1
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.497,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-26": {
+      "position": [
+        0.4570858,
+        0.6140127
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.8229166666666666,
+        "top": 0.08984375,
+        "bottom": 1
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.534,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-27": {
+      "position": [
+        0.4301397,
+        0.6394904
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.8854166666666666,
+        "top": 0.03515625,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.897,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-28": {
+      "position": [
+        0.4231537,
+        0.6165605
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.84375,
+        "top": 0.02734375,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.603,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-29": {
+      "position": [
+        0.492016,
+        0.6063694
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.2604166666666667,
+        "right": 0.875,
+        "top": 0.04296875,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.609,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-30": {
+      "position": [
+        0.6127745,
+        0.6343949
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.9010416666666666,
+        "top": 0.015625,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.92,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-31": {
+      "position": [
+        0.4181637,
+        0.6242038
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.859375,
+        "top": 0.09375,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.752,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-32": {
+      "position": [
+        0.5828343,
+        0.5808917
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.7864583333333334,
+        "top": 0.03125,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.974,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-33": {
+      "position": [
+        0.5918164,
+        0.6471338
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 1,
+        "top": 0.03125,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.927,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-34": {
+      "position": [
+        0.4321357,
+        0.677707
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.8697916666666666,
+        "top": 0.05078125,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.467,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-35": {
+      "position": [
+        0.5638723,
+        0.5605096
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.8854166666666666,
+        "top": 0,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.551,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-36": {
+      "position": [
+        0.5698603,
+        0.5630573
+      ],
+      "scale": 25.93833,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 1,
+        "top": 0.0078125,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.758,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-37": {
+      "position": [
+        0.4281437,
+        0.6980892
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.921875,
+        "top": 0.00390625,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.522,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-38": {
+      "position": [
+        0.4301397,
+        0.4738854
+      ],
+      "scale": 24.63598,
+      "anchor": [
+        0.5,
+        0.93359375
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.8802083333333334,
+        "top": 0,
+        "bottom": 0.93359375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.606,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-39": {
+      "position": [
+        0.6187625,
+        0.6267516
+      ],
+      "scale": 26.88584,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.890625,
+        "top": 0.01953125,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.873,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "bridge-40": {
+      "position": [
+        0.3862275,
+        0.5732484
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.7395833333333334,
+        "top": 0.0078125,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.491,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "visitors-04": {
+      "position": [
+        0.5798403,
+        0.555414
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.9166666666666666,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.752,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "bridge-fusion-ground"
+    },
+    "quay-17": {
+      "position": [
+        0.7764471,
+        0.7872611
+      ],
+      "scale": 21.06733,
+      "anchor": [
+        0.5,
+        0.845703125
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 1,
+        "top": 0.0625,
+        "bottom": 0.845703125
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.548,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-21": {
+      "position": [
+        0.8233533,
+        0.8178344
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.044270833333333336,
+        "right": 1,
+        "top": 0.07421875,
+        "bottom": 1
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.57,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-22": {
+      "position": [
+        0.8742515,
+        0.8178344
+      ],
+      "scale": 28.68347,
+      "anchor": [
+        0.5,
+        0.841796875
+      ],
+      "visualMetrics": {
+        "left": 0.036458333333333336,
+        "right": 0.953125,
+        "top": 0.14453125,
+        "bottom": 0.841796875
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.463,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-24": {
+      "position": [
+        0.8892216,
+        0.8203822
+      ],
+      "scale": 23.66387,
+      "anchor": [
+        0.5,
+        0.888671875
+      ],
+      "visualMetrics": {
+        "left": 0.0859375,
+        "right": 0.9505208333333334,
+        "top": 0.19140625,
+        "bottom": 0.888671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.511,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-26": {
+      "position": [
+        0.9011976,
+        0.8127389
+      ],
+      "scale": 24.63598,
+      "anchor": [
+        0.5,
+        0.93359375
+      ],
+      "visualMetrics": {
+        "left": 0.09114583333333333,
+        "right": 0.84375,
+        "top": 0,
+        "bottom": 0.93359375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.93,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-29": {
+      "position": [
+        0.8972056,
+        0.8101911
+      ],
+      "scale": 25.54447,
+      "anchor": [
+        0.5,
+        0.900390625
+      ],
+      "visualMetrics": {
+        "left": 0.20572916666666666,
+        "right": 0.8984375,
+        "top": 0,
+        "bottom": 0.900390625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.735,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-01": {
+      "position": [
+        0.1926148,
+        0.7592357
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 1,
+        "top": 0.0078125,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.607,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-02": {
+      "position": [
+        0.1856287,
+        0.7617834
+      ],
+      "scale": 25.47264,
+      "anchor": [
+        0.5,
+        0.91796875
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 1,
+        "top": 0.1328125,
+        "bottom": 0.91796875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.508,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-03": {
+      "position": [
+        0.2664671,
+        0.7515924
+      ],
+      "scale": 26.76364,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8880208333333334,
+        "top": 0.015625,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.56,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-04": {
+      "position": [
+        0.2724551,
+        0.7541401
+      ],
+      "scale": 23.33702,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 1,
+        "top": 0.234375,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.749,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-05": {
+      "position": [
+        0.259481,
+        0.7515924
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.9010416666666666,
+        "top": 0.03515625,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.46,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-06": {
+      "position": [
+        0.3073852,
+        0.7388535
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 1,
+        "top": 0.0234375,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.558,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-07": {
+      "position": [
+        0.3233533,
+        0.7184713
+      ],
+      "scale": 20.30769,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 1,
+        "top": 0.08203125,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.772,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-08": {
+      "position": [
+        0.3173653,
+        0.7082803
+      ],
+      "scale": 22.11663,
+      "anchor": [
+        0.5,
+        0.904296875
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.953125,
+        "top": 0,
+        "bottom": 0.904296875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.466,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-09": {
+      "position": [
+        0.3672655,
+        0.6853503
+      ],
+      "scale": 24.43154,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.90625,
+        "top": 0.00390625,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.503,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-10": {
+      "position": [
+        0.3732535,
+        0.6853503
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.234375,
+        "right": 0.8645833333333334,
+        "top": 0.02734375,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.849,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-11": {
+      "position": [
+        0.3952096,
+        0.7082803
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 1,
+        "top": 0.0078125,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.66,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-12": {
+      "position": [
+        0.3882236,
+        0.6904459
+      ],
+      "scale": 23.81395,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 1,
+        "top": 0.10546875,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.992,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-13": {
+      "position": [
+        0.4231537,
+        0.7133758
+      ],
+      "scale": 24.13115,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.3020833333333333,
+        "right": 0.8697916666666666,
+        "top": 0,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.474,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-14": {
+      "position": [
+        0.3812375,
+        0.6853503
+      ],
+      "scale": 22.34921,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.9427083333333334,
+        "top": 0.21484375,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-15": {
+      "position": [
+        0.3792415,
+        0.6700637
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.19791666666666666,
+        "right": 0.9322916666666666,
+        "top": 0.10546875,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.522,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-16": {
+      "position": [
+        0.744511,
+        0.8050955
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.875,
+        "top": 0.0625,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.527,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-18": {
+      "position": [
+        0.7764471,
+        0.766879
+      ],
+      "scale": 22.1645,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.8802083333333334,
+        "top": 0.07421875,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.748,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-19": {
+      "position": [
+        0.7704591,
+        0.7643312
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.9270833333333334,
+        "top": 0.0625,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.579,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-20": {
+      "position": [
+        0.7804391,
+        0.743949
+      ],
+      "scale": 24.94915,
+      "anchor": [
+        0.5,
+        0.99609375
+      ],
+      "visualMetrics": {
+        "left": 0.21875,
+        "right": 0.859375,
+        "top": 0.07421875,
+        "bottom": 0.99609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.769,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-23": {
+      "position": [
+        0.8483034,
+        0.7694268
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.875,
+        "top": 0.08203125,
+        "bottom": 1
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.968,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-25": {
+      "position": [
+        0.8942116,
+        0.7719745
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.6927083333333334,
+        "top": 0.07421875,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.502,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-27": {
+      "position": [
+        0.9251497,
+        0.7719745
+      ],
+      "scale": 18.60793,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.046875,
+        "right": 0.875,
+        "top": 0.08984375,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-28": {
+      "position": [
+        0.99002,
+        0.8076433
+      ],
+      "scale": 21.33333,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8802083333333334,
+        "top": 0.03515625,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.598,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-30": {
+      "position": [
+        0.9491018,
+        0.7541401
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8177083333333334,
+        "top": 0.03125,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.786,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-31": {
+      "position": [
+        0.747505,
+        0.7643312
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.828125,
+        "top": 0.03515625,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.923,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-32": {
+      "position": [
+        0.753493,
+        0.7643312
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.8697916666666666,
+        "top": 0.03515625,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-33": {
+      "position": [
+        0.8582834,
+        0.766879
+      ],
+      "scale": 24.43154,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.046875,
+        "right": 0.7552083333333334,
+        "top": 0.03515625,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.501,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-34": {
+      "position": [
+        0.7644711,
+        0.7643312
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.9114583333333334,
+        "top": 0.03515625,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.565,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-35": {
+      "position": [
+        0.7944112,
+        0.7235669
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 0.7916666666666666,
+        "top": 0.03515625,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.457,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-36": {
+      "position": [
+        0.8512974,
+        0.7464968
+      ],
+      "scale": 23.93496,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 0.828125,
+        "top": 0.03125,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.863,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-37": {
+      "position": [
+        0.7744511,
+        0.7363057
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.9895833333333334,
+        "top": 0.02734375,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.572,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-38": {
+      "position": [
+        0.8562874,
+        0.7414013
+      ],
+      "scale": 23.93496,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8697916666666666,
+        "top": 0.01953125,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.907,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-39": {
+      "position": [
+        0.9011976,
+        0.7847134
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.8802083333333334,
+        "top": 0.01171875,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.978,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-40": {
+      "position": [
+        0.8622754,
+        0.743949
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.9427083333333334,
+        "top": 0.0234375,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.855,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-41": {
+      "position": [
+        0.8862275,
+        0.743949
+      ],
+      "scale": 24.63598,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.9166666666666666,
+        "top": 0.02734375,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.875,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-42": {
+      "position": [
+        0.9081836,
+        0.7719745
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.9166666666666666,
+        "top": 0.0234375,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-43": {
+      "position": [
+        0.8982036,
+        0.7694268
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.6770833333333334,
+        "top": 0.02734375,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.96,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-44": {
+      "position": [
+        0.9151697,
+        0.7719745
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 0.7604166666666666,
+        "top": 0.01953125,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "quay-45": {
+      "position": [
+        0.9191617,
+        0.7719745
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8854166666666666,
+        "top": 0.0078125,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "quay-fusion-ground"
+    },
+    "temple-04": {
+      "position": [
+        0.6946108,
+        0.2165605
+      ],
+      "scale": 26.22717,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.8177083333333334,
+        "top": 0.080078125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.454,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-01": {
+      "position": [
+        0.6906188,
+        0.1834395
+      ],
+      "scale": 27.07126,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.9375,
+        "top": 0.107421875,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.707,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-02": {
+      "position": [
+        0.6726547,
+        0.1630573
+      ],
+      "scale": 25.32473,
+      "anchor": [
+        0.5,
+        0.919921875
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.8619791666666666,
+        "top": 0.01171875,
+        "bottom": 0.919921875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.499,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-03": {
+      "position": [
+        0.6686627,
+        0.1859873
+      ],
+      "scale": 24.94915,
+      "anchor": [
+        0.5,
+        0.970703125
+      ],
+      "visualMetrics": {
+        "left": 0.24479166666666666,
+        "right": 0.7994791666666666,
+        "top": 0.048828125,
+        "bottom": 0.970703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.474,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-05": {
+      "position": [
+        0.7065868,
+        0.2216561
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.947265625
+      ],
+      "visualMetrics": {
+        "left": 0.12239583333333333,
+        "right": 0.9609375,
+        "top": 0.029296875,
+        "bottom": 0.947265625
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.458,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-06": {
+      "position": [
+        0.7005988,
+        0.2165605
+      ],
+      "scale": 21.49618,
+      "anchor": [
+        0.5,
+        0.869140625
+      ],
+      "visualMetrics": {
+        "left": 0.15364583333333334,
+        "right": 0.9583333333333334,
+        "top": 0.1015625,
+        "bottom": 0.869140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.467,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-07": {
+      "position": [
+        0.755489,
+        0.2547771
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.9583333333333334,
+        "top": 0.05859375,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.457,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-08": {
+      "position": [
+        0.7664671,
+        0.2751592
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.0078125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.498,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-09": {
+      "position": [
+        0.745509,
+        0.2802548
+      ],
+      "scale": 25.82456,
+      "anchor": [
+        0.5,
+        0.93359375
+      ],
+      "visualMetrics": {
+        "left": 0.265625,
+        "right": 0.828125,
+        "top": 0.04296875,
+        "bottom": 0.93359375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.455,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-10": {
+      "position": [
+        0.739521,
+        0.2853503
+      ],
+      "scale": 24.13115,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.9114583333333334,
+        "top": 0.01953125,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.485,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-11": {
+      "position": [
+        0.7275449,
+        0.2929936
+      ],
+      "scale": 26.40359,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 1,
+        "top": 0.0546875,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.452,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-12": {
+      "position": [
+        0.7195609,
+        0.2955414
+      ],
+      "scale": 21.01493,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.9479166666666666,
+        "top": 0.12109375,
+        "bottom": 0.90625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.509,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-13": {
+      "position": [
+        0.6816367,
+        0.2929936
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.953125,
+        "top": 0.0234375,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.56,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-14": {
+      "position": [
+        0.6906188,
+        0.2955414
+      ],
+      "scale": 24.94915,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.23958333333333334,
+        "right": 0.8541666666666666,
+        "top": 0,
+        "bottom": 0.921875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.457,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-15": {
+      "position": [
+        0.6986028,
+        0.2929936
+      ],
+      "scale": 26.40359,
+      "anchor": [
+        0.5,
+        0.88671875
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.7760416666666666,
+        "top": 0.015625,
+        "bottom": 0.88671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.489,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-16": {
+      "position": [
+        0.7145709,
+        0.2140127
+      ],
+      "scale": 27.51402,
+      "anchor": [
+        0.5,
+        0.904296875
+      ],
+      "visualMetrics": {
+        "left": 0.1328125,
+        "right": 0.8697916666666666,
+        "top": 0.068359375,
+        "bottom": 0.904296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.458,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-17": {
+      "position": [
+        0.6686627,
+        0.2420382
+      ],
+      "scale": 20.55474,
+      "anchor": [
+        0.5,
+        0.892578125
+      ],
+      "visualMetrics": {
+        "left": 0.12760416666666666,
+        "right": 0.8619791666666666,
+        "top": 0.08984375,
+        "bottom": 0.892578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.665,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-18": {
+      "position": [
+        0.7195609,
+        0.1681529
+      ],
+      "scale": 21.60338,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.9375,
+        "top": 0,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.455,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-19": {
+      "position": [
+        0.7045908,
+        0.2751592
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.890625,
+        "top": 0.01171875,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.792,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "temple-20": {
+      "position": [
+        0.7095808,
+        0.244586
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 0.9479166666666666,
+        "top": 0.03125,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.609,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "visitors-05": {
+      "position": [
+        0.7125749,
+        0.2904459
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.8541666666666666,
+        "top": 0.078125,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.736,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "visitors-06": {
+      "position": [
+        0.7215569,
+        0.1910828
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.8958333333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.715,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "visitors-07": {
+      "position": [
+        0.6626747,
+        0.2573248
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.8229166666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.478,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "temple-fusion-ground"
+    },
+    "fields-01": {
+      "position": [
+        0.0309381,
+        0.3133758
+      ],
+      "scale": 25.40943,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.12239583333333333,
+        "right": 1,
+        "top": 0.138671875,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.533,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-02": {
+      "position": [
+        0.0379242,
+        0.3261146
+      ],
+      "scale": 28.20937,
+      "anchor": [
+        0.5,
+        0.896484375
+      ],
+      "visualMetrics": {
+        "left": 0.17447916666666666,
+        "right": 0.9557291666666666,
+        "top": 0.1875,
+        "bottom": 0.896484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.522,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-03": {
+      "position": [
+        0.0249501,
+        0.3235669
+      ],
+      "scale": 27.64319,
+      "anchor": [
+        0.5,
+        0.923828125
+      ],
+      "visualMetrics": {
+        "left": 0.0390625,
+        "right": 0.9114583333333334,
+        "top": 0.091796875,
+        "bottom": 0.923828125
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.455,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-04": {
+      "position": [
+        0.0459082,
+        0.3235669
+      ],
+      "scale": 25.32473,
+      "anchor": [
+        0.5,
+        0.966796875
+      ],
+      "visualMetrics": {
+        "left": 0.09114583333333333,
+        "right": 0.9739583333333334,
+        "top": 0.05859375,
+        "bottom": 0.966796875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.461,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-05": {
+      "position": [
+        0.1047904,
+        0.3363057
+      ],
+      "scale": 22.70968,
+      "anchor": [
+        0.5,
+        0.888671875
+      ],
+      "visualMetrics": {
+        "left": 0.1015625,
+        "right": 0.9270833333333334,
+        "top": 0.162109375,
+        "bottom": 0.888671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.734,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-06": {
+      "position": [
+        0.1087824,
+        0.3363057
+      ],
+      "scale": 25.93464,
+      "anchor": [
+        0.5,
+        0.787109375
+      ],
+      "visualMetrics": {
+        "left": 0.296875,
+        "right": 0.7552083333333334,
+        "top": 0.189453125,
+        "bottom": 0.787109375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.843,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-07": {
+      "position": [
+        0.1127745,
+        0.3388535
+      ],
+      "scale": 24.89641,
+      "anchor": [
+        0.5,
+        0.939453125
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 1,
+        "top": 0.015625,
+        "bottom": 0.939453125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.739,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-08": {
+      "position": [
+        0.1107784,
+        0.3184713
+      ],
+      "scale": 25.43413,
+      "anchor": [
+        0.5,
+        0.916015625
+      ],
+      "visualMetrics": {
+        "left": 0.22135416666666666,
+        "right": 0.8567708333333334,
+        "top": 0.01171875,
+        "bottom": 0.916015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.594,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-09": {
+      "position": [
+        0.0708583,
+        0.0636943
+      ],
+      "scale": 26.5285,
+      "anchor": [
+        0.5,
+        0.8984375
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 1,
+        "top": 0.14453125,
+        "bottom": 0.8984375
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.861,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-10": {
+      "position": [
+        0.0988024,
+        0.1146497
+      ],
+      "scale": 32.82051,
+      "anchor": [
+        0.5,
+        0.84765625
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.9427083333333334,
+        "top": 0.23828125,
+        "bottom": 0.84765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.677,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-11": {
+      "position": [
+        0.1057884,
+        0.1299363
+      ],
+      "scale": 26.64253,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.19270833333333334,
+        "right": 0.9322916666666666,
+        "top": 0,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.838,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-12": {
+      "position": [
+        0.1127745,
+        0.1299363
+      ],
+      "scale": 26.64253,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.96875,
+        "top": 0,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.8,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-13": {
+      "position": [
+        0.1407186,
+        0.1503185
+      ],
+      "scale": 24.13714,
+      "anchor": [
+        0.5,
+        0.81640625
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 1,
+        "top": 0.1328125,
+        "bottom": 0.81640625
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.842,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-14": {
+      "position": [
+        0.1467066,
+        0.155414
+      ],
+      "scale": 22.41808,
+      "anchor": [
+        0.5,
+        0.80859375
+      ],
+      "visualMetrics": {
+        "left": 0.3072916666666667,
+        "right": 0.7864583333333334,
+        "top": 0.1171875,
+        "bottom": 0.80859375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.861,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-15": {
+      "position": [
+        0.1327345,
+        0.2216561
+      ],
+      "scale": 26.64253,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.953125,
+        "top": 0,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.566,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-16": {
+      "position": [
+        0.1407186,
+        0.2292994
+      ],
+      "scale": 26.64253,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8385416666666666,
+        "top": 0,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.455,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-17": {
+      "position": [
+        0.2704591,
+        0.0993631
+      ],
+      "scale": 28.60335,
+      "anchor": [
+        0.5,
+        0.84765625
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 1,
+        "top": 0.1484375,
+        "bottom": 0.84765625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.615,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "fields-18": {
+      "position": [
+        0.260479,
+        0.0484076
+      ],
+      "scale": 21.68306,
+      "anchor": [
+        0.5,
+        0.84765625
+      ],
+      "visualMetrics": {
+        "left": 0.3125,
+        "right": 0.8333333333333334,
+        "top": 0.1328125,
+        "bottom": 0.84765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.596,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "visitors-08": {
+      "position": [
+        0.0538922,
+        0.4229299
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8645833333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.687,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "visitors-09": {
+      "position": [
+        0.1247505,
+        0.2522293
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.9166666666666666,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.79,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "visitors-10": {
+      "position": [
+        0.1896208,
+        0.3082803
+      ],
+      "scale": 28.12739,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.109375,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.592,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "fields-fusion-ground"
+    },
+    "mill-01": {
+      "position": [
+        0.2035928,
+        0.5936306
+      ],
+      "scale": 24.2654,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.09114583333333333,
+        "right": 0.8229166666666666,
+        "top": 0.08203125,
+        "bottom": 0.90625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.929,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-05": {
+      "position": [
+        0.2065868,
+        0.6853503
+      ],
+      "scale": 21.44162,
+      "anchor": [
+        0.5,
+        0.8984375
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9270833333333334,
+        "top": 0.12890625,
+        "bottom": 0.8984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.706,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-06": {
+      "position": [
+        0.2125749,
+        0.6853503
+      ],
+      "scale": 25.53616,
+      "anchor": [
+        0.5,
+        0.849609375
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.9427083333333334,
+        "top": 0.06640625,
+        "bottom": 0.849609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.763,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-07": {
+      "position": [
+        0.2085828,
+        0.6675159
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.849609375
+      ],
+      "visualMetrics": {
+        "left": 0.1328125,
+        "right": 0.8307291666666666,
+        "top": 0.005859375,
+        "bottom": 0.849609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.562,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-09": {
+      "position": [
+        0.2774451,
+        0.7261146
+      ],
+      "scale": 22.95964,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.8958333333333334,
+        "top": 0.0234375,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-11": {
+      "position": [
+        0.2834331,
+        0.7261146
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.046875,
+        "right": 0.9479166666666666,
+        "top": 0,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-12": {
+      "position": [
+        0.2854291,
+        0.7082803
+      ],
+      "scale": 27.51402,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 1,
+        "top": 0.078125,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.94,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-13": {
+      "position": [
+        0.260479,
+        0.6292994
+      ],
+      "scale": 19.28767,
+      "anchor": [
+        0.5,
+        0.8984375
+      ],
+      "visualMetrics": {
+        "left": 0.03125,
+        "right": 1,
+        "top": 0.04296875,
+        "bottom": 0.8984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-26": {
+      "position": [
+        0.2125749,
+        0.6420382
+      ],
+      "scale": 20.01896,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.14322916666666666,
+        "right": 0.9869791666666666,
+        "top": 0.05078125,
+        "bottom": 0.875
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.624,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-02": {
+      "position": [
+        0.1976048,
+        0.588535
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 0.8541666666666666,
+        "top": 0.0625,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.831,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-03": {
+      "position": [
+        0.2035928,
+        0.5707006
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9375,
+        "top": 0.0390625,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.629,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-04": {
+      "position": [
+        0.1956088,
+        0.5630573
+      ],
+      "scale": 25.6,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9479166666666666,
+        "top": 0.05859375,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.851,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-08": {
+      "position": [
+        0.1996008,
+        0.6955414
+      ],
+      "scale": 21.88034,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8020833333333334,
+        "top": 0.03515625,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.51,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-10": {
+      "position": [
+        0.2774451,
+        0.7031847
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.8984375
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8541666666666666,
+        "top": 0.00390625,
+        "bottom": 0.8984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-14": {
+      "position": [
+        0.254491,
+        0.6242038
+      ],
+      "scale": 26.88584,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.9166666666666666,
+        "top": 0.0390625,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.782,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-15": {
+      "position": [
+        0.2654691,
+        0.6191083
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.8333333333333334,
+        "top": 0,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.859,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-16": {
+      "position": [
+        0.2684631,
+        0.6343949
+      ],
+      "scale": 22.95964,
+      "anchor": [
+        0.5,
+        0.88671875
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.8333333333333334,
+        "top": 0.015625,
+        "bottom": 0.88671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.773,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-17": {
+      "position": [
+        0.247505,
+        0.7235669
+      ],
+      "scale": 22.85714,
+      "anchor": [
+        0.5,
+        0.90234375
+      ],
+      "visualMetrics": {
+        "left": 0.020833333333333332,
+        "right": 0.9375,
+        "top": 0.02734375,
+        "bottom": 0.90234375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.884,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-18": {
+      "position": [
+        0.246507,
+        0.7006369
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.8671875
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8802083333333334,
+        "top": 0.0234375,
+        "bottom": 0.8671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.747,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-19": {
+      "position": [
+        0.251497,
+        0.6802548
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 1,
+        "top": 0.08203125,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.888,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-20": {
+      "position": [
+        0.259481,
+        0.6802548
+      ],
+      "scale": 26.52252,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 1,
+        "top": 0.08203125,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-21": {
+      "position": [
+        0.258483,
+        0.5605096
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.84375,
+        "top": 0.046875,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.6,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-22": {
+      "position": [
+        0.2634731,
+        0.5605096
+      ],
+      "scale": 24.2654,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.9791666666666666,
+        "top": 0.13671875,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.894,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-23": {
+      "position": [
+        0.2704591,
+        0.5681529
+      ],
+      "scale": 26.28571,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.9270833333333334,
+        "top": 0.08203125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-24": {
+      "position": [
+        0.262475,
+        0.5834395
+      ],
+      "scale": 21.33333,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.9166666666666666,
+        "top": 0.046875,
+        "bottom": 0.984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-25": {
+      "position": [
+        0.1916168,
+        0.5426752
+      ],
+      "scale": 22.64879,
+      "anchor": [
+        0.5,
+        0.83984375
+      ],
+      "visualMetrics": {
+        "left": 0.06770833333333333,
+        "right": 0.9739583333333334,
+        "top": 0.111328125,
+        "bottom": 0.83984375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.706,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-27": {
+      "position": [
+        0.2055888,
+        0.7184713
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.859375,
+        "top": 0.04296875,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.889,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-28": {
+      "position": [
+        0.2085828,
+        0.6191083
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8541666666666666,
+        "top": 0.07421875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.58,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-29": {
+      "position": [
+        0.1996008,
+        0.6165605
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.9375,
+        "top": 0.07421875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.827,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-30": {
+      "position": [
+        0.2085828,
+        0.7414013
+      ],
+      "scale": 24.43154,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.9322916666666666,
+        "top": 0.05078125,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.75,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-31": {
+      "position": [
+        0.1946108,
+        0.5248408
+      ],
+      "scale": 23.27273,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.8697916666666666,
+        "top": 0,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.549,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-32": {
+      "position": [
+        0.2005988,
+        0.7414013
+      ],
+      "scale": 23.379,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.90625,
+        "top": 0.12890625,
+        "bottom": 0.984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.841,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-33": {
+      "position": [
+        0.2335329,
+        0.6828025
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 1,
+        "top": 0.04296875,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.468,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-34": {
+      "position": [
+        0.2664671,
+        0.5375796
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.19270833333333334,
+        "right": 1,
+        "top": 0.0546875,
+        "bottom": 1
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-35": {
+      "position": [
+        0.1876248,
+        0.677707
+      ],
+      "scale": 23.93496,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.25,
+        "right": 0.875,
+        "top": 0.03125,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.489,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-36": {
+      "position": [
+        0.2664671,
+        0.6802548
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.21875,
+        "right": 0.7916666666666666,
+        "top": 0.0625,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-37": {
+      "position": [
+        0.253493,
+        0.6522293
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.9739583333333334,
+        "top": 0.01171875,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.773,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-38": {
+      "position": [
+        0.2714571,
+        0.6802548
+      ],
+      "scale": 24.43154,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.24479166666666666,
+        "right": 0.953125,
+        "top": 0.03515625,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.771,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-39": {
+      "position": [
+        0.262475,
+        0.6598726
+      ],
+      "scale": 23.64659,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 0.9427083333333334,
+        "top": 0,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "mill-40": {
+      "position": [
+        0.2734531,
+        0.6394904
+      ],
+      "scale": 22.85714,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.21875,
+        "right": 0.796875,
+        "top": 0.0546875,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.705,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "mill-fusion-ground"
+    },
+    "tea-01": {
+      "position": [
+        0.3003992,
+        0.710828
+      ],
+      "scale": 22.02151,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.1953125,
+        "right": 0.984375,
+        "top": 0.048828125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.994,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-02": {
+      "position": [
+        0.2954092,
+        0.7159236
+      ],
+      "scale": 19.46544,
+      "anchor": [
+        0.5,
+        0.931640625
+      ],
+      "visualMetrics": {
+        "left": 0.16927083333333334,
+        "right": 0.9505208333333334,
+        "top": 0.083984375,
+        "bottom": 0.931640625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-06": {
+      "position": [
+        0.2934132,
+        0.7031847
+      ],
+      "scale": 24.89641,
+      "anchor": [
+        0.5,
+        0.927734375
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.8776041666666666,
+        "top": 0.00390625,
+        "bottom": 0.927734375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.687,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-07": {
+      "position": [
+        0.3113772,
+        0.7082803
+      ],
+      "scale": 23.74194,
+      "anchor": [
+        0.5,
+        0.99609375
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 0.8359375,
+        "top": 0.02734375,
+        "bottom": 0.99609375
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.495,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-08": {
+      "position": [
+        0.3063872,
+        0.7006369
+      ],
+      "scale": 20.21053,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.9088541666666666,
+        "top": 0.08984375,
+        "bottom": 0.90625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.59,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-09": {
+      "position": [
+        0.3023952,
+        0.6878981
+      ],
+      "scale": 18.08994,
+      "anchor": [
+        0.5,
+        0.966796875
+      ],
+      "visualMetrics": {
+        "left": 0.14322916666666666,
+        "right": 0.8645833333333334,
+        "top": 0.0546875,
+        "bottom": 0.966796875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.807,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-13": {
+      "position": [
+        0.3952096,
+        0.6522293
+      ],
+      "scale": 19.06998,
+      "anchor": [
+        0.5,
+        0.890625
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.8880208333333334,
+        "top": 0.025390625,
+        "bottom": 0.890625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.494,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-14": {
+      "position": [
+        0.3892216,
+        0.6522293
+      ],
+      "scale": 26.70295,
+      "anchor": [
+        0.5,
+        0.88671875
+      ],
+      "visualMetrics": {
+        "left": 0.12239583333333333,
+        "right": 0.9140625,
+        "top": 0.025390625,
+        "bottom": 0.88671875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.48,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-03": {
+      "position": [
+        0.2904192,
+        0.7261146
+      ],
+      "scale": 18.60793,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.921875,
+        "top": 0.01953125,
+        "bottom": 0.90625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-04": {
+      "position": [
+        0.2894212,
+        0.6878981
+      ],
+      "scale": 21.88034,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.921875,
+        "top": 0,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.567,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-05": {
+      "position": [
+        0.2824351,
+        0.6802548
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 0.9166666666666666,
+        "top": 0,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.749,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-10": {
+      "position": [
+        0.3033932,
+        0.6675159
+      ],
+      "scale": 18.9417,
+      "anchor": [
+        0.5,
+        0.90234375
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 1,
+        "top": 0.03125,
+        "bottom": 0.90234375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.544,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-11": {
+      "position": [
+        0.2804391,
+        0.6343949
+      ],
+      "scale": 22.06897,
+      "anchor": [
+        0.5,
+        0.90625
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.9375,
+        "top": 0,
+        "bottom": 0.90625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.53,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-12": {
+      "position": [
+        0.2784431,
+        0.5961783
+      ],
+      "scale": 24.94915,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8854166666666666,
+        "top": 0.015625,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.568,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-15": {
+      "position": [
+        0.3802395,
+        0.5732484
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.06770833333333333,
+        "right": 0.7604166666666666,
+        "top": 0.00390625,
+        "bottom": 0.921875
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.472,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-16": {
+      "position": [
+        0.3852295,
+        0.6649682
+      ],
+      "scale": 18.28571,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 1,
+        "top": 0.05078125,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.8,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-17": {
+      "position": [
+        0.3912176,
+        0.6675159
+      ],
+      "scale": 20.21053,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 0.9375,
+        "top": 0.12890625,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.98,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-18": {
+      "position": [
+        0.3592814,
+        0.6853503
+      ],
+      "scale": 18.77333,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.21875,
+        "right": 1,
+        "top": 0.0703125,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.478,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-19": {
+      "position": [
+        0.258483,
+        0.6089172
+      ],
+      "scale": 21.88034,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.9010416666666666,
+        "top": 0.0390625,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-20": {
+      "position": [
+        0.257485,
+        0.5859873
+      ],
+      "scale": 18.85714,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.9166666666666666,
+        "top": 0.0703125,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-21": {
+      "position": [
+        0.2774451,
+        0.6140127
+      ],
+      "scale": 18.60793,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.8385416666666666,
+        "top": 0.078125,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.548,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-22": {
+      "position": [
+        0.2734531,
+        0.5477707
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.234375,
+        "right": 0.859375,
+        "top": 0.07421875,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.994,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-23": {
+      "position": [
+        0.2704591,
+        0.5197452
+      ],
+      "scale": 24.03265,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.026041666666666668,
+        "right": 0.9270833333333334,
+        "top": 0.03125,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-24": {
+      "position": [
+        0.2674651,
+        0.4993631
+      ],
+      "scale": 25.82456,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.90625,
+        "top": 0.0546875,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.979,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-25": {
+      "position": [
+        0.2664671,
+        0.4713376
+      ],
+      "scale": 19.02703,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 1,
+        "top": 0.0546875,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.538,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-26": {
+      "position": [
+        0.259481,
+        0.4407643
+      ],
+      "scale": 20.70588,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.3020833333333333,
+        "right": 1,
+        "top": 0.125,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.571,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-27": {
+      "position": [
+        0.254491,
+        0.4407643
+      ],
+      "scale": 19.92453,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.2708333333333333,
+        "right": 0.9947916666666666,
+        "top": 0.12109375,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.83,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-28": {
+      "position": [
+        0.260479,
+        0.4203822
+      ],
+      "scale": 18.44541,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.2604166666666667,
+        "right": 0.9739583333333334,
+        "top": 0.05078125,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.772,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-29": {
+      "position": [
+        0.255489,
+        0.4203822
+      ],
+      "scale": 23.16742,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.9322916666666666,
+        "top": 0.10546875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.727,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-30": {
+      "position": [
+        0.2694611,
+        0.4025478
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.9739583333333334,
+        "top": 0.03125,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.802,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-31": {
+      "position": [
+        0.3363273,
+        0.4764331
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.984375,
+        "top": 0.0546875,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.842,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-32": {
+      "position": [
+        0.3323353,
+        0.4636943
+      ],
+      "scale": 26.40359,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 0.9791666666666666,
+        "top": 0.0390625,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.472,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-33": {
+      "position": [
+        0.3722555,
+        0.5732484
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.2552083333333333,
+        "right": 0.9114583333333334,
+        "top": 0.015625,
+        "bottom": 0.953125
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.485,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-34": {
+      "position": [
+        0.3443114,
+        0.4585987
+      ],
+      "scale": 18.12876,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 1,
+        "top": 0.01953125,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.526,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-35": {
+      "position": [
+        0.2874251,
+        0.4229299
+      ],
+      "scale": 19.55556,
+      "anchor": [
+        0.5,
+        0.8984375
+      ],
+      "visualMetrics": {
+        "left": 0.3385416666666667,
+        "right": 1,
+        "top": 0.0546875,
+        "bottom": 0.8984375
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.574,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-36": {
+      "position": [
+        0.2894212,
+        0.4050955
+      ],
+      "scale": 18.69027,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 0.9166666666666666,
+        "top": 0.04296875,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.518,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-37": {
+      "position": [
+        0.3502994,
+        0.6853503
+      ],
+      "scale": 22.65487,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.9270833333333334,
+        "top": 0.046875,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.461,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-38": {
+      "position": [
+        0.2874251,
+        0.6649682
+      ],
+      "scale": 20.30769,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.20833333333333334,
+        "right": 0.9166666666666666,
+        "top": 0.08203125,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.53,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-39": {
+      "position": [
+        0.2754491,
+        0.3821656
+      ],
+      "scale": 19.55556,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.953125,
+        "top": 0.06640625,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.551,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-40": {
+      "position": [
+        0.2724551,
+        0.3745223
+      ],
+      "scale": 24.63598,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.10416666666666667,
+        "right": 0.9479166666666666,
+        "top": 0.0078125,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.92,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-41": {
+      "position": [
+        0.2784431,
+        0.3592357
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.9375
+      ],
+      "visualMetrics": {
+        "left": 0.23958333333333334,
+        "right": 1,
+        "top": 0.02734375,
+        "bottom": 0.9375
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.687,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-42": {
+      "position": [
+        0.2694611,
+        0.3490446
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.21875,
+        "right": 1,
+        "top": 0.015625,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.609,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-43": {
+      "position": [
+        0.2664671,
+        0.588535
+      ],
+      "scale": 17.82278,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.9947916666666666,
+        "top": 0.00390625,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.943,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-44": {
+      "position": [
+        0.2684631,
+        0.6522293
+      ],
+      "scale": 18.69027,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0.265625,
+        "right": 0.9947916666666666,
+        "top": 0.04296875,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.974,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-45": {
+      "position": [
+        0.2754491,
+        0.3312102
+      ],
+      "scale": 19.64651,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 0.9270833333333334,
+        "top": 0.0703125,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.969,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-46": {
+      "position": [
+        0.2714571,
+        0.4815287
+      ],
+      "scale": 17.89831,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.16145833333333334,
+        "right": 0.9427083333333334,
+        "top": 0.01953125,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.518,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-47": {
+      "position": [
+        0.2794411,
+        0.3235669
+      ],
+      "scale": 22.26087,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.96875,
+        "top": 0.03125,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.713,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-48": {
+      "position": [
+        0.2894212,
+        0.2929936
+      ],
+      "scale": 26.16889,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.9114583333333334,
+        "top": 0.1015625,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.513,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-49": {
+      "position": [
+        0.2944112,
+        0.2929936
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.234375,
+        "right": 0.8958333333333334,
+        "top": 0.078125,
+        "bottom": 0.984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.483,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-50": {
+      "position": [
+        0.2894212,
+        0.2318471
+      ],
+      "scale": 27.38605,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.9427083333333334,
+        "top": 0.14453125,
+        "bottom": 0.984375
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.621,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-51": {
+      "position": [
+        0.2974052,
+        0.2165605
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.8489583333333334,
+        "top": 0.0703125,
+        "bottom": 0.984375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.485,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-52": {
+      "position": [
+        0.2874251,
+        0.2624204
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        1
+      ],
+      "visualMetrics": {
+        "left": 0.2604166666666667,
+        "right": 0.890625,
+        "top": 0.0703125,
+        "bottom": 1
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.494,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-53": {
+      "position": [
+        0.249501,
+        0.4076433
+      ],
+      "scale": 25.6,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.9427083333333334,
+        "top": 0.0859375,
+        "bottom": 0.984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.587,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-54": {
+      "position": [
+        0.262475,
+        0.4050955
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 1,
+        "top": 0.07421875,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.594,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-55": {
+      "position": [
+        0.3093812,
+        0.456051
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.98828125
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.921875,
+        "top": 0.09375,
+        "bottom": 0.98828125
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.482,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-56": {
+      "position": [
+        0.3832335,
+        0.4585987
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.8020833333333334,
+        "top": 0.08984375,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.745,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-57": {
+      "position": [
+        0.244511,
+        0.4025478
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.2552083333333333,
+        "right": 0.8697916666666666,
+        "top": 0.07421875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.806,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-58": {
+      "position": [
+        0.3023952,
+        0.4433121
+      ],
+      "scale": 26.76364,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.234375,
+        "right": 0.9895833333333334,
+        "top": 0.09765625,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.56,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-59": {
+      "position": [
+        0.3802395,
+        0.4356688
+      ],
+      "scale": 25.6,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.9010416666666666,
+        "top": 0.046875,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.512,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-60": {
+      "position": [
+        0.3013972,
+        0.2063694
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.98046875
+      ],
+      "visualMetrics": {
+        "left": 0.24479166666666666,
+        "right": 0.8958333333333334,
+        "top": 0.03515625,
+        "bottom": 0.98046875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.543,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-61": {
+      "position": [
+        0.2654691,
+        0.3847134
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.19791666666666666,
+        "right": 0.96875,
+        "top": 0.04296875,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.609,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-62": {
+      "position": [
+        0.3153693,
+        0.3617834
+      ],
+      "scale": 26.28571,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.3072916666666667,
+        "right": 0.9635416666666666,
+        "top": 0.07421875,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.472,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-63": {
+      "position": [
+        0.3163673,
+        0.3363057
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.9479166666666666,
+        "top": 0.07421875,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.492,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-64": {
+      "position": [
+        0.3043912,
+        0.4076433
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.765625,
+        "top": 0.02734375,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.469,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "tea-65": {
+      "position": [
+        0.2325349,
+        0.2929936
+      ],
+      "scale": 24.23045,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.0078125,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.835,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "visitors-01": {
+      "position": [
+        0.239521,
+        0.2726115
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.8645833333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.691,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "tea-fusion-ground"
+    },
+    "gate-01": {
+      "position": [
+        0.9041916,
+        0.5936306
+      ],
+      "scale": 25.65577,
+      "anchor": [
+        0.5,
+        0.966796875
+      ],
+      "visualMetrics": {
+        "left": 0.09114583333333333,
+        "right": 1,
+        "top": 0.0703125,
+        "bottom": 0.966796875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.868,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-11": {
+      "position": [
+        0.8952096,
+        0.6624204
+      ],
+      "scale": 23.16742,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.8020833333333334,
+        "top": 0.1015625,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-12": {
+      "position": [
+        0.8882236,
+        0.6624204
+      ],
+      "scale": 25.65577,
+      "anchor": [
+        0.5,
+        0.935546875
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9270833333333334,
+        "top": 0.0390625,
+        "bottom": 0.935546875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.88,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-13": {
+      "position": [
+        0.8852295,
+        0.6751592
+      ],
+      "scale": 23.27273,
+      "anchor": [
+        0.5,
+        0.935546875
+      ],
+      "visualMetrics": {
+        "left": 0.07552083333333333,
+        "right": 0.8932291666666666,
+        "top": 0.2265625,
+        "bottom": 0.935546875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-41": {
+      "position": [
+        0.9131737,
+        0.5426752
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.919921875
+      ],
+      "visualMetrics": {
+        "left": 0.2786458333333333,
+        "right": 0.7604166666666666,
+        "top": 0.005859375,
+        "bottom": 0.919921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.778,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-02": {
+      "position": [
+        0.9121756,
+        0.5936306
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.84375,
+        "top": 0.08203125,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-03": {
+      "position": [
+        0.9101796,
+        0.611465
+      ],
+      "scale": 28.93151,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.9322916666666666,
+        "top": 0.38671875,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.834,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-04": {
+      "position": [
+        0.9161677,
+        0.6089172
+      ],
+      "scale": 23.79718,
+      "anchor": [
+        0.5,
+        0.86328125
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8932291666666666,
+        "top": 0.169921875,
+        "bottom": 0.86328125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-05": {
+      "position": [
+        0.9181637,
+        0.588535
+      ],
+      "scale": 28.20937,
+      "anchor": [
+        0.5,
+        0.833984375
+      ],
+      "visualMetrics": {
+        "left": 0.08072916666666667,
+        "right": 0.90625,
+        "top": 0.125,
+        "bottom": 0.833984375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.968,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-06": {
+      "position": [
+        0.9291417,
+        0.6140127
+      ],
+      "scale": 17.56341,
+      "anchor": [
+        0.5,
+        0.984375
+      ],
+      "visualMetrics": {
+        "left": 0.1328125,
+        "right": 0.921875,
+        "top": 0.044921875,
+        "bottom": 0.984375
+      },
+      "footCoverage": 0.917,
+      "bodyCoverage": 0.623,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-07": {
+      "position": [
+        0.9231537,
+        0.6140127
+      ],
+      "scale": 26.5285,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.8854166666666666,
+        "top": 0.20703125,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.986,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-08": {
+      "position": [
+        0.9241517,
+        0.5936306
+      ],
+      "scale": 27.13364,
+      "anchor": [
+        0.5,
+        0.92578125
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.9817708333333334,
+        "top": 0.078125,
+        "bottom": 0.92578125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.569,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-09": {
+      "position": [
+        0.9181637,
+        0.6318471
+      ],
+      "scale": 24.7343,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.890625,
+        "top": 0.1640625,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-10": {
+      "position": [
+        0.9331337,
+        0.6369427
+      ],
+      "scale": 27.00917,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.1171875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.57,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-14": {
+      "position": [
+        0.8952096,
+        0.6878981
+      ],
+      "scale": 28.44444,
+      "anchor": [
+        0.5,
+        0.95703125
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 0.890625,
+        "top": 0.25390625,
+        "bottom": 0.95703125
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.627,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-15": {
+      "position": [
+        0.9001996,
+        0.6751592
+      ],
+      "scale": 25.85859,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.8385416666666666,
+        "top": 0.19140625,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.861,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-16": {
+      "position": [
+        0.9061876,
+        0.7082803
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.8697916666666666,
+        "top": 0.0546875,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-17": {
+      "position": [
+        0.9111776,
+        0.7133758
+      ],
+      "scale": 27.52688,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.8697916666666666,
+        "top": 0.2265625,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-18": {
+      "position": [
+        0.9001996,
+        0.7159236
+      ],
+      "scale": 25.93833,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.90625,
+        "top": 0.08203125,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.636,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-19": {
+      "position": [
+        0.9021956,
+        0.7286624
+      ],
+      "scale": 27.37968,
+      "anchor": [
+        0.5,
+        0.94140625
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.8802083333333334,
+        "top": 0.2109375,
+        "bottom": 0.94140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.962,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-20": {
+      "position": [
+        0.8942116,
+        0.7261146
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8333333333333334,
+        "top": 0.0625,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.456,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-21": {
+      "position": [
+        0.8872255,
+        0.7184713
+      ],
+      "scale": 25.82456,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.828125,
+        "top": 0.0859375,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.897,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-22": {
+      "position": [
+        0.8802395,
+        0.7210191
+      ],
+      "scale": 27.64319,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.8697916666666666,
+        "top": 0.12109375,
+        "bottom": 0.953125
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.546,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-23": {
+      "position": [
+        0.8952096,
+        0.7414013
+      ],
+      "scale": 25.7561,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.859375,
+        "top": 0.3125,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-24": {
+      "position": [
+        0.9021956,
+        0.7515924
+      ],
+      "scale": 24.61538,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.875,
+        "top": 0.09765625,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-25": {
+      "position": [
+        0.9091816,
+        0.7388535
+      ],
+      "scale": 28.13187,
+      "anchor": [
+        0.5,
+        0.91015625
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.9322916666666666,
+        "top": 0.19921875,
+        "bottom": 0.91015625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-26": {
+      "position": [
+        0.9161677,
+        0.743949
+      ],
+      "scale": 25.93833,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.8229166666666666,
+        "top": 0.03515625,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-27": {
+      "position": [
+        0.9231537,
+        0.743949
+      ],
+      "scale": 25.85859,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.06770833333333333,
+        "right": 0.859375,
+        "top": 0.140625,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-28": {
+      "position": [
+        0.9291417,
+        0.743949
+      ],
+      "scale": 26.52252,
+      "anchor": [
+        0.5,
+        0.93359375
+      ],
+      "visualMetrics": {
+        "left": 0.19270833333333334,
+        "right": 0.9479166666666666,
+        "top": 0.06640625,
+        "bottom": 0.93359375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.972,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-29": {
+      "position": [
+        0.9341317,
+        0.743949
+      ],
+      "scale": 27.82609,
+      "anchor": [
+        0.5,
+        0.9140625
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.859375,
+        "top": 0.1953125,
+        "bottom": 0.9140625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.923,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-30": {
+      "position": [
+        0.9231537,
+        0.7210191
+      ],
+      "scale": 28.0381,
+      "anchor": [
+        0.5,
+        0.9296875
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.8385416666666666,
+        "top": 0.109375,
+        "bottom": 0.9296875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-31": {
+      "position": [
+        0.9091816,
+        0.6878981
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.8541666666666666,
+        "top": 0.10546875,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-32": {
+      "position": [
+        0.9151697,
+        0.6878981
+      ],
+      "scale": 26.0531,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.234375,
+        "right": 0.9010416666666666,
+        "top": 0.01171875,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-33": {
+      "position": [
+        0.9211577,
+        0.6929936
+      ],
+      "scale": 27.60784,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.9114583333333334,
+        "top": 0.27734375,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 16.5,
+      "posture": "seated",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-34": {
+      "position": [
+        0.9221557,
+        0.6726115
+      ],
+      "scale": 26.25641,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8802083333333334,
+        "top": 0.11328125,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.995,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-35": {
+      "position": [
+        0.9291417,
+        0.6828025
+      ],
+      "scale": 27.08995,
+      "anchor": [
+        0.5,
+        0.85546875
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8854166666666666,
+        "top": 0.1171875,
+        "bottom": 0.85546875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.909,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-36": {
+      "position": [
+        0.759481,
+        0.7541401
+      ],
+      "scale": 26.76364,
+      "anchor": [
+        0.5,
+        0.87890625
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.828125,
+        "top": 0.01953125,
+        "bottom": 0.87890625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.88,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-37": {
+      "position": [
+        0.7664671,
+        0.7363057
+      ],
+      "scale": 29.59538,
+      "anchor": [
+        0.5,
+        0.87890625
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.8854166666666666,
+        "top": 0.203125,
+        "bottom": 0.87890625
+      },
+      "footCoverage": 0.958,
+      "bodyCoverage": 0.83,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-38": {
+      "position": [
+        0.8992016,
+        0.6496815
+      ],
+      "scale": 27.64319,
+      "anchor": [
+        0.5,
+        0.89453125
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 1,
+        "top": 0.0625,
+        "bottom": 0.89453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.48,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-39": {
+      "position": [
+        0.9051896,
+        0.6547771
+      ],
+      "scale": 29.09091,
+      "anchor": [
+        0.5,
+        0.875
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.8541666666666666,
+        "top": 0.1875,
+        "bottom": 0.875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.77,
+      "visibleHeight": 20,
+      "posture": "bent",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-40": {
+      "position": [
+        0.9081836,
+        0.6394904
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.9166666666666666,
+        "top": 0.078125,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.605,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-42": {
+      "position": [
+        0.9151697,
+        0.5681529
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.041666666666666664,
+        "right": 0.8645833333333334,
+        "top": 0.0625,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-43": {
+      "position": [
+        0.9141717,
+        0.6573248
+      ],
+      "scale": 25.71179,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.765625,
+        "top": 0.08203125,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-44": {
+      "position": [
+        0.9421158,
+        0.743949
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.97265625
+      ],
+      "visualMetrics": {
+        "left": 0,
+        "right": 0.7552083333333334,
+        "top": 0.06640625,
+        "bottom": 0.97265625
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.485,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-45": {
+      "position": [
+        0.9041916,
+        0.5528662
+      ],
+      "scale": 24.84388,
+      "anchor": [
+        0.5,
+        0.99609375
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 0.7864583333333334,
+        "top": 0.0703125,
+        "bottom": 0.99609375
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.741,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-46": {
+      "position": [
+        0.9101796,
+        0.5579618
+      ],
+      "scale": 24.53333,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.7447916666666666,
+        "top": 0.0546875,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-47": {
+      "position": [
+        0.9281437,
+        0.6598726
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.99609375
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 0.6979166666666666,
+        "top": 0.08984375,
+        "bottom": 0.99609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.688,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-48": {
+      "position": [
+        0.9361277,
+        0.6700637
+      ],
+      "scale": 24.33058,
+      "anchor": [
+        0.5,
+        0.9921875
+      ],
+      "visualMetrics": {
+        "left": 0.041666666666666664,
+        "right": 0.734375,
+        "top": 0.046875,
+        "bottom": 0.9921875
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.957,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-49": {
+      "position": [
+        0.9211577,
+        0.5605096
+      ],
+      "scale": 24.94915,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.9739583333333334,
+        "top": 0.04296875,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.791,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-50": {
+      "position": [
+        0.9391218,
+        0.6471338
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.1875,
+        "right": 0.953125,
+        "top": 0.05859375,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.904,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-51": {
+      "position": [
+        0.9461078,
+        0.6471338
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.052083333333333336,
+        "right": 0.8958333333333334,
+        "top": 0.046875,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.493,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-52": {
+      "position": [
+        0.9281437,
+        0.5503185
+      ],
+      "scale": 25.37931,
+      "anchor": [
+        0.5,
+        0.96484375
+      ],
+      "visualMetrics": {
+        "left": 0.06770833333333333,
+        "right": 0.8385416666666666,
+        "top": 0.05859375,
+        "bottom": 0.96484375
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.506,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-53": {
+      "position": [
+        0.9191617,
+        0.3974522
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.9010416666666666,
+        "top": 0.0546875,
+        "bottom": 0.96875
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-54": {
+      "position": [
+        0.9301397,
+        0.7719745
+      ],
+      "scale": 24.7395,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.07291666666666667,
+        "right": 0.7135416666666666,
+        "top": 0.046875,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-55": {
+      "position": [
+        0.9301397,
+        0.7159236
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.9765625
+      ],
+      "visualMetrics": {
+        "left": 0.046875,
+        "right": 0.7083333333333334,
+        "top": 0.07421875,
+        "bottom": 0.9765625
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.491,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-56": {
+      "position": [
+        0.9131737,
+        0.3974522
+      ],
+      "scale": 25.48918,
+      "anchor": [
+        0.5,
+        0.96875
+      ],
+      "visualMetrics": {
+        "left": 0.041666666666666664,
+        "right": 0.7604166666666666,
+        "top": 0.06640625,
+        "bottom": 0.96875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-57": {
+      "position": [
+        0.9031936,
+        0.3974522
+      ],
+      "scale": 25.27039,
+      "anchor": [
+        0.5,
+        0.9453125
+      ],
+      "visualMetrics": {
+        "left": 0.22916666666666666,
+        "right": 0.8854166666666666,
+        "top": 0.03515625,
+        "bottom": 0.9453125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.786,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-58": {
+      "position": [
+        0.8992016,
+        0.5783439
+      ],
+      "scale": 25.6,
+      "anchor": [
+        0.5,
+        0.94921875
+      ],
+      "visualMetrics": {
+        "left": 0.203125,
+        "right": 0.984375,
+        "top": 0.05078125,
+        "bottom": 0.94921875
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.466,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-59": {
+      "position": [
+        0.8982036,
+        0.3974522
+      ],
+      "scale": 25.16239,
+      "anchor": [
+        0.5,
+        0.9609375
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.7395833333333334,
+        "top": 0.046875,
+        "bottom": 0.9609375
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.934,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "gate-60": {
+      "position": [
+        0.9670659,
+        0.6471338
+      ],
+      "scale": 25.05532,
+      "anchor": [
+        0.5,
+        0.953125
+      ],
+      "visualMetrics": {
+        "left": 0.057291666666666664,
+        "right": 0.8489583333333334,
+        "top": 0.03515625,
+        "bottom": 0.953125
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.499,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "visitors-02": {
+      "position": [
+        0.9251497,
+        0.3949045
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.8541666666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 1,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "visitors-03": {
+      "position": [
+        0.757485,
+        0.7286624
+      ],
+      "scale": 27.42857,
+      "anchor": [
+        0.5,
+        0.921875
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.890625,
+        "top": 0.08333333333333333,
+        "bottom": 0.921875
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.495,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "gate-fusion-ground"
+    },
+    "visitors-11": {
+      "position": [
+        0.3582834,
+        0.2140127
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.666,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-12": {
+      "position": [
+        0.0518962,
+        0.1605096
+      ],
+      "scale": 33.70992,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.22395833333333334,
+        "right": 0.7760416666666666,
+        "top": 0.24479166666666666,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.482,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-13": {
+      "position": [
+        0.1177645,
+        0.7617834
+      ],
+      "scale": 29.83784,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.15625,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.78,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-14": {
+      "position": [
+        0.2005988,
+        0.3286624
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.8697916666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.844,
+      "bodyCoverage": 0.609,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-15": {
+      "position": [
+        0.1447106,
+        0.7872611
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.859375,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.678,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-16": {
+      "position": [
+        0.9031936,
+        0.3770701
+      ],
+      "scale": 34.5,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8541666666666666,
+        "top": 0.2604166666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.594,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-17": {
+      "position": [
+        0.5928144,
+        0.1757962
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.859375,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.715,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-18": {
+      "position": [
+        0.8063872,
+        0.3821656
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.8854166666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.858,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-19": {
+      "position": [
+        0.6227545,
+        0.4815287
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.890625,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.763,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-20": {
+      "position": [
+        0.0459082,
+        0.7031847
+      ],
+      "scale": 28.12739,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.109375,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.655,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-21": {
+      "position": [
+        0.7664671,
+        0.5350318
+      ],
+      "scale": 28.12739,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.109375,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.451,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-22": {
+      "position": [
+        0.6826347,
+        0.4815287
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.19791666666666666,
+        "right": 0.8020833333333334,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.553,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-23": {
+      "position": [
+        0.5828343,
+        0.3286624
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.08854166666666667,
+        "right": 0.9166666666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.472,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-24": {
+      "position": [
+        0.6267465,
+        0.6292994
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.875,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.46,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-25": {
+      "position": [
+        0.4141717,
+        0.1757962
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.805,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-26": {
+      "position": [
+        0.3093812,
+        0.2140127
+      ],
+      "scale": 33.96923,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.21354166666666666,
+        "right": 0.7864583333333334,
+        "top": 0.25,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.704,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-27": {
+      "position": [
+        0.8632735,
+        0.5808917
+      ],
+      "scale": 29.44,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.14583333333333334,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.627,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-28": {
+      "position": [
+        0.2105788,
+        0.1707006
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.8645833333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.527,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-29": {
+      "position": [
+        0.9161677,
+        0.2853503
+      ],
+      "scale": 34.5,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.14583333333333334,
+        "right": 0.859375,
+        "top": 0.2604166666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.695,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-30": {
+      "position": [
+        0.0988024,
+        0.2038217
+      ],
+      "scale": 28.61538,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.3854166666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.755,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-31": {
+      "position": [
+        0.6007984,
+        0.0764331
+      ],
+      "scale": 35.04762,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.15625,
+        "right": 0.84375,
+        "top": 0.2708333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.548,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-32": {
+      "position": [
+        0.0798403,
+        0.7515924
+      ],
+      "scale": 34.5,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.18229166666666666,
+        "right": 0.8229166666666666,
+        "top": 0.2604166666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.642,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-33": {
+      "position": [
+        0.0259481,
+        0.1273885
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8645833333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.705,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-34": {
+      "position": [
+        0.8722555,
+        0.4280255
+      ],
+      "scale": 32.95522,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.2916666666666667,
+        "right": 0.9010416666666666,
+        "top": 0.22916666666666666,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.936,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-35": {
+      "position": [
+        0.6836327,
+        0.4178344
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.8854166666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.463,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-36": {
+      "position": [
+        0.3872255,
+        0.1961783
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.84375,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.811,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-37": {
+      "position": [
+        0.8852295,
+        0.2904459
+      ],
+      "scale": 27.94937,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.921875,
+        "top": 0.10416666666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.969,
+      "bodyCoverage": 0.763,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-38": {
+      "position": [
+        0.7874251,
+        0.3694268
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.859375,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.875,
+      "bodyCoverage": 0.602,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-39": {
+      "position": [
+        0.1347305,
+        0.7898089
+      ],
+      "scale": 28.49032,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.11979166666666667,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.969,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-40": {
+      "position": [
+        0.5928144,
+        0.2394904
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.11979166666666667,
+        "right": 0.8854166666666666,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.591,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-41": {
+      "position": [
+        0.6297405,
+        0.5528662
+      ],
+      "scale": 32.71111,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.8489583333333334,
+        "top": 0.22395833333333334,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.714,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-42": {
+      "position": [
+        0.3343313,
+        0.2191083
+      ],
+      "scale": 27.55556,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.3125,
+        "right": 0.921875,
+        "top": 0.3645833333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.868,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-43": {
+      "position": [
+        0.7854291,
+        0.5299363
+      ],
+      "scale": 28.67532,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.511,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-44": {
+      "position": [
+        0.3153693,
+        0.2140127
+      ],
+      "scale": 27.77358,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.3697916666666667,
+        "right": 0.921875,
+        "top": 0.09895833333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.46,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-45": {
+      "position": [
+        0.9131737,
+        0.3541401
+      ],
+      "scale": 27.6,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.09375,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.965,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-46": {
+      "position": [
+        0.0788423,
+        0.1859873
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.90625,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.513,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-47": {
+      "position": [
+        0.0419162,
+        0.1503185
+      ],
+      "scale": 34.77165,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.171875,
+        "right": 0.8333333333333334,
+        "top": 0.265625,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.628,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-48": {
+      "position": [
+        0.6037924,
+        0.4815287
+      ],
+      "scale": 33.96923,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.17708333333333334,
+        "right": 0.828125,
+        "top": 0.25,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.455,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-49": {
+      "position": [
+        0.8892216,
+        0.3974522
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13541666666666666,
+        "right": 0.859375,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.627,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-50": {
+      "position": [
+        0.9001996,
+        0.2980892
+      ],
+      "scale": 27.77358,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.078125,
+        "right": 0.921875,
+        "top": 0.09895833333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.883,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-51": {
+      "position": [
+        0.4041916,
+        0.2038217
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.9010416666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.828,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-52": {
+      "position": [
+        0.0618762,
+        0.7286624
+      ],
+      "scale": 35.04762,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.19791666666666666,
+        "right": 0.8020833333333334,
+        "top": 0.2708333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.562,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-53": {
+      "position": [
+        0.5738523,
+        0.310828
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.125,
+        "right": 0.8802083333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.475,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-54": {
+      "position": [
+        0.0668663,
+        0.1757962
+      ],
+      "scale": 18.37037,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.11458333333333333,
+        "right": 0.890625,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.753,
+      "visibleHeight": 15.5,
+      "posture": "child",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-55": {
+      "position": [
+        0.1257485,
+        0.7974522
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.16666666666666666,
+        "right": 0.8333333333333334,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.454,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-56": {
+      "position": [
+        0.6926148,
+        0.4942675
+      ],
+      "scale": 27.6,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.921875,
+        "top": 0.09375,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.938,
+      "bodyCoverage": 0.466,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-57": {
+      "position": [
+        0.3473054,
+        0.2216561
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.9114583333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.717,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-58": {
+      "position": [
+        0.6257485,
+        0.5248408
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.15104166666666666,
+        "right": 0.859375,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 0.906,
+      "bodyCoverage": 0.525,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-59": {
+      "position": [
+        0.7964072,
+        0.3643312
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.08333333333333333,
+        "right": 0.9166666666666666,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.485,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-60": {
+      "position": [
+        0.9131737,
+        0.3133758
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.140625,
+        "right": 0.8645833333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.951,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-61": {
+      "position": [
+        0.5728543,
+        0.343949
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.09375,
+        "right": 0.90625,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.718,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-62": {
+      "position": [
+        0.5968064,
+        0.1044586
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.13020833333333334,
+        "right": 0.875,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.673,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-63": {
+      "position": [
+        0.0908184,
+        0.7566879
+      ],
+      "scale": 27.09202,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.109375,
+        "right": 0.8958333333333334,
+        "top": 0.078125,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.717,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    },
+    "visitors-64": {
+      "position": [
+        0.5898204,
+        0.2038217
+      ],
+      "scale": 27.25926,
+      "anchor": [
+        0.5,
+        0.9270833333333334
+      ],
+      "visualMetrics": {
+        "left": 0.09895833333333333,
+        "right": 0.90625,
+        "top": 0.08333333333333333,
+        "bottom": 0.9270833333333334
+      },
+      "footCoverage": 1,
+      "bodyCoverage": 0.905,
+      "visibleHeight": 23,
+      "posture": "standing",
+      "surfaceId": "lanes-fusion-ground"
+    }
+  },
+  "summary": {
+    "boats": {
+      "count": 30,
+      "min": 16.5,
+      "average": 18.62,
+      "max": 23
+    },
+    "bridge": {
+      "count": 41,
+      "min": 15.5,
+      "average": 22.23,
+      "max": 23
+    },
+    "quay": {
+      "count": 45,
+      "min": 16.5,
+      "average": 21.73,
+      "max": 23
+    },
+    "temple": {
+      "count": 23,
+      "min": 16.5,
+      "average": 22.02,
+      "max": 23
+    },
+    "fields": {
+      "count": 21,
+      "min": 15.5,
+      "average": 20.6,
+      "max": 23
+    },
+    "mill": {
+      "count": 40,
+      "min": 16.5,
+      "average": 21.6,
+      "max": 23
+    },
+    "tea": {
+      "count": 66,
+      "min": 16.5,
+      "average": 20.32,
+      "max": 23
+    },
+    "gate": {
+      "count": 62,
+      "min": 16.5,
+      "average": 21.6,
+      "max": 23
+    },
+    "lanes": {
+      "count": 54,
+      "min": 15.5,
+      "average": 22.58,
+      "max": 23
+    }
+  }
+}

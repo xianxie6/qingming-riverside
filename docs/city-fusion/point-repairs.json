@@ -1,0 +1,58 @@
+{
+  "bridge-25": {
+    "assetVariants": {
+      "high": "assets/explore/point-fixes/pusher-complete.webp",
+      "low": "assets/explore/point-fixes/pusher-complete-low.webp"
+    },
+    "sourceAsset": {
+      "directory": "art-source/point-fixes",
+      "name": "pusher-complete",
+      "format": "png"
+    },
+    "sprite": 0,
+    "atlasColumns": 1,
+    "atlasRows": 1,
+    "spriteAspectRatio": 1.5,
+    "visualMetrics": {
+      "left": 0.052083333333333336,
+      "right": 0.9596354166666666,
+      "top": 0.126953125,
+      "bottom": 0.900390625
+    },
+    "anchor": [
+      0.5,
+      0.900390625
+    ],
+    "scale": 27.151515151515152,
+    "visibleHeight": 21,
+    "repairedArtwork": true
+  },
+  "gate-41": {
+    "assetVariants": {
+      "high": "assets/explore/point-fixes/guard-upright.webp",
+      "low": "assets/explore/point-fixes/guard-upright-low.webp"
+    },
+    "sourceAsset": {
+      "directory": "art-source/point-fixes",
+      "name": "guard-upright",
+      "format": "png"
+    },
+    "sprite": 0,
+    "atlasColumns": 1,
+    "atlasRows": 1,
+    "spriteAspectRatio": 0.75,
+    "visualMetrics": {
+      "left": 0.27624309392265195,
+      "right": 0.7651933701657458,
+      "top": 0.006906077348066298,
+      "bottom": 0.9412983425414365
+    },
+    "anchor": [
+      0.5,
+      0.9412983425414365
+    ],
+    "scale": 24.61492978566149,
+    "visibleHeight": 23,
+    "repairedArtwork": true
+  }
+}

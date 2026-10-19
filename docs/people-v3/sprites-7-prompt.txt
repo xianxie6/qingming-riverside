@@ -1,0 +1,35 @@
+Use case: historical-scene. Game character sprite atlas on TRUE TRANSPARENT background. Canvas 3072x2048. EXACTLY 8 columns by 4 rows equal cells, each 384x512. Exactly ONE full-body figure per cell (mother plus baby only if specified). All figures fully contained within their own cell with generous transparent gaps, no touching cell boundaries. Fine Song-dynasty Chinese antique ink and muted watercolor illustration, elevated three-quarter bird's-eye view matching an old city map; readable hands, faces, cloth folds, tools. Each person UNIQUE: different face, age, body build, hairstyle, headwear, garment shapes, pose and prop handling. NO cloned figures, NO recolored same silhouette, NO repeated standing pose. Avoid modern objects. No background, no ground plane, no grid lines, no labels, no text, no border. Every cell individually centered with complete head and feet, similar visual height about 420 pixels. Warm muted indigo, sage, ochre, clay and linen clothing, thin dark ink contours. Required occupants in row-major order:
+Cell row 1 column 1: 讲述者 挥扇讲述; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 193.
+Cell row 1 column 2: 听书老者 侧耳听书; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 194.
+Cell row 1 column 3: 年轻茶客 坐听交谈; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 195.
+Cell row 1 column 4: 茶博士 俯身添茶; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 196.
+Cell row 1 column 5: 老茶客 侧坐饮茶; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 197.
+Cell row 1 column 6: 年轻茶客 坐听交谈; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 198.
+Cell row 1 column 7: 食摊主人 双手递碗; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 199.
+Cell row 1 column 8: 女顾客 递钱买食; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 200.
+Cell row 2 column 1: 跑堂 抱碗穿行; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 201.
+Cell row 2 column 2: 讲述者 挥扇讲述; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 202.
+Cell row 2 column 3: 听书老者 侧耳听书; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 203.
+Cell row 2 column 4: 年轻茶客 坐听交谈; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 204.
+Cell row 2 column 5: 老茶客 侧坐饮茶; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 205.
+Cell row 2 column 6: 茶博士 俯身添茶; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 206.
+Cell row 2 column 7: 跑堂 抱碗穿行; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 207.
+Cell row 2 column 8: 食摊主人 双手递碗; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 208.
+Cell row 3 column 1: 女顾客 递钱买食; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 209.
+Cell row 3 column 2: 跑堂 抱碗穿行; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 210.
+Cell row 3 column 3: 讲述者 挥扇讲述; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 211.
+Cell row 3 column 4: 听书老者 侧耳听书; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 212.
+Cell row 3 column 5: 年轻茶客 坐听交谈; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 213.
+Cell row 3 column 6: 茶博士 俯身添茶; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 214.
+Cell row 3 column 7: 老茶客 侧坐饮茶; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 215.
+Cell row 3 column 8: 年轻茶客 坐听交谈; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 216.
+Cell row 4 column 1: 食摊主人 双手递碗; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 217.
+Cell row 4 column 2: 女顾客 递钱买食; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 218.
+Cell row 4 column 3: 跑堂 抱碗穿行; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 219.
+Cell row 4 column 4: 讲述者 挥扇讲述; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 220.
+Cell row 4 column 5: 听书老者 侧耳听书; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 221.
+Cell row 4 column 6: 年轻茶客 坐听交谈; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 222.
+Cell row 4 column 7: 老茶客 侧坐饮茶; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 223.
+Cell row 4 column 8: 茶博士 俯身添茶; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 224.
+
+Strong uniqueness requirement: do not reuse the same face or body pose between any cells. If two people share an occupation, use opposing orientation, genuinely different ages, distinctive hats, tools and anatomy. Avoid rows of near-identical color variants. Each cell is a different human.

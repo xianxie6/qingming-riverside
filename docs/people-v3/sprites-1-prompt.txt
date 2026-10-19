@@ -1,0 +1,33 @@
+Use case: historical-scene. Game character sprite atlas on TRUE TRANSPARENT background. Canvas 3072x2048. EXACTLY 8 columns by 4 rows equal cells, each 384x512. Exactly ONE full-body figure per cell (mother plus baby only if specified). All figures fully contained within their own cell with generous transparent gaps, no touching cell boundaries. Fine Song-dynasty Chinese antique ink and muted watercolor illustration, elevated three-quarter bird's-eye view matching an old city map; readable hands, faces, cloth folds, tools. Each person UNIQUE: different face, age, body build, hairstyle, headwear, garment shapes, pose and prop handling. NO cloned figures, NO recolored same silhouette, NO repeated standing pose. Avoid modern objects. No background, no ground plane, no grid lines, no labels, no text, no border. Every cell individually centered with complete head and feet, similar visual height about 420 pixels. Warm muted indigo, sage, ochre, clay and linen clothing, thin dark ink contours. Required occupants in row-major order:
+Cell row 1 column 1: 摇桨人 坐姿摇橹; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 1.
+Cell row 1 column 2: 撑篙人 撑篙操船; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 2.
+Cell row 1 column 3: 旅客 盘坐抱包; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 3.
+Cell row 1 column 4: 船工 拖拽货袋; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 4.
+Cell row 1 column 5: 女旅人 跪坐望岸; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 5.
+Cell row 1 column 6: 老旅客 持杯闲谈; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 6.
+Cell row 1 column 7: 掌舵人 回身掌舵; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 7.
+Cell row 1 column 8: 系缆人 俯身打结; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 8.
+Cell row 2 column 1: 撑篙人 撑篙操船; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 9.
+Cell row 2 column 2: 旅客 盘坐抱包; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 10.
+Cell row 2 column 3: 船工 拖拽货袋; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 11.
+Cell row 2 column 4: 摇桨人 坐姿摇橹; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 12.
+Cell row 2 column 5: 女旅人 跪坐望岸; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 13.
+Cell row 2 column 6: 老旅客 持杯闲谈; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 14.
+Cell row 2 column 7: 掌舵人 回身掌舵; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 15.
+Cell row 2 column 8: 系缆人 俯身打结; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 16.
+Cell row 3 column 1: 撑篙人 撑篙操船; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 17.
+Cell row 3 column 2: 旅客 盘坐抱包; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 18.
+Cell row 3 column 3: 船工 拖拽货袋; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 19.
+Cell row 3 column 4: 摇桨人 坐姿摇橹; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 20.
+Cell row 3 column 5: 女旅人 跪坐望岸; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 21.
+Cell row 3 column 6: 老旅客 持杯闲谈; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 22.
+Cell row 3 column 7: 孩童 俯身看船; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 23.
+Cell row 3 column 8: 远行客 背囊过桥; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 24.
+Cell row 4 column 1: 携物人 侧身让路; young adult with round face; completely distinctive silhouette, hairstyle and garment construction, variation 25.
+Cell row 4 column 2: 糕饼贩 兜售糕饼; lean middle aged man with short beard; completely distinctive silhouette, hairstyle and garment construction, variation 26.
+Cell row 4 column 3: 提篮人 回身避让; elderly man with long brows; completely distinctive silhouette, hairstyle and garment construction, variation 27.
+Cell row 4 column 4: 携物人 侧身让路; middle aged woman with braided bun; completely distinctive silhouette, hairstyle and garment construction, variation 28.
+Cell row 4 column 5: 长者 拄杖缓行; stout woman with oval face; completely distinctive silhouette, hairstyle and garment construction, variation 29.
+Cell row 4 column 6: 看船人 凭栏观水; young woman with double-loop hairstyle; completely distinctive silhouette, hairstyle and garment construction, variation 30.
+Cell row 4 column 7: 孩童 俯身看船; slender adult with angular face; completely distinctive silhouette, hairstyle and garment construction, variation 31.
+Cell row 4 column 8: 携物人 侧身让路; older woman with gray braided hair; completely distinctive silhouette, hairstyle and garment construction, variation 32.
