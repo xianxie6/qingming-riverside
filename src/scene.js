@@ -856,6 +856,8 @@ import {MillWheel} from './mill-wheel.js?v=4';
   function render(){
     const {width,height,scale,camera,time:t}=state;
     if(!state.loaded)return;
+    // A hidden or collapsed viewport has no size; a zero-width backdrop would throw and stop the frame loop.
+    if(!(width>0&&height>0&&scale>0))return;
     inhabitants.season=seasonController.id;inhabitants.raining=weatherSample.rain>.1;
     inhabitants.motionDensity=Math.min(4,Math.max(1,(devicePixelRatio||1)*scale));
     // Keep the last complete frame while a fast jump reaches an unloaded district.
