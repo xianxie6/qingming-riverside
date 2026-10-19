@@ -1020,7 +1020,7 @@ import {MillWheel} from './mill-wheel.js?v=4';
   }
   function frame(now){
     const elapsed=last?(now-last)/1000:0,dt=Math.min(elapsed,.05);last=now;
-    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!document.body.classList.contains('time-lens-open')&&!document.body.classList.contains('paper-theatre-open')&&!state.loadingRange){
+    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!state.loadingRange){
       if(elapsed>0){
         frameSample.elapsed+=elapsed;frameSample.count++;if(elapsed>.025)frameSample.slow++;
         if(frameSample.elapsed>=1){

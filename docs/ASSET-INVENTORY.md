@@ -115,26 +115,6 @@
 | [art-source/images/waiting-guests-v1.png](../art-source/images/waiting-guests-v1.png) | 2646.4 |
 | [art-source/images/城门灯笼-暖金烛光.png](../art-source/images/城门灯笼-暖金烛光.png) | 1978.8 |
 
-## 时空镜新增素材
-
-| 文件 | 大小 KiB | 来源 |
-|---|---:|---|
-| [street-today-v1.png](../assets/time-lens/street-today-v1.png) | 2556.0 | 内置 image_gen 编辑现有长街；见 [提示词](prompts/time-lens.md)，当代生活想象，非历史复原 |
-
-- `assets/time-lens/street-cyber-v2.png`：2926.7 KiB，内置 image_gen 编辑原景；赛博朋克艺术想象。v1 原稿保留但不再发布。
-
-- `assets/time-lens/boat-cyber-v1.png`：966.9 KiB，内置 image_gen 生成的透明朋克快艇图层；见 `docs/prompts/time-lens-boat.md`。
-
-## 现代步行街 v5
-
-当前时空镜现代图层：`assets/time-lens/street-modern-v3.png`、`assets/time-lens/district-west-modern-v2.png`、`assets/time-lens/district-east-modern-v2.png`。内置 image_gen 生成，提示词见 `docs/prompts/time-lens-modern-street-v5.md`。建筑与业态重新设计，不再使用古建筑朋克换装方案。
-
-## 纸上汴京 · 人物妆造
-
-- `assets/paper-theatre/characters-styled-v1.png`：内置 imagegen 基于现有人物图集重新设计的十二人透明图集，灰蓝、豆绿、藕荷、米白配色，只用于纸片剧场。
-- `assets/paper-theatre/boatman-styled-v1.png`：同一妆造方向的独立船夫透明素材。
-- 生成提示词：`docs/prompts/paper-theatre/characters-v1.txt`、`docs/prompts/paper-theatre/boatman-v1.txt`。未替换其他模块的原有人物。
-
 ## 古城寻趣地形图（2026-10-07）
 
 新增 `assets/explore/painting.webp`、`preview.webp` 及 12 张目标裁图，均来自本对话生成的俯视地形图。原始 PNG 保存在 `art-source/explore-topographic-original.png`。程序绘制局部光圈/水波，Web Audio 合成短音。详细清单、替换目标和高清素材限制见 [古城寻趣说明](EXPLORE.md)。

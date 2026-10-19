@@ -34,16 +34,16 @@ export function crossingSource(file,source){
   if(file==='index.html'){
     source=replaceRequired(source,/<body\b/, '<body data-release="crossing"','page body');
     source=replaceRequired(source,/<a href="explore\.html"[^>]*>[\s\S]*?<\/a>/,'','explore entry');
-    for(const id of ['timeLensEntry','timeLensStreetEntry','paperTheatreEntry','midautumnEntry']){
+    for(const id of ['midautumnEntry']){
       source=replaceRequired(source,new RegExp(`<button id="${id}"[^>]*>[\\s\\S]*?<\\/button>`),'',id);
     }
     source=replaceRequired(source,/<a id="sunyang"[\s\S]*?<\/a>/,'','restaurant entry');
     source=replaceRequired(source,/<dialog id="midautumnWelcome"[\s\S]*?<\/dialog>/,'','festival dialog');
-    source=source.replace(/^.*<link[^>]+href="styles\/(?:midautumn|atlas-festival|time-lens|paper-theatre)\.css[^>]*>.*\n/gm,'');
-    source=source.replace(/^.*<script[^>]+src="src\/(?:festival-lighting|festival-street|paper-theatre|time-lens(?:-geometry|-bridge|-residents)?|atlas-festival|atlas-atmosphere)\.js[^>]*><\/script>.*\n/gm,'');
+    source=source.replace(/^.*<link[^>]+href="styles\/(?:midautumn|atlas-festival)\.css[^>]*>.*\n/gm,'');
+    source=source.replace(/^.*<script[^>]+src="src\/(?:festival-lighting|festival-street|atlas-festival|atlas-atmosphere)\.js[^>]*><\/script>.*\n/gm,'');
     source=source.replace(/<!-- 中秋赏灯街道[\s\S]*?-->/,'');
     source=source.replace(/<!-- 国庆烟花表演[\s\S]*?-->/,'');
-    if(/时空镜|古城烟火|纸上汴京|sunyang\.html|assets\/midautumn\//.test(source))throw new Error('Excluded module survived crossing release entry');
+    if(/古城烟火|sunyang\.html|assets\/midautumn\//.test(source))throw new Error('Excluded module survived crossing release entry');
   }
   if(file==='src/scene.js'){
     // Compile out optional festival artwork; the street's hooks stay inert.

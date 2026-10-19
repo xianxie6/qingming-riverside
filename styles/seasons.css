@@ -6,7 +6,7 @@
 .season-controls button:disabled{opacity:.45;cursor:wait}
 .season-controls button[data-loading=true]{border-style:dashed;border-color:#756a4f}
 .season-controls #seasonStatus{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);width:max-content;max-width:260px;padding:3px 9px;background:#e7d9bbd9;border-radius:3px;font-size:10px;letter-spacing:.12em;text-align:center;pointer-events:none}
-body.in-atlas .season-controls,body.time-lens-open .season-controls{visibility:hidden}
+body.in-atlas .season-controls{visibility:hidden}
 body.night .season-controls{background:#192b39e8;border-color:#c8b48255;color:#eadcbb}
 body.night .season-controls .season-heading{color:#bcae8b}
 body.night #seasonStatus{background:#192b39df;color:#eadcbb}

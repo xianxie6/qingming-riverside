@@ -56,7 +56,7 @@ worker.js                 访问计数 API
 
 三种部署均以 `dist/` 为网站内容。不要直接发布仓库根目录，避免把原稿和开发文档一并发布。
 
-当前公开范围仅为「穿越」的完整旅程与其进入的四季街市。时空镜、古城烟火、纸上汴京、中秋灯市及独立餐馆页的入口、代码和素材均不进入默认发布包；本地直接运行源码时继续保留。发布清单和构建期裁剪见 `scripts/crossing-release.mjs`。
+当前公开范围仅为「穿越」的完整旅程与其进入的四季街市。古城烟火、中秋灯市及独立餐馆页的入口、代码和素材均不进入默认发布包；本地直接运行源码时继续保留。发布清单和构建期裁剪见 `scripts/crossing-release.mjs`。
 
 - **GitHub Pages**：仓库 Settings → Pages → Source 设为 **GitHub Actions**。工作流对 PR 执行测试与构建，`master` 分支检查通过后发布 `dist/`。这是从原来的分支根目录发布方式迁移所需的一次性设置。
 - **Vercel**：`vercel.json` 已配置构建命令与 `dist/` 输出目录；访问计数转发到 Cloudflare。
@@ -68,8 +68,7 @@ worker.js                 访问计数 API
 
 ## 文档与许可
 
-- [纸上汴京：分层剪纸剧场](docs/PAPER-THEATRE.md)
-- [时空镜：宋代与今日](docs/TIME-LENS.md)
+- [项目规划与设计总览](docs/PROJECT-PLAN.md)
 - [操作说明](docs/CONTROLS.md) · [实现说明](docs/ARCHITECTURE.md) · [项目缘起](docs/PROJECT-STORY.md)
 - [更新与历史验证记录](CHANGELOG.md) · [发布检查](docs/QA-2026-09-24.md)
 - [素材清单与待确认授权](docs/ASSET-INVENTORY.md) · [插画制作记录](docs/prompts/ASSETS.md)

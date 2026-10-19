@@ -56,20 +56,20 @@ test('crossing release includes the complete journey and street but omits indepe
     await write(file,/\.(?:js|html|css|json)$/.test(file)?await fs.readFile(path.join(actualRoot,file),'utf8'):'asset fixture');
   }
   await write('scripts/public-assets.json',JSON.stringify({files:crossingFiles.filter(file=>/^(assets|vendor)\//.test(file))}));
-  for(const file of ['src/time-lens.js','styles/time-lens.css','src/paper-theatre.js','assets/time-lens/modern.png','assets/explore/background.webp'])await write(file,'local only');
+  for(const file of ['src/midautumn.js','styles/midautumn.css','assets/midautumn/lantern.png','assets/explore/background.webp'])await write(file,'local only');
   const files=await buildStatic(root,path.join(root,'dist'),{profile:'crossing'});
   assert.equal(await validatePublicDirectory(path.join(root,'dist')),files.length);
   const html=await fs.readFile(path.join(root,'dist/index.html'),'utf8');
   assert.match(html,/id="crossingEntry"/);
   assert.match(html,/data-release="crossing"/);
   assert.match(html,/data-season="autumn"/);
-  assert.doesNotMatch(html,/timeLens|time-lens|paperTheatre|paper-theatre|explore\.html|midautumnWelcome|sunyang\.html/);
-  for(const file of ['sunyang.html','explore.html','src/time-lens.js','styles/time-lens.css','src/paper-theatre.js','src/midautumn.js','assets/time-lens/modern.png','assets/explore/background.webp']){
+  assert.doesNotMatch(html,/explore\.html|midautumnWelcome|midautumnEntry|sunyang\.html/);
+  for(const file of ['sunyang.html','explore.html','src/midautumn.js','styles/midautumn.css','assets/midautumn/lantern.png','assets/explore/background.webp']){
     await assert.rejects(fs.access(path.join(root,'dist',file)),{code:'ENOENT'});
   }
   for(const file of ['src/crossing-three.js','src/crossing-courtyard.js','assets/crossing-painter-v2.webp','assets/audio/crossing-background.mp3','assets/seasons/people-autumn-v1.webp'])assert.ok(files.includes(file));
   const local=await fs.readFile(path.join(root,'index.html'),'utf8');
-  assert.match(local,/id="timeLensStreetEntry"/,'the local playground retains the unpublished feature');
+  assert.match(local,/id="midautumnEntry"/,'the local playground retains the unpublished feature');
   const scene=await fs.readFile(path.join(root,'dist/src/scene.js'),'utf8');
   assert.doesNotMatch(scene,/from '\.\/midautumn|shopArt\.src=/);
 });
