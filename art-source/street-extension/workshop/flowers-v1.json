@@ -1,0 +1,84 @@
+{
+  "prompts": [
+    {
+      "key": "flowerShop",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: historical-scene. Reference is STYLE ONLY. Paint the inviting interior of a small Song dynasty flower shop, seen frontally from the doorway, wide landscape 3:2 composition. Richly furnished but calm: wooden lattice back wall, stepped shelves holding many glazed celadon and cream vessels, pink peonies, plum blossom branches, elegant white orchids, basket of fresh stems, scissors and ribbons, a large working table with an unfinished flower arrangement. Warm natural light from left. Make it obviously a FLOWER SHOP, with flowers at several heights and abundant botanical detail. Leave a small clear standing space at the left third for a separately rendered female shopkeeper. Centre and right hold the flower displays. No bed, no sleeping furniture, no person. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    },
+    {
+      "key": "florist",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: historical-scene. Asset type: one isolated full-body female florist sprite for a Song dynasty illustrated game, reference for art style only. A beautiful adult Chinese woman, elegant and approachable, hair in a simple historical bun with a small flower pin, modest pale celadon and ivory hanfu with dusty rose sash, standing with feet visible, holding a delicate flower stem and arranging scissors near her waist, gently smiling toward the customer. Refined hand painted face, slender graceful figure, no exaggerated anatomy. Full body front three-quarter view. Genuine transparent alpha background, no room, no ground or cast shadow, generous transparent margins. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    },
+    {
+      "key": "peony",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: historical-scene. Asset type: isolated botanical flower cutout, beautiful Song dynasty gongbi ink-watercolour painting. One elegant cut peony sprig with two large layered dusty pink flowers, one bud, slender stems and deep muted green lobed leaves. Full stem shown to bottom, upright loose natural arrangement, no vase, no ribbon, no person, no background, real transparent alpha. Detailed petals suitable for close-up appreciation, not a photo. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    },
+    {
+      "key": "plum",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: historical-scene. Asset type: isolated botanical flower cutout, Song dynasty gongbi ink-watercolour painting. One graceful bent branch of blossoming plum, five-petal ivory blossoms with tiny dusty red centres and several unopened rose buds, slender dark brown woody branch with a few tiny leaves. Full branch includes long bare bottom stem for placing in a vase. Upright airy asymmetrical composition, no vase, no ribbon, no person, no background, real transparent alpha. Accurate delicate petals for close appreciation, not a photo. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    },
+    {
+      "key": "orchid",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: historical-scene. Asset type: isolated botanical cutout for a Song dynasty florist game. Elegant Chinese cymbidium orchid sprig, several small pale ivory yellow-green orchid flowers on one arched thin stem, long narrow sword-shaped dark muted green leaves, full long lower stems visible for placement in a vase. Song dynasty fine ink and watercolour botanical painting with detailed petals, airy upright asymmetrical composition. No pot, no vase, no soil or roots, no ribbon, no person, no background, true transparent alpha. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    },
+    {
+      "key": "flowerHome",
+      "referenced_image_paths": [
+        "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/assets/extension-preview/east-far.webp"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: historical-scene. Paint a quiet Song dynasty home interior for arranging flowers, wide landscape 3:2 front view. Warm ivory plaster wall and a soft latticed window shadow in back, one broad dark antique wooden display table across the bottom quarter, a small rolled scroll and incense burner at far right. THREE EMPTY SIMPLE CERAMIC VASES evenly spaced across table: a pale celadon round vase at x=27%, an antique ivory narrow-neck vase at x=50%, a light grey-blue small bottle at x=73%. Mouths of all three vases at y=65% of frame, bases on table at y=83%. Leave clear light wall space above each vase for separately rendered flowers. No flowers anywhere, no person, no bed, no text. Refined tranquil collectible painting, match attached illustration style. Traditional Chinese Song dynasty fine ink and muted mineral watercolour on warm aged paper, delicate brown outlines, celadon green, antique ivory, dusty rose. Match the miniature painted world of the reference. No modern objects, no lettering, no watermark."
+    }
+  ],
+  "outputs": [
+    {
+      "key": "flowerShop",
+      "name": "flower-shop",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-5f822174-559d-4ad5-9d25-4bbf7b3ea607.png"
+    },
+    {
+      "key": "florist",
+      "name": "florist",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-465e70f1-f40d-4358-8cec-2b82fde0da8f.png"
+    },
+    {
+      "key": "peony",
+      "name": "peony",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-c6d6e168-e660-4073-a0e8-7892e9acec92.png"
+    },
+    {
+      "key": "plum",
+      "name": "plum",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-c889596a-2015-4c14-93a2-81f24bbe1f8a.png"
+    },
+    {
+      "key": "orchid",
+      "name": "orchid",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-3051ce56-d152-441b-9d71-231bc1cbc497.png"
+    },
+    {
+      "key": "flowerHome",
+      "name": "flower-home",
+      "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-55b0f289-0d47-4e5c-9a80-30cfcec4cbaf.png"
+    }
+  ]
+}

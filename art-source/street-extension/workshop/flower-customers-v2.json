@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "editSource": "flower-customers-v1.png",
+  "prompt": "Edit the supplied transparent 2-row by 4-column animation sprite atlas. Preserve EXACTLY the atlas layout, dimensions, character positions, all eight poses, silhouette, faces, hair, painterly Chinese Song dynasty handscroll linework, and alpha transparency. Recolor ONLY the lower-row woman's sage green clothing in all four frames: change her sage green jacket, cuffs, waistband and green ribbons to muted dusty mauve / lotus purple; change her ivory long skirt to a delicate pale lavender purple with subtle darker purple botanical embroidery. Make the purple legible but softly desaturated, never neon. The upper row pink-jacket blue-grey-skirt woman must remain unchanged. Preserve details and clean transparent cutouts. No background, floor, shadows or halo. This is a precise color edit of an existing sprite atlas, not a new composition.",
+  "output": "flower-customers-v2.png",
+  "runtime": "assets/extension-preview/workshop/flower-customers-v2.webp"
+}

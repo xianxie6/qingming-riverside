@@ -1,0 +1,47 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/visitors-34-reference.png",
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/visitors-01-point-v1.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of these two Song dynasty figures (role: 结伴游人 · 结伴出行; the Chinese caption is for context only, never draw text). TWO reference images. The FIRST shows the exact pair to draw: copy identity, faces, hair, clothing colours, headwear and every carried object or tool from it, and keep the same facing direction. Its camera angle may be from above; IGNORE that angle. The SECOND reference is a finished three-cell sheet of a different pair: copy ONLY its camera angle (eye-level three-quarter view, the same as every other figure on the street), its figure scale and its three-cell layout. Do NOT copy those people. Cell 1 (left) = rest: the two stand side by side at ease. Cell 2: one raises an arm and points into the distance, the other turns to look. Cell 3: they turn toward each other talking, one nods. The feet stay planted on exactly the same spot in all three cells; only the arms, hands, heads and upper bodies move, with believable weight at the hips and knees. Objects stay the same size and colour in every cell and stay attached to the hands that hold them. Fine ink outlines and muted antique Chinese watercolor exactly matching the first reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full group per cell, centered in its cell with generous margin so hands, tools, sleeves and feet never touch a cell edge. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the first reference and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/visitors-34-chat-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/visitors-34-chat-v1.png",
+ "id": "visitors-34",
+ "label": "结伴游人 · 结伴出行",
+ "limited": {
+  "file": "visitors-34-chat",
+  "cols": 3,
+  "anchor": "feet",
+  "activity": [
+   "并肩站定",
+   "抬手指点",
+   "相视交谈"
+  ],
+  "timeline": [
+   [
+    0,
+    1.8
+   ],
+   [
+    1,
+    0.6
+   ],
+   [
+    2,
+    0.9
+   ],
+   [
+    1,
+    0.4
+   ],
+   [
+    0,
+    1.3
+   ]
+  ]
+ }
+}

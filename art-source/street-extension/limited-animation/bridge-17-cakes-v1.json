@@ -1,0 +1,12 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/bridge-17-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty young woman selling cakes in the street, same three-quarter view as the reference, turned slightly toward the left of the image. Keep her identity: black hair in a high bun with a small pin, blue jacket with dark trim, red sash, cream long skirt, small basket hanging at her right hip, the SAME round flat bamboo tray with about ten golden round cakes. The feet stay planted on exactly the same spot in all three cells; only the arms, hands, head and upper body move, with believable weight at the hips and knees. Cell 1 (left) = rest pose matching the reference: holding the tray with both hands at waist height, pleasant calm expression. Cell 2 (middle) = offering: she lifts the tray forward at chest height toward the left, leaning very slightly forward, smiling, inviting a passer-by to look. Cell 3 (right) = handing over: the tray rests on her left forearm at waist height, her right hand holds up one golden cake between fingers toward the left, as if handing it to a customer. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so tools, cloth, grain and hands never touch a cell edge. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/bridge-17-cakes-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/bridge-17-cakes-v1.png"
+}

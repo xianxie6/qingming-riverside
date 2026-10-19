@@ -1,0 +1,12 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/fields-04-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty farmer HOEING the ground, seen from the same high three-quarter overhead angle as the reference. Keep his identity: woven conical straw hat, blue short jacket with cream collar and brown cloth belt, cream rolled trousers, straw sandals, and the SAME long wooden hoe with an iron blade. Feet planted shoulder-width apart in exactly the same spot in every cell, knees slightly bent, both hands always on the hoe handle, correct two-handed grip. Cell 1 (left) = ready: hoe held low in front with the blade resting on the soil, body upright. Cell 2 (middle) = hoe raised: both hands lift the handle to shoulder height, blade up behind his head, torso leaning slightly back. Cell 3 (right) = strike: blade chopped into the soil in front of his feet, torso bent forward, arms extended down along the handle, a small spray of loose earth at the blade. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so tools and hands never touch a cell edge. Identical character size and identical camera angle in every cell. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/fields-04-hoe-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/fields-04-hoe-v1.png"
+}

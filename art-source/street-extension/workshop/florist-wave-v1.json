@@ -1,0 +1,10 @@
+{
+  "prompt": {
+    "referenced_image_paths": [
+      "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/workshop/florist-v1.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: identity-preserve. Asset type: a FOUR-FRAME 2x2 grid animation SPRITE SHEET for this exact adult Song dynasty female florist. Keep her identity, face, hair bun, flower pin, pale celadon/ivory hanfu and rose sash. Transparent background, no grid lines, no text. Four equal cells in a precise 2 columns by 2 rows grid, each a full-body figure, identical character height, identical foot anchor at same local coordinates in each cell, ample margin so every hand fits. CRITICAL: shoulders, torso, head, skirt and feet stay entirely stable and in the SAME pose and proportions across all four cells. No body bending or wobbling. The left hand holds the flowers and scissors calmly at waist height in ALL frames. Only the EMPTY RIGHT FOREARM and wrist change, producing an understated natural greeting wave: top-left frame 0 = right arm relaxed down beside waist; top-right frame 1 = elbow stays near ribs, forearm softly raised to chest level, palm open facing viewer; bottom-left frame 2 = same elbow, wrist tilted outward slightly, fingers naturally relaxed together; bottom-right frame 3 = wrist tilted inward slightly. Restrained graceful adult gesture, not exuberant waving. Correct elbow-to-wrist anatomy, no stretched limbs, no extra arms, no giant hands. Fine ink lines and muted antique Chinese watercolor. Truly transparent alpha, no glow or background shadow. Make every full-body pose match the reference and match each other as strictly as possible."
+  },
+  "src": "/Users/zhangxian/.codex/generated_images/01a13a7d-6fb0-7e91-9015-7a33032495f7/exec-bd8a45a5-8996-4ae1-92cc-22444e87432a.png"
+}

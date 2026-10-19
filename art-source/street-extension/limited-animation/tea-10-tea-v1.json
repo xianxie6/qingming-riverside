@@ -1,0 +1,47 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/tea-10-reference.png",
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/fields-03-basket-v1.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty figure (role: 老茶客 · 侧坐饮茶; the Chinese caption is for context only, never draw text). TWO reference images. The FIRST shows the exact person to draw: copy identity, faces, hair, clothing colours, headwear and every carried object or tool from it, and keep the same facing direction. Its camera angle may be from above; IGNORE that angle. The SECOND reference is a finished three-cell sheet of a different person: copy ONLY its camera angle (eye-level three-quarter view, the same as every other figure on the street), its figure scale and its three-cell layout. Do NOT copy that person, and do not copy their standing pose: this figure stays SEATED or crouching exactly as in the first reference, keeping any stool, bench or mat shown there (if none is shown, a plain low wooden stool). Cell 1 (left) = rest: sitting at ease, the tea cup held in both hands at chest height. Cell 2: raising the cup to the lips, taking a sip. Cell 3: lowering the cup, looking aside contentedly. The feet, knees and seat stay planted on exactly the same spot in all three cells; only the arms, hands, heads and upper bodies move, with believable weight at the hips and knees. Objects stay the same size and colour in every cell and stay attached to the hands that hold them. If the Chinese role caption disagrees with the FIRST reference (for example the reference carries a staff, basket, box or bundle the caption does not mention), follow the reference. The soles of the planted shoes sit at exactly the same height and the same horizontal position in all three cells, so the cells can be stacked on top of each other. Fine ink outlines and muted antique Chinese watercolor exactly matching the first reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so hands, tools, sleeves and feet never touch a cell edge. Canvas: one wide landscape image split into exactly 3 invisible equal-width columns. Every part of each figure - farthest stride, staff tip, trailing sleeve, bundle - stays wholly inside its own column with a clear transparent gap of at least one tenth of the column width on both sides; nothing overlaps a neighbouring column. If a pose is too wide, draw the figure smaller in ALL cells rather than let it cross a column line. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the first reference and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/tea-10-tea-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/tea-10-tea-v1.png",
+ "id": "tea-10",
+ "label": "老茶客 · 侧坐饮茶",
+ "limited": {
+  "file": "tea-10-tea",
+  "cols": 3,
+  "anchor": "feet",
+  "activity": [
+   "端盏歇坐",
+   "举杯饮一口",
+   "放低杯盏"
+  ],
+  "timeline": [
+   [
+    0,
+    1.8
+   ],
+   [
+    1,
+    0.6
+   ],
+   [
+    2,
+    0.9
+   ],
+   [
+    1,
+    0.4
+   ],
+   [
+    0,
+    1.3
+   ]
+  ]
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/mill-14-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty farm woman checking grain in a large woven basket, seen from the same slightly high three-quarter angle as the reference. Keep her identity: dark blue head wrap, rust-red jacket with dark collar, blue-grey skirt, dark shoes, the SAME big round woven basket full of pale grain standing in front of her, which never moves. The feet stay planted on exactly the same spot in all three cells; only the arms, hands, head and upper body move, with believable weight at the hips and knees. Cell 1 (left) = rest pose matching the reference: bent over the basket, both hands resting on its rim, looking at the grain. Cell 2 (middle) = scooping: both cupped hands lift a heaped double handful of grain just above the basket rim, she looks at it closely. Cell 3 (right) = testing: her hands open slightly and the grain pours back through her fingers in a thin stream into the basket, her head tilted, judging the quality. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so tools, cloth, grain and hands never touch a cell edge. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/mill-14-grain-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/mill-14-grain-v1.png"
+}

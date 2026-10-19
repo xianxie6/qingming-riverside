@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-15",
+  "intent": "reference-informed generation",
+  "prompt": "Use case: historical-scene.\nAsset type: transparent botanical sprite atlas for an ancient Chinese flower-shop streetscape.\nInput images: Image 1 is a growth-habit reference: roses spread horizontally along a wall coping and tumble down; Image 2 is a reference for airy trailing tendrils and cascading branches. Use only the plants' growth habit, not the photographs' architecture or sky.\nPrimary request: Create TWO distinct lush living climbing-rose wall-top strips, one ABOVE the other in two equal horizontal rows, separated by generous completely transparent space. Each strip is very wide and low, about 4 times wider than its total height including hanging stems. They will be placed separately on the two plaster walls flanking a tiny old Chinese flower shop.\nComposition: 1536x1024 transparent atlas, upper strip within x60..1476 and y65..430, lower strip within x60..1476 and y577..942. Each grows horizontally along an invisible wall top, with irregular rounded masses of leaves on the top edge and several thin, naturally drooping sprays extending downward by different lengths. Thin woody canes weave horizontally, with fine curled branch tips. Organic uneven silhouette and clear transparent gaps between sprays. No straight rectangular hedge, no upright shrub, no central trunk.\nFlowers: botanically convincing live climbing roses, layered delicate petals, varied bloom sizes, buds, small serrated leaves. Upper strip mainly warm deep red and blush pink, scattered pale cream flowers. Lower strip mainly soft pink and warm yellow, scattered deep red flowers. Lush but airy: natural foliage between clusters, never a solid carpet of identical flowers.\nStyle: highly detailed natural botanical realism with warm soft sunlight and subtle antique Chinese handscroll color harmony, muted olive greens and warm petal colors, fine organic detail, photographic flower structure. Must read as real fresh flowers rather than symbols or ornaments. Front elevation suitable for 2D compositing, minimal depth distortion.\nConstraints: actual transparent alpha background, only isolated climbing rose foliage and branches; no wall, roof, pots, ground, sky, architecture, humans, text, checkerboard, border, shadows cast on a background, decorative arch, trellis or hanging basket. Keep all plants fully in frame and each row separate.",
+  "source": "wall-roses-v2.png",
+  "runtime": "assets/extension-preview/workshop/wall-roses-v2.webp",
+  "reference_images": [
+    "截屏2026-10-15 23.29.35.png",
+    "截屏2026-10-15 23.30.16.png"
+  ],
+  "layout": {
+    "width": 1536,
+    "height": 1024,
+    "rows": 2,
+    "description": "Two horizontal climbing rose strips; upper red/pink, lower pink/yellow. The runtime uses portions at a consistent scale to match the wall sections."
+  }
+}

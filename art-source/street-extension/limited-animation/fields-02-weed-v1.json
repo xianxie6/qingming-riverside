@@ -1,0 +1,12 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/fields-02-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty peasant woman weeding a vegetable plot, seen from the same high three-quarter overhead angle as the reference. Keep her identity: dark hair bun with rust headband, rust-red short jacket with rolled cream sleeves, cream apron over a sage-green skirt, dark shoes. Her feet stay planted on exactly the same spot in all cells; only her back, arms and head move, with believable weight shift at the hips. Cell 1 (left) = rest pose matching the reference: bent at the waist, both hands low near the soil, looking down. Cell 2 (middle) = gripping a clump of weeds with both hands and pulling: elbows bent and drawn back toward her knees, shoulders slightly raised, the weed roots just leaving the soil. Cell 3 (right) = half straightened, right hand lifting the pulled weeds with dangling roots and a little soil out to her side to toss them, left hand resting on her knee, head turning toward the toss. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so tools and hands never touch a cell edge. Identical character size and identical camera angle in every cell. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/fields-02-weed-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/fields-02-weed-v1.png"
+}

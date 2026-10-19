@@ -1,0 +1,27 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/visitors-33-reference.png",
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/visitors-04-walk-v1.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a FIVE-FRAME SPRITE SHEET of these two Song dynasty companions (role: 结伴游人 · 结伴出行; the Chinese caption is for context only, never draw text): one standing pose plus one complete four-frame walk cycle, walking toward the RIGHT of the image. TWO reference images. The FIRST shows the exact character(s) to draw: copy identity, faces, hair, clothing colours, headwear and carried objects from it. Its camera angle may be from behind or from above; IGNORE that angle and its facing. The SECOND reference is a finished walk sheet of a different pair: copy ONLY its camera angle (eye-level three-quarter side view, the same as every other figure on the street), its figure scale and its five-cell layout. Do NOT copy those people. They walk SIDE BY SIDE with a small gap between them, both facing right, the farther one slightly behind. They are NOT in step: when one has a leg forward the other is passing. For cells 2-5, BOTH figures follow the contact/passing sequence, each with their own legs. Carried objects stay in the same hands or on the same shoulder or back in every cell. Cell 1 = standing at rest, facing right. Cell 2 = contact: front leg forward with heel touching the ground, back leg on its toes, longest stride. Cell 3 = passing: weight on the straight supporting leg under the body, the other leg bent and passing forward, foot just off the ground. Cell 4 = contact with the opposite leg forward, mirror of cell 2. Cell 5 = passing with the opposite leg, mirror of cell 3. The head stays at the same height and the same horizontal position in every walking cell; the body only bobs very slightly. Correct leg anatomy, robe and skirt hems swing with the legs, no extra limbs. Fine ink outlines and muted antique Chinese watercolor exactly matching the first reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 5 equal-width cells, all walking toward the RIGHT of the image, centered in each cell with generous margin so heads, tools, bundles and feet never touch a cell edge. Identical figure size and identical camera angle in every cell. Make every cell match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/visitors-33-walk-v1.png",
+ "cells": 5,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/visitors-33-walk-v1.png",
+ "id": "visitors-33",
+ "label": "结伴游人 · 结伴出行",
+ "limited": {
+  "file": "visitors-33-walk",
+  "cols": 5,
+  "anchor": "head",
+  "walk": true,
+  "cycle": 0.85,
+  "pace": 0.38,
+  "activity": [
+   "停步看看",
+   "沿路慢行"
+  ]
+ }
+}

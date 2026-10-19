@@ -1,0 +1,12 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/fields-13-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty village woman sitting low on the ground repairing a long-handled farm tool in front of a shed, seen from the same slightly high three-quarter angle as the reference. Keep her identity: black double hair bun, pale blue-grey jacket, lavender-grey trousers, the SAME long wooden handle with an iron blade, and the SAME small woven basket beside her. She stays sitting in exactly the same place in all three cells; her legs and the basket do not move; only her arms, hands, head and the tool move. Cell 1 (left) = rest pose matching the reference: the tool lies across her knees, she looks down at the joint between handle and blade. Cell 2 (middle) = binding: she winds a brown cord tightly around the joint with both hands, the free end of the cord pulled out to the side. Cell 3 (right) = checking: she lifts the tool up in front of her with both hands, blade raised, and looks along the edge, back straight. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin so tools, cloth, grain and hands never touch a cell edge. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/fields-13-tools-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/fields-13-tools-v1.png"
+}
