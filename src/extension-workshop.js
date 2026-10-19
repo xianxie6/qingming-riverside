@@ -9,13 +9,14 @@ const WALL_ROSES=[
  {row:1,sx:1060,sw:476,x:6863,y:341}
 ];
 
-export function createStreetWorkshop(model,invalidate){
+export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}={}){
  const images={},artURLs={},artMetrics={},floristFrames=[],customerFrames=[],customerPoses=new Map();let lastFloristFrame=0,streetArt,roseFrames;
  const assets={warehouse:'assets/extension-preview/workshop/warehouse-clean.webp',inn:'assets/extension-preview/workshop/inn-open.webp',curtain:'assets/extension-preview/workshop/curtain.webp',cargo:'assets/extension-preview/workshop/cargo.webp',shop:'assets/extension-preview/workshop/flower-shop.webp',florist:'assets/extension-preview/workshop/florist.webp',peony:'assets/extension-preview/workshop/peony.webp',plum:'assets/extension-preview/workshop/plum.webp',orchid:'assets/extension-preview/workshop/orchid.webp',home:'assets/extension-preview/workshop/flower-home.webp'};
  assets.wave='assets/extension-preview/workshop/florist-wave.webp';
  assets.customers='assets/extension-preview/workshop/flower-customers-v2.webp';
  Object.assign(assets,{men:'assets/extension-preview/workshop/street-men-v1.webp',women:'assets/extension-preview/workshop/street-women-v1.webp',conversation:'assets/extension-preview/workshop/street-conversation-v1.webp',roses:'assets/extension-preview/workshop/wall-roses-v2.webp'});
- const ready=Promise.all(Object.entries(assets).map(async([key,src])=>{
+ // Props wait for `after` (the scroll panels) so they do not compete for bandwidth.
+ const ready=after.then(()=>Promise.all(Object.entries(assets).map(async([key,src])=>{
   const image=new Image();image.decoding='async';image.src=src;await image.decode();
   // Transparent sprites are automatically trimmed to their actual painted bounds.
   if(['curtain','cargo','florist','peony','plum','orchid'].includes(key)){
@@ -34,7 +35,7 @@ export function createStreetWorkshop(model,invalidate){
     artMetrics[key]={stemX:weight?stemX/weight/tile.width:.5};
    }
   }else images[key]=image;
- })).then(()=>{prepareCustomerFrames();streetArt=createFlowerStreetArt(images);prepareWallRoses();});
+ }))).then(()=>{prepareCustomerFrames();streetArt=createFlowerStreetArt(images);prepareWallRoses();});
  function prepareWallRoses(){
   const img=images.roses,sx=img.width/1536,sy=img.height/1024;
   roseFrames=WALL_ROSES.map(p=>{

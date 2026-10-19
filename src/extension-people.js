@@ -3,7 +3,7 @@ import {createDisplayPopulation} from './extension-people-layout.js?v=calm-2';
 import {actionAt,createActionPlans,motionProfile} from './extension-motion.js?v=limited-13';
 import {createPuppetFrames} from './extension-puppet.js?v=limited-5';
 import {reactionPose} from './extension-workshop-state.js?v=calm-1';
-import {createLimitedAnimation,LIMITED} from './extension-limited-animation.js?v=limited-11';
+import {createLimitedAnimation,LIMITED} from './extension-limited-animation.js?v=limited-12';
 export const population=createDisplayPopulation(sourcePopulation);
 
 // The lowest painted pixels on each side of every figure are its two soles.
@@ -18,8 +18,9 @@ export function footContacts(data,width,height,members=1){
   return{u:sum/count/width,v:(bottom+1)/height};
  }));
 }
-export function createStreetPeople(invalidate,{poseFor=(_,pose)=>pose,occludes=()=>false,artFor=()=>null,drawPerson=()=>false}={},{limitedDir}={}){
- const limited=createLimitedAnimation(invalidate,limitedDir?{dir:limitedDir}:{});
+export function createStreetPeople(invalidate,{poseFor=(_,pose)=>pose,occludes=()=>false,artFor=()=>null,drawPerson=()=>false}={},{limitedDir,initialX=0,after=Promise.resolve()}={}){
+ const byId=new Map(population.people.map(p=>[p.id,p]));
+ const limited=createLimitedAnimation(invalidate,{...(limitedDir?{dir:limitedDir}:{}),positionOf:id=>byId.get(id)?.x??0});
  const sprites=new Map(),masks=new Map(),customMasks=new WeakMap(),poses=new Map(),plans=createActionPlans(population),puppets=createPuppetFrames(),reactions=new Map(),holds=new Map();let selected=null,started=-1;
  async function load(src){
   const image=new Image();image.decoding='async';
@@ -36,8 +37,14 @@ export function createStreetPeople(invalidate,{poseFor=(_,pose)=>pose,occludes=(
   }
   invalidate();
  }
- const queue=[...population.assets],results=[];
- const ready=Promise.all(Array.from({length:4},async()=>{while(queue.length){const src=queue.shift();try{await load(src);results.push({status:'fulfilled'});}catch(reason){results.push({status:'rejected',reason});}}})).then(()=>results);
+ // Atlases load four at a time, the one whose figures sit nearest the view first.
+ const queue=[...population.assets],results=[];let focusX=initialX;
+ const atlasX=new Map(queue.map(src=>{const xs=population.people.filter(p=>p.src===src).map(p=>p.x);return [src,xs.reduce((a,x)=>a+x,0)/(xs.length||1)];}));
+ const nearest=()=>{let best=0;for(let i=1;i<queue.length;i++)if(Math.abs(atlasX.get(queue[i])-focusX)<Math.abs(atlasX.get(queue[best])-focusX))best=i;return queue.splice(best,1)[0];};
+ const ready=after.then(()=>Promise.all(Array.from({length:4},async()=>{while(queue.length){const src=nearest();try{await load(src);results.push({status:'fulfilled'});}catch(reason){results.push({status:'rejected',reason});}}}))).then(()=>results);
+ // Key-pose sheets are extra detail: they start once the still figures are in.
+ ready.then(()=>limited.start());
+ function focus(x){focusX=x;limited.focus(x);}
  function draw(ctx,left,right,{time=0,motion=false,feedback=false,live=false,layers=[]}={}){
   const visible=[];
   for(const p of population.people){
@@ -102,5 +109,5 @@ export function createStreetPeople(invalidate,{poseFor=(_,pose)=>pose,occludes=(
   return {...motionProfile(p),person:spec?.label?{...p,label:spec.label}:p};
  }
  function nearby(left,right,time){const visible=population.people.map(position).filter(p=>sprites.has(p.id)&&!occludes(p)&&p.x>left+20&&p.x<right-20);if(!visible.length)return;const next=selected?visible[(visible.findIndex(p=>p.id===selected.id)+1)%visible.length]:visible.reduce((a,b)=>Math.abs(a.x-(left+right)/2)<Math.abs(b.x-(left+right)/2)?a:b);return interact(population.people.find(p=>p.id===next.id),time);}
- return {draw,hit,interact,nearby,step,resetReactions,ready,position,get reacting(){return reactions.size>0;},get selected(){return selected;},get started(){return started;},get loaded(){return sprites.size;},get limitedLoaded(){return limited.loaded;},get count(){return population.people.filter(p=>sprites.has(p.id)).reduce((s,p)=>s+p.members,0);}};
+ return {focus,draw,hit,interact,nearby,step,resetReactions,ready,position,get reacting(){return reactions.size>0;},get selected(){return selected;},get started(){return started;},get loaded(){return sprites.size;},get limitedLoaded(){return limited.loaded;},get count(){return population.people.filter(p=>sprites.has(p.id)).reduce((s,p)=>s+p.members,0);}};
 }

@@ -2,6 +2,10 @@
 // traditional animation, instead of warping one painting. Each sheet is one row
 // of equal cells. Missing sheets fall back to the original still figure.
 export const LIMITED_DIR='assets/extension-preview/limited';
+// Installed sheets are stored at this fraction of the generated size; the figures
+// are drawn far smaller than the generated cells. Marked `soles` stay in
+// generated-sheet pixels and are scaled on load.
+export const LIMITED_SCALE=.5;
 export const LIMITED={
  // Work cycles hold the rest pose, then play the action on a few drawn poses.
  // `soles`: the planted front shoe in each cell (cell pixels), read off the
@@ -353,8 +357,9 @@ export function alignCells(cells,anchor){
  return cells.map(c=>({x:Math.round(base[anchor]-c[anchor]),y:Math.round(sole(base)-sole(c))}));
 }
 
-export function createLimitedAnimation(invalidate,{dir=LIMITED_DIR}={}){
- const sheets=new Map();
+export function createLimitedAnimation(invalidate,{dir=LIMITED_DIR,positionOf=()=>0}={}){
+ const sheets=new Map(),scale=dir===LIMITED_DIR?LIMITED_SCALE:1;let focusX=0,begin;
+ const started=new Promise(resolve=>{begin=resolve;});
  async function load(id){
   const spec=LIMITED[id],image=new Image();image.decoding='async';image.src=limitedSource(id,dir);
   try{await image.decode();}catch{return;} // No drawn sheet yet: keep the still figure.
@@ -362,7 +367,7 @@ export function createLimitedAnimation(invalidate,{dir=LIMITED_DIR}={}){
   const t=canvas.getContext('2d',{willReadFrequently:true});t.drawImage(image,0,0);
   const data=t.getImageData(0,0,canvas.width,canvas.height).data,cellWidth=Math.floor(image.width/spec.cols);
   const alpha=(x,y)=>data[(y*canvas.width+x)*4+3];
-  const cells=measureSheet(alpha,canvas.width,canvas.height,spec);
+  const cells=measureSheet(alpha,canvas.width,canvas.height,spec.soles?{...spec,soles:spec.soles.map(([x,y])=>[x*scale,y*scale])}:spec);
   if(cells.some(c=>!c)){console.warn('Limited animation has an empty cell',id);return;}
   const shifts=alignCells(cells,spec.anchor);
   // One shared crop for all cells, so switching poses never rescales the figure.
@@ -382,10 +387,18 @@ export function createLimitedAnimation(invalidate,{dir=LIMITED_DIR}={}){
  }
  // Only sheets listed in the folder's manifest are requested, so figures without
  // drawn poses yet cause no failed downloads.
- const ready=fetch(`${dir}/manifest.json`,{cache:'no-cache'}).then(r=>r.ok?r.json():{installed:[]}).catch(()=>({installed:[]}))
-  .then(m=>Promise.all(Object.keys(LIMITED).filter(id=>m.installed?.includes(LIMITED[id].file)).map(load)));
+ // Sheets wait for start(), then load two at a time, nearest to the view first;
+ // a figure keeps its still pose until its sheet arrives.
+ const ready=Promise.all([started,fetch(`${dir}/manifest.json`,{cache:'no-cache'}).then(r=>r.ok?r.json():{installed:[]}).catch(()=>({installed:[]}))])
+  .then(([,m])=>{
+   const pending=Object.keys(LIMITED).filter(id=>m.installed?.includes(LIMITED[id].file));
+   const next=()=>{let best=0;for(let i=1;i<pending.length;i++)if(Math.abs(positionOf(pending[i])-focusX)<Math.abs(positionOf(pending[best])-focusX))best=i;return pending.splice(best,1)[0];};
+   return Promise.all(Array.from({length:2},async()=>{while(pending.length)await load(next());}));
+  });
  return{
   ready,
+  start(){begin();},
+  focus(x){focusX=x;},
   has:id=>sheets.has(id),
   activity(p,pose,time){const s=sheets.get(p.id);if(!s)return null;const f=limitedFrame({...s.spec,stride:p.h*(s.spec.cycle||.35)},pose,time,phase(p.id));return s.spec.activity[s.spec.walk?(f?1:0):f];},
   frame(p,pose,time){const s=sheets.get(p.id);return s?.frames[limitedFrame({...s.spec,stride:p.h*(s.spec.cycle||.35)},pose,time,phase(p.id))];},

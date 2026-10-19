@@ -1,7 +1,7 @@
-import {createStreetPeople,population} from './extension-people.js?v=limited-6';
+import {createStreetPeople,population} from './extension-people.js?v=limited-7';
 import {createStreetSound} from './extension-motion.js?v=limited-13';
 import {createWorkshopState,CRANE,INN} from './extension-workshop-state.js?v=calm-1';
-import {createStreetWorkshop} from './extension-workshop.js?v=calm-1';
+import {createStreetWorkshop} from './extension-workshop.js?v=calm-2';
 import {createFlowerShop} from './extension-flower-shop.js?v=flowers-6';
 import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {MillWheel} from './mill-wheel.js?v=4';
@@ -61,10 +61,12 @@ function drawRiver(target,left,right){
 }
 function invalidate(){dirty=true;if(!frame)frame=requestAnimationFrame(render);}
 const workshopState=createWorkshopState();
-const workshop=createStreetWorkshop(workshopState,()=>{backgroundRevision++;mapDirty=true;invalidate();});
+// Resolved once the painted panels are in; props and figures load after them.
+let openScroll;const scrollOpen=new Promise(resolve=>{openScroll=resolve;});
+const workshop=createStreetWorkshop(workshopState,()=>{backgroundRevision++;mapDirty=true;invalidate();},{after:scrollOpen});
 // `?limitedArt=<folder>` previews key-pose sheets before they are installed.
 const limitedArt=new URLSearchParams(location.search).get('limitedArt');
-const residents=createStreetPeople(()=>{mapDirty=true;invalidate();},workshop,{limitedDir:limitedArt&&/^[\w./-]+$/.test(limitedArt)?limitedArt:undefined});
+const residents=createStreetPeople(()=>{mapDirty=true;invalidate();},workshop,{limitedDir:limitedArt&&/^[\w./-]+$/.test(limitedArt)?limitedArt:undefined,initialX:state.center,after:scrollOpen});
 const flowerShop=createFlowerShop({getArt:workshop.artURL,getArtMetrics:workshop.artMetrics,onOpen:()=>{cancelFlight(true);cancelProp();stop();bubbleUntil=0;$('#personBubble').hidden=true;},onClose:()=>{last=performance.now();invalidate();}});
 function drawResidents(target,left,right,animated=false){
  const doorway=()=>workshop.drawDoorway(target,left,right,{overview:!animated||state.overview,people:state.people});
@@ -102,6 +104,7 @@ function drawMap(){
   const r=map.getBoundingClientRect();mc.clearRect(0,0,r.width,r.height);mc.save();mc.scale(r.width/SPAN,r.height/H);mc.translate(-MIN,0);drawPanels(mc,MIN,MAX);drawResidents(mc,MIN,MAX);workshop.draw(mc,MIN,MAX,{overview:true,people:state.people});mc.restore();mapDirty=false;
 }
 function draw(){
+  residents.focus(state.center);
   // A hidden or collapsing stage has no pixels to paint yet.
   if(!canvas.width||!canvas.height)return;
   geometry();
@@ -279,7 +282,10 @@ async function load(p,i){
   p.tile=tile;backgroundRevision++;mapDirty=true;invalidate();
 }
 new ResizeObserver(layout).observe(stage);layout();
-const assets=[...panels,...repairs,{name:'市井小戏素材'}],loaded=await Promise.allSettled([...panels,...repairs].map(load).concat(workshop.ready));
+// The scroll opens once its painted panels are in; workshop props and figures
+// fill in afterwards without holding the loading screen.
+workshop.ready.catch(error=>{$('#loading').hidden=false;$('#loading').textContent='市井小戏素材未载入，请刷新重试';console.error('Street preview assets failed',error);});
+const assets=[...panels,...repairs],loaded=await Promise.allSettled(assets.map(load));openScroll();
 const failed=loaded.map((r,i)=>r.status==='rejected'?assets[i].name:null).filter(Boolean);
 if(failed.length){$('#loading').textContent=`${failed.join('、')}未载入，请刷新重试`;console.error('Street preview assets failed',failed);}else{$('#loading').hidden=true;state.ready=true;$('#autoplay').disabled=false;$('#findSinger').disabled=false;document.body.dataset.ready='true';invalidate();}
 document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelProp();pointers.clear();pinch=null;stage.classList.remove('dragging');stop();sound.suspend();song.suspend();if(frame)cancelAnimationFrame(frame);frame=0;}else{last=performance.now();invalidate();}});

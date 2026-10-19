@@ -4,7 +4,7 @@ import sharp from 'sharp';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {LIMITED,LIMITED_DIR,measureSheet,alignCells} from '../src/extension-limited-animation.js';
+import {LIMITED,LIMITED_DIR,LIMITED_SCALE,measureSheet,alignCells} from '../src/extension-limited-animation.js';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const args=process.argv.slice(2),outAt=args.indexOf('--out');
@@ -60,7 +60,9 @@ await sharp({create:{width:info.width+pad*2,height:info.height+pad*2,channels:4,
 
 const target=path.join(root,outDir,`${file}.webp`);
 await mkdir(path.dirname(target),{recursive:true});
-await sharp(path.resolve(root,source)).webp({quality:92,alphaQuality:100,effort:6}).toFile(target);
+// Checks above use the generated size; the installed sheet is stored smaller.
+const scale=outDir===LIMITED_DIR?LIMITED_SCALE:1;
+await sharp(path.resolve(root,source)).resize(Math.round(info.width*scale),Math.round(info.height*scale),{kernel:'lanczos3'}).webp({quality:92,alphaQuality:100,effort:6}).toFile(target);
 const manifestPath=path.join(root,outDir,'manifest.json');
 const manifest=JSON.parse(await readFile(manifestPath,'utf8').catch(()=>'{"installed":[]}'));
 manifest.installed=[...new Set([...(manifest.installed||[]),file])].sort();
