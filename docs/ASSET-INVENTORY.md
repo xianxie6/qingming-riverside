@@ -11,7 +11,7 @@
 
 ## 网站资源白名单
 
-以 [public-assets.json](../scripts/public-assets.json) 为准，含暂时关闭的中秋场景。
+构建依据 [public-assets.json](../scripts/public-assets.json)，含暂时关闭的中秋场景；这些资源不一定都会在首次访问时下载。
 
 | 文件 | 大小 KiB | 来源 / 权限状态 |
 |---|---:|---|
@@ -27,6 +27,9 @@
 | [assets/crossing-courtyard-painted-v2.webp](../assets/crossing-courtyard-painted-v2.webp) | 417.3 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
 | [assets/crossing-painter-v2.webp](../assets/crossing-painter-v2.webp) | 1295.0 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
 | [assets/crossing-river-summer.webp](../assets/crossing-river-summer.webp) | 547.1 | 穿越运行素材，由现有原稿压缩；见 LICENSE |
+| [assets/crossing-courtyard-painted-v2.png](../assets/crossing-courtyard-painted-v2.png) | 2909.9 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/crossing-painter-v2.png](../assets/crossing-painter-v2.png) | 2058.6 | 项目视觉素材 / 见制作记录及 LICENSE |
+| [assets/crossing-river-forward-v1.png](../assets/crossing-river-forward-v1.png) | 2728.1 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/boat.webp](../assets/boat.webp) | 943.4 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/district-east-fast.webp](../assets/district-east-fast.webp) | 445.5 | 项目视觉素材 / 见制作记录及 LICENSE |
 | [assets/district-west-fast.webp](../assets/district-west-fast.webp) | 432.5 | 项目视觉素材 / 见制作记录及 LICENSE |
@@ -65,42 +68,14 @@
 | [vendor/three.core.js](../vendor/three.core.js) | 1423.9 | Three.js / 随附 MIT |
 | [vendor/three.module.js](../vendor/three.module.js) | 647.2 | Three.js / 随附 MIT |
 
-
-## 穿越模块新增资源
-
-以下为本地项目现有素材，随穿越模块发布；`summer-east.png` 仅作为河水纹理使用。
-
-| 文件 | 大小 KiB | 来源 / 权限状态 |
-|---|---:|---|
-| [assets/crossing-courtyard-painted-v2.png](../assets/crossing-courtyard-painted-v2.png) | 2909.9 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/crossing-painter-v2.png](../assets/crossing-painter-v2.png) | 2058.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/crossing-river-forward-v1.png](../assets/crossing-river-forward-v1.png) | 2728.1 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/summer-east.png](../assets/seasons/summer-east.png) | 2948.5 | 项目视觉素材 / 见制作记录及 LICENSE |
-
-
-## 四季新增资源
-
-| 文件 | 大小 KiB | 来源 / 权限状态 |
-|---|---:|---|
-| [assets/seasons/autumn-center.png](../assets/seasons/autumn-center.png) | 2591.8 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/autumn-east.png](../assets/seasons/autumn-east.png) | 2748.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/autumn-west.png](../assets/seasons/autumn-west.png) | 2746.0 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/featured-autumn.png](../assets/seasons/featured-autumn.png) | 2011.9 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/featured-summer.png](../assets/seasons/featured-summer.png) | 1983.5 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/featured-winter.png](../assets/seasons/featured-winter.png) | 2036.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/summer-center.png](../assets/seasons/summer-center.png) | 2775.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/summer-west.png](../assets/seasons/summer-west.png) | 2859.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/winter-center.png](../assets/seasons/winter-center.png) | 2753.5 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/winter-east.png](../assets/seasons/winter-east.png) | 2913.6 | 项目视觉素材 / 见制作记录及 LICENSE |
-| [assets/seasons/winter-west.png](../assets/seasons/winter-west.png) | 2817.0 | 项目视觉素材 / 见制作记录及 LICENSE |
-
 ## 创作原稿与历史候选
 
-以下文件不进入网站发布包。迁移不清除 Git 历史。
+以下文件保留在仓库供创作追溯，不进入网站发布包。迁移不清除 Git 历史。
 
 | 文件 | 大小 KiB |
 |---|---:|
 | [art-source/audio/孙羊正店.mp3](../art-source/audio/孙羊正店.mp3) | 602.5 |
+| [art-source/audio/放烟花.mp3](../art-source/audio/放烟花.mp3) | 55.2 |
 | [art-source/images/boat.png](../art-source/images/boat.png) | 1422.3 |
 | [art-source/images/district-east.png](../art-source/images/district-east.png) | 2862.2 |
 | [art-source/images/district-east.webp](../art-source/images/district-east.webp) | 2072.1 |
@@ -139,3 +114,54 @@
 | [art-source/images/sunyang-interior-v2.webp](../art-source/images/sunyang-interior-v2.webp) | 421.3 |
 | [art-source/images/waiting-guests-v1.png](../art-source/images/waiting-guests-v1.png) | 2646.4 |
 | [art-source/images/城门灯笼-暖金烛光.png](../art-source/images/城门灯笼-暖金烛光.png) | 1978.8 |
+
+## 时空镜新增素材
+
+| 文件 | 大小 KiB | 来源 |
+|---|---:|---|
+| [street-today-v1.png](../assets/time-lens/street-today-v1.png) | 2556.0 | 内置 image_gen 编辑现有长街；见 [提示词](prompts/time-lens.md)，当代生活想象，非历史复原 |
+
+- `assets/time-lens/street-cyber-v2.png`：2926.7 KiB，内置 image_gen 编辑原景；赛博朋克艺术想象。v1 原稿保留但不再发布。
+
+- `assets/time-lens/boat-cyber-v1.png`：966.9 KiB，内置 image_gen 生成的透明朋克快艇图层；见 `docs/prompts/time-lens-boat.md`。
+
+## 现代步行街 v5
+
+当前时空镜现代图层：`assets/time-lens/street-modern-v3.png`、`assets/time-lens/district-west-modern-v2.png`、`assets/time-lens/district-east-modern-v2.png`。内置 image_gen 生成，提示词见 `docs/prompts/time-lens-modern-street-v5.md`。建筑与业态重新设计，不再使用古建筑朋克换装方案。
+
+## 纸上汴京 · 人物妆造
+
+- `assets/paper-theatre/characters-styled-v1.png`：内置 imagegen 基于现有人物图集重新设计的十二人透明图集，灰蓝、豆绿、藕荷、米白配色，只用于纸片剧场。
+- `assets/paper-theatre/boatman-styled-v1.png`：同一妆造方向的独立船夫透明素材。
+- 生成提示词：`docs/prompts/paper-theatre/characters-v1.txt`、`docs/prompts/paper-theatre/boatman-v1.txt`。未替换其他模块的原有人物。
+
+## 古城寻趣地形图（2026-10-07）
+
+新增 `assets/explore/painting.webp`、`preview.webp` 及 12 张目标裁图，均来自本对话生成的俯视地形图。原始 PNG 保存在 `art-source/explore-topographic-original.png`。程序绘制局部光圈/水波，Web Audio 合成短音。详细清单、替换目标和高清素材限制见 [古城寻趣说明](EXPLORE.md)。
+
+## 古城烟火 V2（2026-10-07）
+
+新增 `art-source/people-v2/` 原始生成素材及 `assets/explore/people-v2/` 网页派生素材：八套透明人物图集、清理后的总底图、八区细节底图。通过内置 image_gen 工具生成，参考用户提供的画卷及需求；网页使用 WebP 派生图。制作说明和局限见 `EXPLORE-V2.md`，人物实例与来源映射见 `people-v2/population.json`。
+
+
+## 人物 V3 去重补绘（2026-10-08）
+
+`assets/explore/people-v3/` 包含整幅细节修复背景及 8 张透明人物图集（各含高/低压缩质量版本）。内置 image_gen 生成，原稿位于 `art-source/people-v3/`。254 个新增人物图块分别绑定一个人物实例；提示词、实际尺寸与检查记录见 [人物去重修正](PEOPLE-V3-REWORK.md)。
+
+## 2026-10-08 景观高清层
+
+新增 `assets/explore/people-v3/background-hd.webp`（5600 × 2194，约 5.8 MiB）。八块 imagegen 重绘原稿及裁切参考保存在 `art-source/landscape-hd/`，只发布合成后的 WebP。提示词、打包方式及限制见 [景观高清制作记录](LANDSCAPE-HD.md)。
+
+## 2026-10-08 街巷游人
+
+新增 `assets/explore/visitors/duos.webp`（约 999 KiB）和 `duos-low.webp`（约 302 KiB）。内置 image_gen 绘制的 64 组双人场景，保留透明度，原稿保存在 `art-source/visitors/duos-original.png`。原稿、提示词、落位与验证见 [游人制作记录](VISITORS.md)。
+
+## 茶摊融合样板 · 2026-10-09
+
+- `assets/explore/fusion-tea/after.webp`：内置 image_gen 对既有茶市裁图的完整场景编辑，1484 × 1060；人物、桌椅、接触阴影和遮挡一起绘制。原稿 `art-source/fusion-tea/after-original.png`，最终提示词 `docs/fusion-tea/prompt.txt`。
+- `assets/explore/fusion-tea/before.webp`：本地画卷同一区域的浏览器截图，1120 × 800；使用高清背景及高清人物图集，无界面覆盖，用于前后对比。
+- 两图仅用于页面「茶摊新画法」局部样板，未将新人物坐标冒充旧寻物目标。详见 `docs/fusion-tea/README.md`。
+
+### 茶摊样板修订：保留原人物
+
+当前使用 `assets/explore/fusion-tea/scene-original-style-v3.webp`（1484×1060 的空场景），由内置 image_gen 编辑；配合未经重绘的原 `assets/explore/people-v2/tea.webp`。浏览器直接从原图集绘制 8 格人物，只调整比例、坐标、朝向及环境遮挡。当前样板不再显示 `after.webp` 的初版人物。场景提示词与验证见 `docs/fusion-tea/README.md`。
