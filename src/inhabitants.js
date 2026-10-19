@@ -63,7 +63,9 @@
       for(let r=0;r<points.length-1;r++)for(let c=0;c<points[r].length-1;c++){
         const p=points[r][c],q=points[r][c+1],a=points[r+1][c],b=points[r+1][c+1];add(p);add(q);add(a);add(q);add(b);add(a);
       }
-      gl.bufferData(gl.ARRAY_BUFFER,this.vertices.subarray(0,i),gl.STREAM_DRAW);gl.drawArrays(gl.TRIANGLES,0,count);
+      // Reuse GPU storage across all people and frames; only the vertices change.
+      if(this.bufferBytes!==this.vertices.byteLength){gl.bufferData(gl.ARRAY_BUFFER,this.vertices.byteLength,gl.STREAM_DRAW);this.bufferBytes=this.vertices.byteLength;}
+      gl.bufferSubData(gl.ARRAY_BUFFER,0,this.vertices.subarray(0,i));gl.drawArrays(gl.TRIANGLES,0,count);
     }
   }
 
@@ -80,6 +82,7 @@
       this.art.src='assets/people-ink.webp';
     }
     async prepare(){
+      if(window.ScrollWorkshop)this.workshop=new window.ScrollWorkshop.Artists();
       let sliceStart=performance.now();
       const yieldToBrowser=async()=>{
         if(performance.now()-sliceStart<8)return;
@@ -99,6 +102,7 @@
         }
         await yieldToBrowser();
       }
+      if(this.workshop)await this.workshop.ready;
     }
     async prepareFrames(image){
       let sliceStart=performance.now();
@@ -114,7 +118,10 @@
         // Extract the actual ink contour. Coarse polygons left white wedges
         // around hair and bowls and shaved off ribbons and fingertips.
         const pixels=c.getImageData(0,0,f.w,f.h);
-        this.removePaper(pixels);
+        // The worker's bent arms enclose paper gaps. Seed only those known
+        // openings; a global white removal would also erase ivory cuffs.
+        const openings=f===window.PEOPLE_FRAMES[11]?[[1445-f.x,742-f.y],[1466-f.x,754-f.y]]:[];
+        await this.removePaperAsync(pixels,openings);
         c.putImageData(pixels,0,0);
         c.globalCompositeOperation='source-atop';c.fillStyle='rgba(125,101,55,.13)';c.fillRect(0,0,f.w,f.h);
         frames.push(canvas);
@@ -124,30 +131,41 @@
     }
     async loadWardrobe(source){
       const image=await new Promise((resolve,reject)=>{
-        const image=new Image(),timer=setTimeout(()=>reject(new Error('冬装素材载入超时')),25000);
+        const image=new Image(),timer=setTimeout(()=>reject(new Error('季节服装素材载入超时')),25000);
         image.onload=()=>{clearTimeout(timer);resolve(image);};
-        image.onerror=()=>{clearTimeout(timer);reject(new Error('冬装素材载入失败'));};
+        image.onerror=()=>{clearTimeout(timer);reject(new Error('季节服装素材载入失败'));};
         image.src=source;
       });
       await image.decode();
-      if(image.naturalWidth!==1536||image.naturalHeight!==1024)throw new Error('冬装人物图集尺寸不正确');
+      if(image.naturalWidth!==1536||image.naturalHeight!==1024)throw new Error('季节服装人物图集尺寸不正确');
       const frames=await this.prepareFrames(image);
       const contacts=frames.map(c=>movement.footContacts(c.getContext('2d').getImageData(0,0,c.width,c.height).data,c.width,c.height));
       return {frames,contacts};
     }
-    removePaper({data,width,height}){
+    removePaper(pixels){for(const _ of this.paperSteps(pixels)){/* synchronous callers */}}
+    async removePaperAsync(pixels,openings=[]){
+      let start=performance.now();
+      for(const _ of this.paperSteps(pixels,openings)){
+        if(performance.now()-start<8)continue;
+        await new Promise(resolve=>setTimeout(resolve,0));start=performance.now();
+      }
+    }
+    *paperSteps({data,width,height},openings=[]){
       const count=width*height,background=new Uint8Array(count),queue=new Int32Array(count);
       let head=0,tail=0;
       const paper=i=>{const k=i*4,r=data[k],g=data[k+1],b=data[k+2];return data[k+3]<24||(Math.min(r,g,b)>220&&Math.max(r,g,b)-Math.min(r,g,b)<25);};
       const visit=i=>{if(!background[i]&&paper(i)){background[i]=1;queue[tail++]=i;}};
       for(let x=0;x<width;x++){visit(x);visit((height-1)*width+x);}
       for(let y=0;y<height;y++){visit(y*width);visit(y*width+width-1);}
+      for(const [x,y] of openings)if(x>=0&&x<width&&y>=0&&y<height)visit(y*width+x);
       while(head<tail){const i=queue[head++],x=i%width;
         if(x)visit(i-1);if(x<width-1)visit(i+1);if(i>=width)visit(i-width);if(i<count-width)visit(i+width);
+        if((head&16383)===0)yield;
       }
       // Remove white matte contamination only on the exterior contour;
       // light garments and porcelain inside the figure remain opaque.
       for(let i=0;i<count;i++){
+        if((i&16383)===0)yield;
         const k=i*4;if(background[i]){data[k+3]=0;continue;}
         const x=i%width,edge=(x&&background[i-1])||(x<width-1&&background[i+1])||(i>=width&&background[i-width])||(i<count-width&&background[i+width]);
         if(!edge)continue;
@@ -160,7 +178,7 @@
     }
     seat(ctx,p,x,y){
       if(![6,7,8].includes(p.sprite)||p.layer!=='street')return;
-      const ground=477,half=p.h*.19,top=y-2;
+      const ground=p.groundY??477,half=p.h*.19,top=y-2;
       ctx.save();ctx.lineJoin='round';ctx.strokeStyle='#655a40';ctx.lineWidth=.85;
       ctx.fillStyle='#8d7b57';
       for(const side of [-1,1]){
@@ -172,8 +190,9 @@
       ctx.restore();
     }
     textureFor(p){
-      // The complete winter paintings include covered sleeves, legs and shoes.
-      // Do not reapply spring clothing masks or restore exposed spring skin.
+      if(p.sprite===11)return this.workerTexture(p);
+      // Complete seasonal paintings include their own collars, sleeves and hems.
+      // Flat wraps and spring skin restoration would obscure these clothes.
       if(this.activeWardrobe)return this.activeWardrobe.frames[p.sprite];
       const mode=window.QingmingSeasons?.outfit(this.season,p,this.raining)??'spring';
       const key=`${p.sprite}:${p.outfit}:${mode}`;
@@ -193,6 +212,34 @@
       c.clip();c.globalCompositeOperation='source-over';c.globalAlpha=1;c.drawImage(base,f.x,f.y);c.restore();
       c.restore();c.globalCompositeOperation='destination-in';c.drawImage(base,0,0);
       this.outfits.set(key,texture);return texture;
+    }
+    workerTexture(p){
+      const base=(this.activeWardrobe?.frames??this.frames)[p.sprite];
+      // Cache by the actual source image as well as season, so returning to
+      // spring or retrying a wardrobe load can never reuse another coat.
+      this.workerOutfits??=new WeakMap();
+      if(!this.workerOutfits.has(base))this.workerOutfits.set(base,new Map());
+      const cache=this.workerOutfits.get(base),key=`${this.season}:${p.outfit}`;
+      if(cache.has(key))return cache.get(key);
+      const wardrobe=window.ScrollWardrobe,f=window.PEOPLE_FRAMES[p.sprite];
+      const garment=wardrobe.workerRobes[this.season]??wardrobe.workerRobes.spring;
+      const texture=document.createElement('canvas');texture.width=base.width;texture.height=base.height;
+      const c=texture.getContext('2d');c.drawImage(base,0,0);c.save();c.translate(-f.x,-f.y);
+      c.beginPath();
+      for(const polygon of [garment.outline,...garment.skin]){
+        polygon.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();
+      }
+      c.clip('evenodd');c.globalCompositeOperation='color';c.fillStyle=wardrobe.palettes[p.outfit].upper;
+      c.fillRect(f.x,f.y,f.w,f.h);
+      // Summer linen stays lighter, winter keeps the painted coat and cuffs.
+      if(this.season==='summer'){c.globalCompositeOperation='screen';c.globalAlpha=.12;c.fillStyle='#c9c5a0';c.fillRect(f.x,f.y,f.w,f.h);}
+      c.restore();
+      // Preserve every original contour pixel exactly. Multiplying the
+      // source alpha again would shave hair, fingertips and thread ends.
+      const pixels=c.getImageData(0,0,f.w,f.h),source=base.getContext('2d').getImageData(0,0,f.w,f.h).data;
+      for(let i=3;i<source.length;i+=4)pixels.data[i]=source[i];
+      c.putImageData(pixels,0,0);
+      cache.set(key,texture);return texture;
     }
     robeLayers(texture,sprite,f){
       if(this.walkLayers.has(texture))return this.walkLayers.get(texture);
@@ -301,24 +348,25 @@
       this.phaseSample=Math.sin(time*.81+population.residents[0].phase);
     }
     sprite(ctx,{p,x,y,pose,walking,direction,ground},time){
-      if(!walking&&!p.story)this.seat(ctx,p,x,y);
-      const art=p.art,f=art?.frame??window.PEOPLE_FRAMES[p.sprite],texture=art?.texture??this.textureFor(p),h=p.h,w=h*f.w/f.h*([6,7,8].includes(p.sprite)?.80:1);
+      if(!walking)this.seat(ctx,p,x,y);
+      const art=p.art??this.workshop?.get(p.workshop,this.season),f=art?.frame??window.PEOPLE_FRAMES[p.sprite],texture=art?.texture??this.textureFor(p),h=p.h*(art?.heightScale??1),w=h*f.w/f.h*([6,7,8].includes(p.sprite)?.80:1);
       const natural=art?.direction??[1,1,1,1,1,-1,1,-1,1,-1,1,1][p.sprite];
       const seated=[6,7,8].includes(p.sprite),flip=direction*natural,contacts=art?.contacts??(this.activeWardrobe?.contacts??this.contacts)[p.sprite];
       // The controlled figure keeps the last foot placement on release.
       // Only the lifted sole settles; the legs do not snap to the source pose.
       const animatedGait=!seated&&(walking||pose.gaitWeight!==undefined);
+      const carefulCarry=p.sprite===11&&p.story==='pottery';
       const longRobe=!art&&[0,1,2,4,5,9,10,11].includes(p.sprite);
       // Narrow robes take smaller steps. Change the distance per cycle too,
       // keeping the support foot planted instead of shrinking its motion.
-      const stride=art?.stride??(longRobe?([10,11].includes(p.sprite)?.28:p.sprite===4?.17:.21):.32);
+      const stride=art?.stride??(carefulCarry?.10:longRobe?([10,11].includes(p.sprite)?.28:p.sprite===4?.17:.21):.32);
       const footCenter=((contacts[0].x+contacts[1].x)/(2*f.w)-.5)*w;
-      const feet=(animatedGait?movement.gaitAt((pose.phase||0)/.15,h,pose.gaitWeight??1,stride).map(foot=>({...foot,x:footCenter+foot.x*natural})):contacts.map(c=>({x:(c.x/f.w-.5)*w,lift:0,stance:true})))
+      const feet=(animatedGait?movement.gaitAt((pose.phase||0)/.15,h,pose.gaitWeight??1,stride).map((foot,i)=>({...foot,x:carefulCarry?(contacts[i].x/f.w-.5)*w+foot.x*natural*(pose.gaitWeight??1):footCenter+foot.x*natural})):contacts.map(c=>({x:(c.x/f.w-.5)*w,lift:0,stance:true})))
         .map(foot=>({...foot,y:(ground?ground(x+foot.x*flip)-y:0)-foot.lift}));
       const hand=art?.grips[0]??movement.hands[p.sprite].map((n,i)=>(n-(i?f.y:f.x))/(i?f.h:f.w));
       // Keep anatomical ownership through the passing pose. The source
       // back leg starts behind the body, regardless of facing direction.
-      if(animatedGait&&natural===1)feet.reverse();
+      if(animatedGait&&natural===1&&!carefulCarry)feet.reverse();
       if(animatedGait&&!art&&[0,1,2,10].includes(p.sprite)){
         const cycle=(pose.phase||0)/.15/(h*stride*2)*Math.PI*2;
         const weight=pose.gaitWeight??1;
@@ -326,7 +374,12 @@
           handY:(pose.handY||0)+Math.cos(cycle)*.35*weight,
           lean:(pose.lean||0)+natural*.012*weight};
       }
-      const rig={w,h,f,contacts,feet,pose,hand,walking,natural,stride,legKnees:art?.legKnees,skeletal:animatedGait};
+      const working=p.sprite===11&&(p.activity==='weave'||p.workshop)&&!animatedGait;
+      const detailed=working||p.story==='pottery';
+      // Short, careful carrying steps retain one continuous trouser mesh.
+      // The painted baggy cuffs cross the usual two-leg cut boundary.
+      const splitGait=animatedGait&&!carefulCarry;
+      const rig={w,h,f,contacts,feet,pose,hand,walking,natural,stride,legKnees:art?.legKnees,skeletal:animatedGait,working,workshop:art?.workshop,continuous:!!art?.workshop||carefulCarry};
       const density=this.motionDensity??3,pw=Math.ceil((w+24)*density),ph=Math.ceil((h+16)*density);
       if(this.motionSurface.width<pw||this.motionSurface.height<ph){
         this.motionSurface.width=Math.max(pw,this.motionSurface.width);
@@ -335,7 +388,7 @@
       // Small seated/working gestures need fewer mesh rebuilds than camera
       // movement. Stagger them by character; moving feet still update every
       // display frame. Each resident retains just one bounded-size bitmap.
-      const cacheable=p.id?.startsWith('resident-')&&!walking&&pose.gaitWeight===undefined,tick=Math.floor((time+(p.phase||0))*12);
+      const cacheable=p.id?.startsWith('resident-')&&!walking&&pose.gaitWeight===undefined,tick=detailed?time:Math.floor((time+(p.phase||0))*12);
       let cached=cacheable?this.residentFrames.get(p.id):null;
       if(cacheable&&!cached){
         const image=document.createElement('canvas');image.width=pw;image.height=ph;
@@ -344,7 +397,9 @@
       if(cached&&(cached.image.width!==pw||cached.image.height!==ph||cached.density!==density)){
         cached.image.width=pw;cached.image.height=ph;cached.density=density;cached.tick=-1;
       }
-      const gpu=!cached&&this.mesh?.active;
+      // Working figures are examined close up. Rasterize the connected mesh
+      // in one GPU pass to avoid Canvas cell seams through the long robe.
+      const gpu=(!cached||detailed)&&this.mesh?.active;
       if(cached&&cached.texture!==texture){cached.texture=texture;cached.tick=-1;}
       if(!cached||cached.tick!==tick){
         const surface=cached?.context??this.motionContext;
@@ -352,12 +407,14 @@
         surface.setTransform(density,0,0,density,(w/2+12)*density,(h+8)*density);
         if(gpu)this.mesh.begin(pw,ph,density,w,h);
         const split=(contacts[0].x+contacts[1].x)/(2*f.w);
-        const layers=longRobe&&animatedGait?this.robeLayers(texture,p.sprite,f):null;
-        const panels=animatedGait?[
+        const layers=longRobe&&splitGait?this.robeLayers(texture,p.sprite,f):null;
+        const panels=splitGait?[
           {columns:[0,split/2,split],rows:[.60,.68,.76,.84,.91,.965,1],leg:0},
           {columns:[split,(split+1)/2,1],rows:[.60,.68,.76,.84,.91,.965,1],leg:1},
           {columns:[0,.25,.5,.75,1],rows:longRobe?[0,.12,.24,.38,.51,.60,.71,.80,.88,.94,1]:[0,.12,.24,.38,.51,.60,.64],cloth:longRobe}
-        ]:[{columns:[0,.25,.5,.75,1],rows:[0,.12,.24,.38,.51,.64,.74,.84,.94,1]}];
+        ]:[detailed?
+          {columns:[0,.2,.35,.5,.65,.8,1],rows:[0,.12,.24,.32,.40,.47,.54,.62,.72,.84,.94,1]}:
+          {columns:[0,.25,.5,.75,1],rows:[0,.12,.24,.38,.51,.64,.74,.84,.94,1]}];
         for(const {columns,rows,leg,cloth} of panels){
         const panelRig={...rig,leg,cloth};
         if(animatedGait&&leg!==undefined)panelRig.skeleton=movement.legSkeleton(panelRig);
@@ -381,22 +438,33 @@
         }
         surface.restore();
         }
-        if(cached){cached.tick=tick;cached.hand=movement.deform(...hand,rig);}
+        if(cached){
+          if(gpu){surface.setTransform(1,0,0,1,0,0);surface.drawImage(this.mesh.canvas,this.mesh.region.x,this.mesh.region.y,pw,ph,0,0,pw,ph);}
+          cached.tick=tick;cached.hand=movement.deform(...hand,rig);
+        }
       }
-      const region=gpu?this.mesh.region:{x:0,y:0};
+      const region=gpu&&!cached?this.mesh.region:{x:0,y:0};
+      // The carrier supports the rim with both hands; keep the vessel below
+      // the fingers and derive its placement from the same animated mesh.
+      let propPoint=cached?.hand??movement.deform(...hand,rig);
+      if(p.story==='pottery'&&p.sprite===11){
+        const grips=this.season==='winter'?[[1446,763],[1475,765]]:[[1427,753],[1480,753]];
+        const points=grips.map(([u,v])=>movement.deform((u-f.x)/f.w,(v-f.y)/f.h,rig));
+        propPoint=[(points[0][0]+points[1][0])/2,(points[0][1]+points[1][1])/2+4*h/66];
+      }
       const composite=()=>{
       ctx.save();ctx.translate(x,y);ctx.scale(flip,1);
+      if(art?.workshop)window.ScrollWorkshop.drawProp(ctx,art,rig);
       if(!seated)for(const foot of feet){
         ctx.beginPath();ctx.ellipse(foot.x,foot.y+foot.lift+.25,w*.085,.65,0,0,Math.PI*2);
         ctx.fillStyle=foot.stance?'#50463144':'#5046311b';ctx.fill();
       }
-      ctx.drawImage(gpu?this.mesh.canvas:cached?.image??this.motionSurface,region.x,region.y,pw,ph,-w/2-12,-h-8,pw/density,ph/density);
-      const handPoint=cached?.hand??movement.deform(...hand,rig);
-      this.workObject(ctx,p,handPoint,h);
+      ctx.drawImage(cached?.image??(gpu?this.mesh.canvas:this.motionSurface),region.x,region.y,pw,ph,-w/2-12,-h-8,pw/density,ph/density);
+      this.workObject(ctx,p,propPoint,h);
       ctx.restore();
       };
       if(!this.mesh?.batching)composite();
-      const handPoint=cached?.hand??movement.deform(...hand,rig);
+      const handPoint=propPoint;
       const project=point=>({x:x+point[0]*flip,y:y+point[1]});
       return {composite:this.mesh?.batching?composite:null,hand:project(handPoint),hands:(art?.grips??[hand]).map(uv=>project(movement.deform(...uv,rig)))};
     }
@@ -410,10 +478,7 @@
         ctx.translate(hx+2.4*size,hy+2.7*size);ctx.scale(size,size);
         ctx.beginPath();ctx.moveTo(-4,-2.3);ctx.quadraticCurveTo(0,-4,4.4,-2.1);ctx.lineTo(4.8,2.7);ctx.quadraticCurveTo(0,4,-4.4,2.5);ctx.closePath();ctx.fill();ctx.stroke();
         ctx.beginPath();ctx.moveTo(-.8,-2.8);ctx.lineTo(.2,3.2);ctx.moveTo(-4.3,.4);ctx.lineTo(4.5,.2);ctx.stroke();
-      }else if(p.activity==='weave'){
-        ctx.beginPath();ctx.moveTo(hx-4,hy);ctx.lineTo(hx,hy-1.4);ctx.lineTo(hx+4,hy);ctx.lineTo(hx,hy+1.2);ctx.closePath();ctx.fill();ctx.stroke();
-        ctx.beginPath();ctx.moveTo(hx-2,hy);ctx.lineTo(hx+2,hy);ctx.strokeStyle='#d1bf97';ctx.stroke();
-      }else{
+      }else if(p.activity!=='weave'){
         ctx.beginPath();ctx.moveTo(hx-2,hy-2);ctx.lineTo(hx+8,-1);ctx.stroke();
         ctx.beginPath();ctx.moveTo(hx+6,-1);ctx.lineTo(hx+10,-1);ctx.lineTo(hx+11,1);ctx.lineTo(hx+6,1);ctx.closePath();ctx.fillStyle='#6b6957';ctx.fill();
       }

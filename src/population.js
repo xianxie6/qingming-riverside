@@ -27,7 +27,7 @@
     // Seated source crops end at the robe resting on the stool, not at the
     // street. Preserve their original head line when normalizing their scale.
     const baseline=[6,7,8].includes(sprite)?y-(h-normalizedHeight):y;
-    residents.push({id:`resident-${id}`,x,y:baseline,h:normalizedHeight,sprite,role,direction,layer,outfit:(id*5+Math.floor(id/4))%8,phase:id*2.399963,period:4.8+(id%9)*.51});
+    residents.push({id:`resident-${id}`,x,y:baseline,groundY:y,h:normalizedHeight,sprite,role,direction,layer,outfit:(id*5+Math.floor(id/4))%8,phase:id*2.399963,period:4.8+(id%9)*.51});
   }
   [548,588,628,660,695,759,797].forEach((x,i)=>add(x,323,48,[6,7,8,6,7,8,6][i],i%2?'talk':'drink',1,'balcony'));
   // Food stalls, table groups, neighbours, children and the east pavilion.
@@ -79,8 +79,11 @@
       p.sprite=11;
       // Weavers switch from a seated source crop to a standing working pose.
       p.h=figureHeight(63,p.sprite,p.layer);
+      p.y=p.groundY;
     }
     p.period=4.4+(Number(p.id.slice(9))%9)*.43;
+    if(p.x===-845){p.workshop=p.activity='hang-cloth';p.period=8.6;}
+    if(p.x===-715){p.workshop=p.activity='arrange-frame';p.period=7.2;}
   }
   function residentPose(p,time,attention=0){
     return {x:p.x,y:p.y,...movement.activityAt(p.activity,time,p.phase,p.period,attention),role:p.role};

@@ -44,3 +44,17 @@ test('rain becomes visible soon after starting and builds sooner',()=>{
   assert.equal(weatherAt(16).rain,.5);
   assert.equal(weatherAt(28).rain,1);
 });
+
+test('wet ground stays above the water texture sample region across every district',()=>{
+  const {drawWetGround}=require('../src/weather.js');
+  const {streetY}=require('../src/world.js');
+  let maxY=-Infinity;
+  const ctx=new Proxy({}, {get:(_,key)=>{
+    if(key==='createLinearGradient')return ()=>({addColorStop(){}});
+    if(key==='moveTo'||key==='lineTo')return (_x,y)=>{maxY=Math.max(maxY,y);};
+    if(key==='ellipse')return (_x,y,_rx,ry)=>{maxY=Math.max(maxY,y+ry+.3);};
+    return ()=>{};
+  },set:()=>true});
+  drawWetGround(ctx,{wet:1},[-2400,4600],streetY);
+  assert.ok(maxY<522,'rain may animate separately without changing river samples');
+});

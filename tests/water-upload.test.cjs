@@ -41,3 +41,19 @@ test('water clips its draw and composite to visible water, and skips offscreen u
   water.render({...frame,camera:-1800,pass:1});
   assert.deepEqual(scissors.at(-1),[135,15,320,220]);
 });
+
+test('walking samples world-space river coordinates without uploading the unchanged tile',()=>{
+  const source=fs.readFileSync(__dirname+'/../src/water-three.js','utf8').replace(/^import .*;\s*/,'').replace('export class ThreeWaterRenderer','globalThis.ThreeWaterRenderer=class ThreeWaterRenderer');
+  const positions=[],views=[];
+  const scope={document:{createElement:()=>({getContext:()=>({drawImage(){}})})},THREE:{CanvasTexture:class{constructor(){this.uploads=0;}dispose(){}set needsUpdate(value){if(value)this.uploads++;}},LinearFilter:1}};
+  vm.runInNewContext(source,scope);
+  const water=Object.create(scope.ThreeWaterRenderer.prototype);
+  Object.assign(water,{active:true,bankY:542,uniforms:{uBackdrop:{},uBackdropHeight:{},uBackdropRect:{value:{set(...values){positions.push(values);}}},uTime:{},uPass:{},uView:{value:{set(...values){views.push(values);}}}},renderer:{render(){},setScissor(){},setScissorTest(){},domElement:{}}});
+  const frame={time:0,camera:500,viewY:0,width:800,height:724,scale:1,source:{width:1120,height:724},sourceRect:{x:340,y:0,width:1120,height:724},backdropKey:1};
+  water.render(frame);const texture=water.backdrop;
+  for(let i=1;i<=120;i++)water.render({...frame,time:i/60,camera:500+i});
+  assert.equal(texture.uploads,1);assert.deepEqual(positions.at(-1),[340,522,1120,202]);
+  assert.deepEqual(views.at(-1),[620,0,800,724]);
+  water.render({...frame,sourceRect:{...frame.sourceRect,x:500},backdropKey:2});
+  assert.equal(texture.uploads,2);assert.deepEqual(positions.at(-1),[500,522,1120,202]);
+});

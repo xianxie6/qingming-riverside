@@ -2,10 +2,10 @@
   'use strict';
   const scripts=[
     'world.js?v=8.4-passenger-deck','bridge-railing.js?v=2','night.js?v=1.4-shared-lights','weather.js?v=10.5',
-    'sound.js?v=10.6-festival','water.js?v=1.3','movement.js?v=8.2','population.js?v=6.5-tree-seat',
-    'street-life.js?v=9.1','street-details.js?v=8.1','bridge-event.js?v=9.2',
-    'bridge-art.js?v=9.2','people-frames.js','people-masks.js','wardrobe.js?v=5.2.1',
-    'inhabitants.js?v=18-winter-wardrobe','featured-characters.js?v=10-season-art','districts.js?v=6.0'
+    'sound.js?v=10.6-festival','water.js?v=1.3','movement.js?v=8.4-workshop','population.js?v=6.7-workshop',
+    'street-life.js?v=9.1','street-details.js?v=8.2-pottery','bridge-event.js?v=9.2',
+    'bridge-art.js?v=9.2','people-frames.js','people-masks.js','wardrobe.js?v=5.3-whole-robes',
+    'workshop-actors.js?v=3-webp','inhabitants.js?v=28-pottery-carry','featured-characters.js?v=9-yield-preparation','districts.js?v=7-painted-wheel'
   ];
   let loading=null;
   let sceneStarted=false;
@@ -16,7 +16,7 @@
       'assets/people-ink.webp','assets/featured-characters-v7.webp','assets/boat.webp','assets/boat-passenger-clear.webp']){
       const link=document.createElement('link');link.rel='preload';link.as='image';link.href=src;document.head.append(link);
     }
-    for(const src of ['scene.js?v=25-passenger-deck','water-three.js?v=1.9-scissor','vendor/three.module.js','vendor/three.core.js']){
+    for(const src of ['scene.js?v=29-mill-wheel','water-three.js?v=6-river-fade','vendor/three.module.js','vendor/three.core.js']){
       const link=document.createElement('link');link.rel='modulepreload';link.href=src.startsWith('vendor/')?src:`src/${src}`;document.head.append(link);
     }
   }
@@ -49,7 +49,7 @@
       // ES modules execute once per page. A failed scene needs a page reload,
       // not a second module tag that can wait forever for another ready event.
       sceneStarted=true;
-      try{await Promise.all([add('scene.js?v=25-passenger-deck',true),ready]);}
+      try{await Promise.all([add('scene.js?v=29-mill-wheel',true),ready]);}
       finally{cleanup();}
     })().catch(error=>{if(!sceneStarted)loading=null;throw error;});
     return loading;

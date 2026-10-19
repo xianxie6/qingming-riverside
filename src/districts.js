@@ -72,7 +72,13 @@
     animate(ctx,time,min,max,enhancedWater=false){
       // Separate wheel boards and spokes rotate inside a fixed perspective ellipse.
       const origin=-2172,stretch=2272/2172,cx=origin+569*stretch,cy=445,rx=48*stretch,ry=88;
+      const painted=this.west.complete&&this.west.naturalWidth&&this.millWheel?.use(this.west);
+      if(painted&&max>origin+500*stretch&&min<origin+680*stretch){
+        // Spring art: the painting's own wheel turns in perspective.
+        ctx.save();ctx.translate(origin,0);ctx.scale(stretch,1);this.millWheel.draw(ctx,time);ctx.restore();
+      }
       if(cx+rx>min&&cx-rx<max&&this.west.complete&&this.west.naturalWidth){
+        if(!painted){
         ctx.save();ctx.translate(cx,cy);
         const point=(r,a)=>[Math.cos(a)*rx*r,Math.sin(a)*ry*r];
         ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.fillStyle='#645d49';ctx.fill();
@@ -99,6 +105,7 @@
         for(const r of [.80,.99]){ctx.beginPath();ctx.ellipse(0,0,rx*r,ry*r,0,0,Math.PI*2);ctx.strokeStyle='#c0ad83';ctx.lineWidth=1.3;ctx.stroke();}
         ctx.beginPath();ctx.ellipse(0,0,5,9,0,0,Math.PI*2);ctx.fillStyle='#a39572';ctx.fill();ctx.strokeStyle='#60563e';ctx.lineWidth=1;ctx.stroke();
         ctx.beginPath();ctx.ellipse(0,0,2,3.5,0,0,Math.PI*2);ctx.fillStyle='#696148';ctx.fill();ctx.restore();
+        }
         if(!enhancedWater){
         // Water gathers in the timber race, accelerates into a continuous
         // sheet, then breaks into foam where it meets the river.

@@ -11,6 +11,54 @@ function load(extras={}){
   return new scope.window.Inhabitants();
 }
 
+test('pottery story keeps the seated artisan supported at the shop ground height',()=>{
+  const crowd=load(),ctx=context(),segments=[];
+  ctx.lineTo=(x,y)=>segments.push([x,y]);
+  const art={frame:{w:200,h:400},texture:{width:200,height:400},direction:1,
+    contacts:[{x:40,y:395},{x:160,y:400}],grips:[[.7,.4]]};
+  crowd.motionContext=context();crowd.motionSurface={};
+  const item={p:{id:'resident-potter',sprite:8,layer:'street',story:'pottery',groundY:473,art,h:48},
+    x:0,y:456,direction:-1,walking:false,pose:movement.activityAt('pottery',1)};
+  crowd.sprite(ctx,item,1);
+  assert.ok(segments.filter(([,y])=>y===473).length>=4,'both stool legs meet this shop floor');
+  assert.ok(!segments.some(([,y])=>y===477),'the stool must not use an unrelated street baseline');
+  const bitmap=crowd.residentFrames.get(item.p.id);
+  crowd.sprite(ctx,item,1.01);
+  assert.equal(bitmap.tick,1.01,'close-up pottery gestures update every animation frame');
+});
+
+test('pottery and other bent workers use complete robes in every season',()=>{
+  const crowd=load(),calls=[];
+  crowd.workerTexture=p=>{calls.push([crowd.season,p.outfit]);return 'whole robe';};
+  for(const season of ['spring','summer','autumn','winter']){
+    crowd.season=season;crowd.activeWardrobe={frames:[]};
+    for(const activity of ['pottery','pack','weave'])assert.equal(crowd.textureFor({sprite:11,outfit:3,activity}),'whole robe');
+  }
+  assert.equal(calls.length,12);
+});
+
+test('a pottery carrying cycle preserves every trouser pixel in one connected mesh',()=>{
+  const crowd=load(),ctx=context(),life=require('../src/street-life.js');
+  const f={x:1340,y:597,w:158,h:352},texture={width:f.w,height:f.h};
+  const art={frame:f,texture,direction:1,contacts:[{x:48,y:350},{x:129,y:347}],grips:[[87/158,156/352]]};
+  crowd.motionContext=context();crowd.motionSurface={};
+  crowd.robeLayers=()=>assert.fail('baggy trousers must not be cut into separate textures');
+  let area=0;
+  const triangle=(_ctx,image,vertices)=>{
+    assert.equal(image,texture);
+    const signed=key=>{const [a,b,c]=vertices.map(v=>v[key]);return ((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))/2;};
+    assert.ok(signed('target')>0,'trousers cannot fold inside out as the feet move');
+    area+=signed('source');
+  };
+  crowd.triangle=triangle;crowd.quad=(ctx,image,p,q,r)=>{triangle(ctx,image,[p,q,r]);area+=(q.source[0]-p.source[0])*(r.source[1]-p.source[1])/2;};
+  for(let t=0;t<40;t+=.1){
+    const story=life.storyAt('pottery',t).actors[-1165];area=0;
+    crowd.sprite(ctx,{p:{sprite:11,art,h:62,story:'pottery'},x:0,y:0,ground:()=>0,
+      walking:story.walking,direction:story.direction,pose:{...story.pose,phase:story.phase,gaitWeight:story.gaitWeight}},t);
+    assert.ok(Math.abs(area-f.w*f.h)<1e-6,'every original pixel is represented exactly once');
+  }
+});
+
 test('stationary gestures reuse a bounded bitmap while walking feet rebuild every frame',()=>{
   const crowd=load(),ctx=context();let triangles=0;
   crowd.triangle=()=>triangles++;crowd.quad=()=>triangles+=2;crowd.motionContext=context();crowd.motionSurface={};
@@ -74,6 +122,20 @@ test('paper extraction removes exterior white but preserves enclosed ivory and d
   assert.equal(data[(2*width+2)*4+3],255);
   assert.ok(data[(3*width+1)*4+3]>0&&data[(3*width+1)*4+3]<255);
   assert.ok(data[(3*width+1)*4]<210,'white contamination is removed from the soft edge');
+});
+
+test('chunked paper extraction yields to input and retains identical alpha and edge colors',async()=>{
+  let now=0,yields=0;
+  const crowd=load({performance:{now:()=>now+=9},setTimeout:fn=>{yields++;queueMicrotask(fn);}});
+  const width=320,height=240,data=new Uint8ClampedArray(width*height*4).fill(255);
+  for(let y=30;y<210;y++)for(let x=80;x<240;x++){
+    const k=(y*width+x)*4;data.set(x===80?[210,208,205,255]:[50,45,35,255],k);
+  }
+  data.set([248,247,244,255],(120*width+160)*4);
+  const sync={data:data.slice(),width,height},asyncPixels={data:data.slice(),width,height};
+  crowd.removePaper(sync);await crowd.removePaperAsync(asyncPixels);
+  assert.ok(yields>2,'large extraction must release the main thread between slices');
+  assert.deepEqual(asyncPixels.data,sync.data,'all original pixels, including ivory, are preserved');
 });
 
 
@@ -143,7 +205,6 @@ test('rigid walking cells use the affine path without changing the animated mesh
   assert.equal(quads*2+triangles,32*48*2,'every original mesh cell is retained');
 });
 
-
 test('GPU walking atlas keeps separate tiles, full-density vertices and uploads static ink once',()=>{
   const calls=[],events={};let target;
   const gl=new Proxy({}, {get:(_,key)=>{
@@ -166,9 +227,10 @@ test('GPU walking atlas keeps separate tiles, full-density vertices and uploads 
   assert.equal(calls.filter(c=>c[0]==='clear').length,1,'the atlas is cleared once for the whole crowd');
   assert.equal(calls.filter(c=>c[0]==='texImage2D').length,1,'unchanged painting is uploaded once');
   assert.deepEqual(calls.filter(c=>c[0]==='drawArrays').map(c=>c[3]),[6,6]);
-  const buffers=calls.filter(c=>c[0]==='bufferData');
+  assert.equal(calls.filter(c=>c[0]==='bufferData').length,1,'allocate vertex storage once across the batch');
+  const buffers=calls.filter(c=>c[0]==='bufferSubData');
   for(let i=0;i<2;i++){
-    const vertices=buffers[i][2];assert.equal(vertices.length,24);
+    const vertices=buffers[i][3];assert.equal(vertices.length,24);
     assert.ok(Math.abs((vertices[0]+1)*target.width/2-(regions[i].x+24))<.0001);
     assert.ok(Math.abs((1-vertices[1])*target.height/2-(regions[i].y+16))<.0001);
     assert.deepEqual(vertices.slice(2,4),[0,0]);
@@ -183,17 +245,20 @@ test('GPU drawing gracefully falls back when WebGL is unavailable',()=>{
   mesh.beginBatch([],2);assert.equal(mesh.batching,undefined);
 });
 
-test('winter uses the complete painted wardrobe and returning to spring restores the original outfit',()=>{
+test('autumn and winter use complete painted wardrobes through rain and return to the original spring outfit',()=>{
   const S=require('../src/seasons.js');
   const crowd=load({window:{ScrollMovement:movement,QingmingSeasons:S}});
-  const p={sprite:0,outfit:1,layer:'street'},spring={name:'spring'},winter={name:'winter'};
+  const p={sprite:0,outfit:1,layer:'street'},spring={name:'spring'};
   crowd.outfits.set('0:1:spring',spring);
   assert.equal(crowd.textureFor(p),spring);
-  crowd.activeWardrobe={frames:[winter]};crowd.season='winter';
-  assert.equal(crowd.textureFor(p),winter,'no spring skin or flat clothing mask is painted over the winter sleeves');
-  crowd.raining=true;assert.equal(crowd.textureFor(p),winter);
-  crowd.activeWardrobe=null;crowd.season='spring';crowd.raining=false;
-  assert.equal(crowd.textureFor(p),spring,'cached spring clothing survives a winter round trip');
+  for(const season of ['autumn','winter']){
+    const painted={name:season};
+    crowd.activeWardrobe={frames:[painted]};crowd.season=season;
+    assert.equal(crowd.textureFor(p),painted,'complete collars and sleeves are not covered by a flat wrap');
+    crowd.raining=true;assert.equal(crowd.textureFor(p),painted);
+    crowd.activeWardrobe=null;crowd.season='spring';crowd.raining=false;
+    assert.equal(crowd.textureFor(p),spring,'cached spring clothing survives a seasonal round trip');
+  }
 });
 
 test('summer rain reuses the exact dry-weather clothing texture',()=>{
