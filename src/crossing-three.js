@@ -2,7 +2,7 @@ import * as THREE from '../vendor/three.module.js';
 import {createCrossingWorld} from './crossing-world.js?v=20-performance';
 import {createRiverWater,waterLevel} from './crossing-water.js?v=21-performance';
 import {createTraces} from './crossing-traces.js?v=2-performance';
-import {createCourtyard} from './crossing-courtyard.js?v=16-performance';
+import {createCourtyard} from './crossing-courtyard.js?v=17-particle-cache';
 import {createJourney,journeyPose,ease} from './crossing-motion.js?v=13-soft';
 
 import {crossingQuality,createFrameBudget} from './crossing-quality.js';

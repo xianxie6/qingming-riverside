@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
 import {ease} from './crossing-motion.js?v=13-soft';
-import {createParticleHero} from './crossing-hero.js?v=16-performance';
+import {createParticleHero} from './crossing-hero.js?v=17-particle-cache';
 
 export async function createCourtyard(keep,mobile,particleCount){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#bbc5c4');scene.fog=new THREE.FogExp2('#bbc5c4',.012);
@@ -42,9 +42,12 @@ export async function createCourtyard(keep,mobile,particleCount){
     if(progress>=.94&&greetingStart===null)greetingStart=time;
     const greetingAge=greetingStart===null?0:time-greetingStart;
     const settled=ease(0,2.2,greetingAge);
+    cage.visible=settled<1;
     cage.rotation.y=time*.035;cageMaterial.opacity=(.38+disperse*.20)*(1-settled);
     const tick=Math.floor(time*5);
     labels.forEach((label,i)=>{
+      label.sprite.visible=settled<1;
+      if(settled===1)return;
       label.sprite.material.opacity=1-settled;
       const angle=i/6*Math.PI*2+time*.025;
       label.sprite.position.set(Math.cos(angle)*2.65,.45+i*.78,Math.sin(angle)*.8+.4);

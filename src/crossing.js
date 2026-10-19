@@ -1,9 +1,25 @@
 (() => {
   'use strict';
   const entry=document.querySelector('#crossingEntry');
+  // Fetch dependency layers together on intent, before the modal needs them.
+  // Preload only: creating WebGL contexts and preparing particles stays on entry.
+  let warmed=false;
+  function warmCrossing(){
+    if(warmed||location.protocol==='file:'||navigator.connection?.saveData)return;
+    warmed=true;
+    const modules=['crossing-three.js?v=25-particle-cache','crossing-world.js?v=20-performance',
+      'crossing-water.js?v=21-performance','crossing-traces.js?v=2-performance',
+      'crossing-courtyard.js?v=17-particle-cache','crossing-motion.js?v=13-soft',
+      'crossing-quality.js','crossing-details.js?v=19-grip-depth','crossing-hero.js?v=17-particle-cache'];
+    for(const src of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=`src/${src}`;document.head.append(link);}
+    for(const name of ['river-forward-v1','river-summer','courtyard-painted-v2','painter-v2']){
+      const link=document.createElement('link');link.rel='preload';link.as='image';link.crossOrigin='anonymous';link.fetchPriority='low';link.href=`assets/crossing-${name}.webp`;document.head.append(link);
+    }
+  }
+  for(const event of ['pointerenter','pointerdown','focus'])entry.addEventListener(event,warmCrossing,{passive:true});
   let active=null,musicEnabled=true;
   entry.addEventListener('click',async event=>{
-    event.stopPropagation();
+    event.stopPropagation();warmCrossing();
     if(active)return;
     if(location.protocol==='file:'){
       document.querySelector('#atlasMessage').textContent='请双击“打开清明上河.command”启动穿越体验';return;
@@ -85,7 +101,7 @@
     skip.addEventListener('click',()=>{if(failed)location.reload();else void enter();});
     try{
       if(matchMedia('(prefers-reduced-motion: reduce)').matches){await enter();return;}
-      const {createCrossing}=await import('./crossing-three.js?v=24-performance');
+      const {createCrossing}=await import('./crossing-three.js?v=25-particle-cache');
       if(signal.aborted||leaving)return;
       visual=await createCrossing(dialog,signal);
       if(signal.aborted||leaving){dispose();return;}

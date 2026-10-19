@@ -1,5 +1,23 @@
 import * as THREE from '../vendor/three.module.js';
 
+export function createParticleGeometry(){
+  // This unlit material needs positions only. SphereGeometry duplicates its
+  // seam and poles for UVs/normals; welding them preserves all 36 triangles
+  // while running the particle shader on 20 vertices instead of 35.
+  const sphere=new THREE.SphereGeometry(1,6,4),positions=sphere.attributes.position;
+  const unique=new Map(),vertices=[],remap=[];
+  for(let i=0;i<positions.count;i++){
+    const point=[positions.getX(i),positions.getY(i),positions.getZ(i)];
+    const key=point.map(value=>Math.round(value*1e6)).join(':');
+    if(!unique.has(key)){unique.set(key,vertices.length/3);vertices.push(...point);}
+    remap.push(unique.get(key));
+  }
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+  geometry.setIndex(Array.from(sphere.index.array,index=>remap[index]));sphere.dispose();
+  return geometry;
+}
+
 // Painted color samples form a shallow 3D particle relief, not a full character mesh.
 export async function createParticleHero(keep,mobile,count=mobile?24000:80000){
   let seed=90721;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
@@ -7,7 +25,7 @@ export async function createParticleHero(keep,mobile,count=mobile?24000:80000){
   const canvas=document.createElement('canvas'),width=texture.image.width,height=texture.image.height;
   canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d',{willReadFrequently:true});
   ctx.drawImage(texture.image,0,0);const pixels=ctx.getImageData(0,0,width,height).data;texture.dispose();
-  const geometry=keep(new THREE.SphereGeometry(1,6,4));
+  const geometry=keep(createParticleGeometry());
   const bow={value:0},gather={value:0},time={value:0},hover={value:0},burst={value:0},touch={value:new THREE.Vector3(99,99,99)};
   const material=keep(new THREE.MeshBasicMaterial({color:'#ffffff'}));
   material.onBeforeCompile=shader=>{
