@@ -8,7 +8,7 @@
   const profiles={
     spring:{name:'春',label:'春和 · 轻衫',description:'柳色初新，春风轻拂，行人着轻衫',weather:'春雨',cloth:'轻衫'},
     summer:{name:'夏',label:'夏荫 · 薄衣',description:'浓荫覆岸，河水清碧，行人换上浅色薄衣',weather:'夏雨',cloth:'薄衣'},
-    autumn:{name:'秋',label:'秋色 · 夹衣',description:'黄叶沿街飘落，行人添上夹衣与披肩',weather:'秋雨',cloth:'夹衣'},
+    autumn:{name:'秋',label:'秋色 · 夹衣',description:'黄叶沿街飘落，行人换上交领夹袍、褙子与长裤',weather:'秋雨',cloth:'夹衣'},
     winter:{name:'冬',label:'冬雪 · 厚袍',description:'枯枝覆雪，屋瓦积白，行人穿厚袍、护领与暖靴',weather:'落雪',cloth:'厚袍'}
   };
   class Controller{
@@ -41,7 +41,7 @@
     });
   }
   async function loadArt(id){
-    const images=await Promise.all(['west','center','east'].map(part=>loadImage(`assets/seasons/${id}-${part}.png`)));
+    const images=await Promise.all(['west','center','east'].map(part=>loadImage(`assets/seasons/${id}-${part}.webp`)));
     return {west:images[0],center:images[1],east:images[2]};
   }
   function weather(id,sample,snow=true,time=0){
@@ -61,7 +61,7 @@
     if(mix){ctx.globalCompositeOperation=id==='summer'?'screen':'multiply';ctx.globalAlpha=mix[2];ctx.fillStyle=mix[0];ctx.fillRect(frame.x,frame.y,frame.w,frame.h);}
     ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
     const [hx,hy,rx,ry]=head,neck=hy+ry*.82;
-    if(id==='autumn'||id==='winter'||wet){
+    if(id==='winter'||wet){
       // A painted shoulder wrap follows the original silhouette and is skinned
       // with the body, so it cannot float independently of a walking person.
       const long=id==='winter'||wet,depth=frame.h*(long?.38:.20);
