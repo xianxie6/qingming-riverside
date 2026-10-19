@@ -65,7 +65,11 @@ test('figures without installed sheets keep the original still art',async()=>{
   const prompt=path.join(__dirname,'..','art-source/street-extension/limited-animation',spec.file+'-v1.json');
   const job=JSON.parse(fs.readFileSync(prompt,'utf8'));
   assert.equal(job.cells,spec.cols,`${spec.file} prompt asks for the wrong number of cells`);
-  for(const ref of job.prompt.referenced_image_paths)assert(fs.existsSync(ref),`${ref} is missing`);
+  // Jobs record absolute paths from the authoring machine; check them inside this checkout.
+  for(const ref of job.prompt.referenced_image_paths){
+   const at=ref.indexOf('art-source/'),local=at<0?ref:path.join(__dirname,'..',ref.slice(at));
+   assert(fs.existsSync(local),`${ref} is missing`);
+  }
  }
 });
 
