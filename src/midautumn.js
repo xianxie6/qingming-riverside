@@ -6,7 +6,7 @@ function line(c, points, color=ink, width=.8) {
   c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=color;c.lineWidth=width;c.stroke();
 }
 const lanternArt=new Image();
-if(festivalEnabled)lanternArt.src='assets/midautumn/lantern-design-v1.png';
+if(festivalEnabled)lanternArt.src='assets/midautumn/lantern-design-v1.webp';
 // Preserve the generated alpha channel, flower painting and fine silk tassels.
 const lanternSprites={red:{x:274,y:48,w:380,h:968},green:{x:803,y:86,w:518,h:932}};
 const lanternLayout=[

@@ -86,8 +86,8 @@
     if(location.hash!==hash)history.pushState(null,'',location.pathname+location.search+hash);
   }
   async function launchScene(place,button,{restore=false,festival=false}={}){
-    if(!place)return false;
-    if(fileMode){message.textContent=localPreviewHint;return false;}
+    if(!place)return;
+    if(fileMode){message.textContent=localPreviewHint;return;}
     const token=++revision,original=pendingButtons.get(button)?.original??button.innerHTML;
     pendingButtons.set(button,{token,original});
     if(!restore)setRoute(`#${place.id}`);
@@ -95,9 +95,9 @@
     button.disabled=true;button.querySelector('span').textContent='正在进入…';const icon=button.querySelector('i');if(icon)icon.hidden=true;message.textContent='正在展开动态街市，请稍候';
     try{
       await window.loadQingmingScene();
-      if(token!==revision)return false;
+      if(token!==revision)return;
       await window.prepareQingmingEntry(place.world);
-      if(token!==revision)return false;
+      if(token!==revision)return;
       window.dispatchEvent(new CustomEvent('atlas-enter',{detail:{x:place.world}}));
       entryStatus=false;
       atlas.hidden=true;document.body.classList.remove('in-atlas');isolate(false);document.querySelector('#painting').focus();
@@ -105,7 +105,7 @@
       window.warmQingmingDistricts();
       return true;
     }catch(error){
-      if(token!==revision)return false;
+      if(token!==revision)return;
       console.error(error);message.textContent='动态街市加载失败，请检查网络后重试。';
       const retry=document.createElement('button');retry.id='atlasRetry';retry.textContent='重新载入';
       retry.addEventListener('click',()=>location.reload());message.append(retry);
@@ -135,7 +135,7 @@
     }
     const festival=id==='midautumn';
     const dialog=document.querySelector('#midautumnWelcome');
-    if(dialog.open&&!festival)dialog.close();
+    if(dialog?.open&&!festival)dialog.close();
     // Keep the existing shop return URL landing outside the tea-market building.
     const place=id==='sunyang'?{...places.find(p=>p.id==='tea'),world:380}:places.find(p=>p.id===(festival?'gate':id));
     if(!place){showOverview();return;}

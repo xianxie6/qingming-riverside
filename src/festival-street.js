@@ -55,7 +55,7 @@
   let assetsReady;
   function loadAssets(){
     if(!assetsReady){
-      const assets=[[handLantern,'assets/midautumn/lantern-design-v1.png'],[seatedImage,'assets/painter-hd-v1.webp'],[dancers,'assets/midautumn/festival-dancers-v1.png'],[rabbit,'assets/midautumn/rabbit-lantern-v1.png']];
+      const assets=[[handLantern,'assets/midautumn/lantern-design-v1.webp'],[seatedImage,'assets/painter-hd-v1.webp'],[dancers,'assets/midautumn/festival-dancers-v1.png'],[rabbit,'assets/midautumn/rabbit-lantern-v1.png']];
       assetsReady=Promise.all(assets.map(([image,src])=>{image.src=src;return image.decode();})).catch(error=>{assetsReady=null;throw error;});
     }
     return assetsReady;

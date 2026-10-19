@@ -36,7 +36,7 @@
   [[-27,.62],[21,.79],[0,1]].forEach(([angle,size],i)=>{
     const placement=svgNode('g',{transform:`translate(2160 95) rotate(${angle}) scale(${size}) translate(-2030 -90)`});
     const branch=svgNode('g',{class:'festival-osmanthus',style:`animation-duration:${10+i*1.7}s;animation-delay:${-i*2.4}s`},placement);
-    svgNode('image',{href:'assets/midautumn/osmanthus-complete-v1.png',x:1545,y:28,width:485,height:286},branch);
+    svgNode('image',{href:'assets/midautumn/osmanthus-atlas-1024.webp',x:1545,y:28,width:485,height:286},branch);
   });
   // Small flowers follow staggered wind paths, separate from the branch.
   const petals=svgNode('g',{'aria-hidden':'true'});
@@ -53,7 +53,8 @@
   layer.width=2172;layer.height=724;layer.setAttribute('aria-hidden','true');
   document.querySelector('#atlasImage').after(layer);
   const c=layer.getContext('2d');
-  const art=new Image();art.src='assets/midautumn/lantern-design-v1.png';
+  // Lanterns appear only at night, so the sprite sheet waits for the first night.
+  const art=new Image();
   // Attachment points traced on the panorama itself in its 2048 × 683
   // reference space. Each y is the timber/rail connection, not the lamp top.
   // Keep these with the painting transform; never position them in sky space.
@@ -105,6 +106,7 @@
   function paint(){
     c.setTransform(2172/2048,0,0,724/683,0,0);c.clearRect(0,0,2048,683);
     if(!night)return;
+    if(!art.src)art.src='assets/midautumn/lantern-atlas-384.webp';
     // A gentle dusk wash keeps all ink detail visible, while separating warm lights.
     const dusk=c.createLinearGradient(0,0,0,683);
     dusk.addColorStop(0,'rgba(86,66,40,.10)');
@@ -130,7 +132,8 @@
     c.globalCompositeOperation='source-over';
     if(art.complete&&art.naturalWidth){
       for(const [i,[x,y,h]] of lamps.entries()){
-        const green=i%5===2,s=green?[803,86,518,932]:[274,48,380,968];
+        // Crops are traced on the 1536-wide original; the homepage sheet is a reduced copy.
+        const green=i%5===2,s=(green?[803,86,518,932]:[274,48,380,968]).map(v=>v*art.naturalWidth/1536);
         const w=h*s[2]/s[3];
         // The cord starts exactly on the traced structure and reaches the
         // hanging ring in the sprite; lamp and glow share that same offset.
