@@ -26,7 +26,7 @@ const requestedCenter=Number(new URLSearchParams(location.search).get('at')??NaN
 const sceneParam=new URLSearchParams(location.search).get('scene');
 let activeScene=sceneParam==='inn'?'inn':'warehouse';
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)'),sound=createStreetSound();
-const state={center:Number.isFinite(requestedCenter)?requestedCenter:sceneParam==='warehouse'?CRANE.x:sceneParam==='inn'?INN.guestX:-2900,zoom:sceneParam?1.3:1,overview:false,seams:false,people:true,auto:false,tourStarted:false,tourComplete:false,ready:false,width:0,height:0,scale:1,left:MIN,top:0,focusY:H/2,flight:null};
+const state={center:Number.isFinite(requestedCenter)?requestedCenter:sceneParam==='warehouse'?CRANE.x:sceneParam==='inn'?INN.guestX:MIN,zoom:sceneParam?1.3:1,overview:false,seams:false,people:true,auto:false,tourStarted:false,tourComplete:false,ready:false,width:0,height:0,scale:1,left:MIN,top:0,focusY:H/2,flight:null};
 state.motion=!reducedMotion.matches;
 // Each scene opens close enough to read the hook, the sack and the curtain.
 const SCENE_VIEW={warehouse:{center:CRANE.x+15,focusY:340,zoom:2.2},inn:{center:INN.guestX,focusY:400,zoom:2.2}};
