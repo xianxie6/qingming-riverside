@@ -1,5 +1,5 @@
 // Role-specific action cycles. All movement stays inside reviewed ground cells.
-import {planWalk,walkState,gaitMetrics,GAIT_PHASES,WALKING_PAIRS} from './extension-walkers.js?v=limited-13';
+import {planWalk,walkState,gaitMetrics,GAIT_PHASES,WALKING_PAIRS} from './extension-walkers.js?v=limited-16';
 export {gaitMetrics,GAIT_PHASES};
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const smooth=x=>{x=clamp(x);return x*x*(3-2*x);};

@@ -2,14 +2,14 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const modules=Promise.all([import('../src/extension-people-data.js'),import('../src/extension-people-layout.js'),import('../src/extension-flower-customers.js'),import('../src/extension-workshop-state.js')]);
 test('larger people preserve foot anchors and the pair becomes two independent customers',async()=>{
- const [{population:source},{createDisplayPopulation,STREET_PERSON_SCALE,FLORIST_SCALE,TRAVELLER_SCALE}]=await modules;
+ const [{population:source},{createDisplayPopulation,STREET_PERSON_SCALE,FLORIST_SCALE,TRAVELLER_SCALE,STANDING_HEIGHT}]=await modules;
  const result=createDisplayPopulation(source);
  assert.equal(result.people.reduce((sum,p)=>sum+p.members,0),source.count);
  assert.equal(result.people.filter(p=>p.customer!==undefined).length,2);
  assert(!result.people.some(p=>p.id==='visitors-47'));
  for(const original of source.people.filter(p=>p.id!=='visitors-47')){
   const p=result.people.find(q=>q.id===original.id);if(original.id==='tea-18'||original.id==='visitors-49'||original.id==='visitors-50')continue;if(p.flowerStreet||p.porter)continue;assert.equal(p.x,original.x);assert.equal(p.y,original.y);
-  assert.equal(p.h,original.h*(p.id==='bridge-33'?FLORIST_SCALE:p.id==='bridge-36'?TRAVELLER_SCALE:STREET_PERSON_SCALE));
+  assert.equal(p.h,(STANDING_HEIGHT[p.id]??original.h)*(p.id==='bridge-33'?FLORIST_SCALE:p.id==='bridge-36'?TRAVELLER_SCALE:STREET_PERSON_SCALE));
  }
 });
 test('each customer enters the actual doorway before buying and continues down the street without jumps',async()=>{

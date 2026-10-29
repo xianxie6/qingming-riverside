@@ -1,0 +1,27 @@
+/* Homepage entries: small mounted paintings beneath the title. Crossing is the
+   vermilion primary card; the spring scroll is a paper card marked as new. */
+.atlas-module-links{display:flex;flex-direction:column;gap:12px;width:268px;margin-top:20px}
+.entry-card{position:relative;display:grid;grid-template-columns:86px 1fr;grid-template-rows:minmax(0,1fr);align-items:stretch;width:100%;height:64px;margin:0;padding:4px 30px 4px 4px;
+ border:1px solid #77674f33;border-radius:2px;background:#efe5cf;color:#3b3226;text-align:left;text-decoration:none;font:inherit;letter-spacing:0;
+ box-shadow:inset 0 1px 0 #fff8,0 6px 18px #3b322614;cursor:pointer;pointer-events:auto;transition:transform .25s,box-shadow .25s,background .25s}
+.entry-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #fff8,0 10px 24px #3b322624}
+.entry-card:focus-visible{outline:2px solid #984738;outline-offset:4px}
+.entry-thumb{min-height:0;overflow:hidden;outline:1px solid #3b322633;outline-offset:-1px}
+.entry-thumb img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+.entry-body{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:6px 0 6px 12px}
+.entry-body b{font:400 19px 'Kaiti SC','STKaiti','KaiTi',serif;letter-spacing:.22em;white-space:nowrap}
+.entry-body small{font:11px 'Songti SC','STSong',serif;letter-spacing:.12em;color:#77674f}
+.entry-card>i{position:absolute;right:11px;top:50%;transform:translateY(-50%);font:normal 13px serif;color:#77674f}
+.entry-new{display:inline-block;margin-left:6px;padding:0 4px;border:1px solid #984738;font:10px/1.5 'Songti SC','STSong',serif;letter-spacing:0;color:#984738;vertical-align:3px}
+.entry-primary{border-color:#7f392d;background:#984738;color:#f6e9cf}
+.entry-primary:hover{background:#8a4033}
+.entry-primary .entry-body small,.entry-primary>i{color:#f1dcc0cc}
+.entry-card:disabled{opacity:.55;cursor:wait}
+@media(max-width:600px){
+ .atlas-module-links{width:236px;gap:9px;margin-top:14px}
+ .entry-card{grid-template-columns:70px 1fr;height:54px;padding-right:26px}
+ .entry-body{padding-left:10px;gap:2px}
+ .entry-body b{font-size:17px;letter-spacing:.16em}
+ .entry-body small{font-size:10px;letter-spacing:.06em}
+}
+@media(prefers-reduced-motion:reduce){.entry-card{transition:none}.entry-card:hover{transform:none}}

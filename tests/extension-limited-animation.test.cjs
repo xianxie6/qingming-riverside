@@ -54,11 +54,12 @@ test('cells are measured and aligned on soles or head, not on their boxes',async
 });
 
 test('figures without installed sheets keep the original still art',async()=>{
- const {LIMITED,LIMITED_DIR}=await model;
+ const {LIMITED,LIMITED_DIR}=await model,{HAULER}=await import('../src/extension-workshop-state.js');
  const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'..',LIMITED_DIR,'manifest.json'),'utf8'));
  assert(Array.isArray(manifest.installed));
  for(const file of manifest.installed){
-  assert(Object.values(LIMITED).some(s=>s.file===file),`${file} is not configured`);
+  // The rope hauler's sheet is driven by the warehouse scene, not a timeline.
+  assert(Object.values(LIMITED).some(s=>s.file===file)||file===HAULER.file,`${file} is not configured`);
   assert(fs.existsSync(path.join(__dirname,'..',LIMITED_DIR,file+'.webp')),`${file}.webp is missing`);
  }
  for(const spec of Object.values(LIMITED)){

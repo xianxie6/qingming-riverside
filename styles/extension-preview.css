@@ -44,3 +44,6 @@ nav button:hover{color:var(--ink)}nav button[aria-current]{color:var(--seal)}
 @media(max-width:760px){.dock{flex-direction:column;align-items:stretch;gap:8px}.workshop-bar{flex-wrap:wrap}#workshopStatus{order:5;flex-basis:100%;margin:0;font-size:10px}.life-tools button{flex:1;justify-content:center}}
 @media(max-width:620px){footer{padding:0 14px 6px}.scene-hint{left:14px;bottom:10px;font-size:9px;letter-spacing:1px}#gestureHint{display:none}.tour-controls{bottom:10px}.workshop-tabs button{padding:3px 8px;font-size:11px;letter-spacing:0}.workshop-primary{padding:0 12px;flex:1;letter-spacing:1px}nav{gap:0}nav button,nav button:hover{font-size:10px;letter-spacing:0;padding:2px 3px}}
 @media(max-height:580px){.dock{padding:5px 0}#workshopStatus{display:none}.workshop-primary,.icon-only{min-height:30px}.icon-only{width:30px}.life-tools button{min-height:30px}.workshop-tabs button{min-height:26px}#map{height:28px}nav button{min-height:24px}}
+
+/* The title returns to the homepage, where the scroll is entered. */
+a.title{color:inherit;text-decoration:none}a.title:hover h1{opacity:.8}a.title:focus-visible{outline:2px solid var(--seal,#984738);outline-offset:4px}

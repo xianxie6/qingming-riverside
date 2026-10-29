@@ -1,0 +1,25 @@
+{
+ "prompt": {
+  "referenced_image_paths": [
+   "/Users/zhangxian/Documents/ChatGPT/清明上河图 2/art-source/street-extension/limited-animation/mill-16-reference.png"
+  ],
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: a THREE-FRAME limited-animation key-pose SPRITE SHEET of this exact Song dynasty warehouse labourer at work: he is hauling in the hauling line of a wooden cargo hoist to lift a sack of grain, hand over hand, like a sailor hauling a sail line. It is ordinary, cheerful daily work at a busy riverside warehouse. Keep his identity from the reference: blue cloth head wrap, grey-blue short jacket and loose trousers tied at the calf, dark cloth shoes. He does NOT hold the burlap sack any more. Camera: eye-level three-quarter side view, the same as every other figure on the street. He stands on the ground and faces the LEFT of the image, looking straight ahead with a calm, focused, healthy expression. THE LINE: draw ONLY a short piece of thick hemp hauling line held in his fists: it starts just above his upper fist, runs straight up-and-down through both fists, and ends a hand's length below the lower fist. Nothing is attached to the line, it does not reach the top of the image and it is nowhere near his head or neck. Both fists hold it out in front of his body, an arm's length forward, on the LEFT side of him, at the same horizontal position in all three cells. Feet: planted shoulder-width apart, left foot a little forward, on exactly the same spot in all three cells; only the arms, shoulders and hips move, with believable weight in the knees. Cell 1 (left) = reaching forward: arms extended forward and up, both fists gripping the line one above the other at about forehead height, body upright. Cell 2 (middle) = hauling: he draws the line down with both fists to chest height, elbows bent and tucked down, knees slightly bent, leaning back a little. Cell 3 (right) = line hauled in: fists drawn down to waist height, arms nearly straight, hips dropped, leaning back further with his weight on the back leg, like a tug-of-war pull. Correct shoulder, elbow and wrist anatomy, fingers wrapped around the line, no extra arms, no giant hands. Fine ink outlines and muted antique Chinese watercolor exactly matching the reference, same line weight, same palette, same paper-grain shading. Truly transparent alpha background, no ground shadow, no glow, no crane, no pulley, no sack, no grid lines, no numbers, no text. One single horizontal row of 3 equal-width cells, one full figure per cell, centered in its cell with generous margin on every side so elbows, sleeves, the line and feet never touch a cell edge. Identical character size and identical camera angle in every cell. Redraw at higher detail than the small reference without changing the design. Make every cell match the reference figure and match each other as strictly as possible."
+ },
+ "save_as": "art-source/street-extension/limited-animation/mill-16-rope-v1.png",
+ "cells": 3,
+ "install": "node scripts/install-limited-animation.mjs art-source/street-extension/limited-animation/mill-16-rope-v1.png",
+ "id": "mill-16-rope",
+ "label": "拽绳伙计 · 拉绳吊货",
+ "limited": {
+  "file": "mill-16-rope",
+  "cols": 3,
+  "anchor": "feet",
+  "activity": [
+   "握绳候着",
+   "倒手拽绳",
+   "拽到腰间"
+  ]
+ },
+ "note": "Not a LIMITED timeline sheet: src/extension-workshop.js loads it and picks the cell from the rope position (HAULER in src/extension-workshop-state.js). The sheet draws only a short piece of line in the fists; after installing, mark HAULER.rope as [x,y] of the top of that piece per cell, and HAULER.soles, in generated-sheet pixels. The code draws the line from the pulley down to that point."
+}

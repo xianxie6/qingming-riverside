@@ -1,6 +1,16 @@
 // Limited animation: a few drawn key poses per figure, held and switched like
 // traditional animation, instead of warping one painting. Each sheet is one row
 // of equal cells. Missing sheets fall back to the original still figure.
+// In a background tab decode() can stall, or reject with EncodingError, although
+// the file has loaded; whichever of decode and the load event settles first wins.
+export function decoded(image){
+ const loaded=new Promise((resolve,reject)=>{
+  if(image.complete&&image.naturalWidth)return resolve();
+  image.addEventListener('load',()=>resolve(),{once:true});
+  image.addEventListener('error',()=>reject(new Error('Image failed to load: '+image.src)),{once:true});
+ });
+ return Promise.race([image.decode().catch(()=>loaded),loaded]);
+}
 export const LIMITED_DIR='assets/extension-preview/limited';
 // Installed sheets are stored at this fraction of the generated size; the figures
 // are drawn far smaller than the generated cells. Marked `soles` stay in
@@ -256,7 +266,9 @@ export const LIMITED={
   timeline:[[0,1.8],[1,0.6],[2,0.9],[1,0.4],[0,1.3]]},
  'mill-18':{file:"mill-18-grain",cols:3,anchor:"feet",activity:["掀开筐盖","捧粮查看","让粮流回筐里"],
   timeline:[[0,1.8],[1,0.6],[2,0.9],[1,0.4],[0,1.3]]},
- 'mill-19':{file:"mill-19-walk",cols:5,anchor:"head",walk:true,cycle:0.85,pace:0.4,activity:["停步看看","沿路慢行"]},
+ // v2 (2026-10-22) mirrors the reference so the sack trails behind; cycle measured
+ // from its drawn stride (0.91 heights per two steps).
+ 'mill-19':{file:"mill-19-walk",cols:5,anchor:"head",walk:true,cycle:0.97,pace:0.4,activity:["停步看看","沿路慢行"]},
  'mill-20':{file:"mill-20-cart",cols:3,anchor:"feet",activity:["扶稳车把","直身擦汗","回头看粮袋"],
   timeline:[[0,1.8],[1,0.6],[2,0.9],[1,0.4],[0,1.3]]},
  'mill-21':{file:"mill-21-ledger",cols:3,anchor:"feet",activity:["低头看簿","提笔记账","停笔抬头"],
@@ -362,7 +374,7 @@ export function createLimitedAnimation(invalidate,{dir=LIMITED_DIR,positionOf=()
  const started=new Promise(resolve=>{begin=resolve;});
  async function load(id){
   const spec=LIMITED[id],image=new Image();image.decoding='async';image.src=limitedSource(id,dir);
-  try{await image.decode();}catch{return;} // No drawn sheet yet: keep the still figure.
+  try{await decoded(image);}catch{return;} // No drawn sheet yet: keep the still figure.
   const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
   const t=canvas.getContext('2d',{willReadFrequently:true});t.drawImage(image,0,0);
   const data=t.getImageData(0,0,canvas.width,canvas.height).data,cellWidth=Math.floor(image.width/spec.cols);

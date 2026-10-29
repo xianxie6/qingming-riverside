@@ -2,7 +2,7 @@ import {FLOWERS,FLOWER_KEY,createFlowerState,buyFlower,arrangeFlower,removeFlowe
 const ROOT='assets/extension-preview/workshop/';
 const vaseNames=['青瓷圆腹瓶','白瓷长颈瓶','天青小瓶'];
 const vaseX=[27.3,49.9,72.3],mouthY=[54.8,46.1,53.9];
-export function createFlowerShop({onOpen=()=>{},onClose=()=>{},getArt=id=>ROOT+id+'.webp',getArtMetrics=()=>({stemX:.5})}={}){
+export function createFlowerShop({fallbackFocus=()=>null,onOpen=()=>{},onClose=()=>{},getArt=id=>ROOT+id+'.webp',getArtMetrics=()=>({stemX:.5})}={}){
  let state,storage=true;try{const value=JSON.parse(localStorage.getItem(FLOWER_KEY)||'null');state=createFlowerState(value);}catch{state=createFlowerState();storage=false;}
  let mode='shop',selected='peony',vase=0,inspecting=false,zoom=1,message='',returnFocus;
  const dialog=document.createElement('dialog');dialog.id='flowerShop';dialog.className='flower-dialog';dialog.setAttribute('aria-labelledby','flowerTitle');
@@ -46,7 +46,8 @@ export function createFlowerShop({onOpen=()=>{},onClose=()=>{},getArt=id=>ROOT+i
   // Keep keyboard activation on the corresponding control after a small update.
   const next=action==='select'?dialog.querySelector(`[data-action="select"][data-flower="${selected}"]`):dialog.querySelector(`[data-action="${action}"]`);next?.focus({preventScroll:true});
  });
- dialog.addEventListener('close',()=>{onClose();returnFocus?.focus({preventScroll:true});});
+ // Safari does not focus a clicked button, so focus may have been on the page itself.
+ dialog.addEventListener('close',()=>{onClose();(returnFocus&&returnFocus!==document.body?returnFocus:fallbackFocus())?.focus({preventScroll:true});});
  let outside=false;
  dialog.addEventListener('pointerdown',e=>{outside=e.target===dialog;});
  dialog.addEventListener('pointerup',e=>{if(outside&&e.target===dialog)dialog.close();outside=false;});

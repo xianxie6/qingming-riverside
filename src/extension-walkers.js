@@ -1,4 +1,4 @@
-import {LIMITED} from './extension-limited-animation.js?v=limited-12';
+import {LIMITED} from './extension-limited-animation.js?v=limited-16';
 // Long walks along the riverside street. Every walker follows a fixed, time-driven
 // schedule, so pausing, seeking and redrawing never desynchronise the crowd.
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));

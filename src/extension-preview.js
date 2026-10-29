@@ -1,8 +1,9 @@
-import {createStreetPeople,population} from './extension-people.js?v=limited-7';
-import {createStreetSound} from './extension-motion.js?v=limited-13';
-import {createWorkshopState,CRANE,INN} from './extension-workshop-state.js?v=calm-1';
-import {createStreetWorkshop} from './extension-workshop.js?v=calm-2';
-import {createFlowerShop} from './extension-flower-shop.js?v=flowers-6';
+import {createStreetPeople,population} from './extension-people.js?v=haul-6';
+import {createStreetSound} from './extension-motion.js?v=limited-16';
+import {createWorkshopState,CRANE,INN} from './extension-workshop-state.js?v=haul-2';
+import {createStreetWorkshop} from './extension-workshop.js?v=haul-11';
+import {decoded} from './extension-limited-animation.js?v=limited-16';
+import {createFlowerShop} from './extension-flower-shop.js?v=flowers-7';
 import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {MillWheel} from './mill-wheel.js?v=4';
 import {createRiverBoats} from './river-boats.js?v=8';
@@ -67,7 +68,7 @@ const workshop=createStreetWorkshop(workshopState,()=>{backgroundRevision++;mapD
 // `?limitedArt=<folder>` previews key-pose sheets before they are installed.
 const limitedArt=new URLSearchParams(location.search).get('limitedArt');
 const residents=createStreetPeople(()=>{mapDirty=true;invalidate();},workshop,{limitedDir:limitedArt&&/^[\w./-]+$/.test(limitedArt)?limitedArt:undefined,initialX:state.center,after:scrollOpen});
-const flowerShop=createFlowerShop({getArt:workshop.artURL,getArtMetrics:workshop.artMetrics,onOpen:()=>{cancelFlight(true);cancelProp();stop();bubbleUntil=0;$('#personBubble').hidden=true;},onClose:()=>{last=performance.now();invalidate();}});
+const flowerShop=createFlowerShop({fallbackFocus:()=>stage,getArt:workshop.artURL,getArtMetrics:workshop.artMetrics,onOpen:()=>{cancelFlight(true);cancelProp();stop();bubbleUntil=0;$('#personBubble').hidden=true;},onClose:()=>{last=performance.now();invalidate();}});
 function drawResidents(target,left,right,animated=false){
  const doorway=()=>workshop.drawDoorway(target,left,right,{overview:!animated||state.overview,people:state.people});
  if(!state.people){doorway();return;}
@@ -175,7 +176,7 @@ function updateTourButton(){
 function stop(completed=state.tourComplete){state.auto=false;state.tourComplete=completed;updateTourButton();}
 function leaveOverview(){if(state.overview){state.overview=false;state.center=savedCenter;$('#overview').setAttribute('aria-pressed','false');$('#overview').textContent='看全卷';}}
 function focus(x){cancelProp();stop();leaveOverview();state.center=x;invalidate();}
-function respond(response){if(!response)return;if(response.person.id==='bridge-33')response={...response,person:{...response.person,label:'插花女郎 · 拾枝理花'},text:'花枝都在这里，进来慢慢挑。'};stop();sound.play(response);$('#personName').textContent=response.person.label.split(' · ')[0];$('#personWords').textContent=response.text;$('#interactionStatus').textContent=response.person.label+'。'+response.text;bubbleUntil=performance.now()+4200;invalidate();}
+function respond(response){if(!response)return;const haulLabel=workshop.personLabel(response.person);if(haulLabel)response={...response,person:{...response.person,label:haulLabel},text:'我在这头拽绳，他在钩下接包。'};if(response.person.id==='bridge-33')response={...response,person:{...response.person,label:'插花女郎 · 拾枝理花'},text:'花枝都在这里，进来慢慢挑。'};stop();sound.play(response);$('#personName').textContent=response.person.label.split(' · ')[0];$('#personWords').textContent=response.text;$('#interactionStatus').textContent=response.person.label+'。'+response.text;bubbleUntil=performance.now()+4200;invalidate();}
 function greetNearby(){if(!state.people||state.overview)return;respond(residents.nearby(state.left,state.left+state.width/state.scale,motionTime));}
 function worldPoint(e){const r=stage.getBoundingClientRect();return {x:state.left+(e.clientX-r.left)/state.scale,y:(e.clientY-r.top-state.top)/state.scale};}
 function setMotion(on){state.motion=on;$('#motion').setAttribute('aria-pressed',String(on));$('#motion .label').textContent=on?'暂停人物':'开启动画';last=performance.now();invalidate();}
@@ -207,7 +208,7 @@ function cancelProp(){cancelFlight();if(propGesture?.kind==='rope')workshopState
 function toggleCurtain(){stop();workshopState.toggleInn();sound.play({sound:330,kind:'cloth'});invalidate();}
 function updateWorkshopUI(){
  const phase=workshopState.warehouse.phase,inn=activeScene==='inn';
- const messages={idle:'下拉画中的吊绳，拉到底后松手。',pulling:'继续向下拉，再松手让搬夫接货。',returning:'这一把没拉满，吊绳正在回位。',hoisting:'粮包升起了，搬夫正在照看。',lowering:'慢慢落绳，把粮包递到搬夫手边。',receiving:'搬夫伸手接稳了。',placing:'俯身放好这一包粮。',complete:'一包粮已入仓。可以再吊一包。'};
+ const messages={idle:'下拉画中的吊绳，拉到底后松手。',pulling:'继续向下拉，再松手让搬夫接货。',returning:'这一把没拉满，吊绳正在回位。',hoisting:'伙计倒手拽绳，粮包升起来了。',lowering:'伙计一把把松绳，把粮包落到搬夫肩上。',receiving:'搬夫伸手接稳了。',carrying:'搬夫扛起粮包，去木垛边码放。',placing:'俯身放好这一包粮。',homing:'搬夫空手回到钩下，等下一包。',complete:'一包粮已入仓。可以再吊一包。'};
  const message=inn?(workshopState.inn.target?'花肆开门了，进店挑花，也可带回家插瓶。':'掀开花帘，看看女郎新理好的花枝。'):messages[phase];
  if($('#workshopStatus').textContent!==message)$('#workshopStatus').textContent=message;
  $('#visitWarehouse').setAttribute('aria-pressed',String(!inn));$('#visitInn').setAttribute('aria-pressed',String(inn));
@@ -269,7 +270,7 @@ stage.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End',
 function mapFocus(e){const r=map.getBoundingClientRect();focus(MIN+clamp((e.clientX-r.left)/r.width,0,1)*SPAN);}
 map.addEventListener('pointerdown',e=>{map.setPointerCapture(e.pointerId);mapFocus(e);});map.addEventListener('pointermove',e=>{if(map.hasPointerCapture(e.pointerId))mapFocus(e);});
 async function load(p,i){
-  const image=new Image();image.decoding='async';image.src=p.src;await image.decode();p.image=image;
+  const image=new Image();image.decoding='async';image.src=p.src;await decoded(image);p.image=image;
   const tile=document.createElement('canvas');tile.width=p.w;tile.height=H;const t=tile.getContext('2d');
   if(p.clip){const r=p.clip;t.beginPath();t.rect(r.x,r.y,r.w,r.h);t.clip();}
   t.drawImage(image,0,0,p.w,p.displayHeight||H);

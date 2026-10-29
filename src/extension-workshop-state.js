@@ -6,6 +6,23 @@ export const CARGO={w:28,h:18,restY:394,raisedY:310,sling:27};
 // The porter waits under the hook, shoulders the sack and stacks it beside the log pile.
 export const PORTER={x:4460,y:482,w:31,h:59,standX:4436};
 export const PILE={x:4414,groundY:478,rise:12.5,max:5};
+// The labourer beside the crane (mill-16) hauls the fall hand over hand once his
+// drawn key poses are installed: 0 = both fists high, 1 = at the chest, 2 = at
+// the waist. `rope` ([x,y], the top of the line in his fists) and `soles` are
+// marked per cell in generated-sheet pixels after reading the sheet.
+export const HAULER={id:'mill-16',file:'mill-16-rope',y:482,h:57,hauls:2,
+ // Read off the repacked mill-16-rope-v1.png (459 px cells): the top of the line
+ // in his fists, and the midpoint of both shoes on the sole line.
+ rope:[[45,21],[85,170],[109,308]],soles:[[275,812],[239,812],[237,812]],label:'拽绳伙计 · 拉绳吊货'};
+// Which drawn pose shows a given rope position. The same mapping runs forwards
+// while hauling and backwards while paying out, so the rope slides through his hands.
+export function haulFrame(progress){
+ const t=clamp(progress)*HAULER.hauls;if(t>=HAULER.hauls)return 2;
+ const f=t%1;return f<1/3?0:f<2/3?1:2;
+}
+export function haulerActivity(phase){
+ return['pulling','hoisting'].includes(phase)?'倒手拽绳':phase==='lowering'?'一把把松绳':phase==='returning'?'没拽满，绳往回滑':'握绳候着';
+}
 export const INN={x:6614,y:360,w:74,h:91,guestX:6651,guestY:449};
 export function flowerDoorOpening(progress){
  const w=INN.w*.82*ease(progress);return{x:INN.x+(INN.w-w)/2,y:INN.y,w,h:INN.h};
@@ -62,6 +79,8 @@ export function createWorkshopState(){
    const u=warehouse.elapsed/duration;
    if(warehouse.phase==='hoisting')warehouse.progress=ease(u);
    if(warehouse.phase==='returning')warehouse.progress=warehouse.returnFrom*(1-ease(u));
+   // Paying out: the hauled rope runs back up as the sack comes down.
+   if(warehouse.phase==='lowering')warehouse.progress=1-ease(u);
    if(warehouse.elapsed>=duration){
     if(warehouse.phase==='placing')warehouse.runs++;
     if(warehouse.phase==='lowering'||warehouse.phase==='homing')warehouse.progress=0;

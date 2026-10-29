@@ -2,11 +2,6 @@
 /* The decorative atlas heading ignores pointers; its action must opt back in. */
 #crossingEntry{pointer-events:auto}
 #crossingEntry:disabled{pointer-events:none}
-#crossingEntry{display:inline-flex;align-items:center;gap:12px;width:auto;height:auto;min-height:40px;margin:15px 0 0;padding:7px 17px;border:1px solid #98473880;border-radius:2px;background:#984738;color:#f4e5c8;box-shadow:inset 0 0 0 3px #e2d4b622;font:18px 'Kaiti SC','STKaiti','KaiTi',serif;letter-spacing:.2em;cursor:pointer;transition:background .25s,transform .25s}
-#crossingEntry i{font:15px serif;letter-spacing:0;font-style:normal}
-#crossingEntry:hover{background:#803b30;transform:translateY(-2px)}
-#crossingEntry:focus-visible{outline:2px solid #984738;outline-offset:5px}
-#crossingEntry:disabled{opacity:.55;cursor:wait}
 #crossingDialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow:hidden;background:#e2d4b6;color:#504d3d;opacity:1;transition:opacity .7s ease;overscroll-behavior:none}
 #crossingDialog::backdrop{background:transparent}
 #crossingDialog.crossing-leaving{opacity:0;pointer-events:none}
@@ -20,8 +15,8 @@
 #crossingDialog button:focus-visible{outline:2px solid #984738;outline-offset:3px}
 #crossingDialog button:disabled{opacity:.5;cursor:wait}
 #crossingProgress{position:absolute;bottom:0;left:0;height:2px;width:100%;background:#984738;transform:scaleX(0);transform-origin:left;opacity:.45}
-@media(max-width:600px){#crossingEntry{margin-top:12px;min-height:36px;padding:5px 13px;font-size:16px}.crossing-caption{top:17%}.crossing-caption h2{font-size:32px}#crossingStatus{font-size:11px;letter-spacing:.08em}}
-@media(prefers-reduced-motion:reduce){#crossingEntry,#crossingDialog{transition:none}#crossingEntry:hover{transform:none}}
+@media(max-width:600px){.crossing-caption{top:17%}.crossing-caption h2{font-size:32px}#crossingStatus{font-size:11px;letter-spacing:.08em}}
+@media(prefers-reduced-motion:reduce){#crossingDialog{transition:none}}
 
 /* Three-dimensional timber bridge: the controls stay outside the hero silhouette. */
 #crossingDialog{background:#e2d4b6;touch-action:none;--crossing-mist:0}

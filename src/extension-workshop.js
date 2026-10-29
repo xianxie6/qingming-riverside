@@ -1,6 +1,7 @@
-import {CRANE,INN,CARGO,PORTER,PILE,pileSlot,ease,warehouseActorPose,floristWaveFrame,flowerDoorOpening,clipBehindFlowerCurtain} from './extension-workshop-state.js?v=calm-1';
+import {CRANE,INN,CARGO,PORTER,PILE,HAULER,pileSlot,ease,haulFrame,haulerActivity,warehouseActorPose,floristWaveFrame,flowerDoorOpening,clipBehindFlowerCurtain} from './extension-workshop-state.js?v=haul-2';
+import {LIMITED_DIR,LIMITED_SCALE,measureSheet,alignCells,decoded} from './extension-limited-animation.js?v=limited-16';
 import {flowerCustomerPose,flowerFloristPose} from './extension-flower-customers.js?v=customers-3';
-import {flowerStreetPose,createFlowerStreetArt} from './extension-flower-street.js?v=street-3';
+import {flowerStreetPose,createFlowerStreetArt} from './extension-flower-street.js?v=street-4';
 
 // Horizontal wall sections, with the gate and foreground tree left clear.
 const WALL_ROSES=[
@@ -17,7 +18,7 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
  Object.assign(assets,{men:'assets/extension-preview/workshop/street-men-v1.webp',women:'assets/extension-preview/workshop/street-women-v1.webp',conversation:'assets/extension-preview/workshop/street-conversation-v1.webp',roses:'assets/extension-preview/workshop/wall-roses-v2.webp'});
  // Props wait for `after` (the scroll panels) so they do not compete for bandwidth.
  const ready=after.then(()=>Promise.all(Object.entries(assets).map(async([key,src])=>{
-  const image=new Image();image.decoding='async';image.src=src;await image.decode();
+  const image=new Image();image.decoding='async';image.src=src;await decoded(image);
   // Transparent sprites are automatically trimmed to their actual painted bounds.
   if(['curtain','cargo','florist','peony','plum','orchid'].includes(key)){
    const c=document.createElement('canvas');c.width=image.width;c.height=image.height;
@@ -36,6 +37,50 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
    }
   }else images[key]=image;
  }))).then(()=>{prepareCustomerFrames();streetArt=createFlowerStreetArt(images);prepareWallRoses();});
+ // The rope hauler's key poses are optional: without them the crane keeps its pull ring.
+ let hauler=null;
+ after.then(async()=>{
+  // Requested only once installed, like the other key-pose sheets: no failed download.
+  const manifest=await fetch(`${LIMITED_DIR}/manifest.json`,{cache:'no-cache'}).then(r=>r.ok?r.json():{}).catch(()=>({}));
+  if(!manifest.installed?.includes(HAULER.file))return;
+  const image=new Image();image.decoding='async';image.src=`${LIMITED_DIR}/${HAULER.file}.webp`;
+  try{await decoded(image);}catch{return;}
+  hauler=prepareHauler(image);invalidate();
+ });
+ function prepareHauler(image){
+  const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+  const t=canvas.getContext('2d',{willReadFrequently:true});t.drawImage(image,0,0);
+  const data=t.getImageData(0,0,canvas.width,canvas.height).data,cellWidth=Math.floor(image.width/3),alpha=(x,y)=>data[(y*canvas.width+x)*4+3];
+  const marked=pairs=>pairs?.map(([x,y])=>[x*LIMITED_SCALE,y*LIMITED_SCALE]);
+  const cells=measureSheet(alpha,canvas.width,canvas.height,{cols:3,soles:marked(HAULER.soles)});
+  if(cells.some(c=>!c))return null;
+  // Each cell holds a short piece of line in the fists; its marked top [x,y]
+  // is where the crane's fall joins it. Unmarked sheets join at the head.
+  const grip=cells.map((c,i)=>{
+   const m=HAULER.rope?.[i];if(m)return{x:m[0]*LIMITED_SCALE,y:m[1]*LIMITED_SCALE};
+   let sum=0,weight=0;for(let y=c.top;y<=c.top+Math.ceil((c.bottom-c.top)*.03);y++)for(let x=0;x<cellWidth;x++){const a=alpha(i*cellWidth+x,y);if(a>60){sum+=x*a;weight+=a;}}
+   return{x:weight?sum/weight:c.feet,y:c.top};
+  });
+  const shifts=alignCells(cells,'feet');
+  const left=Math.min(...cells.map((c,i)=>c.left+shifts[i].x)),right=Math.max(...cells.map((c,i)=>c.right+shifts[i].x));
+  const top=Math.min(...cells.map((c,i)=>c.top+shifts[i].y)),bottom=Math.max(...cells.map((c,i)=>c.bottom+shifts[i].y));
+  const frames=cells.map((c,i)=>{
+   const f=document.createElement('canvas');f.width=right-left+1;f.height=bottom-top+1;
+   const g=f.getContext('2d');g.filter='saturate(.78)';
+   g.drawImage(canvas,i*cellWidth,0,cellWidth,canvas.height,shifts[i].x-left,shifts[i].y-top,cellWidth,canvas.height);
+   return{canvas:f,rope:grip[i].x+shifts[i].x-left,top:grip[i].y+shifts[i].y-top};
+  });
+  const rest=cells[0],sole=(rest.sole??rest.bottom)-top;
+  return{frames,feet:rest.feet-left,sole,k:HAULER.h/(rest.bottom-rest.top+1)};
+ }
+ // World placement: his feet stand where his rest-pose rope meets the crane's fall.
+ function haulerAt(frame=0){
+  const h=hauler,f=h.frames[frame],x=CRANE.handleX-(h.frames[0].rope-h.feet)*h.k;
+  return{x,ropeX:x+(f.rope-h.feet)*h.k,ropeTop:HAULER.y+(f.top-h.sole)*h.k};
+ }
+ // People can be hidden; the rope then goes back to its pull ring.
+ let peopleShown=true;
+ const hauling=people=>!!hauler&&people;
  function prepareWallRoses(){
   const img=images.roses,sx=img.width/1536,sy=img.height/1024;
   roseFrames=WALL_ROSES.map(p=>{
@@ -92,8 +137,10 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
   }
  }
  function line(ctx,points,color='#62543b',width=1.2){ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
- function label(ctx,x,y,text){
+ // `bounds` keeps a hint inside the visible stretch on narrow screens.
+ function label(ctx,x,y,text,bounds){
   ctx.font='11px "Songti SC",serif';const w=ctx.measureText(text).width+16;
+  if(bounds)x=Math.max(bounds[0]+w/2+4,Math.min(bounds[1]-w/2-4,x));
   ctx.fillStyle='#f0e5cfed';ctx.fillRect(x-w/2,y-13,w,22);ctx.strokeStyle='#9a765b80';ctx.lineWidth=.6;ctx.strokeRect(x-w/2,y-13,w,22);ctx.fillStyle='#82543c';ctx.textAlign='center';ctx.fillText(text,x,y+2);
  }
  function sack(ctx,x,y){ctx.drawImage(images.cargo,x-CARGO.w/2,y-CARGO.h/2,CARGO.w,CARGO.h);}
@@ -117,10 +164,13 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
  }
  function draw(ctx,left,right,{overview=false,people=true}={}){
   if(images.cargo&&right>4410&&left<4540){
+   if(!overview)peopleShown=people;
    const p=model.warehouse,cargo=model.cargo(),hook=model.hook(),handleY=CRANE.handleY+CRANE.pullDistance*p.progress;
    ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
-   line(ctx,[[CRANE.x,CRANE.y],[CRANE.handleX,CRANE.y+14],[CRANE.handleX,handleY]],'#66563e',1.7);
-   line(ctx,[[CRANE.x+1.7,CRANE.y],[CRANE.handleX+1.7,CRANE.y+14],[CRANE.handleX+1.7,handleY]],'#b09a6e',.65);
+   // With the hauler drawn, the fall ends in his fists instead of a pull ring.
+   const haul=hauling(people)&&haulerAt(haulFrame(p.progress)),endX=haul?haul.ropeX:CRANE.handleX,endY=haul?haul.ropeTop+1:handleY;
+   line(ctx,[[CRANE.x,CRANE.y],[CRANE.handleX,CRANE.y+14],[endX,endY]],'#66563e',1.7);
+   line(ctx,[[CRANE.x+1.7,CRANE.y],[CRANE.handleX+1.7,CRANE.y+14],[endX+1.7,endY]],'#b09a6e',.65);
    // The load line follows the swinging hook rather than hanging plumb.
    line(ctx,[[CRANE.x,CRANE.y+7],[hook.x,hook.y-3]],'#66563e',1.2);
    if(cargo.tied){
@@ -128,9 +178,11 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
     line(ctx,[[cargo.x-9,top],[hook.x,hook.y+2],[cargo.x+9,top]],'#66563e',1);
    }
    drawHook(ctx,hook.x,hook.y);
-   ctx.strokeStyle='#655039';ctx.lineWidth=2.5;ctx.beginPath();ctx.ellipse(CRANE.handleX,handleY+6,5,8,0,0,Math.PI*2);ctx.stroke();
-   if(!overview&&['idle','pulling','returning'].includes(p.phase))label(ctx,CRANE.handleX+47,handleY+6,p.phase==='pulling'?'拉到底，再松手':'下拉吊绳 ↓');
-   if(!overview&&p.phase==='complete')label(ctx,CRANE.handleX+47,handleY+6,'码好了 · 再吊一包 ↓');
+   // Above his raised fists, so the hint never covers the hauler himself.
+   const tagY=haul?HAULER.y-HAULER.h-18:handleY+6;
+   if(!haul){ctx.strokeStyle='#655039';ctx.lineWidth=2.5;ctx.beginPath();ctx.ellipse(CRANE.handleX,handleY+6,5,8,0,0,Math.PI*2);ctx.stroke();}
+   if(!overview&&['idle','pulling','returning'].includes(p.phase))label(ctx,CRANE.handleX+47,tagY,p.phase==='pulling'?(haul?'帮他拽到底，再松手':'拉到底，再松手'):'下拉吊绳 ↓',[left,right]);
+   if(!overview&&p.phase==='complete')label(ctx,CRANE.handleX+47,tagY,'码好了 · 再吊一包 ↓',[left,right]);
    ctx.restore();
   }
  }
@@ -154,13 +206,19 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
    // Gather each cloth leaf towards its own jamb; the centre becomes a real gap.
    ctx.drawImage(image,0,0,half,image.height,INN.x,INN.y,leaf,INN.h);
    ctx.drawImage(image,half,0,half,image.height,INN.x+INN.w-leaf,INN.y,leaf,INN.h);
-   if(!overview)label(ctx,INN.x+INN.w/2,INN.y-12,open>.8?'进店赏花 · 点帘边合上':'轻点开花帘');
+   if(!overview)label(ctx,INN.x+INN.w/2,INN.y-12,open>.8?'进店赏花 · 点帘边合上':'轻点开花帘',[left,right]);
    ctx.restore();
   }
  }
  function hit(x,y,padding=0){
-  const handleY=CRANE.handleY+CRANE.pullDistance*model.warehouse.progress;
-  if(Math.abs(x-CRANE.handleX)<10+padding&&y>handleY-18-padding&&y<handleY+20+padding)return'rope';
+  if(hauler&&peopleShown){
+   // Grab the fall anywhere from above his fists down to his waist.
+   const haul=haulerAt(haulFrame(model.warehouse.progress));
+   if(Math.abs(x-haul.ropeX)<9+padding&&y>haul.ropeTop-30-padding&&y<HAULER.y-HAULER.h*.4+padding)return'rope';
+  }else{
+   const handleY=CRANE.handleY+CRANE.pullDistance*model.warehouse.progress;
+   if(Math.abs(x-CRANE.handleX)<10+padding&&y>handleY-18-padding&&y<handleY+20+padding)return'rope';
+  }
   if(x>=INN.x-padding&&x<=INN.x+INN.w+padding&&y>=INN.y-25-padding&&y<=INN.y+INN.h+padding){
    const leaf=INN.w/2*(1-ease(model.inn.progress)*.82);
    if(model.inn.progress<.7||x<INN.x+leaf+padding||x>INN.x+INN.w-leaf-padding)return'curtain';
@@ -170,6 +228,10 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
  }
  function occludes(p){return p.hidden||((p.id==='bridge-33'||p.customer!==undefined)&&p.y<INN.y+INN.h&&model.inn.progress<.68);}
  function poseFor(p,idle,context={}){
+  if(p.id===HAULER.id&&hauler){
+   const frame=haulFrame(model.warehouse.progress);
+   return{...idle,x:haulerAt(frame).x,y:HAULER.y,flip:false,scripted:true,haulFrame:frame,activity:haulerActivity(model.warehouse.phase),stride:0,bend:0,reach:0,lift:0,nod:0};
+  }
   if(p.porter){
    const pose=model.porter();
    return{...idle,...pose,kind:pose.frame?'walk':'chat',scripted:true,hidden:!streetArt,stride:0,bend:0,reach:0,lift:0,nod:0};
@@ -182,6 +244,10 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
  ready.then(invalidate,()=>{});
  function artFor(p){if(p.porter)return streetArt?.frames('men-2')?.[model.porter().frame];if(p.flowerStreet)return streetArt?.frame(p);if(p.customer!==undefined)return customerFrames[p.customer]?.[p.walkFrame||0];return p.id==='bridge-33'?(floristFrames[lastFloristFrame]||images.florist):null;}
  function drawPerson(ctx,p,elapsed,pose={}){
+  if(p.id===HAULER.id&&hauler){
+   const h=hauler,f=h.frames[pose.haulFrame||0].canvas;
+   ctx.drawImage(f,-h.feet*h.k,-h.sole*h.k,f.width*h.k,f.height*h.k);return true;
+  }
   if(p.porter){
    const img=streetArt?.frames('men-2')?.[pose.frame||0];if(!img)return false;
    if(['receiving','carrying'].includes(model.warehouse.phase)){
@@ -234,5 +300,6 @@ export function createStreetWorkshop(model,invalidate,{after=Promise.resolve()}=
   ctx.drawImage(floristFrames[lastFloristFrame],-p.w/2,-p.h,p.w,p.h);return true;
  }
  function artURL(id){const image=images[id];if(!image)return assets[id];return artURLs[id]||=(image.toDataURL?image.toDataURL('image/webp',.94):assets[id]);}
- return{ready,backdrop,draw,layers,drawDoorway,hit,occludes,poseFor,artFor,artURL,artMetrics:id=>artMetrics[id]||{stemX:.5},drawPerson,get floristFrame(){return lastFloristFrame;}};
+ function personLabel(p){return p.id===HAULER.id&&hauler?HAULER.label:null;}
+ return{ready,backdrop,draw,layers,drawDoorway,hit,occludes,poseFor,artFor,artURL,artMetrics:id=>artMetrics[id]||{stemX:.5},drawPerson,personLabel,get floristFrame(){return lastFloristFrame;}};
 }

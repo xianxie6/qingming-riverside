@@ -1,6 +1,25 @@
-// Release only the crossing journey and the playable street it enters.
-// The repository entry remains a full local playground.
-export const crossingFiles=[
+import {readFileSync} from 'node:fs';
+
+// The spring scroll (extension-preview.html), entered from the homepage card.
+// Its painted panels, figure atlases and installed key poses are public assets.
+const publicAssets=JSON.parse(readFileSync(new URL('./public-assets.json',import.meta.url),'utf8')).files;
+const springAssets=[
+  ...publicAssets.filter(file=>file.startsWith('assets/extension-preview/')),
+  ...publicAssets.filter(file=>/^assets\/explore\/(?:people-v2\/(?:bridge|fields|gate|mill|quay|tea|temple)|people-v3\/sprites-\d+|visitors\/duos)\.webp$/.test(file)),
+  'assets/boat-singer-v1.webp','assets/fonts/sunyang-brush.woff2'
+];
+const springFiles=[
+  'extension-preview.html','styles/extension-preview.css','styles/extension-flower-shop.css',
+  ...['extension-preview','extension-people','extension-people-data','extension-people-layout','extension-puppet',
+    'extension-motion','extension-walkers','extension-limited-animation','extension-workshop','extension-workshop-state',
+    'extension-flower-shop','extension-flower-state','extension-flower-street','extension-flower-customers',
+    'river-boats','boat-song'].map(name=>`src/${name}.js`),
+  ...springAssets
+];
+
+// Release the crossing journey, the playable street it enters and the spring
+// scroll. The repository entry remains a full local playground.
+export const crossingFiles=[...new Set([
   'index.html','.nojekyll',
   ...['style','buttons','atlas-layout','crossing','seasons'].map(name=>`styles/${name}.css`),
   ...['atlas','visits','dynamic-loader','crossing','crossing-audio','crossing-three',
@@ -22,8 +41,10 @@ export const crossingFiles=[
   'assets/seasons/featured-winter.png','assets/seasons/workshop-actors-v1.png','assets/seasons/people-autumn-v1.png','assets/seasons/people-winter-v1.png',
   'assets/seasons/featured-summer.webp','assets/seasons/featured-autumn-v2.webp',
   'assets/seasons/featured-winter.webp','assets/seasons/people-autumn-v1.webp','assets/seasons/people-winter-v1.webp',
-  'vendor/three.module.js','vendor/three.core.js','vendor/THREE-LICENSE.txt'
-];
+  'vendor/three.module.js','vendor/three.core.js','vendor/THREE-LICENSE.txt',
+  'styles/entries.css','assets/entries/crossing-thumb.webp','assets/entries/spring-thumb.webp',
+  ...springFiles
+])];
 
 function replaceRequired(source,pattern,replacement,label){
   if(!pattern.test(source))throw new Error(`Crossing release cannot locate ${label}`);
@@ -44,6 +65,7 @@ export function crossingSource(file,source){
     source=source.replace(/<!-- 中秋赏灯街道[\s\S]*?-->/,'');
     source=source.replace(/<!-- 国庆烟花表演[\s\S]*?-->/,'');
     if(/古城烟火|sunyang\.html|assets\/midautumn\//.test(source))throw new Error('Excluded module survived crossing release entry');
+    if(!/href="extension-preview\.html"/.test(source))throw new Error('Crossing release lost the spring scroll entry');
   }
   if(file==='src/scene.js'){
     // Compile out optional festival artwork; the street's hooks stay inert.

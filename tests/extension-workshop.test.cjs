@@ -99,3 +99,14 @@ test('a deliberate response stays at the actor and returns exactly to the ambien
  assert.deepEqual(reactionPose({},base,idle,2.35),idle);
  for(let t=0;t<3;t+=.02){const pose=reactionPose({},base,idle,t);assert(pose.x>=10&&pose.x<=15);for(const k of ['x','y','stride','bend','nod','lift','reach'])assert(Number.isFinite(pose[k]));}
 });
+test('the hauled rope pays back out while the sack is lowered, hand over hand',async()=>{
+ const {createWorkshopState,haulFrame}=await model,s=createWorkshopState();
+ assert.equal(haulFrame(0),0);assert.equal(haulFrame(1),2);
+ // Hauling cycles reach, chest, waist, then regrip high: never skipping a pose.
+ const seen=[];for(let p=0;p<=1.0001;p+=.01){const f=haulFrame(p);if(seen.at(-1)!==f)seen.push(f);}
+ assert.deepEqual(seen,[0,1,2,0,1,2]);
+ s.beginPull();s.pull(1);s.release();assert.equal(s.warehouse.progress,1);
+ let previous=1;
+ while(s.warehouse.phase==='lowering'){s.step(.02);assert(s.warehouse.progress<=previous);assert(previous-s.warehouse.progress<.05,'rope never snaps back');previous=s.warehouse.progress;}
+ assert.equal(s.warehouse.phase,'receiving');assert.equal(s.warehouse.progress,0);
+});

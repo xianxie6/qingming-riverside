@@ -1,4 +1,4 @@
-import {jointOffset} from './extension-motion.js?v=limited-13';
+import {jointOffset} from './extension-motion.js?v=limited-16';
 
 // Reuse small painted mesh frames; only visible actors ask for a frame.
 // This avoids deforming hundreds of full-resolution atlases on every redraw.

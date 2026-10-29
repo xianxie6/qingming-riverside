@@ -68,6 +68,9 @@ test('crossing release includes the complete journey and street but omits indepe
     await assert.rejects(fs.access(path.join(root,'dist',file)),{code:'ENOENT'});
   }
   for(const file of ['src/crossing-three.js','src/crossing-courtyard.js','assets/crossing-painter-v2.webp','assets/audio/crossing-background.mp3','assets/seasons/people-autumn-v1.webp'])assert.ok(files.includes(file));
+  // The spring scroll is entered from its homepage card and ships with its key poses.
+  assert.match(html,/id="springEntry"[^>]*href="extension-preview\.html"/);
+  for(const file of ['extension-preview.html','src/extension-preview.js','styles/entries.css','assets/entries/spring-thumb.webp','assets/extension-preview/east-far.webp','assets/extension-preview/limited/manifest.json','assets/extension-preview/limited/mill-16-rope.webp'])assert.ok(files.includes(file),file);
   const local=await fs.readFile(path.join(root,'index.html'),'utf8');
   assert.match(local,/id="midautumnEntry"/,'the local playground retains the unpublished feature');
   const scene=await fs.readFile(path.join(root,'dist/src/scene.js'),'utf8');

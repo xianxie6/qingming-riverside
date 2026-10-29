@@ -1,9 +1,9 @@
 import {population as sourcePopulation} from './extension-people-data.js?v=people-4';
-import {createDisplayPopulation} from './extension-people-layout.js?v=calm-2';
-import {actionAt,createActionPlans,motionProfile} from './extension-motion.js?v=limited-13';
-import {createPuppetFrames} from './extension-puppet.js?v=limited-5';
-import {reactionPose} from './extension-workshop-state.js?v=calm-1';
-import {createLimitedAnimation,LIMITED} from './extension-limited-animation.js?v=limited-12';
+import {createDisplayPopulation} from './extension-people-layout.js?v=haul-3';
+import {actionAt,createActionPlans,motionProfile} from './extension-motion.js?v=limited-16';
+import {createPuppetFrames} from './extension-puppet.js?v=limited-8';
+import {reactionPose} from './extension-workshop-state.js?v=haul-2';
+import {createLimitedAnimation,LIMITED,decoded} from './extension-limited-animation.js?v=limited-16';
 export const population=createDisplayPopulation(sourcePopulation);
 
 // The lowest painted pixels on each side of every figure are its two soles.
@@ -24,7 +24,7 @@ export function createStreetPeople(invalidate,{poseFor=(_,pose)=>pose,occludes=(
  const sprites=new Map(),masks=new Map(),customMasks=new WeakMap(),poses=new Map(),plans=createActionPlans(population),puppets=createPuppetFrames(),reactions=new Map(),holds=new Map();let selected=null,started=-1;
  async function load(src){
   const image=new Image();image.decoding='async';
-  for(let attempt=0;;attempt++){try{image.src=src;await image.decode();break;}catch(error){if(attempt===2)throw error;image.removeAttribute('src');await new Promise(resolve=>setTimeout(resolve,250*(attempt+1)));}}
+  for(let attempt=0;;attempt++){try{image.src=src;await decoded(image);break;}catch(error){if(attempt===2)throw error;image.removeAttribute('src');await new Promise(resolve=>setTimeout(resolve,250*(attempt+1)));}}
   // Bake each alpha-cropped figure once. Drawing the street never reloads images.
   for(const p of population.people.filter(p=>p.src===src)){
    const cw=image.width/p.cols,ch=image.height/p.rows,b=p.bounds;

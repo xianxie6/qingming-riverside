@@ -28,10 +28,13 @@ function references(source,file){
       if(fileExtension.test(match[1])&&!/\s/.test(match[1]))refs.push(match[1]);
     }
   }
-  return refs.filter(ref=>!external.test(ref));
+  // A bare extension ('.webp') is a suffix joined onto a computed path, not a URL.
+  return refs.filter(ref=>!external.test(ref)&&!/^\.[a-z0-9]+$/i.test(ref));
 }
 function templatePattern(path){
-  return new RegExp('^'+path.split(/\$\{[^}]+\}/).map(part=>part.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('[^/]+')+'$');
+  // A leading placeholder may be a folder constant such as LIMITED_DIR, so it spans folders.
+  const parts=path.split(/\$\{[^}]+\}/).map(part=>part.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+  return new RegExp('^'+parts.map((part,i)=>i===1&&parts[0]===''?'.+'+part:(i?'[^/]+'+part:part)).join('')+'$');
 }
 export async function validatePublicDirectory(directory){
   const files=await listFiles(directory),available=new Set(files),errors=[];

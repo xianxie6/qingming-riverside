@@ -1,8 +1,9 @@
 // Refined actors only around the flower shop; all other districts retain their art.
 const cast={
  'tea-15':{art:'women-2',role:'walk',w:34,h:63,y:485,route:[6185,6300],speed:17,label:'提篮女客 · 沿街慢行'},
- 'tea-16':{art:'conversation-solo',role:'chat',w:27,h:45,label:'老茶客 · 捧盏歇脚'},
- 'tea-17':{art:'conversation-2',role:'chat',x:6430,w:66,h:47,members:2,label:'茶客 · 坐饮闲谈'},
+ // Seated rows keep their drawn proportions (pair 0.96, one sitter 0.47 wide per height).
+ 'tea-16':{art:'conversation-solo',role:'chat',w:22,h:47,label:'老茶客 · 捧盏歇脚'},
+ 'tea-17':{art:'conversation-2',role:'chat',x:6430,w:45,h:47,members:2,label:'茶客 · 坐饮闲谈'},
  'tea-19':{art:'men-2',role:'walk',w:33,h:63,y:485,route:[6480,6595],speed:16,label:'年轻街坊 · 看花慢行'},
  'bridge-34':{art:'men-1',role:'walk',w:33,h:65,y:471,route:[6850,7020],speed:15,label:'长者 · 沿街缓行'},
  'bridge-35':{art:'men-2',role:'walk',w:33,h:63,y:487,route:[6995,7160],speed:19,label:'商贩 · 沿河闲逛'},
