@@ -37,7 +37,7 @@ function events(phrase){
 }
 
 export function createBoatSong(){
-  let context=null,enabled=false,master,bus,pan,reverb,cursor=null,strings=new Map();
+  let context=null,enabled=false,master,bus,pan,reverb,cursor=null,strings=new Map(),heard=0;
   function prepare(){
     if(context)return true;
     try{context=new (globalThis.AudioContext||globalThis.webkitAudioContext)();}catch{return false;}
@@ -102,6 +102,8 @@ export function createBoatSong(){
     a.onended=()=>{for(const node of [a,b,vibrato,depth,source,voice,soft,...formants.flat()])node.disconnect();};
   }
   return {
+    // How clearly the pipa is heard now, 0-1, for ducking other music.
+    get level(){return heard;},
     set(on){
       enabled=Boolean(on)&&prepare();
       if(enabled)context.resume().catch(()=>{});
@@ -110,16 +112,16 @@ export function createBoatSong(){
     },
     // Called each painted frame with the boat's own clock and the view.
     update({boat,left,right,playing}){
-      if(!enabled||!context)return;
+      if(!enabled||!context){heard=0;return;}
       const now=context.currentTime;
-      if(!boat||!playing){master.gain.setTargetAtTime(0,now,.25);cursor=null;return;}
+      if(!boat||!playing){master.gain.setTargetAtTime(0,now,.25);cursor=null;heard=0;return;}
       if(context.state==='suspended')context.resume().catch(()=>{});
       const half=(right-left)/2,center=left+half,offset=(boat.x-center)/half;
       // Full inside the middle of the view, fading past its edges; still
       // faintly heard about two view-widths away, as across water.
       const distance=Math.abs(offset),near=Math.pow(1-Math.min(1,Math.max(0,(distance-.6)/4.4)),2.2);
       const zoom=Math.min(1.25,Math.max(.75,1100/(right-left)));
-      master.gain.setTargetAtTime(near*zoom,now,.35);
+      master.gain.setTargetAtTime(near*zoom,now,.35);heard=near;
       if(pan.pan)pan.pan.setTargetAtTime(Math.max(-.85,Math.min(.85,offset*.75)),now,.3);
       if(near<=.001){cursor=null;return;}
       // Schedule everything in the next look-ahead window, on the boat's clock.

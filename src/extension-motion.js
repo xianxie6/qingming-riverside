@@ -154,11 +154,44 @@ export function jointOffset(p,pose,u,v){
  return {x,y};
 }
 
+// The street scene's daytime background music, shared by the spring scroll.
+// Night music joins once the scroll has an evening.
+export const DAY_MUSIC='assets/audio/day-ambience.mp3';
+const MUSIC_LEVEL=.22,MUSIC_DUCK=.65;
+
 export function createStreetSound(){
- let context,enabled=false;
+ let context,enabled=false,music=null,volume=0,target=0,duck=0,fading=0;
  function prepare(){try{context ||= new (globalThis.AudioContext||globalThis.webkitAudioContext)();context.resume().catch(()=>{});}catch{return false;}return true;}
+ // A plain looping element, faded by small volume steps; play() must start in
+ // the button's own gesture for mobile browsers to allow it.
+ function track(){
+  if(!music){music=new Audio(DAY_MUSIC);music.loop=true;music.preload='auto';music.playsInline=true;music.volume=0;}
+  return music;
+ }
+ function fade(){
+  clearInterval(fading);let before=performance.now();
+  // Steps by elapsed time, so throttled background timers still land on time.
+  fading=setInterval(()=>{
+   const now=performance.now(),step=(now-before)/1000*.4;before=now;
+   const goal=target*(1-MUSIC_DUCK*duck);volume+=Math.sign(goal-volume)*Math.min(Math.abs(goal-volume),step);
+   music.volume=Math.max(0,Math.min(1,volume));
+   if(volume===goal){if(!target)music.pause();clearInterval(fading);}
+  },50);
+ }
+ function playMusic(on){
+  if(!on&&!music)return;
+  const m=track();target=on?MUSIC_LEVEL:0;
+  if(on)m.play().catch(()=>{});
+  fade();
+ }
  return {
-  set(value){enabled=value&&prepare();return enabled;},
+  set(value){enabled=value&&prepare();playMusic(enabled);return enabled;},
+  // Lower the music while the pipa boat is near enough to be heard (0-1).
+  duck(level){
+   const next=Math.round(Math.max(0,Math.min(1,level||0))*20)/20;
+   if(next===duck)return;duck=next;if(music&&target)fade();
+  },
+  resume(){if(enabled)playMusic(true);},
   play(profile){
    if(!enabled||!prepare())return;
    const now=context.currentTime;
@@ -173,6 +206,6 @@ export function createStreetSound(){
     source.connect(filter).connect(gain).connect(context.destination);source.start(start);source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect();};
    }
   },
-  suspend(){context?.suspend().catch(()=>{});}
+  suspend(){context?.suspend().catch(()=>{});clearInterval(fading);if(music){music.pause();volume=0;music.volume=0;}}
  };
 }

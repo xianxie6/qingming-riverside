@@ -1,7 +1,7 @@
 import {population as sourcePopulation} from './extension-people-data.js?v=people-4';
 import {createDisplayPopulation} from './extension-people-layout.js?v=haul-3';
-import {actionAt,createActionPlans,motionProfile} from './extension-motion.js?v=limited-16';
-import {createPuppetFrames} from './extension-puppet.js?v=limited-8';
+import {actionAt,createActionPlans,motionProfile} from './extension-motion.js?v=limited-18';
+import {createPuppetFrames} from './extension-puppet.js?v=limited-10';
 import {reactionPose} from './extension-workshop-state.js?v=haul-2';
 import {createLimitedAnimation,LIMITED,decoded} from './extension-limited-animation.js?v=limited-16';
 export const population=createDisplayPopulation(sourcePopulation);

@@ -1,5 +1,5 @@
-import {createStreetPeople,population} from './extension-people.js?v=haul-6';
-import {createStreetSound} from './extension-motion.js?v=limited-16';
+import {createStreetPeople,population} from './extension-people.js?v=haul-8';
+import {createStreetSound} from './extension-motion.js?v=limited-18';
 import {createWorkshopState,CRANE,INN} from './extension-workshop-state.js?v=haul-2';
 import {createStreetWorkshop} from './extension-workshop.js?v=haul-11';
 import {decoded} from './extension-limited-animation.js?v=limited-16';
@@ -7,7 +7,7 @@ import {createFlowerShop} from './extension-flower-shop.js?v=flowers-7';
 import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {MillWheel} from './mill-wheel.js?v=4';
 import {createRiverBoats} from './river-boats.js?v=8';
-import {createBoatSong} from './boat-song.js?v=2';
+import {createBoatSong} from './boat-song.js?v=3';
 const MIN=-5430,MAX=7602,SPAN=MAX-MIN,H=724,OVERLAP=100;
 const panels=[
   {id:'west-far',x:MIN,w:1729,displayHeight:760,src:'assets/extension-preview/west-far.webp',name:'西郊田畴',kind:'新增 · 西郊'},
@@ -160,6 +160,7 @@ function render(t){frame=0;if(document.hidden||flowerShop.isOpen){last=t;return;
   const flowing=state.ready&&state.motion&&!state.overview;
   if(flowing)waterTime+=dt;
   song.update({boat:boats.singerAt(waterTime),left:state.left,right:state.left+state.width/state.scale,playing:flowing});
+  sound.duck(song.level);
   if(state.flight)stepFlight(dt);
   if(state.auto&&state.ready){state.center+=dt*155/state.scale;dirty=true;}
   const bubbleActive=bubbleUntil>0;
@@ -289,5 +290,5 @@ workshop.ready.catch(error=>{$('#loading').hidden=false;$('#loading').textConten
 const assets=[...panels,...repairs],loaded=await Promise.allSettled(assets.map(load));openScroll();
 const failed=loaded.map((r,i)=>r.status==='rejected'?assets[i].name:null).filter(Boolean);
 if(failed.length){$('#loading').textContent=`${failed.join('、')}未载入，请刷新重试`;console.error('Street preview assets failed',failed);}else{$('#loading').hidden=true;state.ready=true;$('#autoplay').disabled=false;$('#findSinger').disabled=false;document.body.dataset.ready='true';invalidate();}
-document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelProp();pointers.clear();pinch=null;stage.classList.remove('dragging');stop();sound.suspend();song.suspend();if(frame)cancelAnimationFrame(frame);frame=0;}else{last=performance.now();invalidate();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelProp();pointers.clear();pinch=null;stage.classList.remove('dragging');stop();sound.suspend();song.suspend();if(frame)cancelAnimationFrame(frame);frame=0;}else{last=performance.now();sound.resume();invalidate();}});
 residents.ready.then(results=>{const failed=results.filter(r=>r.status==='rejected').length;document.body.dataset.peopleReady=String(!failed);$('#populationStatus').textContent=failed?`人物载入 ${residents.count}/${population.count} 人，请刷新重试`:`市井人物 · ${residents.count} 人`;if(failed)console.error('Character atlases failed',failed);invalidate();});
