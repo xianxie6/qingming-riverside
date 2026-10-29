@@ -116,7 +116,21 @@
       case 'pour':Object.assign(pose,{handX:-2.7*gesture,handY:1.5*gesture,lean:-.022*gesture,nod:.04*gesture});break;
       case 'trade':case 'serve':Object.assign(pose,{handX:4.4*gesture,handY:-1.1*gesture,lean:.012*gesture,nod:-.025*gesture});break;
       case 'pottery':Object.assign(pose,{handX:Math.sin(c*Math.PI*4)*1.5,handY:1.4+beat*.8,lean:.025,nod:.045});break;
-      case 'weave':Object.assign(pose,{handX:beat*4.5,handY:Math.cos(c*Math.PI*4)*.6,lean:beat*.012,nod:.025});break;
+      case 'weave':{
+        // Gather, draw the thread, briefly inspect, then return. Zero velocity
+        // at both ends avoids a perpetual twitch and gives the hands weight.
+        const draw=smooth((c-.10)/.30)*(1-smooth((c-.58)/.30));
+        Object.assign(pose,{handX:draw*2.1,handY:-draw*.85,lean:draw*.010,nod:.012+draw*.018});break;
+      }
+      case 'hang-cloth':{
+        const lift=smooth((c-.08)/.34)*(1-smooth((c-.72)/.25));
+        const smoothCloth=Math.sin(smooth((c-.44)/.25)*Math.PI);
+        Object.assign(pose,{handX:-.5*lift+.55*smoothCloth,handY:2.4-4.8*lift,lean:-.003*lift,nod:-.012*lift,sway:small*3});break;
+      }
+      case 'arrange-frame':{
+        const align=smooth((c-.10)/.30)*(1-smooth((c-.65)/.28));
+        Object.assign(pose,{handX:-1.3*align,handY:-.9*align,lean:-.006*align,nod:.015*align,frameTilt:.025*(1-align),sway:small*3});break;
+      }
       case 'mill':Object.assign(pose,{handX:5*gesture,handY:-2.4*gesture,lean:.035*gesture,nod:.02});break;
       case 'pack':case 'tend':case 'work':Object.assign(pose,{handX:2.2*gesture,handY:5*gesture,lean:.065*gesture,nod:.07*gesture});break;
       case 'row':{
@@ -157,10 +171,14 @@
       const cycle=(pose.phase||0)/.15/(h*(rig.stride??.32)*2)*Math.PI*2;
       y-=(1-Math.cos(cycle*2))*h*.004*upper*(pose.gaitWeight??1);
     }
-    const head=1-smooth((v-.18)/.13),nod=pose.nod||0;
+    const head=(1-smooth((v-.18)/.13))*(rig.workshop?smooth((u-.45)/.20):1),nod=pose.nod||0;
     x-=nod*(v-.29)*h*head;y+=nod*(u-.55)*w*head;
     const du=(u-hand[0])/.4,dv=(v-hand[1])/.26;
-    const arm=Math.exp(-(du*du+dv*dv)*2)*upper*smooth((v-.19)/.12);
+    // Both hands and the painted thread bundle move together. Blend into
+    // the elbows above and the robe below, keeping the feet fully planted.
+    const arm=rig.workshop?(1-smooth((u-.35)/.33))*(rig.workshop==='hang-cloth'?1-smooth((v-.30)/.22):smooth((v-.03)/.10)*(1-smooth((v-.42)/.22))):
+      rig.working?smooth((u-.20)/.30)*smooth((v-.29)/.13)*(1-smooth((v-.53)/.24)):
+      Math.exp(-(du*du+dv*dv)*2)*upper*smooth((v-.19)/.12);
     x+=(pose.handX||0)*arm;y+=(pose.handY||0)*arm;
     const weight=rig.leg===undefined?smooth((v-.71)/.22):clamp((v-.64)/.30),mix=rig.continuous?clamp((u-contacts[0].x/f.w)/((contacts[1].x-contacts[0].x)/f.w)):smooth((u-.43)/.14);
     if(rig.cloth){

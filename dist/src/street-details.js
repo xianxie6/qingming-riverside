@@ -13,8 +13,15 @@
       if(prop.pour>.3)line(ctx,[[9,-1],[11,2],[11,7]],'#d2ceb0',.75);
     }else if(kind==='pot'){
       const r=prop.size??6;
-      polygon(ctx,[[-r*.5,-3],[-r*.9,0],[-r,5],[-r*.55,8],[r*.55,8],[r,5],[r*.9,0],[r*.5,-3]],'#b39775');
-      oval(ctx,0,-3,r*.55,1.2,'#8a785e');line(ctx,[[-r*.7,2],[r*.7,2]],'#8f7657');line(ctx,[[-r*.65,5],[r*.65,5]],'#8f7657');
+      ctx.beginPath();ctx.moveTo(-r*.55,-3);
+      ctx.bezierCurveTo(-r*.5,-1,-r*.96,-.2,-r*.96,3.5);
+      ctx.bezierCurveTo(-r*.96,7.4,-r*.55,8.4,0,8.4);
+      ctx.bezierCurveTo(r*.55,8.4,r*.96,7.4,r*.96,3.5);
+      ctx.bezierCurveTo(r*.96,-.2,r*.5,-1,r*.55,-3);ctx.closePath();
+      ctx.fillStyle='#b29a78';ctx.fill();ctx.strokeStyle='#75644b';ctx.lineWidth=.5;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(-r*.64,.3);ctx.bezierCurveTo(-r*.84,2,-r*.8,5,-r*.45,6.4);
+      ctx.strokeStyle='#ccba96';ctx.lineWidth=.8;ctx.stroke();
+      oval(ctx,0,-3,r*.56,1.1,'#c1ae89');oval(ctx,0,-3,r*.43,.62,'#786c52');
     }else if(kind==='cloth'){
       const w=11+(prop.open??0)*20;
       polygon(ctx,[[0,-2],[w,-1],[w-1,9],[2,8]],'#8c9b98');

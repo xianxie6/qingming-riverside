@@ -1,8 +1,9 @@
 const festivalEnabled=false,festivalGate={x:0,y:0};
 const drawFestivalGate=()=>{},drawFestivalLights=()=>{};
 import './seasons.js?v=4-lossless';
-import {ThreeWaterRenderer} from './water-three.js?v=3-world-cache';
+import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {BackdropCache} from './scene-backdrop.js?v=1';
+import {MillWheel} from './mill-wheel.js?v=4';
 
 (() => {
   'use strict';
@@ -22,6 +23,7 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
   const pedestrianHeight=scale=>scale*46;
   const MIN=population.bounds.min,MAX=population.bounds.max,SPAN=MAX-MIN;
   const inhabitants=new window.Inhabitants(),districts=new window.Districts();
+  districts.millWheel=new MillWheel();
   window.QingmingFestivalActors={inhabitants,characters};
   const actors=document.createElement('canvas');actors.width=SPAN;actors.height=724;
   const actorContext=actors.getContext('2d');
@@ -53,18 +55,23 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
   const motion = document.querySelector('#motion');
   let artwork = new Image();
   const springArtwork=artwork,springDistricts={west:districts.west,east:districts.east};
-  const boatArtwork=new Image(),boatSprite=document.createElement('canvas');boatSprite.width=0;
-  const boatReady=new Promise((resolve,reject)=>{
-  boatArtwork.onload=()=>{
-    boatSprite.width=featured.boat.width*3;boatSprite.height=featured.boat.height*3;
-    const context=boatSprite.getContext('2d');context.imageSmoothingQuality='high';
-    context.drawImage(boatArtwork,40,150,2100,425,0,0,boatSprite.width,boatSprite.height);
-    resolve();
-  };
-  boatArtwork.onerror=()=>reject(new Error('船只素材加载失败'));
-  });
+  const boatSprite=document.createElement('canvas'),ferrySprite=document.createElement('canvas');
+  boatSprite.width=ferrySprite.width=0;
+  function loadBoatSprite(src,sprite){
+    return new Promise((resolve,reject)=>{
+      const artwork=new Image();
+      artwork.onload=()=>{
+        sprite.width=featured.boat.width*3;sprite.height=featured.boat.height*3;
+        const context=sprite.getContext('2d');context.imageSmoothingQuality='high';
+        context.drawImage(artwork,40,150,2100,425,0,0,sprite.width,sprite.height);
+        resolve();
+      };
+      artwork.onerror=()=>reject(new Error('船只素材加载失败'));
+      artwork.src=src;
+    });
+  }
+  const boatReady=Promise.all([loadBoatSprite('assets/boat.webp',boatSprite),loadBoatSprite('assets/boat-passenger-clear.webp',ferrySprite)]);
   boatReady.catch(()=>{});
-  boatArtwork.src='assets/boat.webp';
   const world=window.ScrollWorld;
   const ferry=world.createFerry();
   let life;
@@ -240,11 +247,11 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     ctx.restore();
     return {hand:{x:x+direction*(7-step*.5)*scale,y:y-16*scale}};
   }
-  function boatRim(){
+  function boatRim(sprite=boatSprite){
     const vessel=featured.boat;
-    if(!boatSprite.width)return;
+    if(!sprite.width)return;
     ctx.save();ctx.globalAlpha=.92;ctx.beginPath();ctx.rect(vessel.left,vessel.deckY+.6,vessel.width,20);ctx.clip();
-    ctx.drawImage(boatSprite,vessel.left,vessel.top,vessel.width,vessel.height);ctx.restore();
+    ctx.drawImage(sprite,vessel.left,vessel.top,vessel.width,vessel.height);ctx.restore();
   }
   function boatWake(t,rowing){
     const wake=water.wakeStrength(rowing);
@@ -324,17 +331,18 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
   function boat(x,y,s,t,direction=1,rowing=true,id='ferry') {
     if(x+s*100<state.camera||x-s*100>state.camera+state.width/state.scale)return;
     ctx.save();ctx.translate(x,y+Math.sin(t*.7)*.6);ctx.scale(s*direction,s);
-    if(boatSprite.width){
+    const sprite=id==='ferry'?ferrySprite:boatSprite;
+    if(sprite.width){
       boatWake(t,rowing);
       // Reuse the alpha sprite as reflected, shifting scanlines on the water.
       for(let i=0;i<6;i++){
         ctx.globalAlpha=.065-i*.007;
-        const strip=boatSprite.height*70/425;
-        ctx.drawImage(boatSprite,0,i*strip,boatSprite.width,strip,-79+Math.sin(t*.8+i)*1.3,16-i*1.6,158,1.8);
+        const strip=sprite.height*70/425;
+        ctx.drawImage(sprite,0,i*strip,sprite.width,strip,-79+Math.sin(t*.8+i)*1.3,16-i*1.6,158,1.8);
       }
       ctx.globalAlpha=.92;
       const vessel=featured.boat;
-      ctx.drawImage(boatSprite,vessel.left,vessel.top,vessel.width,vessel.height);
+      ctx.drawImage(sprite,vessel.left,vessel.top,vessel.width,vessel.height);
       if(characters.ready&&inhabitants.ready){
         const strokePeriod=3.6,pose=movement.activityAt('row',rowing?t:0,0,strokePeriod);
         if(!rowing)Object.assign(pose,{handX:0,handY:0,lean:0,nod:0,sway:0});
@@ -353,7 +361,7 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
         }
         disturbBoat(id,x,y,s,t,direction,rowing,pole.tip);
         // The near gunwale covers the soles without concealing the legs.
-        boatRim();
+        boatRim(sprite);
       }else{
         person(vessel.crewX,vessel.deckY,1.4,rowing?t:0,1,'#828774',false);
       }
@@ -849,6 +857,8 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
   function render(){
     const {width,height,scale,camera,time:t}=state;
     if(!state.loaded)return;
+    // A hidden or collapsed viewport has no size; a zero-width backdrop would throw and stop the frame loop.
+    if(!(width>0&&height>0&&scale>0))return;
     inhabitants.season=seasonController.id;inhabitants.raining=weatherSample.rain>.1;
     inhabitants.motionDensity=Math.min(4,Math.max(1,(devicePixelRatio||1)*scale));
     // Keep the last complete frame while a fast jump reaches an unloaded district.
@@ -875,7 +885,8 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     // Dynamic layers already render above display resolution. Bilinear
     // compositing avoids filtering those changing canvases again every frame.
     ctx.imageSmoothingQuality='low';
-    // Wet ground is above the river sample region; keep architecture cached.
+    // Wet ground ends at y=520; the river samples y>=522. Animate that
+    // overlay independently so rain never rebuilds/uploads the architecture.
     window.QingmingWeather.drawWetGround(ctx,weatherSample,[backdrop.rect.x,backdrop.rect.x+backdrop.rect.width],streetY);
 
     if(threeWater.active){
@@ -912,7 +923,7 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
     }
     if(aboard()){
       protagonist();
-      ctx.save();ctx.translate(ferry.x,ferry.y+Math.sin((t+3)*.7)*.6);ctx.scale(world.ferryGeometry.scale*ferry.direction,world.ferryGeometry.scale);boatRim();ctx.restore();
+      ctx.save();ctx.translate(ferry.x,ferry.y+Math.sin((t+3)*.7)*.6);ctx.scale(world.ferryGeometry.scale*ferry.direction,world.ferryGeometry.scale);boatRim(ferrySprite);ctx.restore();
     }
     // The ferry and its passenger form one rear layer. Foreground traffic
     // follows in waterline order, including each boat's crew and wake.
@@ -1010,7 +1021,7 @@ import {BackdropCache} from './scene-backdrop.js?v=1';
   }
   function frame(now){
     const elapsed=last?(now-last)/1000:0,dt=Math.min(elapsed,.05);last=now;
-    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!document.body.classList.contains('time-lens-open')&&!document.body.classList.contains('paper-theatre-open')&&!state.loadingRange){
+    if(!document.hidden&&!document.body.classList.contains('in-atlas')&&!festivalWelcome.open&&!state.loadingRange){
       if(elapsed>0){
         frameSample.elapsed+=elapsed;frameSample.count++;if(elapsed>.025)frameSample.slow++;
         if(frameSample.elapsed>=1){

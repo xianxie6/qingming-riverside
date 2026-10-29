@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>清明上河 · 续卷预览</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles/extension-preview.css?v=home-1">
+  <link rel="stylesheet" href="styles/extension-flower-shop.css?v=flowers-6">
+</head>
+<body>
+  <header>
+    <a class="title" href="index.html" title="返回首页" aria-label="清明上河·春日续卷，返回首页"><span class="seal" aria-hidden="true">续</span><h1>清明上河<span>春日续卷</span></h1></a>
+    <div class="tools" aria-label="画卷工具">
+      <button id="people" aria-pressed="true">人物</button>
+      <button id="seams" aria-pressed="false">接缝</button>
+      <button id="overview" aria-pressed="false">看全卷</button>
+      <button id="zoomOut" aria-label="缩小画卷">−</button>
+      <button id="zoomIn" aria-label="放大画卷">＋</button>
+    </div>
+  </header>
+  <main>
+    <div class="scene-label"><span id="areaKind">新增 · 西郊</span><strong id="areaName">菜园村居</strong></div>
+    <div class="tour-controls">
+      <span class="tour-direction">从左至右</span>
+      <button id="autoplay" aria-pressed="false" aria-controls="scroll" aria-label="从左至右播放游览画卷" disabled>
+        <svg class="tour-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5Z"/></svg>
+        <svg class="tour-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3h3v10H4zm5 0h3v10H9z"/></svg>
+        <span id="autoplayLabel">播放游览</span>
+      </button>
+    </div>
+    <div id="stage" tabindex="0" role="region" aria-label="可拖动的街景画卷，左右键浏览，Home 和 End 到达两端；下拉吊绳装货，点击布帘开合，点击人物招呼">
+      <canvas id="scroll" aria-label="春日街景扩展预览，点击人物看回应，回车键依次与附近人物互动"></canvas>
+      <div id="personBubble" hidden aria-hidden="true"><strong id="personName"></strong><span id="personWords"></span></div>
+      <div id="loading" role="status">正在展开画卷…</div>
+    </div>
+    <div class="scene-hint"><span id="populationStatus" role="status">人物入卷中…</span><span id="gestureHint">点人物 · 拖动游览</span></div>
+    <span id="interactionStatus" class="sr-only" role="status" aria-live="polite"></span>
+  </main>
+  <footer>
+    <div class="dock">
+      <section class="workshop-bar" aria-label="市井小戏">
+        <div class="workshop-tabs" role="group" aria-label="体验场景"><button id="visitWarehouse" aria-pressed="false">仓场吊货</button><button id="visitInn" aria-pressed="false">花肆挑花</button></div>
+        <button id="sceneAction" class="workshop-primary" disabled>拉绳装货</button>
+        <button id="sceneReset" class="icon-only" aria-label="重新开始" title="重新开始" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8a4.5 4.5 0 1 0 1.4-3.3"/><path d="M3 2.5v3h3"/></svg></button>
+        <p id="workshopStatus" role="status" aria-live="polite">去仓场拉一把吊绳，或到花肆挑一枝花。</p>
+      </section>
+      <div class="life-tools" role="group" aria-label="街市互动">
+        <button id="greet" title="招呼附近的人"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.5h11v7H7.2L4.5 13v-2.5h-2Z"/></svg><span>招呼</span></button>
+        <button id="findSinger" title="寻琵琶声" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14"/></svg><span>寻琵琶声</span></button>
+        <button id="motion" aria-pressed="true" title="人物动画"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="i-on" d="M5 3.5v9m6-9v9"/><path class="i-off" d="M5 3l8 5-8 5Z"/></svg><span class="label">暂停人物</span></button>
+        <button id="sound" aria-pressed="false" title="音效"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6h2.5l3.5-3v10L5 10H2.5Z"/><path class="i-on" d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.5a6 6 0 0 1 0 9"/><path class="i-off" d="m11 6 3.5 4m0-4L11 10"/></svg><span class="label">开启音效</span></button>
+      </div>
+    </div>
+    <div id="map" role="group" aria-label="全卷缩略图，点击定位"><canvas id="minimap"></canvas><div id="viewbox"></div><div class="old-range" aria-hidden="true"></div></div>
+    <nav aria-label="街区定位">
+      <button data-x="-4650">田畴</button><button data-x="-2970" aria-current="location">菜园</button><button data-x="-1450">水磨</button><button data-x="1020">街市虹桥</button><button data-x="3360">城门</button><button data-x="5100">仓场</button><button data-x="6720">柳岸花肆</button>
+    </nav>
+  </footer>
+  <script src="src/bridge-railing.js"></script>
+  <script type="module" src="src/extension-preview.js?v=haul-11"></script>
+</body>
+</html>

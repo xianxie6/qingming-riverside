@@ -39,7 +39,9 @@
     return pathY(bridgeGeometry.deck,x)+lane*2*laneRoom;
   }
   const frontRailY=x=>pathY(bridgeGeometry.rail,x);
-  const ferryGeometry={scale:1.24,deckY:-10,passengerX:-36};
+  // Passenger stands on the open deck beyond the canopy, opposite the crew.
+  // Both coordinates are boat-local, so they follow its scale and heading.
+  const ferryGeometry={scale:1.24,deckY:-10,passengerX:48};
   const ferryTravelDuration=48;
   // Ferry waterlines reach y=608. Leave room below that for the full
   // foreground crew silhouette (61 * 1.04), hull bobbing and a water gap.
@@ -97,9 +99,9 @@
     ferry.mode='boarding';ferry.origin=ferry.berth;ferry.destination=ferry.berth==='east'?'west':'east';
     ferry.tripTime=0;ferry.direction=ferry.destination==='west'?1:-1;ferry.hold=true;return true;
   }
-  function boardingPath(berth){
+  function boardingPath(berth,direction){
     const b=berths[berth];
-    const deck=[b.x+ferryGeometry.passengerX,b.y+ferryGeometry.deckY*ferryGeometry.scale];
+    const deck=[b.x+ferryGeometry.passengerX*ferryGeometry.scale*direction,b.y+ferryGeometry.deckY*ferryGeometry.scale];
     return berth==='east'?[[b.shoreX,streetY(b.shoreX)],[2015,489],[2025,512],[2025,535],deck]:
       [[b.shoreX,streetY(b.shoreX)],[575,490],[585,514],[592,535],deck];
   }
@@ -113,12 +115,12 @@
   }
   function passengerPose(ferry){
     if(ferry.mode==='boarding'){
-      const t=ferry.tripTime/3.4;return {...alongPath(boardingPath(ferry.origin),t),scale:1.5-.22*t,facing:1,moving:true};
+      const t=ferry.tripTime/3.4;return {...alongPath(boardingPath(ferry.origin,ferry.direction),t),scale:1.5-.22*t,facing:ferry.direction,moving:true};
     }
     if(ferry.mode==='disembarking'){
-      const t=ferry.tripTime/3.4;return {...alongPath(boardingPath(ferry.destination).slice().reverse(),t),scale:1.28+.22*t,facing:-1,moving:true};
+      const t=ferry.tripTime/3.4;return {...alongPath(boardingPath(ferry.destination,ferry.direction).slice().reverse(),t),scale:1.28+.22*t,facing:-ferry.direction,moving:true};
     }
-    return {x:ferry.x+ferryGeometry.passengerX,y:ferry.y+ferryGeometry.deckY*ferryGeometry.scale,scale:1.28,facing:ferry.destination==='west'?-1:1,moving:false};
+    return {x:ferry.x+ferryGeometry.passengerX*ferryGeometry.scale*ferry.direction,y:ferry.y+ferryGeometry.deckY*ferryGeometry.scale,scale:1.28,facing:ferry.destination==='west'?-1:1,moving:false};
   }
   function pedestrianAt(p,time){
     const duration=(p.to-p.from)/p.speed,pause=p.pause||4,cycle=2*(duration+pause);
