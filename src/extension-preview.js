@@ -6,8 +6,8 @@ import {decoded} from './extension-limited-animation.js?v=limited-16';
 import {createFlowerShop} from './extension-flower-shop.js?v=flowers-7';
 import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {MillWheel} from './mill-wheel.js?v=4';
-import {createRiverBoats} from './river-boats.js?v=8';
-import {createBoatSong} from './boat-song.js?v=3';
+import {createRiverBoats} from './river-boats.js?v=9';
+import {createBoatSong} from './boat-song.js?v=4';
 const MIN=-5430,MAX=7602,SPAN=MAX-MIN,H=724,OVERLAP=100;
 const panels=[
   {id:'west-far',x:MIN,w:1729,displayHeight:760,src:'assets/extension-preview/west-far.webp',name:'西郊田畴',kind:'新增 · 西郊'},
@@ -159,7 +159,9 @@ function render(t){frame=0;if(document.hidden||flowerShop.isOpen){last=t;return;
   // Water, the wheel and boats keep moving even with people hidden.
   const flowing=state.ready&&state.motion&&!state.overview;
   if(flowing)waterTime+=dt;
-  song.update({boat:boats.singerAt(waterTime),left:state.left,right:state.left+state.width/state.scale,playing:flowing});
+  const singer=boats.singerAt(waterTime);
+  // The pipa is heard only once she has started playing for the visitor.
+  song.update({boat:singer?.performing&&singer.time>=0?singer:null,left:state.left,right:state.left+state.width/state.scale,playing:flowing});
   sound.duck(song.level);
   if(state.flight)stepFlight(dt);
   if(state.auto&&state.ready){state.center+=dt*155/state.scale;dirty=true;}
@@ -183,9 +185,10 @@ function worldPoint(e){const r=stage.getBoundingClientRect();return {x:state.lef
 function setMotion(on){state.motion=on;$('#motion').setAttribute('aria-pressed',String(on));$('#motion .label').textContent=on?'暂停人物':'开启动画';last=performance.now();invalidate();}
 $('#motion').addEventListener('click',()=>setMotion(!state.motion));setMotion(state.motion);
 reducedMotion.addEventListener('change',e=>setMotion(!e.matches));
-function setSound(want){const on=sound.set(want);song.set(on);const b=$('#sound');b.setAttribute('aria-pressed',String(on));b.querySelector('.label').textContent=on?'音效已开':'开启音效';return on;}
-// Fly to the pipa boat, a little ahead of it, and turn the sound on.
-function findSinger(){const b=boats.singerAt(waterTime);if(!b||!state.ready)return;setSound(true);cancelProp();stop();leaveOverview();geometry();state.flight={from:{center:state.center,focusY:state.focusY,zoom:state.zoom},to:{center:b.x+b.direction*14,focusY:600,zoom:1.8},t:0};last=performance.now();$('#interactionStatus').textContent='镜头来到河上的弹唱船，琵琶声渐近。';invalidate();}
+function setSound(want){const on=sound.set(want);song.set(on);if(!on)boats.rest();const b=$('#sound');b.setAttribute('aria-pressed',String(on));b.querySelector('.label').textContent=on?'音效已开':'开启音效';return on;}
+// Fly to the pipa boat, a little ahead of it, and turn the sound on. She
+// starts playing as the camera arrives; until then only the stream is heard.
+function findSinger(){const b=boats.singerAt(waterTime);if(!b||!state.ready)return;setSound(true);if(!boats.performing)boats.perform(waterTime+(reducedMotion.matches?0:FLIGHT_TIME));cancelProp();stop();leaveOverview();geometry();state.flight={from:{center:state.center,focusY:state.focusY,zoom:state.zoom},to:{center:b.x+b.direction*14,focusY:600,zoom:1.8},t:0};last=performance.now();$('#interactionStatus').textContent='镜头来到河上的弹唱船，船娘抱起琵琶弹唱起来。';invalidate();}
 $('#findSinger').addEventListener('click',findSinger);
 $('#sound').addEventListener('click',e=>setSound(e.currentTarget.getAttribute('aria-pressed')!=='true'));
 $('#greet').addEventListener('click',greetNearby);

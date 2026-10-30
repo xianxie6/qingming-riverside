@@ -111,6 +111,9 @@ function strokeAt(time){
 export function createRiverBoats({min,max,lanes}){
   const span=max-min+400;
   let sprite=null,ferry=null,crew=null,singer=null;
+  // She rests with the pipa on her lap until a visitor seeks her out; the song
+  // then starts from its first pluck at `performFrom` on the water clock.
+  let performFrom=null;
   const mix=document.createElement('canvas');
   const ready=Promise.all(['assets/boat.webp','assets/boat-passenger-clear.webp','assets/featured-characters-v7.webp','assets/boat-singer-v1.webp'].map(loadImage)).then(([boat,clear,sheet,song])=>{
     sprite=boatSprite(boat);ferry=boatSprite(clear);crew=boatman(sheet);singer=singerFrames(song);
@@ -126,11 +129,15 @@ export function createRiverBoats({min,max,lanes}){
     return {x:lane.direction>0?min-200+along:max+200-along,y:lane.y,scale:lane.scale,direction:lane.direction,time:time+boat.id*1.37,singer:boat.singer};
   }
   // She sits on the open foredeck, breathing with the phrase and the swell.
-  function drawSinger(ctx,t){
-    let at=((t%SONG_LENGTH)+SONG_LENGTH)%SONG_LENGTH,step=0;
-    while(at>=SONG[step][1]){at-=SONG[step][1];step++;}
-    const [frame,duration]=SONG[step],next=SONG[(step+1)%SONG.length][0];
-    const blend=next===frame?0:smooth((at-(duration-BLEND))/BLEND);
+  // `song` is the song clock, or null while she waits holding the pipa.
+  function drawSinger(ctx,t,song){
+    let frame=0,blend=0,next=0;
+    if(song!==null&&song>=0){
+      let at=song%SONG_LENGTH,step=0;
+      while(at>=SONG[step][1]){at-=SONG[step][1];step++;}
+      const duration=SONG[step][1];frame=SONG[step][0];next=SONG[(step+1)%SONG.length][0];
+      blend=next===frame?0:smooth((at-(duration-BLEND))/BLEND);
+    }
     const s=SINGER.height/singer[0].texture.height,breath=Math.sin(t*1.7)*.01;
     ctx.save();ctx.translate(SINGER.x,SINGER.y);ctx.rotate(Math.sin(t*.61)*.012);ctx.scale(1,1+breath);
     const paint=(target,f,alpha,x,y)=>{const {texture,anchor}=singer[f];target.globalAlpha=alpha;target.drawImage(texture,x-anchor,y-texture.height);};
@@ -241,7 +248,7 @@ export function createRiverBoats({min,max,lanes}){
       const hull=b.singer?ferry:sprite;
       wake(ctx,t);reflection(ctx,t,hull);
       ctx.globalAlpha=.94;ctx.drawImage(hull,BOAT.left,BOAT.top,BOAT.width,BOAT.height);ctx.globalAlpha=1;
-      if(b.singer)drawSinger(ctx,t);
+      if(b.singer)drawSinger(ctx,t,performFrom===null?null:time-performFrom);
       const {hands,pose}=drawCrew(ctx,t);
       const pole=drawPole(ctx,hands,pose);
       // The near gunwale passes in front of his feet.
@@ -252,10 +259,15 @@ export function createRiverBoats({min,max,lanes}){
     }
   }
   // Where the singing boat is, and her own clock, for the song's sound.
+  // While she performs, `time` is the song clock (negative before the first pluck).
   function singerAt(time){
-    const boat=fleet.find(b=>b.singer);
-    return boat?position(boat,time):null;
+    const boat=fleet.find(b=>b.singer);if(!boat)return null;
+    const at=position(boat,time);
+    return performFrom===null?{...at,performing:false}:{...at,time:time-performFrom,performing:true};
   }
-  return {ready,draw,singerAt};
+  return {ready,draw,singerAt,
+    perform(time){performFrom=time;},
+    rest(){performFrom=null;},
+    get performing(){return performFrom!==null;}};
 }
 export const SONG_STEPS=SONG;

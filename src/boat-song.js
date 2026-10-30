@@ -3,7 +3,7 @@
 // under a held note with her eyes closed, then smiles and rests (6.8 s).
 // Pipa: plucked-string model with a wooden body. Voice: a female formant
 // voice with glides and vibrato. Volume follows the boat into and out of view.
-import {SONG_STEPS} from './river-boats.js?v=8';
+import {SONG_STEPS} from './river-boats.js?v=9';
 
 const PHRASE=SONG_STEPS.reduce((sum,[,d])=>sum+d,0);
 const N={D4:293.66,E4:329.63,'F#4':369.99,A4:440,B4:493.88,D5:587.33,E5:659.26,'F#5':739.99};
