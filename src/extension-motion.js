@@ -157,13 +157,20 @@ export function jointOffset(p,pose,u,v){
 // The street scene's daytime background music, shared by the spring scroll.
 // Night music joins once the scroll has an evening.
 export const DAY_MUSIC='assets/audio/day-ambience.mp3';
-const MUSIC_LEVEL=.22,MUSIC_DUCK=.65;
+const MUSIC_LEVEL=.22,MUSIC_DUCK=.65,GESTURES=['pointerdown','keydown','touchend'];
 
 export function createStreetSound(){
  let context,enabled=false,music=null,volume=0,target=0,duck=0,fading=0;
  function prepare(){try{context ||= new (globalThis.AudioContext||globalThis.webkitAudioContext)();context.resume().catch(()=>{});}catch{return false;}return true;}
- // A plain looping element, faded by small volume steps; play() must start in
- // the button's own gesture for mobile browsers to allow it.
+ // A plain looping element, faded by small volume steps. The music is on by
+ // default; when the browser blocks playback before any gesture, it starts on
+ // the visitor's first click, drag or key instead.
+ let unlocking=false;
+ function unlockOnGesture(){
+  if(unlocking)return;unlocking=true;
+  const retry=()=>{for(const type of GESTURES)removeEventListener(type,retry,true);unlocking=false;if(target)playMusic(true);};
+  for(const type of GESTURES)addEventListener(type,retry,true);
+ }
  function track(){
   if(!music){music=new Audio(DAY_MUSIC);music.loop=true;music.preload='auto';music.playsInline=true;music.volume=0;}
   return music;
@@ -181,11 +188,13 @@ export function createStreetSound(){
  function playMusic(on){
   if(!on&&!music)return;
   const m=track();target=on?MUSIC_LEVEL:0;
-  if(on)m.play().catch(()=>{});
+  // A stopped (or still blocked) track always fades in from silence.
+  if(on&&m.paused){volume=0;m.volume=0;}
+  if(on)m.play().catch(error=>{if(error?.name==='NotAllowedError')unlockOnGesture();});
   fade();
  }
  return {
-  set(value){enabled=value&&prepare();playMusic(enabled);return enabled;},
+  set(value){enabled=Boolean(value);playMusic(enabled);return enabled;},
   // Lower the music while the pipa boat is near enough to be heard (0-1).
   duck(level){
    const next=Math.round(Math.max(0,Math.min(1,level||0))*20)/20;

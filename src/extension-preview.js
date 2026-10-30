@@ -1,5 +1,5 @@
-import {createStreetPeople,population} from './extension-people.js?v=haul-8';
-import {createStreetSound} from './extension-motion.js?v=limited-18';
+import {createStreetPeople,population} from './extension-people.js?v=haul-10';
+import {createStreetSound} from './extension-motion.js?v=limited-20';
 import {createWorkshopState,CRANE,INN} from './extension-workshop-state.js?v=haul-2';
 import {createStreetWorkshop} from './extension-workshop.js?v=haul-11';
 import {decoded} from './extension-limited-animation.js?v=limited-16';
@@ -185,12 +185,18 @@ function worldPoint(e){const r=stage.getBoundingClientRect();return {x:state.lef
 function setMotion(on){state.motion=on;$('#motion').setAttribute('aria-pressed',String(on));$('#motion .label').textContent=on?'暂停人物':'开启动画';last=performance.now();invalidate();}
 $('#motion').addEventListener('click',()=>setMotion(!state.motion));setMotion(state.motion);
 reducedMotion.addEventListener('change',e=>setMotion(!e.matches));
-function setSound(want){const on=sound.set(want);song.set(on);if(!on)boats.rest();const b=$('#sound');b.setAttribute('aria-pressed',String(on));b.querySelector('.label').textContent=on?'音效已开':'开启音效';return on;}
+// Sound starts on; a visitor who turns it off keeps it off on later visits.
+const SOUND_KEY='qingming-spring-sound';
+function rememberSound(on){try{localStorage.setItem(SOUND_KEY,on?'on':'off');}catch{}}
+function soundPreferred(){try{return localStorage.getItem(SOUND_KEY)!=='off';}catch{return true;}}
+// `auto` (page load) leaves the pipa's audio graph for the first real gesture.
+function setSound(want,{auto=false}={}){const on=sound.set(want);if(!auto)song.set(on);if(!on)boats.rest();const b=$('#sound');b.setAttribute('aria-pressed',String(on));b.querySelector('.label').textContent=on?'音效已开':'开启音效';return on;}
 // Fly to the pipa boat, a little ahead of it, and turn the sound on. She
 // starts playing as the camera arrives; until then only the stream is heard.
 function findSinger(){const b=boats.singerAt(waterTime);if(!b||!state.ready)return;setSound(true);if(!boats.performing)boats.perform(waterTime+(reducedMotion.matches?0:FLIGHT_TIME));cancelProp();stop();leaveOverview();geometry();state.flight={from:{center:state.center,focusY:state.focusY,zoom:state.zoom},to:{center:b.x+b.direction*14,focusY:600,zoom:1.8},t:0};last=performance.now();$('#interactionStatus').textContent='镜头来到河上的弹唱船，船娘抱起琵琶弹唱起来。';invalidate();}
 $('#findSinger').addEventListener('click',findSinger);
-$('#sound').addEventListener('click',e=>setSound(e.currentTarget.getAttribute('aria-pressed')!=='true'));
+$('#sound').addEventListener('click',e=>rememberSound(setSound(e.currentTarget.getAttribute('aria-pressed')!=='true')));
+setSound(soundPreferred(),{auto:true});
 $('#greet').addEventListener('click',greetNearby);
 for(const b of document.querySelectorAll('nav button'))b.addEventListener('click',()=>{focus(Number(b.dataset.x));state.focusY=H/2;});
 $('#seams').addEventListener('click',e=>{state.seams=!state.seams;e.currentTarget.setAttribute('aria-pressed',String(state.seams));invalidate();});
