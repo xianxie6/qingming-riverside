@@ -8,6 +8,7 @@ import {ThreeWaterRenderer} from './water-three.js?v=6-river-fade';
 import {MillWheel} from './mill-wheel.js?v=4';
 import {createRiverBoats} from './river-boats.js?v=9';
 import {createBoatSong} from './boat-song.js?v=4';
+import {createFieldAmbience} from './extension-fields.js?v=breeze-3';
 const MIN=-5430,MAX=7602,SPAN=MAX-MIN,H=724,OVERLAP=100;
 const panels=[
   {id:'west-far',x:MIN,w:1729,displayHeight:760,src:'assets/extension-preview/west-far.webp',name:'西郊田畴',kind:'新增 · 西郊'},
@@ -45,6 +46,7 @@ const water=new ThreeWaterRenderer({bankY:542,bankStep:{x:4244,y:549},fadeY:H}),
 const boats=createRiverBoats({min:MIN,max:MAX,lanes:[{y:640,speed:9,direction:1,scale:1.75,count:5,singer:1},{y:700,speed:6.5,direction:-1,scale:1.95,count:4}]});
 boats.ready.then(()=>invalidate(),()=>{});
 const song=createBoatSong();
+const fields=createFieldAmbience({panel:()=>panels[0]});
 function drawRiver(target,left,right){
  const viewY=-state.top/state.scale;
  if(water.active){
@@ -119,7 +121,7 @@ function draw(){
   }
   ctx.drawImage(backdrop,0,0,state.width,state.height);ctx.save();ctx.translate(-state.left*state.scale,state.top);ctx.scale(state.scale,state.scale);
   const right=state.left+state.width/state.scale;
-  if(!state.overview)drawRiver(ctx,state.left,right);
+  if(!state.overview){drawRiver(ctx,state.left,right);fields.draw(ctx,state.left,right,waterTime);}
   drawResidents(ctx,state.left,right,true);
   workshop.draw(ctx,state.left,right,{overview:state.overview,people:state.people});
   if(!state.overview)boats.draw(ctx,waterTime,state.left,right);
@@ -296,8 +298,14 @@ new ResizeObserver(layout).observe(stage);layout();
 // The scroll opens once its painted panels are in; workshop props and figures
 // fill in afterwards without holding the loading screen.
 workshop.ready.catch(error=>{$('#loading').hidden=false;$('#loading').textContent='市井小戏素材未载入，请刷新重试';console.error('Street preview assets failed',error);});
-const assets=[...panels,...repairs],loaded=await Promise.allSettled(assets.map(load));openScroll();
-const failed=loaded.map((r,i)=>r.status==='rejected'?assets[i].name:null).filter(Boolean);
-if(failed.length){$('#loading').textContent=`${failed.join('、')}未载入，请刷新重试`;console.error('Street preview assets failed',failed);}else{$('#loading').hidden=true;state.ready=true;$('#autoplay').disabled=false;$('#findSinger').disabled=false;document.body.dataset.ready='true';invalidate();}
+// Open as soon as the panels in the first view are painted; the rest of the
+// scroll keeps loading behind it, then props and figures follow.
+const assets=[...panels,...repairs],tasks=assets.map(load);
+const report=(results,list)=>{const failed=results.map((r,i)=>r.status==='rejected'?list[i].name:null).filter(Boolean);if(failed.length){$('#loading').hidden=false;$('#loading').textContent=`${failed.join('、')}未载入，请刷新重试`;console.error('Street preview assets failed',failed);}return !failed.length;};
+geometry();
+const firstView=assets.filter(p=>p.x+p.w>state.left-OVERLAP&&p.x<state.left+state.width/state.scale+OVERLAP);
+if(report(await Promise.allSettled(firstView.map(p=>tasks[assets.indexOf(p)])),firstView)){$('#loading').hidden=true;state.ready=true;$('#autoplay').disabled=false;$('#findSinger').disabled=false;invalidate();}
+const loaded=await Promise.allSettled(tasks);openScroll();
+if(report(loaded,assets)&&state.ready)document.body.dataset.ready='true';
 document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelProp();pointers.clear();pinch=null;stage.classList.remove('dragging');stop();sound.suspend();song.suspend();if(frame)cancelAnimationFrame(frame);frame=0;}else{last=performance.now();sound.resume();invalidate();}});
 residents.ready.then(results=>{const failed=results.filter(r=>r.status==='rejected').length;document.body.dataset.peopleReady=String(!failed);$('#populationStatus').textContent=failed?`人物载入 ${residents.count}/${population.count} 人，请刷新重试`:`市井人物 · ${residents.count} 人`;if(failed)console.error('Character atlases failed',failed);invalidate();});

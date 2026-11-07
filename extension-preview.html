@@ -7,6 +7,37 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles/extension-preview.css?v=home-1">
   <link rel="stylesheet" href="styles/extension-flower-shop.css?v=flowers-6">
+  <!-- Start the painted panels and the whole module graph at once instead of
+       discovering them import by import (keep these URLs in step with the imports). -->
+  <link rel="preload" as="image" href="assets/extension-preview/west-far.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/extension-preview/west-near.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/district-west-fast.webp">
+  <link rel="preload" as="image" href="assets/street-empty-fast.webp">
+  <link rel="preload" as="image" href="assets/district-east-fast.webp">
+  <link rel="preload" as="image" href="assets/extension-preview/center-east-seam-repaired-v1.webp">
+  <link rel="preload" as="image" href="assets/extension-preview/east-near.webp">
+  <link rel="preload" as="image" href="assets/extension-preview/east-far.webp">
+  <link rel="modulepreload" href="src/extension-preview.js?v=haul-19">
+  <link rel="modulepreload" href="src/extension-people.js?v=haul-10">
+  <link rel="modulepreload" href="src/extension-motion.js?v=limited-20">
+  <link rel="modulepreload" href="src/extension-workshop-state.js?v=haul-2">
+  <link rel="modulepreload" href="src/extension-workshop.js?v=haul-11">
+  <link rel="modulepreload" href="src/extension-limited-animation.js?v=limited-16">
+  <link rel="modulepreload" href="src/extension-flower-shop.js?v=flowers-7">
+  <link rel="modulepreload" href="src/water-three.js?v=6-river-fade">
+  <link rel="modulepreload" href="src/mill-wheel.js?v=4">
+  <link rel="modulepreload" href="src/river-boats.js?v=9">
+  <link rel="modulepreload" href="src/boat-song.js?v=4">
+  <link rel="modulepreload" href="src/extension-fields.js?v=breeze-3">
+  <link rel="modulepreload" href="src/extension-people-data.js?v=people-4">
+  <link rel="modulepreload" href="src/extension-people-layout.js?v=haul-3">
+  <link rel="modulepreload" href="src/extension-puppet.js?v=limited-12">
+  <link rel="modulepreload" href="src/extension-walkers.js?v=limited-16">
+  <link rel="modulepreload" href="src/extension-flower-customers.js?v=customers-3">
+  <link rel="modulepreload" href="src/extension-flower-street.js?v=street-4">
+  <link rel="modulepreload" href="src/extension-flower-state.js?v=flowers-3">
+  <link rel="modulepreload" href="vendor/three.module.js">
+  <link rel="modulepreload" href="vendor/three.core.js">
 </head>
 <body>
   <header>
@@ -58,6 +89,6 @@
     </nav>
   </footer>
   <script src="src/bridge-railing.js"></script>
-  <script type="module" src="src/extension-preview.js?v=haul-17"></script>
+  <script type="module" src="src/extension-preview.js?v=haul-19"></script>
 </body>
 </html>

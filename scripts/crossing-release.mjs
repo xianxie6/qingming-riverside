@@ -13,7 +13,7 @@ const springFiles=[
   ...['extension-preview','extension-people','extension-people-data','extension-people-layout','extension-puppet',
     'extension-motion','extension-walkers','extension-limited-animation','extension-workshop','extension-workshop-state',
     'extension-flower-shop','extension-flower-state','extension-flower-street','extension-flower-customers',
-    'river-boats','boat-song'].map(name=>`src/${name}.js`),
+    'river-boats','boat-song','extension-fields'].map(name=>`src/${name}.js`),
   ...springAssets
 ];
 
